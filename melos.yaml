@@ -4,5 +4,11 @@ packages:
   - packages/*
 
 scripts:
+
   analyze:
-    exec: dart analyze .
+    run: melos exec -- flutter analyze .
+    description: Run `dart analyze` in all packages.
+
+  test:selective_unit_test:
+    run: melos exec --dir-exists="test" --fail-fast -- flutter test --no-pub --coverage
+    description: Run Flutter tests for a specific package in this project.
