@@ -1,0 +1,8 @@
+name: jikan_ui
+
+packages:
+  - packages/*
+
+scripts:
+  analyze:
+    exec: dart analyze .
