@@ -1,0 +1,10 @@
+name: jikan_ui_workspace
+description: Jikan UI project workspace
+version: 1.0.0
+
+environment:
+  sdk: ^3.1.0
+
+dev_dependencies:
+  melos: ^3.1.1
+
