@@ -1,6 +1,11 @@
 # Melos
 pubspec_overrides.yaml
 .idea/
+*.iml
 
 # Dart
 .dart_tool/
+
+build/
+
+coverage/
