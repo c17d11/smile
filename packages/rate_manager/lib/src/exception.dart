@@ -1,0 +1,1 @@
+class RateManagerTimeoutException implements Exception {}
