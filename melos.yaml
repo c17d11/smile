@@ -3,6 +3,11 @@ name: jikan_ui
 packages:
   - packages/*
 
+command:
+  bootstrap:
+    hooks:
+      post: dart pub run build_runner build
+
 scripts:
 
   analyze:
