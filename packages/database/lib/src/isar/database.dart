@@ -119,4 +119,4 @@ class IsarDatabase implements Database {
   }
 }
 
-Database getDatabase() => IsarDatabase();
+Database get database => IsarDatabase();
