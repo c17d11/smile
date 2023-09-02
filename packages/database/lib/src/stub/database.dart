@@ -5,6 +5,9 @@ class DatabaseStub implements Database {
   Future<void> init() {
     throw UnsupportedError('Platform not supported');
   }
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
 Database get database => DatabaseStub();
