@@ -152,3 +152,5 @@ EOF
 
 # TODO: Instructions for
 # dart pub global activate coverde
+# https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+# https://docs.docker.com/compose/install/standalone/
