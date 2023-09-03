@@ -1,0 +1,21 @@
+{
+	"files.exclude": {
+		"**/.git": false,
+		"**/.git/branches": true,
+		"**/.git/info": true,
+		"**/.git/logs": true,
+		"**/.git/objects": true,
+		"**/.git/refs": true,
+		"**/.git/description": true,
+		"**/.git/HEAD": true,
+		"**/.git/index": true,
+		"**/.git/FETCH_HEAD": true,
+		"**/.git/ORIG_HEAD": true,
+		"**/.git/COMMIT_EDITMSG": true,
+		"**/.git/hooks/*.sample": true,
+
+		"**/.idea": true,
+		"**/.dart_tool": true,
+		"**/melos*.iml": true
+	},
+}
