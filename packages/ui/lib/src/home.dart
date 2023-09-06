@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ui/src/anime_list.dart';
 
 class Home extends ConsumerStatefulWidget {
+  const Home({super.key});
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _HomeState();
 }
@@ -12,7 +13,7 @@ class _HomeState extends ConsumerState<Home> {
   Widget build(BuildContext context) {
     if (!mounted) {
       return const SizedBox(
-        child: const Text("Not mounted"),
+        child: Text("Not mounted"),
       );
     }
     return DefaultTabController(
@@ -33,7 +34,7 @@ class _HomeState extends ConsumerState<Home> {
         body: const TabBarView(
           children: [
             SizedBox(child: Text("Yo1")),
-            SizedBox(child: Text("Yo2")),
+            AnimeList(),
             SizedBox(child: Text("Yo3")),
           ],
         ),
