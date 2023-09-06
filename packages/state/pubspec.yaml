@@ -8,7 +8,9 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
+  flutter_riverpod: ^2.4.0
   jikan_api:
+  database:
 
 dev_dependencies:
   lints: ^2.0.0
