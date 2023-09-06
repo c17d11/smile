@@ -186,7 +186,7 @@ packages:
     source: hosted
     version: "1.2.0"
   database:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
       path: "../database"
       relative: true
@@ -246,7 +246,7 @@ packages:
     source: hosted
     version: "2.0.3"
   flutter_riverpod:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_riverpod
       sha256: "1bd39b04f1bcd217a969589777ca6bd642d116e3e5de65c3e6a8e8bdd8b178ec"
@@ -323,7 +323,7 @@ packages:
     source: hosted
     version: "3.1.0+1"
   jikan_api:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
       path: "../jikan_api"
       relative: true
