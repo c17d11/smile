@@ -1,37 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:database/database.dart';
-import 'package:jikan_api/jikan_api.dart';
 import 'package:ui/src/home.dart';
+import 'package:ui/src/pod.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Database db = Database();
-  await db.init();
-  JikanApi api = JikanApi();
-
-  runApp(JikanUi(db, api));
+  runApp(const ProviderScope(child: JikanUi()));
 }
 
 class JikanUi extends ConsumerStatefulWidget {
-  final Database _db;
-  final JikanApi _api;
-
-  const JikanUi(this._db, this._api, {super.key});
+  const JikanUi({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _JikanUiState();
 }
 
 class _JikanUiState extends ConsumerState<JikanUi> {
+  Future<void> init() async {
+    await ref.watch(databasePod).init();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: 'home',
-      routes: {
-        'home': (context) => Home(),
-      },
-    );
+    return FutureBuilder(
+        future: init(),
+        builder: (context, snapshot) {
+          return MaterialApp(
+            initialRoute: 'home',
+            routes: {
+              'home': (context) => const Home(),
+            },
+          );
+        });
   }
 }
