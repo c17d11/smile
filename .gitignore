@@ -11,3 +11,5 @@ build/
 coverage/
 
 *.mocks.dart
+
+generated_plugin*
