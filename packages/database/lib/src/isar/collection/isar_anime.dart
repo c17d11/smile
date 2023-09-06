@@ -13,6 +13,14 @@ class IsarAnime extends AnimeIntern {
 
   IsarAnime({required this.id});
 
+  static IsarAnime fromIntern(AnimeIntern t) {
+    IsarAnime anime = from(t);
+    anime
+      ..isBlacklisted = t.isBlacklisted
+      ..isFavorite = t.isFavorite;
+    return anime;
+  }
+
   static IsarAnime from(Anime t) {
     IsarAnime anime = IsarAnime(id: t.malId!)
       ..malId = t.malId
