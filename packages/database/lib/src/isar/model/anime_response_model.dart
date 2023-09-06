@@ -13,7 +13,8 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
   Future<void> insertAnimeResponse(AnimeResponseIntern arg) async {
     IsarAnimeResponse res = arg as IsarAnimeResponse;
 
-    List<IsarAnime> animes = res.data as List<IsarAnime>;
+    List<IsarAnime> animes =
+        res.data?.map((e) => IsarAnime.fromIntern(e)).toList() ?? [];
     await write(() async {
       if (animes.isNotEmpty) {
         await db.isarAnimes.putAll(animes);

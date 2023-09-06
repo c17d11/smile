@@ -39,6 +39,25 @@ class IsarDatabase implements Database {
   }
 
   @override
+  Future<void> clear() async {
+    await instance.writeTxn(() async {
+      await instance.clear();
+    });
+  }
+
+  @override
+  Future<void> close() async {
+    await init();
+    await instance.close(deleteFromDisk: false);
+  }
+
+  @override
+  Future<void> remove() async {
+    await init();
+    await instance.close(deleteFromDisk: true);
+  }
+
+  @override
   AnimeResponseIntern createAnimeResponseIntern(
       AnimeResponse res, AnimeQuery query) {
     return animeResponseModel.createAnimeResponseIntern(res, query);
@@ -100,4 +119,4 @@ class IsarDatabase implements Database {
   }
 }
 
-Database getDatabase() => IsarDatabase();
+Database get database => IsarDatabase();
