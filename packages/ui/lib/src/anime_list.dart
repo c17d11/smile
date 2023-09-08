@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'package:state/state.dart';
+import 'package:ui/src/anime_portrait.dart';
 import 'pod.dart';
 
 class AnimeList extends ConsumerWidget {
@@ -14,26 +15,27 @@ class AnimeList extends ConsumerWidget {
     ref.listen<AsyncValue<List<AnimeIntern>>>(
         animeControllerPod, (_, state) => state.showSnackBarOnError(context));
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        TextButton(
-            onPressed: () =>
-                ref.read(animeControllerPod.notifier).get(AnimeQuery()),
-            child: const Text("Load data")),
-        Expanded(
-          child: GridView.builder(
-            itemCount: animes.value?.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: (7 / 10),
-            ),
-            itemBuilder: (context, index) => Text(
-              animes.value?[index].title ?? '',
-            ),
+    return Container(
+      color: Colors.grey[300],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          TextButton(
+              onPressed: () =>
+                  ref.read(animeControllerPod.notifier).get(AnimeQuery()),
+              child: const Text("Load data")),
+          Expanded(
+            child: GridView.builder(
+                itemCount: animes.value?.length,
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 150,
+                  childAspectRatio: (7 / 10),
+                ),
+                itemBuilder: (context, index) =>
+                    AnimePortrait(animes.value?[index])),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
