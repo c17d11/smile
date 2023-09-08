@@ -1,5 +1,5 @@
 import 'http_result.dart';
 
-abstract class Http {
+abstract interface class Http {
   Future<HttpResult> get(String url);
 }
