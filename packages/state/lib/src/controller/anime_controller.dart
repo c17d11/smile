@@ -4,8 +4,8 @@ import 'package:state/state.dart';
 import 'package:database/database.dart';
 
 class AnimeController extends StateNotifier<AsyncValue<List<AnimeIntern>>> {
-  Database _database;
-  JikanApi _api;
+  final Database _database;
+  final JikanApi _api;
 
   AnimeController(this._database, this._api) : super(AsyncValue.data([]));
 
