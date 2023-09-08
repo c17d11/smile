@@ -13,3 +13,5 @@ coverage/
 *.mocks.dart
 
 generated_plugin*
+
+pubspec.lock
