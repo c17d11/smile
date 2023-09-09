@@ -48,7 +48,6 @@ class _HomePageState extends ConsumerState<HomePage> {
         _ScheduleItem().railItem,
         _SettingsItem().railItem,
       ],
-      trailing: _SettingsItem().,
     );
   }
 
