@@ -1,41 +1,89 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'package:state/state.dart';
 import 'package:ui/src/anime_portrait.dart';
 import 'pod.dart';
 
-class AnimeList extends ConsumerWidget {
+class AnimeList extends ConsumerStatefulWidget {
   const AnimeList({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _AnimeListState();
+}
+
+class _AnimeListState extends ConsumerState<AnimeList> {
+  final ScrollController _scrollViewController = ScrollController();
+  bool isScrollingDown = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollViewController.addListener(() {
+      if (_scrollViewController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        if (!isScrollingDown) {
+          isScrollingDown = true;
+          setState(() {});
+        }
+      }
+
+      if (_scrollViewController.position.userScrollDirection ==
+          ScrollDirection.forward) {
+        if (isScrollingDown) {
+          isScrollingDown = false;
+          setState(() {});
+        }
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollViewController.dispose();
+    _scrollViewController.removeListener(() {});
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     AsyncValue<List<AnimeIntern>> animes = ref.watch(animeControllerPod);
 
     ref.listen<AsyncValue<List<AnimeIntern>>>(
         animeControllerPod, (_, state) => state.showSnackBarOnError(context));
 
-    return Container(
-      color: Colors.grey[300],
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          TextButton(
-              onPressed: () =>
-                  ref.read(animeControllerPod.notifier).get(AnimeQuery()),
-              child: const Text("Load data")),
-          Expanded(
-            child: GridView.builder(
-                itemCount: animes.value?.length,
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 150,
-                  childAspectRatio: (7 / 10),
-                ),
-                itemBuilder: (context, index) =>
-                    AnimePortrait(animes.value?[index])),
+    return Column(
+      children: [
+        AnimatedContainer(
+          duration: const Duration(microseconds: 200),
+          curve: Curves.fastOutSlowIn,
+          height: isScrollingDown ? 0 : 40,
+          child: AppBar(
+            actions: <Widget>[
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.sort),
+              )
+            ],
           ),
-        ],
-      ),
+        ),
+        TextButton(
+            onPressed: () =>
+                ref.read(animeControllerPod.notifier).get(AnimeQuery()),
+            child: const Text("Load data")),
+        Expanded(
+          child: GridView.builder(
+              itemCount: animes.value?.length,
+              controller: _scrollViewController,
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 150,
+                childAspectRatio: (7 / 10),
+              ),
+              itemBuilder: (context, index) =>
+                  AnimePortrait(animes.value?[index])),
+        ),
+      ],
     );
   }
 }
