@@ -9,9 +9,6 @@ class AnimePortrait extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (anime != null) {
-      print(anime!.imageUrl ?? '');
-    }
     return GestureDetector(
       onTap: () {},
       child: Card(
