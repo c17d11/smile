@@ -58,6 +58,7 @@ install_flutter() {
 install_cmdline_tools() {
 	SDK_PATH=$1
 	mkdir -p $SDK_PATH
+	# this page https://developer.android.com/studio/index.html
 	wget https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip -qO- | busybox unzip -d $SDK_PATH -
 	BIN_DIR=$(
 		cd $SDK_PATH/*tools*
@@ -146,7 +147,7 @@ Almost done, now run these manually:
 	flutter config --no-analytics
 	flutter --disable-telemetry
 
-	avdmanager create avd -n Driod33S8 -d 30 -k "system-images;android-33;google_apis_playstore;x86_64"
+	avdmanager create avd -n Droid33S8 -d 30 -k "system-images;android-33;google_apis_playstore;x86_64"
 
 	emulator -avd Droid33S8
 EOF
