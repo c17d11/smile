@@ -10,7 +10,9 @@ class AnimePortrait extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, 'anime-details', arguments: anime);
+      },
       child: Card(
         elevation: 5,
         clipBehavior: Clip.antiAlias,
@@ -41,15 +43,6 @@ class AnimePortrait extends ConsumerWidget {
                                         Text(anime!.imageUrl ?? ""),
                               ),
                             ),
-                            // CachedNetworkImage(
-                            //   imageUrl: anime!.imageUrl ?? '',
-                            //   placeholder: (context, url) =>
-                            //       CircularProgressIndicator(),
-                            //   errorWidget: (context, url, error) =>
-                            //       Icon(Icons.error),
-                            //   fit: BoxFit.cover,
-                            //   alignment: Alignment.topLeft,
-                            // ),
                             Container(
                               height: 50,
                               decoration: const BoxDecoration(

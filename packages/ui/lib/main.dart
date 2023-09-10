@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ui/src/anime_details.dart';
 import 'package:ui/src/home.dart';
 import 'package:ui/src/pod.dart';
 
@@ -45,7 +46,7 @@ class _AppState extends ConsumerState<App> {
             ),
             routes: {
               'home': (context) => const HomePage(),
-              'anime-details': (context) => const HomePage(),
+              'anime-details': (context) => const AnimeDetails(),
               'anime-query': (context) => const HomePage(),
             },
           );
