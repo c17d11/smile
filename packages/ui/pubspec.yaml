@@ -16,6 +16,7 @@ dependencies:
   state:
   database:
   jikan_api:
+  navigation_container:
   flutter_riverpod: ^2.4.0
   isar_flutter_libs: ^3.1.0+1
 
