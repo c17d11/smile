@@ -6,6 +6,7 @@ abstract interface class AnimeModel {
   Future<AnimeIntern?> getAnime(int malId);
   Future<List<AnimeIntern>> getAllAnimes();
   Future<bool> deleteAnime(int malId);
+  AnimeIntern createAnimeIntern(Anime anime);
 }
 
 abstract interface class AnimeResponseModel {

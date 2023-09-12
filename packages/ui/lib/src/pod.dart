@@ -7,9 +7,16 @@ import 'package:state/state.dart';
 final databasePod = Provider<Database>((ref) => Database());
 final apiPod = Provider<JikanApi>((ref) => JikanApi());
 
-final animeControllerPod =
-    StateNotifierProvider<AnimeController, AsyncValue<List<AnimeIntern>>>(
+final animeSearchControllerPod =
+    StateNotifierProvider<AnimeSearchController, AsyncValue<List<AnimeIntern>>>(
         (ref) {
+  Database db = ref.watch(databasePod);
+  JikanApi api = ref.watch(apiPod);
+  return AnimeSearchController(db, api);
+});
+
+final animeControllerPod =
+    StateNotifierProvider<AnimeController, AsyncValue<AnimeIntern?>>((ref) {
   Database db = ref.watch(databasePod);
   JikanApi api = ref.watch(apiPod);
   return AnimeController(db, api);

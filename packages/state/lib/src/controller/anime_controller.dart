@@ -3,46 +3,44 @@ import 'package:jikan_api/jikan_api.dart';
 import 'package:state/state.dart';
 import 'package:database/database.dart';
 
-class AnimeController extends StateNotifier<AsyncValue<List<AnimeIntern>>> {
+class AnimeController extends StateNotifier<AsyncValue<AnimeIntern?>> {
   final Database _database;
   final JikanApi _api;
 
-  AnimeController(this._database, this._api) : super(AsyncValue.data([]));
+  AnimeController(this._database, this._api) : super(AsyncValue.data(null));
 
-  Future<AnimeResponseIntern?> _getDatabaseResponse(AnimeQuery query) async {
-    AnimeResponseIntern? res = await _database.getAnimeResponse(query);
-    return res;
+  Future<AnimeIntern?> _getDatabaseAnime(int malId) async {
+    AnimeIntern? anime = await _database.getAnime(malId);
+    return anime;
   }
 
-  Future<AnimeResponseIntern> _getApiResponse(AnimeQuery query) async {
-    AnimeResponse res = await _api.searchAnimes(query);
+  Future<AnimeIntern> _getApiAnime(int malId) async {
+    Anime anime = await _api.getAnime(malId);
 
     // TODO: move this function to 'state'
-    AnimeResponseIntern resIntern =
-        _database.createAnimeResponseIntern(res, query);
-    return resIntern;
+    AnimeIntern animeIntern = _database.createAnimeIntern(anime);
+    return animeIntern;
   }
 
-  Future<void> _storeResponse(AnimeResponseIntern res) async {
-    await _database.insertAnimeResponse(res);
+  Future<void> _storeResponse(AnimeIntern anime) async {
+    await _database.insertAnime(anime);
   }
 
-  Future<AnimeResponseIntern> _getResponse(AnimeQuery query) async {
-    AnimeResponseIntern? res = await _getDatabaseResponse(query);
-    if (res == null) {
-      res = await _getApiResponse(query);
-      await _storeResponse(res);
+  Future<AnimeIntern> _getAnime(int malId) async {
+    AnimeIntern? anime = await _getDatabaseAnime(malId);
+    if (anime == null) {
+      anime = await _getApiAnime(malId);
+      await _storeResponse(anime);
     }
-    return res;
+    return anime;
   }
 
-  Future<void> get(AnimeQuery query) async {
+  Future<void> get(int malId) async {
     try {
       state = const AsyncLoading();
-      AnimeResponseIntern res = await _getResponse(query);
+      AnimeIntern anime = await _getAnime(malId);
 
-      List<AnimeIntern> animes = res.data ?? [];
-      state = AsyncValue.data(animes);
+      state = AsyncValue.data(anime);
     } on JikanApiException catch (e, stacktrace) {
       state = AsyncError(e, stacktrace);
 

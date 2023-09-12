@@ -1,6 +1,7 @@
 import 'package:database/src/isar/model.dart';
 import 'package:database/src/model.dart';
 import 'package:isar/isar.dart';
+import 'package:jikan_api/src/object/anime.dart';
 import 'package:state/state.dart';
 import '../collection/isar_anime.dart';
 
@@ -40,5 +41,10 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
       success = await db.isarAnimes.delete(malId);
     });
     return success;
+  }
+
+  @override
+  AnimeIntern createAnimeIntern(Anime anime) {
+    return IsarAnime.from(anime);
   }
 }

@@ -64,6 +64,11 @@ class IsarDatabase implements Database {
   }
 
   @override
+  AnimeIntern createAnimeIntern(Anime anime) {
+    return animeModel.createAnimeIntern(anime);
+  }
+
+  @override
   Future<bool> deleteAnime(int malId) async {
     return await animeModel.deleteAnime(malId);
   }

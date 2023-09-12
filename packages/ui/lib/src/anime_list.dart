@@ -48,10 +48,10 @@ class _AnimeListState extends ConsumerState<AnimeList> {
 
   @override
   Widget build(BuildContext context) {
-    AsyncValue<List<AnimeIntern>> animes = ref.watch(animeControllerPod);
+    AsyncValue<List<AnimeIntern>> animes = ref.watch(animeSearchControllerPod);
 
-    ref.listen<AsyncValue<List<AnimeIntern>>>(
-        animeControllerPod, (_, state) => state.showSnackBarOnError(context));
+    ref.listen<AsyncValue<List<AnimeIntern>>>(animeSearchControllerPod,
+        (_, state) => state.showSnackBarOnError(context));
 
     return Column(
       children: [
@@ -70,7 +70,7 @@ class _AnimeListState extends ConsumerState<AnimeList> {
         ),
         TextButton(
             onPressed: () =>
-                ref.read(animeControllerPod.notifier).get(AnimeQuery()),
+                ref.read(animeSearchControllerPod.notifier).get(AnimeQuery()),
             child: const Text("Load data")),
         Expanded(
           child: GridView.builder(
