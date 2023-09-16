@@ -31,7 +31,7 @@ class AnimeSearchApi implements Api<AnimeQuery, AnimeResponse> {
   @override
   Future<AnimeResponse> call(AnimeQuery arg) async {
     String query = buildQuery(arg);
-    HttpResult res = await client.get("https://api.jikan.moe/v4/anime$query");
+    HttpResult res = await client.get("anime$query");
     if (res.error != null) {
       JikanApiException error = errorParser.parse(res.error!);
       return Future.error(error);

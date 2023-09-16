@@ -31,8 +31,7 @@ class ScheduleSearchApi implements Api<ScheduleQuery, AnimeResponse> {
   @override
   Future<AnimeResponse> call(ScheduleQuery arg) async {
     String query = buildQuery(arg);
-    HttpResult res =
-        await client.get("https://api.jikan.moe/v4/schedules$query");
+    HttpResult res = await client.get("schedules$query");
     if (res.error != null) {
       JikanApiException error = errorParser.parse(res.error!);
       return Future.error(error);

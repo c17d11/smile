@@ -16,8 +16,7 @@ class ProducerApi implements Api<int, Producer> {
 
   @override
   Future<Producer> call(int arg) async {
-    HttpResult res =
-        await client.get("https://api.jikan.moe/v4/producers/$arg");
+    HttpResult res = await client.get("producers/$arg");
     if (res.error != null) {
       JikanApiException error = errorParser.parse(res.error!);
       return Future.error(error);
