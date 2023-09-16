@@ -85,7 +85,7 @@ class _QueryWidgetState extends ConsumerState<QueryWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final producers = ref.watch(producersPod);
+    final producers = ref.watch(producerPod);
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),

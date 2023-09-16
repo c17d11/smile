@@ -16,7 +16,7 @@ class AnimeApi implements Api<int, Anime> {
 
   @override
   Future<Anime> call(int arg) async {
-    HttpResult res = await client.get("https://api.jikan.moe/v4/anime/$arg");
+    HttpResult res = await client.get("anime/$arg");
     if (res.error != null) {
       JikanApiException e = errorParser.parse(res.error!);
       return Future.error(e);

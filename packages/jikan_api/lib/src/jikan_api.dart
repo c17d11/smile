@@ -5,13 +5,21 @@ import 'package:flutter/services.dart';
 import 'package:jikan_api/src/jikan_api_facade.dart';
 import 'http/dio_wrapper.dart';
 
+String _jikanBaseUrl = 'https://api.jikan.moe/v4/';
+
 class JikanApiImpl extends JikanApi {
-  JikanApiImpl() : super(DioWrapper(Dio()));
+  JikanApiImpl()
+      : super(
+          DioWrapper(Dio(BaseOptions(baseUrl: _jikanBaseUrl))),
+        );
 }
 
 class JikanApiMockImpl extends JikanApi {
   JikanApiMockImpl()
-      : super(DioWrapper(Dio()..interceptors.add(MockInterceptor())));
+      : super(
+          DioWrapper(Dio(BaseOptions(baseUrl: _jikanBaseUrl))
+            ..interceptors.add(MockInterceptor())),
+        );
 }
 
 class MockInterceptor implements Interceptor {

@@ -1,3 +1,4 @@
+import 'package:app/controller/src/controller/producer_controller.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
@@ -5,12 +6,6 @@ import 'package:app/ui/src/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
-<<<<<<< HEAD:packages/ui/lib/src/pod.dart
-import 'package:state/state.dart';
-
-final databasePod = Provider<Database>((ref) => Database());
-final apiPod = Provider<JikanApi>((ref) => JikanApi());
-=======
 
 final depencyInjectorPod = Provider((ref) => Injector()..setup());
 
@@ -28,7 +23,6 @@ final initPod = FutureProvider<bool>((ref) async {
   // successful init
   return true;
 });
->>>>>>> 7b10cac... refactor(ui): make ui a librariy instead of package:packages/app/lib/ui/src/pod.dart
 
 final animeSearchControllerPod =
     StateNotifierProvider<AnimeSearchController, AsyncValue<List<AnimeIntern>>>(
@@ -38,12 +32,22 @@ final animeSearchControllerPod =
   return AnimeSearchController(db, api);
 });
 
+final producerPod =
+    StateNotifierProvider<ProducerController, AsyncValue<List<ProducerIntern>>>(
+        (ref) {
+  Database db = ref.watch(databasePod);
+  return ProducerController(db);
+});
+
 final animeControllerPod =
     StateNotifierProvider<AnimeController, AsyncValue<AnimeIntern?>>((ref) {
   Database db = ref.watch(databasePod);
   JikanApi api = ref.watch(apiPod);
   return AnimeController(db, api);
 });
+
+final animeQueryPod =
+    Provider.family<AnimeQuery, IconItem>((ref, arg) => AnimeQuery());
 
 extension AsyncValueUi on AsyncValue<List<AnimeIntern>> {
   bool get isLoading => this is AsyncLoading<List<AnimeIntern>>;
