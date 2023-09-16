@@ -3,7 +3,8 @@
 /// More dartdocs go here.
 library;
 
-export 'src/jikan_api_base.dart';
+export 'src/jikan_api_facade.dart';
+export 'src/jikan_api.dart';
 export 'src/object/anime_query.dart';
 export 'src/object/anime_rating.dart';
 export 'src/object/anime_status.dart';
