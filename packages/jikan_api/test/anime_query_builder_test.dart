@@ -1,4 +1,4 @@
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:jikan_api/src/builder/anime_query_builder.dart';
 import 'package:jikan_api/src/builder/builder.dart';
 import 'package:jikan_api/src/object/anime_query.dart';

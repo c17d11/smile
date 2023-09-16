@@ -4,7 +4,6 @@ import 'api/genre_search_api.dart';
 import 'api/producer_api.dart';
 import 'api/producer_search_api.dart';
 import 'api/schedule_search_api.dart';
-import 'http/dio_wrapper.dart';
 import 'http/http.dart';
 import 'http/jikan_client.dart';
 import 'object/anime.dart';
@@ -18,8 +17,8 @@ import 'task/producer_fetch_all_task.dart';
 import 'task/schedule_fetch_all_task.dart';
 import 'package:rate_manager/rate_manager.dart';
 
-class JikanApi {
-  final Http _httpClient = DioWrapper();
+class JikanApiBase {
+  final Http _httpClient;
   late Http _primaryHttpClient;
   late Http _secondaryHttpClient;
 
@@ -38,7 +37,7 @@ class JikanApi {
   late ProducerFetchAllTask _fetchAllProducerTask;
   late ScheduleFetchAllTask _fetchAllScheduleTask;
 
-  JikanApi() {
+  JikanApiBase(this._httpClient) {
     _primaryHttpClient = PrimaryHttpClient(_httpClient, _rateManager);
     _secondaryHttpClient = SecondaryHttpClient(_httpClient, _rateManager);
 
