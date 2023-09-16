@@ -1,15 +1,9 @@
 import 'package:app/controller/state.dart';
-import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
-<<<<<<< HEAD:packages/ui/lib/src/anime_list.dart
-import 'package:state/state.dart';
-import 'package:ui/src/anime_portrait.dart';
-=======
->>>>>>> 7b10cac... refactor(ui): make ui a librariy instead of package:packages/app/lib/ui/src/anime_list.dart
 import 'pod.dart';
 
 class AnimeList extends ConsumerStatefulWidget {

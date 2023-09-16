@@ -1,5 +1,4 @@
 import 'package:app/database/src/database_base.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'package:kiwi/kiwi.dart';
