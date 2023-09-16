@@ -1,5 +1,5 @@
+import 'package:app/ui/navigation_container/src/animated_icon_button.dart';
 import 'package:flutter/material.dart';
-import 'package:navigation_container/src/animated_icon_button.dart';
 
 class AnimatedNavItem extends StatelessWidget {
   final String label;

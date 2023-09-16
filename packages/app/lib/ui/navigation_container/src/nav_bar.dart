@@ -1,5 +1,5 @@
+import 'package:app/ui/navigation_container/src/nav_item.dart';
 import 'package:flutter/material.dart';
-import 'package:navigation_container/src/nav_item.dart';
 
 abstract class NavBar extends StatelessWidget {
   final List<NavItem> items;
