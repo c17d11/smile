@@ -6,9 +6,10 @@ import 'package:jikan_api/jikan_api.dart';
 class AnimeSearchController
     extends StateNotifier<AsyncValue<List<AnimeIntern>>> {
   final Database _database;
-  final JikanApiBase _api;
+  final JikanApi _api;
 
-  AnimeSearchController(this._database, this._api) : super(AsyncValue.data([]));
+  AnimeSearchController(this._database, this._api)
+      : super(const AsyncValue.data([]));
 
   Future<AnimeResponseIntern?> _getDatabaseResponse(AnimeQuery query) async {
     AnimeResponseIntern? res = await _database.getAnimeResponse(query);

@@ -7,7 +7,7 @@ class ProducerController
     extends StateNotifier<AsyncValue<List<ProducerIntern>>> {
   final Database _database;
 
-  ProducerController(this._database) : super(AsyncValue.data([]));
+  ProducerController(this._database) : super(const AsyncValue.data([]));
 
   Future<List<ProducerIntern>> _getDatabaseProducers() async {
     List<ProducerIntern> producers = await _database.getAllProducers();
