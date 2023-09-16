@@ -5,7 +5,9 @@ import 'http.dart';
 import 'http_result.dart';
 
 class DioWrapper implements Http {
-  Dio dio = Dio();
+  Dio dio;
+
+  DioWrapper(this.dio);
 
   Map<String, dynamic> getHeaders(Headers headers) {
     Map<String, dynamic> ret = {};

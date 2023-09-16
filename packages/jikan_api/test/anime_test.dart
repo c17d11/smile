@@ -1,4 +1,4 @@
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:jikan_api/src/http/http.dart';
 import 'package:jikan_api/src/object/exception.dart';
 import 'package:jikan_api/src/api/anime_api.dart';
