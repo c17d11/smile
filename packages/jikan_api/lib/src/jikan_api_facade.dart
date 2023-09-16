@@ -17,7 +17,7 @@ import 'task/producer_fetch_all_task.dart';
 import 'task/schedule_fetch_all_task.dart';
 import 'package:rate_manager/rate_manager.dart';
 
-class JikanApiBase {
+class JikanApi {
   final Http _httpClient;
   late Http _primaryHttpClient;
   late Http _secondaryHttpClient;
@@ -37,7 +37,7 @@ class JikanApiBase {
   late ProducerFetchAllTask _fetchAllProducerTask;
   late ScheduleFetchAllTask _fetchAllScheduleTask;
 
-  JikanApiBase(this._httpClient) {
+  JikanApi(this._httpClient) {
     _primaryHttpClient = PrimaryHttpClient(_httpClient, _rateManager);
     _secondaryHttpClient = SecondaryHttpClient(_httpClient, _rateManager);
 
