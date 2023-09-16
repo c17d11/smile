@@ -16,7 +16,7 @@ class GenreSearchApi implements Api<void, List<Genre>> {
 
   @override
   Future<List<Genre>> call(void arg) async {
-    HttpResult res = await client.get("https://api.jikan.moe/v4/genres/anime");
+    HttpResult res = await client.get("genres/anime");
     if (res.error != null) {
       JikanApiException error = errorParser.parse(res.error!);
       return Future.error(error);

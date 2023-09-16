@@ -31,8 +31,7 @@ class ProducerSearchApi implements Api<ProducerQuery, ProducerResponse> {
   @override
   Future<ProducerResponse> call(ProducerQuery arg) async {
     String query = buildQuery(arg);
-    HttpResult res =
-        await client.get("https://api.jikan.moe/v4/producers$query");
+    HttpResult res = await client.get("producers$query");
     if (res.error != null) {
       JikanApiException error = errorParser.parse(res.error!);
       return Future.error(error);
