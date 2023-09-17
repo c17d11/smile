@@ -50,11 +50,7 @@ class _SingleSelectState extends State<SingleSelect> {
 
   @override
   Widget build(BuildContext context) {
-    return
-        // Padding(
-        //   padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-        //   child:
-        Container(
+    return Container(
       decoration: BoxDecoration(
         color: Colors.grey[200],
       ),
@@ -97,9 +93,6 @@ class _SingleSelectState extends State<SingleSelect> {
                         .toList(),
                   ),
                 ),
-                // Visibility(
-                //   visible: _selected != -1,
-                // child:
                 if (widget.doShowReset) ...[
                   IconButton(
                     disabledColor: Colors.grey[400],
@@ -119,30 +112,198 @@ class _SingleSelectState extends State<SingleSelect> {
                           },
                   ),
                 ]
-                // ),
               ],
-              // ),
             ),
           ],
         ),
       ),
-      // ),
+    );
+  }
+}
+
+class FutureDialog {
+  final String title;
+  BuildContext context;
+  final Future<List<String>> future;
+  final void Function(List<String> selected, List<String> unselected) callback;
+
+  List<String> options = [];
+  List<String> optionsFiltered = [];
+  List<String> optionsSelected;
+  List<String> optionsUnselected;
+  bool tristate;
+
+  FutureDialog(
+    this.title,
+    this.tristate,
+    this.context,
+    optionsSelected,
+    optionsUnselected,
+    this.future,
+    this.callback,
+  )   : optionsSelected = [...optionsSelected],
+        optionsUnselected = [...optionsUnselected];
+
+  Widget wrapDialogBoxConstraints(Widget w) {
+    return ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.8,
+          maxWidth: MediaQuery.of(context).size.width * 0.5,
+        ),
+        child: Container(
+          height: 1000,
+          width: 400,
+          child: w,
+        ));
+  }
+
+  Widget buildTextSearch(StateSetter setState) {
+    return TextField(
+      style: const TextStyle(fontSize: 14.0),
+      textAlignVertical: TextAlignVertical.center,
+      decoration: InputDecoration(
+        isDense: true,
+        fillColor: Colors.white60,
+        filled: true,
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            borderSide: const BorderSide(style: BorderStyle.none, width: 0)),
+        hintText: 'Enter a search term',
+      ),
+      onChanged: (s) {
+        setState(
+          () {
+            optionsFiltered = [...options]
+                .where((e) => e.toLowerCase().contains(s.toLowerCase()))
+                .toList();
+          },
+        );
+      },
+    );
+  }
+
+  Widget buildOptionsList(StateSetter setState) {
+    return options.isNotEmpty
+        ? ListView.builder(
+            itemCount: optionsFiltered.length,
+            itemBuilder: (BuildContext context, int index) {
+              String item = optionsFiltered[index];
+              return ListTile(
+                dense: true,
+                selected: optionsSelected.contains(item) ||
+                    optionsUnselected.contains(item),
+                selectedColor:
+                    optionsSelected.contains(item) ? Colors.green : Colors.red,
+                trailing: optionsSelected.contains(item)
+                    ? const Icon(Icons.check)
+                    : optionsUnselected.contains(item)
+                        ? const Icon(Icons.close)
+                        : null,
+                title: Text(item),
+                onTap: () {
+                  setState(
+                    () {
+                      if (tristate) {
+                        if (optionsSelected.contains(item)) {
+                          optionsSelected.remove(item);
+                          optionsUnselected.add(item);
+                        } else if (optionsUnselected.contains(item)) {
+                          optionsUnselected.remove(item);
+                        } else {
+                          optionsSelected.add(item);
+                        }
+                      } else {
+                        if (optionsSelected.contains(item)) {
+                          optionsSelected.remove(item);
+                        } else {
+                          optionsSelected.add(item);
+                        }
+                      }
+                    },
+                  );
+                },
+              );
+            },
+          )
+        : const Center(child: Text("No items"));
+  }
+
+  void show() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return WillPopScope(
+          onWillPop: () async {
+            return false;
+          },
+          child: AlertDialog(
+            title: Text(title),
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8.0))),
+            content: FutureBuilder<List<String>>(
+              future: future,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  options = snapshot.data!;
+                  optionsFiltered = options;
+                  return StatefulBuilder(
+                      builder: (BuildContext context, StateSetter setState) {
+                    return wrapDialogBoxConstraints(Column(
+                      children: [
+                        buildTextSearch(setState),
+                        const SizedBox(height: 10),
+                        Expanded(
+                          child: buildOptionsList(setState),
+                        ),
+                      ],
+                    ));
+                  });
+                }
+                if (snapshot.hasError) {
+                  return Text(
+                    'There was an error :(',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  );
+                }
+                return const Center(child: CircularProgressIndicator());
+              },
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Cancel'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: const Text('Apply'),
+                onPressed: () {
+                  callback(optionsSelected, optionsUnselected);
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
 
 class MultiSelect extends ConsumerStatefulWidget {
-  late List<String> stuff;
-  bool tristate;
-  String title;
+  final Future<List<String>> Function() loadOptions;
+  final bool tristate;
+  final String title;
   final ValueChanged<List<String>>? onChanged;
   final ValueChanged<List<String>>? onChangedExclude;
   final List<String>? initialSelected;
   final List<String>? initialUnselected;
 
-  MultiSelect(
-      // this.stuff,
-      {this.tristate = false,
+  const MultiSelect(
+      {required this.loadOptions,
+      this.tristate = false,
       this.title = "",
       this.onChanged,
       this.onChangedExclude,
@@ -166,146 +327,29 @@ class _MultiSelectState extends ConsumerState<MultiSelect> {
     _unselectedItems = widget.initialUnselected ?? [];
   }
 
-  _showDialog() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        List<String> filtered = [...widget.stuff];
-        List<String> selected = [..._selectedItems];
-        List<String> unselected = [..._unselectedItems];
-        return WillPopScope(
-          onWillPop: () async {
-            return false;
-          },
-          child: AlertDialog(
-            title: Text(widget.title),
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(8.0),
-              ),
-            ),
-            content: StatefulBuilder(
-              builder: (BuildContext context, StateSetter setState) {
-                return ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxHeight: MediaQuery.of(context).size.height * 0.8,
-                    maxWidth: MediaQuery.of(context).size.width * 0.5,
-                  ),
-                  child: Container(
-                    height: 1000,
-                    width: 400,
-                    child: Column(
-                      children: [
-                        TextField(
-                          style: TextStyle(fontSize: 14.0),
-                          textAlignVertical: TextAlignVertical.center,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            fillColor: Colors.white60,
-                            filled: true,
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 13, horizontal: 15),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                                borderSide: BorderSide(
-                                    style: BorderStyle.none, width: 0)),
-                            hintText: 'Enter a search term',
-                          ),
-                          onChanged: (s) {
-                            setState(
-                              () {
-                                filtered = [...widget.stuff]
-                                    .where((e) => e
-                                        .toLowerCase()
-                                        .contains(s.toLowerCase()))
-                                    .toList();
-                              },
-                            );
-                          },
-                        ),
-                        const SizedBox(height: 10),
-                        Expanded(
-                          child: filtered.isNotEmpty
-                              ? ListView.builder(
-                                  itemCount: filtered.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    String item = filtered[index];
-                                    return ListTile(
-                                      dense: true,
-                                      selected: selected.contains(item) ||
-                                          unselected.contains(item),
-                                      selectedColor: selected.contains(item)
-                                          ? Colors.green
-                                          : Colors.red,
-                                      trailing: selected.contains(item)
-                                          ? Icon(Icons.check)
-                                          : unselected.contains(item)
-                                              ? Icon(Icons.close)
-                                              : null,
-                                      title: Text(item),
-                                      onTap: () {
-                                        setState(
-                                          () {
-                                            if (widget.tristate) {
-                                              if (selected.contains(item)) {
-                                                selected.remove(item);
-                                                unselected.add(item);
-                                              } else if (unselected
-                                                  .contains(item)) {
-                                                unselected.remove(item);
-                                              } else {
-                                                selected.add(item);
-                                              }
-                                            } else {
-                                              if (selected.contains(item)) {
-                                                selected.remove(item);
-                                              } else {
-                                                selected.add(item);
-                                              }
-                                            }
-                                          },
-                                        );
-                                      },
-                                    );
-                                  },
-                                )
-                              : const Center(child: Text("No items")),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('Cancel'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              TextButton(
-                child: const Text('Apply'),
-                onPressed: () {
-                  setState(() {
-                    _selectedItems = selected;
-                    _unselectedItems = unselected;
-                  });
-                  if (widget.onChanged != null) {
-                    widget.onChanged!(_selectedItems);
-                  }
-                  if (widget.onChangedExclude != null) {
-                    widget.onChangedExclude!(_unselectedItems);
-                  }
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          ),
-        );
-      },
-    );
+  void showDialog() {
+    final dialog = FutureDialog(
+        widget.title,
+        true,
+        context,
+        _selectedItems,
+        _unselectedItems,
+        ref.read(producerPod.notifier).get(0).then((value) =>
+            ref.read(producerPod).value?.map((e) => e.title ?? '').toList() ??
+            []), (selected, unselected) {
+      setState(() {
+        _selectedItems = selected;
+        _unselectedItems = unselected;
+      });
+      if (widget.onChanged != null) {
+        widget.onChanged!(_selectedItems);
+      }
+      if (widget.onChangedExclude != null) {
+        widget.onChangedExclude!(_unselectedItems);
+      }
+    });
+
+    dialog.show();
   }
 
   @override
@@ -345,16 +389,7 @@ class _MultiSelectState extends ConsumerState<MultiSelect> {
                     IconButton(
                       icon: const Icon(Icons.add),
                       color: Colors.grey[800],
-                      onPressed: () async {
-                        await ref.read(producerPod.notifier).get(0);
-                        widget.stuff = ref
-                                .read(producerPod)
-                                .value
-                                ?.map((e) => e.title ?? '')
-                                .toList() ??
-                            [];
-                        _showDialog();
-                      },
+                      onPressed: showDialog,
                     ),
                   ],
                 ),
