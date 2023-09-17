@@ -137,7 +137,15 @@ class _QueryWidgetState extends ConsumerState<QueryWidget> {
               ),
             ),
             MultiSelect(
-              // producers.value?.map((e) => e.title ?? '').toList() ?? [],
+              loadOptions: () async {
+                await ref.read(producerPod.notifier).get(0);
+                return ref
+                        .read(producerPod)
+                        .value
+                        ?.map((e) => e.title ?? '')
+                        .toList() ??
+                    [];
+              },
               initialSelected: const [],
               onChanged: (List<String> titles) {},
               title: "Producers",
