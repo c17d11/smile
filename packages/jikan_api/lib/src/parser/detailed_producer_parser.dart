@@ -13,6 +13,12 @@ class DetailedProducerParser implements ProducerParser {
     return null;
   }
 
+  String parseTitleFromUrl(String url) {
+    String titleWithUnderscore = url.split('/').last;
+    String title = titleWithUnderscore.replaceAll('_', ' ');
+    return title;
+  }
+
   String? parseImageUrl(Map? imageData) {
     return imageData?['jpg']['image_url'];
   }
@@ -21,7 +27,7 @@ class DetailedProducerParser implements ProducerParser {
   Producer parseProducer(Map<String, dynamic> data) {
     return Producer()
       ..malId = data['mal_id']
-      ..title = parseDefaultTitle(data['titles'])
+      ..title = parseTitleFromUrl(data['url'])
       ..established = data['established']
       ..about = data['about']
       ..count = data['count']
