@@ -1,9 +1,12 @@
 import 'dart:io';
 
+import 'package:app/controller/src/object/producer_response_intern.dart';
 import 'package:app/controller/state.dart';
+import 'package:app/database/src/isar/collection/isar_producer_response.dart';
 import 'package:app/database/src/isar/model/anime_model.dart';
 import 'package:app/database/src/isar/model/anime_response_model.dart';
 import 'package:app/database/src/isar/model/producer_model.dart';
+import 'package:app/database/src/isar/model/producer_response_model.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'package:path_provider/path_provider.dart';
@@ -19,6 +22,8 @@ class IsarDatabase implements Database {
   late IsarAnimeResponseModel animeResponseModel =
       IsarAnimeResponseModel(instance);
   late IsarProducerModel producerModel = IsarProducerModel(instance);
+  late IsarProducerResponseModel producerResponseModel =
+      IsarProducerResponseModel(instance);
 
   @override
   Future<void> init() async {
@@ -30,6 +35,7 @@ class IsarDatabase implements Database {
           IsarAnimeSchema,
           IsarAnimeResponseSchema,
           IsarProducerSchema,
+          IsarProducerResponseSchema,
         ],
         directory: dir.path,
         inspector: true,
@@ -122,6 +128,28 @@ class IsarDatabase implements Database {
   @override
   Future<void> insertProducer(ProducerIntern producer) async {
     return await producerModel.insertProducer(producer);
+  }
+
+  @override
+  ProducerResponseIntern createProducerResponseIntern(
+      ProducerResponse res, ProducerQuery query) {
+    return IsarProducerResponse.from(res, query);
+  }
+
+  @override
+  Future<bool> deleteProducerResponse(ProducerQuery query) async {
+    return await producerResponseModel.deleteProducerResponse(query);
+  }
+
+  @override
+  Future<ProducerResponseIntern?> getProducerResponse(
+      ProducerQuery query) async {
+    return await producerResponseModel.getProducerResponse(query);
+  }
+
+  @override
+  Future<void> insertProducerResponse(ProducerResponseIntern res) async {
+    return producerResponseModel.insertProducerResponse(res);
   }
 }
 

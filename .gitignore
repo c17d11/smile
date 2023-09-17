@@ -17,3 +17,5 @@ generated_plugin*
 pubspec.lock
 
 .flutter-plugins*
+
+*.g.dart
