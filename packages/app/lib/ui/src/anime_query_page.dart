@@ -22,27 +22,30 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
       appBar: AppBar(
         title: const Text("Filter"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-              child: SingleChildScrollView(
-            child: Container(
-              color: Colors.grey[300],
-              child: Column(
-                children: [
-                  QueryWidget(
-                    onChanged: (String s) {
-                      query.searchTerm = s;
-                    },
-                    initialValue: "",
-                  ),
-                ],
+      body:
+          // Column(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          // Expanded(
+          //     child:
+          SingleChildScrollView(
+        child: Container(
+          color: Colors.grey[300],
+          child: Column(
+            children: [
+              QueryWidget(
+                onChanged: (String s) {
+                  query.searchTerm = s;
+                },
+                initialValue: "",
               ),
-            ),
-          ))
-        ],
+            ],
+          ),
+        ),
       ),
+      // )
+      //   ],
+      // ),
     );
   }
 }
@@ -85,7 +88,7 @@ class _QueryWidgetState extends ConsumerState<QueryWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final producers = ref.watch(producerPod);
+    // final producers = ref.watch(producerPod);
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -134,7 +137,7 @@ class _QueryWidgetState extends ConsumerState<QueryWidget> {
               ),
             ),
             MultiSelect(
-              producers.value?.map((e) => e.title ?? '').toList() ?? [],
+              // producers.value?.map((e) => e.title ?? '').toList() ?? [],
               initialSelected: const [],
               onChanged: (List<String> titles) {},
               title: "Producers",

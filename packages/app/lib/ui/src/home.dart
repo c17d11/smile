@@ -14,7 +14,7 @@ class HomeNavItem extends IconItem {
 
   @override
   Widget buildContent() {
-    return const AnimeList();
+    return AnimeList(page: this);
   }
 }
 

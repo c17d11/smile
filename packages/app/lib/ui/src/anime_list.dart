@@ -1,4 +1,5 @@
 import 'package:app/controller/state.dart';
+import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -7,7 +8,9 @@ import 'package:jikan_api/jikan_api.dart';
 import 'pod.dart';
 
 class AnimeList extends ConsumerStatefulWidget {
-  const AnimeList({super.key});
+  final IconItem page;
+
+  const AnimeList({required this.page, super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AnimeListState();
@@ -62,7 +65,10 @@ class _AnimeListState extends ConsumerState<AnimeList> {
           child: AppBar(
             actions: <Widget>[
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, 'anime-query',
+                      arguments: widget.page);
+                },
                 icon: const Icon(Icons.sort),
               )
             ],

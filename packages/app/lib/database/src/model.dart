@@ -1,3 +1,4 @@
+import 'package:app/controller/src/object/producer_response_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:jikan_api/jikan_api.dart';
 
@@ -24,5 +25,17 @@ abstract interface class ProducerModel {
   Future<bool> deleteProducer(int malId);
 }
 
+abstract interface class ProducerResponseModel {
+  Future<void> insertProducerResponse(ProducerResponseIntern res);
+  Future<ProducerResponseIntern?> getProducerResponse(ProducerQuery query);
+  Future<bool> deleteProducerResponse(ProducerQuery query);
+  ProducerResponseIntern createProducerResponseIntern(
+      ProducerResponse res, ProducerQuery query);
+}
+
 abstract interface class ModelProxy
-    implements AnimeModel, AnimeResponseModel, ProducerModel {}
+    implements
+        AnimeModel,
+        AnimeResponseModel,
+        ProducerModel,
+        ProducerResponseModel {}

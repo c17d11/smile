@@ -1,4 +1,6 @@
+import 'package:app/ui/src/pod.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SingleSelect extends StatefulWidget {
   final List<String> stuff;
@@ -129,8 +131,8 @@ class _SingleSelectState extends State<SingleSelect> {
   }
 }
 
-class MultiSelect extends StatefulWidget {
-  List<String> stuff;
+class MultiSelect extends ConsumerStatefulWidget {
+  late List<String> stuff;
   bool tristate;
   String title;
   final ValueChanged<List<String>>? onChanged;
@@ -138,7 +140,8 @@ class MultiSelect extends StatefulWidget {
   final List<String>? initialSelected;
   final List<String>? initialUnselected;
 
-  MultiSelect(this.stuff,
+  MultiSelect(
+      // this.stuff,
       {this.tristate = false,
       this.title = "",
       this.onChanged,
@@ -148,10 +151,10 @@ class MultiSelect extends StatefulWidget {
       super.key});
 
   @override
-  State<MultiSelect> createState() => _MultiSelectState();
+  ConsumerState<MultiSelect> createState() => _MultiSelectState();
 }
 
-class _MultiSelectState extends State<MultiSelect> {
+class _MultiSelectState extends ConsumerState<MultiSelect> {
   late List<String> _selectedItems;
   late List<String> _unselectedItems;
 
@@ -163,7 +166,7 @@ class _MultiSelectState extends State<MultiSelect> {
     _unselectedItems = widget.initialUnselected ?? [];
   }
 
-  _showDialog() async {
+  _showDialog() {
     showDialog(
       context: context,
       builder: (context) {
@@ -176,81 +179,102 @@ class _MultiSelectState extends State<MultiSelect> {
           },
           child: AlertDialog(
             title: Text(widget.title),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(8.0),
+              ),
+            ),
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
-                return Column(
-                  children: [
-                    TextField(
-                      style: TextStyle(fontSize: 14.0),
-                      textAlignVertical: TextAlignVertical.center,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        fillColor: Colors.white60,
-                        filled: true,
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 13, horizontal: 15),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            borderSide:
-                                BorderSide(style: BorderStyle.none, width: 0)),
-                        hintText: 'Enter a search term',
-                      ),
-                      onChanged: (s) {
-                        setState(
-                          () {
-                            filtered = [...widget.stuff]
-                                .where((e) =>
-                                    e.toLowerCase().contains(s.toLowerCase()))
-                                .toList();
+                return ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: MediaQuery.of(context).size.height * 0.8,
+                    maxWidth: MediaQuery.of(context).size.width * 0.5,
+                  ),
+                  child: Container(
+                    height: 1000,
+                    width: 400,
+                    child: Column(
+                      children: [
+                        TextField(
+                          style: TextStyle(fontSize: 14.0),
+                          textAlignVertical: TextAlignVertical.center,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            fillColor: Colors.white60,
+                            filled: true,
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 13, horizontal: 15),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                                borderSide: BorderSide(
+                                    style: BorderStyle.none, width: 0)),
+                            hintText: 'Enter a search term',
+                          ),
+                          onChanged: (s) {
+                            setState(
+                              () {
+                                filtered = [...widget.stuff]
+                                    .where((e) => e
+                                        .toLowerCase()
+                                        .contains(s.toLowerCase()))
+                                    .toList();
+                              },
+                            );
                           },
-                        );
-                      },
+                        ),
+                        const SizedBox(height: 10),
+                        Expanded(
+                          child: filtered.isNotEmpty
+                              ? ListView.builder(
+                                  itemCount: filtered.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    String item = filtered[index];
+                                    return ListTile(
+                                      dense: true,
+                                      selected: selected.contains(item) ||
+                                          unselected.contains(item),
+                                      selectedColor: selected.contains(item)
+                                          ? Colors.green
+                                          : Colors.red,
+                                      trailing: selected.contains(item)
+                                          ? Icon(Icons.check)
+                                          : unselected.contains(item)
+                                              ? Icon(Icons.close)
+                                              : null,
+                                      title: Text(item),
+                                      onTap: () {
+                                        setState(
+                                          () {
+                                            if (widget.tristate) {
+                                              if (selected.contains(item)) {
+                                                selected.remove(item);
+                                                unselected.add(item);
+                                              } else if (unselected
+                                                  .contains(item)) {
+                                                unselected.remove(item);
+                                              } else {
+                                                selected.add(item);
+                                              }
+                                            } else {
+                                              if (selected.contains(item)) {
+                                                selected.remove(item);
+                                              } else {
+                                                selected.add(item);
+                                              }
+                                            }
+                                          },
+                                        );
+                                      },
+                                    );
+                                  },
+                                )
+                              : const Center(child: Text("No items")),
+                        ),
+                      ],
                     ),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: filtered.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          String item = filtered[index];
-                          return ListTile(
-                            dense: true,
-                            selected: selected.contains(item) ||
-                                unselected.contains(item),
-                            selectedColor: selected.contains(item)
-                                ? Colors.green
-                                : Colors.red,
-                            trailing: selected.contains(item)
-                                ? Icon(Icons.check)
-                                : unselected.contains(item)
-                                    ? Icon(Icons.close)
-                                    : null,
-                            title: Text(item),
-                            onTap: () {
-                              setState(
-                                () {
-                                  if (widget.tristate) {
-                                    if (selected.contains(item)) {
-                                      selected.remove(item);
-                                      unselected.add(item);
-                                    } else if (unselected.contains(item)) {
-                                      unselected.remove(item);
-                                    } else {
-                                      selected.add(item);
-                                    }
-                                  } else {
-                                    if (selected.contains(item)) {
-                                      selected.remove(item);
-                                    } else {
-                                      selected.add(item);
-                                    }
-                                  }
-                                },
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ],
+                  ),
                 );
               },
             ),
@@ -321,7 +345,16 @@ class _MultiSelectState extends State<MultiSelect> {
                     IconButton(
                       icon: const Icon(Icons.add),
                       color: Colors.grey[800],
-                      onPressed: _showDialog,
+                      onPressed: () async {
+                        await ref.read(producerPod.notifier).get(0);
+                        widget.stuff = ref
+                                .read(producerPod)
+                                .value
+                                ?.map((e) => e.title ?? '')
+                                .toList() ??
+                            [];
+                        _showDialog();
+                      },
                     ),
                   ],
                 ),
