@@ -34,7 +34,8 @@ class MockInterceptor implements Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    final resourcePath = _jsonDir + options.path + _jsonExtension;
+    final pathUnderscope = options.path.replaceAll('/', '_');
+    final resourcePath = _jsonDir + pathUnderscope + _jsonExtension;
     final data = await rootBundle.load(resourcePath);
     final map = json.decode(
       utf8.decode(
