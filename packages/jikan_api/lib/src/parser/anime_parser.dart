@@ -1,3 +1,6 @@
+import 'package:jikan_api/src/object/genre.dart';
+import 'package:jikan_api/src/parser/genre_parser.dart';
+
 import 'breif_producer_parser.dart';
 import 'jikan_parser.dart';
 import '../object/anime.dart';
@@ -6,10 +9,15 @@ import '../object/producer.dart';
 class AnimeApiParser implements AnimeParser {
   DataParser dataParser = DataParser();
   ProducerParser producerParser = BreifProducerParser();
+  GenreParser genreParser = GenreParserImp();
 
   double? parseAsDouble(value) => value is int ? value.toDouble() : value;
   List<Producer>? parseProducers(List? producers) {
     return producers?.map((e) => producerParser.parseProducer(e)).toList();
+  }
+
+  List<Genre>? parseGenres(List? genres) {
+    return genres?.map((e) => genreParser.parseGenre(e)).toList();
   }
 
   @override
@@ -34,6 +42,7 @@ class AnimeApiParser implements AnimeParser {
       ..year = data['year']
       ..broadcast = DateTime.now() // TODO: Parse to utc
       ..producers = parseProducers(data['producers'])
+      ..genres = parseGenres(data['genres'])
       // TODO: studios etc
       ..episodes = data['episodes']
       ..imageUrl = data['images']?['jpg']?['image_url'];
