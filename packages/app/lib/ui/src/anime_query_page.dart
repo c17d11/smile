@@ -150,6 +150,20 @@ class _QueryWidgetState extends ConsumerState<QueryWidget> {
               onChanged: (List<String> titles) {},
               title: "Producers",
             ),
+            MultiSelect(
+              loadOptions: () async {
+                await ref.read(genrePod.notifier).get();
+                return ref
+                        .read(genrePod)
+                        .value
+                        ?.map((e) => e.name ?? '')
+                        .toList() ??
+                    [];
+              },
+              initialSelected: const [],
+              onChanged: (List<String> names) {},
+              title: "Genres",
+            ),
           ],
         ),
       ),

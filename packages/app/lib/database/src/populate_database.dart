@@ -7,10 +7,20 @@ class PopulateDatabase {
   final JikanApi _api;
   PopulateDatabase(this._db, this._api);
 
-  Future<void> populate() async {
+  Future<void> populateProducers() async {
     ProducerResponse res = await _api.searchProducers(ProducerQuery());
     ProducerResponseIntern resIntern =
         _db.createProducerResponseIntern(res, ProducerQuery());
     await _db.insertProducerResponse(resIntern);
+  }
+
+  Future<void> populateGenres() async {
+    List<Genre> res = await _api.searchGenres();
+    await _db.insertGenres(res);
+  }
+
+  Future<void> populate() async {
+    await populateProducers();
+    await populateGenres();
   }
 }

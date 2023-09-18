@@ -5,7 +5,7 @@ import 'isar_producer.dart';
 
 part 'isar_anime.g.dart';
 
-@Collection(ignore: {'producers'})
+@Collection(ignore: {'producers', 'genres'})
 class IsarAnime extends AnimeIntern {
   @Index(unique: true, replace: true)
   Id id;
@@ -42,6 +42,7 @@ class IsarAnime extends AnimeIntern {
       ..year = t.year
       ..broadcast = t.broadcast
       ..producers = t.producers
+      ..genres = t.genres
       ..episodes = t.episodes
       ..imageUrl = t.imageUrl;
     return anime;
