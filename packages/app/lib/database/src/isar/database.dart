@@ -1,16 +1,19 @@
 import 'dart:io';
 
+import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/src/object/producer_response_intern.dart';
 import 'package:app/controller/state.dart';
+import 'package:app/database/src/isar/collection/isar_anime.dart';
+import 'package:app/database/src/isar/collection/isar_genre.dart';
 import 'package:app/database/src/isar/collection/isar_producer_response.dart';
 import 'package:app/database/src/isar/model/anime_model.dart';
 import 'package:app/database/src/isar/model/anime_response_model.dart';
+import 'package:app/database/src/isar/model/genre_model.dart';
 import 'package:app/database/src/isar/model/producer_model.dart';
 import 'package:app/database/src/isar/model/producer_response_model.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'package:path_provider/path_provider.dart';
-import 'collection/isar_anime.dart';
 import 'collection/isar_anime_response.dart';
 import 'collection/isar_producer.dart';
 import '../database_base.dart';
@@ -24,6 +27,7 @@ class IsarDatabase implements Database {
   late IsarProducerModel producerModel = IsarProducerModel(instance);
   late IsarProducerResponseModel producerResponseModel =
       IsarProducerResponseModel(instance);
+  late IsarGenreModel genreModel = IsarGenreModel(instance);
 
   @override
   Future<void> init() async {
@@ -36,6 +40,7 @@ class IsarDatabase implements Database {
           IsarAnimeResponseSchema,
           IsarProducerSchema,
           IsarProducerResponseSchema,
+          IsarGenreSchema,
         ],
         directory: dir.path,
         inspector: true,
@@ -150,6 +155,31 @@ class IsarDatabase implements Database {
   @override
   Future<void> insertProducerResponse(ProducerResponseIntern res) async {
     return producerResponseModel.insertProducerResponse(res);
+  }
+
+  @override
+  Future<bool> deleteGenre(int malId) async {
+    return await genreModel.deleteGenre(malId);
+  }
+
+  @override
+  Future<List<GenreIntern>> getAllGenres() async {
+    return await genreModel.getAllGenres();
+  }
+
+  @override
+  Future<GenreIntern?> getGenre(int malId) async {
+    return await genreModel.getGenre(malId);
+  }
+
+  @override
+  Future<void> insertGenre(GenreIntern genre) async {
+    return await genreModel.insertGenre(genre);
+  }
+
+  @override
+  Future<void> insertGenres(List<Genre> genres) async {
+    await genreModel.insertGenres(genres);
   }
 }
 

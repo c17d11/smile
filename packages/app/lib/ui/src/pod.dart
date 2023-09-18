@@ -1,4 +1,6 @@
+import 'package:app/controller/src/controller/genre_controller.dart';
 import 'package:app/controller/src/controller/producer_controller.dart';
+import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
 import 'package:app/database/src/populate_database.dart';
@@ -44,6 +46,13 @@ final producerPod =
         (ref) {
   Database db = ref.watch(databasePod);
   return ProducerController(db);
+});
+
+final genrePod =
+    StateNotifierProvider<GenreController, AsyncValue<List<GenreIntern>>>(
+        (ref) {
+  Database db = ref.watch(databasePod);
+  return GenreController(db);
 });
 
 final animeControllerPod =
