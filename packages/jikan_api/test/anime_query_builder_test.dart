@@ -15,7 +15,7 @@ void main() {
       AnimeQuery()
         ..searchTerm = 'searchTerm'
         ..type = TypeTv()
-        ..rating = RatingG()
+        ..rating = AnimeRating.g
         ..status = AnimeStatus.airing
         ..minScore = 1.0
         ..maxScore = 9.99

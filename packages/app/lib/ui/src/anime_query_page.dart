@@ -170,6 +170,10 @@ class _QueryWidgetState extends ConsumerState<QueryWidget> {
               AnimeStatus.values.map((e) => e.capitalize).toList(),
               'Status',
             ),
+            SingleSelect(
+              AnimeRating.values.map((e) => e.capitalize).toList(),
+              'Rating',
+            ),
           ],
         ),
       ),

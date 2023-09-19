@@ -1,52 +1,6 @@
-abstract class AnimeRating {
-  String get code;
-  String get text;
-}
+enum AnimeRating { g, pg, pg13, r17, r, rx }
 
-class RatingG implements AnimeRating {
-  @override
-  String get code => "g";
-
-  @override
-  String get text => "G";
-}
-
-class RatingPG implements AnimeRating {
-  @override
-  String get code => "pg";
-
-  @override
-  String get text => "PG";
-}
-
-class RatingPG13 implements AnimeRating {
-  @override
-  String get code => "pg13";
-
-  @override
-  String get text => "PG13";
-}
-
-class RatingR17 implements AnimeRating {
-  @override
-  String get code => "r17";
-
-  @override
-  String get text => "R17";
-}
-
-class RatingR implements AnimeRating {
-  @override
-  String get code => "r";
-
-  @override
-  String get text => "R";
-}
-
-class RatingRx implements AnimeRating {
-  @override
-  String get code => "rx";
-
-  @override
-  String get text => "RX";
+extension AnimeRatingText on AnimeRating {
+  String get capitalize => name[0].toUpperCase() + name.substring(1);
+  String get lowerCase => name.toLowerCase();
 }
