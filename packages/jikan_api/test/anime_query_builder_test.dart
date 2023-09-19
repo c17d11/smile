@@ -14,7 +14,7 @@ void main() {
     String s = builder.build(
       AnimeQuery()
         ..searchTerm = 'searchTerm'
-        ..type = TypeTv()
+        ..type = AnimeType.tv
         ..rating = AnimeRating.g
         ..status = AnimeStatus.airing
         ..minScore = 1.0
