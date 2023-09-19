@@ -328,8 +328,13 @@ class _MultiSelectState extends ConsumerState<MultiSelect> {
   }
 
   void showDialog() {
-    final dialog = FutureDialog(widget.title, true, context, _selectedItems,
-        _unselectedItems, widget.loadOptions(), (selected, unselected) {
+    final dialog = FutureDialog(
+        widget.title,
+        widget.tristate,
+        context,
+        _selectedItems,
+        _unselectedItems,
+        widget.loadOptions(), (selected, unselected) {
       setState(() {
         _selectedItems = selected;
         _unselectedItems = unselected;

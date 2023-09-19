@@ -151,6 +151,7 @@ class _QueryWidgetState extends ConsumerState<QueryWidget> {
               title: "Producers",
             ),
             MultiSelect(
+              tristate: true,
               loadOptions: () async {
                 await ref.read(genrePod.notifier).get();
                 return ref
