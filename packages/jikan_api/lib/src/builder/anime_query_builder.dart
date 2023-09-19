@@ -14,7 +14,7 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
   }
 
   String buildTypeQuery(AnimeType? type) {
-    return type != null ? "type=${type.code}" : "";
+    return type != null ? "type=${type.lowerCase}" : "";
   }
 
   String buildStatusQuery(AnimeStatus? status) {
