@@ -1,28 +1,35 @@
-abstract class AnimeStatus {
-  String get code;
-  String get text;
-}
+// abstract class AnimeStatus {
+//   String get code;
+//   String get text;
+// }
 
-class StatusAiring implements AnimeStatus {
-  @override
-  String get code => "airing";
+// class StatusAiring implements AnimeStatus {
+//   @override
+//   String get code => "airing";
 
-  @override
-  String get text => "Airing";
-}
+//   @override
+//   String get text => "Airing";
+// }
 
-class StatusComplete implements AnimeStatus {
-  @override
-  String get code => "complete";
+// class StatusComplete implements AnimeStatus {
+//   @override
+//   String get code => "complete";
 
-  @override
-  String get text => "Complete";
-}
+//   @override
+//   String get text => "Complete";
+// }
 
-class StatusUpcoming implements AnimeStatus {
-  @override
-  String get code => "upcoming";
+// class StatusUpcoming implements AnimeStatus {
+//   @override
+//   String get code => "upcoming";
 
-  @override
-  String get text => "Upcoming";
+//   @override
+//   String get text => "Upcoming";
+// }
+
+enum AnimeStatus { airing, complete, upcoming }
+
+extension AnimeStatusText on AnimeStatus {
+  String get capitalize => name[0].toUpperCase() + name.substring(1);
+  String get lowerCase => name.toLowerCase();
 }

@@ -16,7 +16,7 @@ void main() {
         ..searchTerm = 'searchTerm'
         ..type = TypeTv()
         ..rating = RatingG()
-        ..status = StatusAiring()
+        ..status = AnimeStatus.airing
         ..minScore = 1.0
         ..maxScore = 9.99
         ..minYear = 1

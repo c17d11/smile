@@ -21,7 +21,7 @@ class IsarAnimeResponse extends AnimeResponseIntern {
       "${q.searchTerm}",
       "${q.type?.code}",
       "${q.rating?.code}",
-      "${q.status?.code}",
+      "${q.status?.lowerCase}",
       "${q.minScore}",
       "${q.maxScore}",
       "${q.minYear}",

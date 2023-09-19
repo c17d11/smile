@@ -18,7 +18,7 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
   }
 
   String buildStatusQuery(AnimeStatus? status) {
-    return status != null ? "status=${status.code}" : "";
+    return status != null ? "status=${status.lowerCase}" : "";
   }
 
   String buildRatingQuery(AnimeRating? rating) {
