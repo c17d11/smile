@@ -3,6 +3,7 @@ import 'package:app/ui/src/multi_select.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jikan_api/jikan_api.dart';
 
 class AnimeQueryPage extends ConsumerStatefulWidget {
   const AnimeQueryPage({super.key});
@@ -164,6 +165,10 @@ class _QueryWidgetState extends ConsumerState<QueryWidget> {
               initialSelected: const [],
               onChanged: (List<String> names) {},
               title: "Genres",
+            ),
+            SingleSelect(
+              AnimeStatus.values.map((e) => e.capitalize).toList(),
+              'Status',
             ),
           ],
         ),

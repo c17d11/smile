@@ -50,12 +50,12 @@ class _SingleSelectState extends State<SingleSelect> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey[200],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -65,39 +65,43 @@ class _SingleSelectState extends State<SingleSelect> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    widget.title.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey[800],
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      widget.title.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey[800],
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 10),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Flexible(
-                  child: Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    runSpacing: 5,
-                    spacing: 5,
-                    direction: Axis.horizontal,
-                    children: widget.stuff
-                        .asMap()
-                        .entries
-                        .map((e) => buildItem(e))
-                        .toList(),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                    child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      runSpacing: 5,
+                      spacing: 5,
+                      direction: Axis.horizontal,
+                      children: widget.stuff
+                          .asMap()
+                          .entries
+                          .map((e) => buildItem(e))
+                          .toList(),
+                    ),
                   ),
                 ),
-                if (widget.doShowReset) ...[
+                if (_selected != -1) ...[
                   IconButton(
                     disabledColor: Colors.grey[400],
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(),
                     icon: const Icon(Icons.clear),
                     color: Colors.red[400],
                     onPressed: _selected == -1
@@ -365,20 +369,13 @@ class _MultiSelectState extends ConsumerState<MultiSelect> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        widget.title.toUpperCase(),
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.grey[800],
-                        ),
-                      ),
-                    ],
+                  child: Text(
+                    widget.title.toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey[800],
+                    ),
                   ),
                 ),
                 Column(
