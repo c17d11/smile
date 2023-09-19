@@ -20,7 +20,7 @@ class IsarAnimeResponse extends AnimeResponseIntern {
     List<String> queries = [
       "${q.searchTerm}",
       "${q.type?.code}",
-      "${q.rating?.code}",
+      "${q.rating?.lowerCase}",
       "${q.status?.lowerCase}",
       "${q.minScore}",
       "${q.maxScore}",

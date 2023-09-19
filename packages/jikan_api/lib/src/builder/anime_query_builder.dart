@@ -22,7 +22,7 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
   }
 
   String buildRatingQuery(AnimeRating? rating) {
-    return rating != null ? "rating=${rating.code}" : "";
+    return rating != null ? "rating=${rating.lowerCase}" : "";
   }
 
   String buildMinScoreQuery(double? minScore) {
