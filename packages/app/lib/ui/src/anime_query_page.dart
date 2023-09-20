@@ -1,6 +1,7 @@
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/multi_select.dart';
 import 'package:app/ui/src/pod.dart';
+import 'package:app/ui/src/range_select.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
@@ -178,6 +179,19 @@ class _QueryWidgetState extends ConsumerState<QueryWidget> {
               AnimeType.values.map((e) => e.capitalize).toList(),
               'Type',
             ),
+            RangeSelect(
+              "Score",
+              0,
+              10,
+              stepSize: 0.5,
+            ),
+            RangeSelect(
+              "Year",
+              1970,
+              2023,
+              stepSize: 1,
+              showInts: true,
+            )
           ],
         ),
       ),
