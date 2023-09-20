@@ -1,3 +1,5 @@
+import 'package:jikan_api/src/object/genre.dart';
+
 import 'anime_rating.dart';
 import 'anime_status.dart';
 import 'anime_type.dart';
@@ -13,7 +15,8 @@ class AnimeQuery {
   int? minYear;
   int? maxYear;
   bool? sfw;
-  // TODO: genres
   List<Producer>? producers;
+  List<Genre>? genresInclude;
+  List<Genre>? genresExclude;
   int? page;
 }

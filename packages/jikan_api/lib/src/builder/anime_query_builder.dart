@@ -1,3 +1,5 @@
+import 'package:jikan_api/src/object/genre.dart';
+
 import 'builder.dart';
 import '../object/anime_query.dart';
 import '../object/anime_rating.dart';
@@ -67,6 +69,28 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
     return "producers=$producerMalIds";
   }
 
+  String getGenreMalIds(List<Genre>? genres) {
+    if (genres == null) {
+      return "";
+    }
+    String genreMalIds =
+        genres.where((e) => e.malId != null).map((e) => e.malId).join(',');
+    if (genreMalIds.isEmpty) {
+      return "";
+    }
+    return genreMalIds;
+  }
+
+  String buildGenresIncludeQuery(List<Genre>? genres) {
+    String genreMalIds = getGenreMalIds(genres);
+    return "genres=$genreMalIds";
+  }
+
+  String buildGenresExcludeQuery(List<Genre>? genres) {
+    String genreMalIds = getGenreMalIds(genres);
+    return "genres_exclude=$genreMalIds";
+  }
+
   @override
   String build(AnimeQuery arg) {
     List<String> queries = [
@@ -81,6 +105,8 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
       buildMaxYearQuery(arg.maxYear),
       buildPageQuery(arg.page),
       buildProducersQuery(arg.producers),
+      buildGenresIncludeQuery(arg.genresInclude),
+      buildGenresExcludeQuery(arg.genresExclude),
     ];
     return queries.where((e) => e.isNotEmpty).join("&");
   }
