@@ -41,6 +41,60 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
                 },
                 initialValue: "",
               ),
+              MultiSelect(
+                loadOptions: () async {
+                  await ref.read(producerPod.notifier).get(0);
+                  return ref
+                          .read(producerPod)
+                          .value
+                          ?.map((e) => e.title ?? '')
+                          .toList() ??
+                      [];
+                },
+                initialSelected: const [],
+                onChanged: (List<String> titles) {},
+                title: "Producers",
+              ),
+              MultiSelect(
+                tristate: true,
+                loadOptions: () async {
+                  await ref.read(genrePod.notifier).get();
+                  return ref
+                          .read(genrePod)
+                          .value
+                          ?.map((e) => e.name ?? '')
+                          .toList() ??
+                      [];
+                },
+                initialSelected: const [],
+                onChanged: (List<String> names) {},
+                title: "Genres",
+              ),
+              SingleSelect(
+                AnimeStatus.values.map((e) => e.capitalize).toList(),
+                'Status',
+              ),
+              SingleSelect(
+                AnimeRating.values.map((e) => e.capitalize).toList(),
+                'Rating',
+              ),
+              SingleSelect(
+                AnimeType.values.map((e) => e.capitalize).toList(),
+                'Type',
+              ),
+              RangeSelect(
+                "Score",
+                0,
+                10,
+                stepSize: 0.5,
+              ),
+              RangeSelect(
+                "Year",
+                1970,
+                2023,
+                stepSize: 1,
+                showInts: true,
+              )
             ],
           ),
         ),
@@ -90,8 +144,6 @@ class _QueryWidgetState extends ConsumerState<QueryWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // final producers = ref.watch(producerPod);
-
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
       child: Padding(
@@ -138,60 +190,6 @@ class _QueryWidgetState extends ConsumerState<QueryWidget> {
                 hintText: "Enter title",
               ),
             ),
-            MultiSelect(
-              loadOptions: () async {
-                await ref.read(producerPod.notifier).get(0);
-                return ref
-                        .read(producerPod)
-                        .value
-                        ?.map((e) => e.title ?? '')
-                        .toList() ??
-                    [];
-              },
-              initialSelected: const [],
-              onChanged: (List<String> titles) {},
-              title: "Producers",
-            ),
-            MultiSelect(
-              tristate: true,
-              loadOptions: () async {
-                await ref.read(genrePod.notifier).get();
-                return ref
-                        .read(genrePod)
-                        .value
-                        ?.map((e) => e.name ?? '')
-                        .toList() ??
-                    [];
-              },
-              initialSelected: const [],
-              onChanged: (List<String> names) {},
-              title: "Genres",
-            ),
-            SingleSelect(
-              AnimeStatus.values.map((e) => e.capitalize).toList(),
-              'Status',
-            ),
-            SingleSelect(
-              AnimeRating.values.map((e) => e.capitalize).toList(),
-              'Rating',
-            ),
-            SingleSelect(
-              AnimeType.values.map((e) => e.capitalize).toList(),
-              'Type',
-            ),
-            RangeSelect(
-              "Score",
-              0,
-              10,
-              stepSize: 0.5,
-            ),
-            RangeSelect(
-              "Year",
-              1970,
-              2023,
-              stepSize: 1,
-              showInts: true,
-            )
           ],
         ),
       ),
