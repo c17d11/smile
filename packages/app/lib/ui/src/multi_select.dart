@@ -1,4 +1,3 @@
-import 'package:app/ui/src/pod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -50,76 +49,73 @@ class _SingleSelectState extends State<SingleSelect> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints(minHeight: 24),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Text(
-                      widget.title.toUpperCase(),
-                      style: TextStyle(
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey[800],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Row(
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 24),
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Flexible(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                    child: Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 5,
-                      spacing: 5,
-                      direction: Axis.horizontal,
-                      children: widget.stuff
-                          .asMap()
-                          .entries
-                          .map((e) => buildItem(e))
-                          .toList(),
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Text(
+                    widget.title.toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey[800],
                     ),
                   ),
                 ),
-                if (_selected != -1) ...[
-                  IconButton(
-                    disabledColor: Colors.grey[400],
-                    icon: const Icon(Icons.clear),
-                    color: Colors.red[400],
-                    onPressed: _selected == -1
-                        ? null
-                        : () {
-                            setState(() {
-                              _selected = -1;
-                            });
-                            if (widget.onChanged != null) {
-                              widget.onChanged!(-1);
-                            }
-                          },
-                  ),
-                ]
               ],
             ),
-          ],
-        ),
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                  child: Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    runSpacing: 5,
+                    spacing: 5,
+                    direction: Axis.horizontal,
+                    children: widget.stuff
+                        .asMap()
+                        .entries
+                        .map((e) => buildItem(e))
+                        .toList(),
+                  ),
+                ),
+              ),
+              if (_selected != -1) ...[
+                IconButton(
+                  disabledColor: Colors.grey[400],
+                  icon: const Icon(Icons.clear),
+                  color: Colors.red[400],
+                  onPressed: _selected == -1
+                      ? null
+                      : () {
+                          setState(() {
+                            _selected = -1;
+                          });
+                          if (widget.onChanged != null) {
+                            widget.onChanged!(-1);
+                          }
+                        },
+                ),
+              ]
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -356,158 +352,154 @@ class _MultiSelectState extends ConsumerState<MultiSelect> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-      child: Container(
-        color: Colors.grey[200],
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text(
-                    widget.title.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey[800],
-                    ),
+    return Container(
+      color: Colors.grey[200],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text(
+                  widget.title.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey[800],
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.add),
+                    color: Colors.grey[800],
+                    onPressed: showDialog,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.add),
-                      color: Colors.grey[800],
-                      onPressed: showDialog,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      if (_selectedItems.isNotEmpty) ...[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                "Include".toUpperCase(),
-                                style: TextStyle(
-                                  fontSize: 9.0,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.grey[800],
-                                ),
+                    if (_selectedItems.isNotEmpty) ...[
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "Include".toUpperCase(),
+                              style: TextStyle(
+                                fontSize: 9.0,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.grey[800],
                               ),
-                              Wrap(
-                                direction: Axis.horizontal,
-                                runSpacing: 5,
-                                spacing: 5,
-                                children: _selectedItems
-                                    .map((e) => SelectItem(
-                                          e,
-                                          Colors.green[400]!,
-                                          Colors.white,
-                                          () {
-                                            setState(() {
-                                              _selectedItems.remove(e);
-                                            });
-                                            if (widget.onChanged != null) {
-                                              widget.onChanged!(_selectedItems);
-                                            }
-                                          },
-                                        ))
-                                    .toList(),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                      if (_unselectedItems.isNotEmpty) ...[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Exclude".toUpperCase(),
-                                style: TextStyle(
-                                  fontSize: 9.0,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.grey[800],
-                                ),
-                              ),
-                              Wrap(
-                                direction: Axis.horizontal,
-                                runSpacing: 5,
-                                spacing: 5,
-                                children: _unselectedItems
-                                    .map((e) => SelectItem(
-                                          e,
-                                          Colors.red[400]!,
-                                          Colors.white,
-                                          () {
-                                            setState(() {
-                                              _unselectedItems.remove(e);
-                                            });
-                                            if (widget.onChanged != null) {
-                                              widget
-                                                  .onChanged!(_unselectedItems);
-                                            }
-                                          },
-                                        ))
-                                    .toList(),
-                              ),
-                            ],
-                          ),
+                            ),
+                            Wrap(
+                              direction: Axis.horizontal,
+                              runSpacing: 5,
+                              spacing: 5,
+                              children: _selectedItems
+                                  .map((e) => SelectItem(
+                                        e,
+                                        Colors.green[400]!,
+                                        Colors.white,
+                                        () {
+                                          setState(() {
+                                            _selectedItems.remove(e);
+                                          });
+                                          if (widget.onChanged != null) {
+                                            widget.onChanged!(_selectedItems);
+                                          }
+                                        },
+                                      ))
+                                  .toList(),
+                            ),
+                          ],
                         ),
-                      ],
+                      )
                     ],
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    if (_selectedItems.isNotEmpty ||
-                        _unselectedItems.isNotEmpty) ...[
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _selectedItems = [];
-                            _unselectedItems = [];
-                          });
-                          if (widget.onChanged != null) {
-                            widget.onChanged!([]);
-                          }
-                          if (widget.onChangedExclude != null) {
-                            widget.onChangedExclude!([]);
-                          }
-                        },
-                        icon: const Icon(Icons.clear),
-                        color: Colors.red[400],
+                    if (_unselectedItems.isNotEmpty) ...[
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Exclude".toUpperCase(),
+                              style: TextStyle(
+                                fontSize: 9.0,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.grey[800],
+                              ),
+                            ),
+                            Wrap(
+                              direction: Axis.horizontal,
+                              runSpacing: 5,
+                              spacing: 5,
+                              children: _unselectedItems
+                                  .map((e) => SelectItem(
+                                        e,
+                                        Colors.red[400]!,
+                                        Colors.white,
+                                        () {
+                                          setState(() {
+                                            _unselectedItems.remove(e);
+                                          });
+                                          if (widget.onChanged != null) {
+                                            widget.onChanged!(_unselectedItems);
+                                          }
+                                        },
+                                      ))
+                                  .toList(),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ],
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  if (_selectedItems.isNotEmpty ||
+                      _unselectedItems.isNotEmpty) ...[
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _selectedItems = [];
+                          _unselectedItems = [];
+                        });
+                        if (widget.onChanged != null) {
+                          widget.onChanged!([]);
+                        }
+                        if (widget.onChangedExclude != null) {
+                          widget.onChangedExclude!([]);
+                        }
+                      },
+                      icon: const Icon(Icons.clear),
+                      color: Colors.red[400],
+                    ),
+                  ],
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
