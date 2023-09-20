@@ -24,84 +24,114 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
       appBar: AppBar(
         title: const Text("Filter"),
       ),
-      body:
-          // Column(
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: [
-          // Expanded(
-          //     child:
-          SingleChildScrollView(
-        child: Container(
-          color: Colors.grey[300],
-          child: Column(
-            children: [
-              QueryWidget(
-                onChanged: (String s) {
-                  query.searchTerm = s;
-                },
-                initialValue: "",
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Container(
+                color: Colors.grey[300],
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      QueryWidget(
+                        onChanged: (String s) {
+                          query.searchTerm = s;
+                        },
+                        initialValue: "",
+                      ),
+                      const SizedBox(height: 10),
+                      MultiSelect(
+                        loadOptions: () async {
+                          await ref.read(producerPod.notifier).get(0);
+                          return ref
+                                  .read(producerPod)
+                                  .value
+                                  ?.map((e) => e.title ?? '')
+                                  .toList() ??
+                              [];
+                        },
+                        initialSelected: const [],
+                        onChanged: (List<String> titles) {},
+                        title: "Producers",
+                      ),
+                      const SizedBox(height: 10),
+                      MultiSelect(
+                        tristate: true,
+                        loadOptions: () async {
+                          await ref.read(genrePod.notifier).get();
+                          return ref
+                                  .read(genrePod)
+                                  .value
+                                  ?.map((e) => e.name ?? '')
+                                  .toList() ??
+                              [];
+                        },
+                        initialSelected: const [],
+                        onChanged: (List<String> names) {},
+                        title: "Genres",
+                      ),
+                      const SizedBox(height: 10),
+                      SingleSelect(
+                        AnimeStatus.values.map((e) => e.capitalize).toList(),
+                        'Status',
+                      ),
+                      const SizedBox(height: 10),
+                      SingleSelect(
+                        AnimeRating.values.map((e) => e.capitalize).toList(),
+                        'Rating',
+                      ),
+                      const SizedBox(height: 10),
+                      SingleSelect(
+                        AnimeType.values.map((e) => e.capitalize).toList(),
+                        'Type',
+                      ),
+                      const SizedBox(height: 10),
+                      RangeSelect(
+                        "Score",
+                        0,
+                        10,
+                        stepSize: 0.5,
+                      ),
+                      const SizedBox(height: 10),
+                      RangeSelect(
+                        "Year",
+                        1970,
+                        2023,
+                        stepSize: 1,
+                        showInts: true,
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              MultiSelect(
-                loadOptions: () async {
-                  await ref.read(producerPod.notifier).get(0);
-                  return ref
-                          .read(producerPod)
-                          .value
-                          ?.map((e) => e.title ?? '')
-                          .toList() ??
-                      [];
-                },
-                initialSelected: const [],
-                onChanged: (List<String> titles) {},
-                title: "Producers",
-              ),
-              MultiSelect(
-                tristate: true,
-                loadOptions: () async {
-                  await ref.read(genrePod.notifier).get();
-                  return ref
-                          .read(genrePod)
-                          .value
-                          ?.map((e) => e.name ?? '')
-                          .toList() ??
-                      [];
-                },
-                initialSelected: const [],
-                onChanged: (List<String> names) {},
-                title: "Genres",
-              ),
-              SingleSelect(
-                AnimeStatus.values.map((e) => e.capitalize).toList(),
-                'Status',
-              ),
-              SingleSelect(
-                AnimeRating.values.map((e) => e.capitalize).toList(),
-                'Rating',
-              ),
-              SingleSelect(
-                AnimeType.values.map((e) => e.capitalize).toList(),
-                'Type',
-              ),
-              RangeSelect(
-                "Score",
-                0,
-                10,
-                stepSize: 0.5,
-              ),
-              RangeSelect(
-                "Year",
-                1970,
-                2023,
-                stepSize: 1,
-                showInts: true,
-              )
-            ],
+            ),
           ),
-        ),
+          GestureDetector(
+            child: Container(
+              height: 40,
+              color: Colors.green[400],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Apply",
+                    style: TextStyle(
+                      color: Colors.grey[800],
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
       ),
-      // )
-      //   ],
-      // ),
     );
   }
 }
@@ -144,34 +174,38 @@ class _QueryWidgetState extends ConsumerState<QueryWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints(minHeight: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
+    return Container(
+      color: Colors.grey[200],
+      child: Column(
+        children: [
+          ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 24),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Text(
                     'Search'.toUpperCase(),
                     style: TextStyle(
                         fontSize: 12.0,
                         fontWeight: FontWeight.w500,
                         color: Colors.grey[800]),
-                  )
-                ],
-              ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 10),
-            TextField(
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+            child: TextField(
               controller: _controller,
               style: const TextStyle(fontSize: 14.0),
               textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
                 suffixIcon: showReset
                     ? IconButton(
                         onPressed: () {
@@ -185,13 +219,13 @@ class _QueryWidgetState extends ConsumerState<QueryWidget> {
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(color: Colors.grey[400]!),
+                  borderSide: BorderSide(color: Colors.grey[300]!),
                 ),
                 hintText: "Enter title",
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

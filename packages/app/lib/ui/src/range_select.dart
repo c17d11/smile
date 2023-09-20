@@ -84,78 +84,75 @@ class _RangeSelectState extends ConsumerState<RangeSelect> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-      child: Container(
-        color: Colors.grey[200],
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            children: [
-              ConstrainedBox(
-                constraints: BoxConstraints(minHeight: 24),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      widget.title.toUpperCase(),
-                      style: TextStyle(
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey[800],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+    return Container(
+      color: Colors.grey[200],
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          children: [
+            ConstrainedBox(
+              constraints: BoxConstraints(minHeight: 24),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Expanded(
-                    child: SliderTheme(
-                      data: SliderTheme.of(context).copyWith(
-                        activeTrackColor: Colors.green[400],
-                        inactiveTrackColor: Colors.grey[400],
-                        trackShape: RectangularSliderTrackShape(),
-                        trackHeight: 4.0,
-                        thumbColor: Colors.green[500],
-                        rangeThumbShape: widget.showInts
-                            ? CustomRangeSliderThumpShape<int>(
-                                values.start.toInt(), values.end.toInt(), 32)
-                            : CustomRangeSliderThumpShape<double>(
-                                values.start.toDouble(),
-                                values.end.toDouble(),
-                                32),
-                        showValueIndicator: ShowValueIndicator.never,
-                        overlayColor: Colors.red.withAlpha(32),
-                        overlayShape:
-                            RoundSliderOverlayShape(overlayRadius: 28.0),
-                        tickMarkShape: RoundSliderTickMarkShape(),
-                        activeTickMarkColor: Colors.grey[200],
-                        inactiveTickMarkColor: Colors.grey[200],
-                      ),
-                      child: RangeSlider(
-                        values: values,
-                        onChanged: _setValues,
-                        divisions: (widget.stepSize == null)
-                            ? null
-                            : (widget.maxValue - widget.minValue) ~/
-                                widget.stepSize!,
-                        min: widget.minValue,
-                        max: widget.maxValue,
-                      ),
+                  Text(
+                    widget.title.toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey[800],
                     ),
                   ),
-                  IconButton(
-                      disabledColor: Colors.grey[400],
-                      icon: const Icon(Icons.clear),
-                      color: Colors.red[400],
-                      onPressed: isDefault() ? null : _resetValues),
                 ],
               ),
-            ],
-          ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      activeTrackColor: Colors.green[400],
+                      inactiveTrackColor: Colors.grey[400],
+                      trackShape: RectangularSliderTrackShape(),
+                      trackHeight: 4.0,
+                      thumbColor: Colors.green[500],
+                      rangeThumbShape: widget.showInts
+                          ? CustomRangeSliderThumpShape<int>(
+                              values.start.toInt(), values.end.toInt(), 32)
+                          : CustomRangeSliderThumpShape<double>(
+                              values.start.toDouble(),
+                              values.end.toDouble(),
+                              32),
+                      showValueIndicator: ShowValueIndicator.never,
+                      overlayColor: Colors.red.withAlpha(32),
+                      overlayShape:
+                          RoundSliderOverlayShape(overlayRadius: 28.0),
+                      tickMarkShape: RoundSliderTickMarkShape(),
+                      activeTickMarkColor: Colors.grey[200],
+                      inactiveTickMarkColor: Colors.grey[200],
+                    ),
+                    child: RangeSlider(
+                      values: values,
+                      onChanged: _setValues,
+                      divisions: (widget.stepSize == null)
+                          ? null
+                          : (widget.maxValue - widget.minValue) ~/
+                              widget.stepSize!,
+                      min: widget.minValue,
+                      max: widget.maxValue,
+                    ),
+                  ),
+                ),
+                IconButton(
+                    disabledColor: Colors.grey[400],
+                    icon: const Icon(Icons.clear),
+                    color: Colors.red[400],
+                    onPressed: isDefault() ? null : _resetValues),
+              ],
+            ),
+          ],
         ),
       ),
     );
