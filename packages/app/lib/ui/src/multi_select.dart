@@ -153,6 +153,7 @@ class FutureDialog {
         child: Container(
           height: 1000,
           width: 400,
+          // color: Colors.grey[200],
           child: w,
         ));
   }
@@ -163,13 +164,17 @@ class FutureDialog {
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
         isDense: true,
-        fillColor: Colors.white60,
         filled: true,
+        fillColor: Colors.white,
         contentPadding:
             const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20.0),
-            borderSide: const BorderSide(style: BorderStyle.none, width: 0)),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: BorderSide(color: Colors.grey[300]!),
+        ),
         hintText: 'Enter a search term',
       ),
       onChanged: (s) {
@@ -239,6 +244,7 @@ class FutureDialog {
             return false;
           },
           child: AlertDialog(
+            // backgroundColor: Colors.grey[200],
             title: Text(title),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0))),
