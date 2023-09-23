@@ -3,9 +3,7 @@ abstract mixin class SelectionItem {
 
   @override
   bool operator ==(Object other) =>
-      other is SelectionItem &&
-      // other.runtimeType == runtimeType &&
-      other.displayName == displayName;
+      other is SelectionItem && other.displayName == displayName;
 
   @override
   int get hashCode => displayName.hashCode;
@@ -17,9 +15,7 @@ class SelectionWrapper<T extends SelectionItem> {
 
   @override
   bool operator ==(Object other) =>
-      other is SelectionWrapper &&
-      // other.runtimeType == runtimeType &&
-      other.item == item;
+      other is SelectionWrapper && other.item == item;
 
   @override
   int get hashCode => item.hashCode;
