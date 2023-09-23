@@ -1,4 +1,4 @@
-import 'package:app/controller/src/object/selection_item.dart';
+import 'package:app/ui/selection_widget/selection_item.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class AnimeRatingItem with SelectionItem {
