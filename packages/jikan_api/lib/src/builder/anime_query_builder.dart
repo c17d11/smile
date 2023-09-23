@@ -75,19 +75,22 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
     }
     String genreMalIds =
         genres.where((e) => e.malId != null).map((e) => e.malId).join(',');
-    if (genreMalIds.isEmpty) {
-      return "";
-    }
     return genreMalIds;
   }
 
   String buildGenresIncludeQuery(List<Genre>? genres) {
     String genreMalIds = getGenreMalIds(genres);
+    if (genreMalIds.isEmpty) {
+      return "";
+    }
     return "genres=$genreMalIds";
   }
 
   String buildGenresExcludeQuery(List<Genre>? genres) {
     String genreMalIds = getGenreMalIds(genres);
+    if (genreMalIds.isEmpty) {
+      return "";
+    }
     return "genres_exclude=$genreMalIds";
   }
 

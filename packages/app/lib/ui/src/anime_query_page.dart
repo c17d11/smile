@@ -1,3 +1,10 @@
+import 'package:app/controller/src/object/anime_query_intern.dart';
+import 'package:app/controller/src/object/anime_rating.dart';
+import 'package:app/controller/src/object/anime_status.dart';
+import 'package:app/controller/src/object/anime_type.dart';
+import 'package:app/controller/src/object/genre_intern.dart';
+import 'package:app/controller/src/object/selection_item.dart';
+import 'package:app/controller/state.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/multi_select.dart';
 import 'package:app/ui/src/pod.dart';
@@ -18,7 +25,8 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
   Widget build(BuildContext context) {
     final page = ModalRoute.of(context)?.settings.arguments as IconItem;
 
-    final query = ref.watch(animeQueryPod(page));
+    final query = ref.read(animeQueryPod(page));
+    AnimeQuery localQuery = AnimeQueryIntern.from(query);
 
     return Scaffold(
       appBar: AppBar(
@@ -37,9 +45,9 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
                     children: [
                       QueryWidget(
                         onChanged: (String s) {
-                          query.searchTerm = s;
+                          localQuery.searchTerm = s;
                         },
-                        initialValue: "",
+                        initialValue: localQuery.searchTerm ?? "",
                       ),
                       const SizedBox(height: 10),
                       MultiSelect(
@@ -48,12 +56,19 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
                           return ref
                                   .read(producerPod)
                                   .value
-                                  ?.map((e) => e.title ?? '')
+                                  ?.map((e) => SelectionWrapper(e))
                                   .toList() ??
                               [];
                         },
-                        initialSelected: const [],
-                        onChanged: (List<String> titles) {},
+                        initialSelected: localQuery.producers
+                            ?.map(
+                                (e) => SelectionWrapper(ProducerIntern.from(e)))
+                            .toList(),
+                        onChangedInclude: (items) {
+                          localQuery.producers = items
+                              .map((e) => e.item as ProducerIntern)
+                              .toList();
+                        },
                         title: "Producers",
                       ),
                       const SizedBox(height: 10),
@@ -64,28 +79,72 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
                           return ref
                                   .read(genrePod)
                                   .value
-                                  ?.map((e) => e.name ?? '')
+                                  ?.map((e) => SelectionWrapper(e))
                                   .toList() ??
                               [];
                         },
-                        initialSelected: const [],
-                        onChanged: (List<String> names) {},
+                        initialSelected: localQuery.genresInclude
+                            ?.map((e) => SelectionWrapper(GenreIntern.from(e)))
+                            .toList(),
+                        initialUnselected: localQuery.genresExclude
+                            ?.map((e) => SelectionWrapper(GenreIntern.from(e)))
+                            .toList(),
+                        onChangedInclude: (items) {
+                          localQuery.genresInclude =
+                              items.map((e) => e.item as GenreIntern).toList();
+                        },
+                        onChangedExclude: (items) {
+                          localQuery.genresExclude =
+                              items.map((e) => e.item as GenreIntern).toList();
+                        },
                         title: "Genres",
                       ),
                       const SizedBox(height: 10),
                       SingleSelect(
-                        AnimeStatus.values.map((e) => e.capitalize).toList(),
+                        AnimeStatus.values
+                            .map((e) => SelectionWrapper(AnimeStatusItem(e)))
+                            .toList(),
                         'Status',
+                        onChanged: (item) {
+                          localQuery.status = (item != null)
+                              ? (item.item as AnimeStatusItem).status
+                              : null;
+                        },
+                        initialValue: (localQuery.status != null)
+                            ? SelectionWrapper(
+                                AnimeStatusItem(localQuery.status!))
+                            : null,
                       ),
                       const SizedBox(height: 10),
                       SingleSelect(
-                        AnimeRating.values.map((e) => e.capitalize).toList(),
+                        AnimeRating.values
+                            .map((e) => SelectionWrapper(AnimeRatingItem(e)))
+                            .toList(),
                         'Rating',
+                        onChanged: (item) {
+                          localQuery.rating = (item != null)
+                              ? (item.item as AnimeRatingItem).rating
+                              : null;
+                        },
+                        initialValue: (localQuery.rating != null)
+                            ? SelectionWrapper(
+                                AnimeRatingItem(localQuery.rating!))
+                            : null,
                       ),
                       const SizedBox(height: 10),
                       SingleSelect(
-                        AnimeType.values.map((e) => e.capitalize).toList(),
+                        AnimeType.values
+                            .map((e) => SelectionWrapper(AnimeTypeItem(e)))
+                            .toList(),
                         'Type',
+                        onChanged: (item) {
+                          localQuery.type = (item != null)
+                              ? (item.item as AnimeTypeItem).type
+                              : null;
+                        },
+                        initialValue: (localQuery.type != null)
+                            ? SelectionWrapper(AnimeTypeItem(localQuery.type!))
+                            : null,
                       ),
                       const SizedBox(height: 10),
                       RangeSelect(
@@ -93,6 +152,19 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
                         0,
                         10,
                         stepSize: 0.5,
+                        initialMin: localQuery.minScore,
+                        initialMax: localQuery.maxScore,
+                        onChanged: (value) {
+                          if (value == null) {
+                            localQuery.minScore = null;
+                            localQuery.maxScore = null;
+                          } else {
+                            localQuery.minScore =
+                                value.start != 0 ? value.start : null;
+                            localQuery.maxScore =
+                                value.end != 10 ? value.end : null;
+                          }
+                        },
                       ),
                       const SizedBox(height: 10),
                       RangeSelect(
@@ -101,6 +173,20 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
                         2023,
                         stepSize: 1,
                         showInts: true,
+                        initialMin: localQuery.minYear?.toDouble(),
+                        initialMax: localQuery.maxYear?.toDouble(),
+                        onChanged: (value) {
+                          if (value == null) {
+                            localQuery.minYear = null;
+                            localQuery.maxYear = null;
+                          } else {
+                            localQuery.minYear = value.start != 1970
+                                ? value.start.toInt()
+                                : null;
+                            localQuery.maxYear =
+                                value.end != 2023 ? value.end.toInt() : null;
+                          }
+                        },
                       ),
                     ],
                   ),
@@ -127,6 +213,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
               ),
             ),
             onTap: () {
+              query.override(localQuery);
               Navigator.pop(context);
             },
           ),
