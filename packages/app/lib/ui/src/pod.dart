@@ -1,5 +1,6 @@
 import 'package:app/controller/src/controller/genre_controller.dart';
 import 'package:app/controller/src/controller/producer_controller.dart';
+import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
@@ -62,8 +63,8 @@ final animeControllerPod =
   return AnimeController(db, api);
 });
 
-final animeQueryPod =
-    Provider.family<AnimeQuery, IconItem>((ref, arg) => AnimeQuery());
+final animeQueryPod = Provider.family<AnimeQueryIntern, IconItem>(
+    (ref, arg) => AnimeQueryIntern());
 
 extension AsyncValueUi on AsyncValue<List<AnimeIntern>> {
   bool get isLoading => this is AsyncLoading<List<AnimeIntern>>;

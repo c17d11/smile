@@ -1,14 +1,15 @@
+import 'package:app/controller/src/object/selection_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SingleSelect extends StatefulWidget {
-  final List<String> stuff;
+  final List<SelectionWrapper> options;
   final String title;
-  final Function(int index)? onChanged;
-  final String? initialValue;
+  final Function(SelectionWrapper? selected)? onChanged;
+  final SelectionWrapper? initialValue;
   final bool doShowReset;
 
-  const SingleSelect(this.stuff, this.title,
+  const SingleSelect(this.options, this.title,
       {super.key, this.onChanged, this.initialValue, this.doShowReset = true});
 
   @override
@@ -16,34 +17,40 @@ class SingleSelect extends StatefulWidget {
 }
 
 class _SingleSelectState extends State<SingleSelect> {
-  int _selected = -1;
+  SelectionWrapper? _selected;
 
   @override
   void initState() {
     super.initState();
 
     if (widget.initialValue != null) {
-      _selected = widget.stuff.indexWhere((e) => e == widget.initialValue);
+      int index = widget.options.indexWhere((e) {
+        return e == widget.initialValue!;
+      });
+      if (index != -1) {
+        _selected = widget.options[index];
+      }
     }
   }
 
-  Widget buildItem(MapEntry<int, String> e) {
+  Widget buildItem(SelectionWrapper e) {
     Color foreground = Colors.white;
 
     void onPressed() {
       setState(() {
-        _selected = e.key;
+        _selected = e;
       });
       if (widget.onChanged != null) {
-        widget.onChanged!(e.key);
+        widget.onChanged!(e);
       }
     }
 
-    if (e.key == _selected) {
+    if (e == _selected) {
       return PaddedSelectItem(
-          e.value, Colors.green[400]!, foreground, onPressed);
+          e.item.displayName, Colors.green[400]!, foreground, onPressed);
     } else {
-      return SelectItem(e.value, Colors.grey[400]!, foreground, onPressed);
+      return SelectItem(
+          e.item.displayName, Colors.grey[400]!, foreground, onPressed);
     }
   }
 
@@ -88,27 +95,23 @@ class _SingleSelectState extends State<SingleSelect> {
                     runSpacing: 5,
                     spacing: 5,
                     direction: Axis.horizontal,
-                    children: widget.stuff
-                        .asMap()
-                        .entries
-                        .map((e) => buildItem(e))
-                        .toList(),
+                    children: widget.options.map((e) => buildItem(e)).toList(),
                   ),
                 ),
               ),
-              if (_selected != -1) ...[
+              if (_selected != null) ...[
                 IconButton(
                   disabledColor: Colors.grey[400],
                   icon: const Icon(Icons.clear),
                   color: Colors.red[400],
-                  onPressed: _selected == -1
+                  onPressed: _selected == null
                       ? null
                       : () {
                           setState(() {
-                            _selected = -1;
+                            _selected = null;
                           });
                           if (widget.onChanged != null) {
-                            widget.onChanged!(-1);
+                            widget.onChanged!(null);
                           }
                         },
                 ),
@@ -124,13 +127,15 @@ class _SingleSelectState extends State<SingleSelect> {
 class FutureDialog {
   final String title;
   BuildContext context;
-  final Future<List<String>> future;
-  final void Function(List<String> selected, List<String> unselected) callback;
+  final Future<List<SelectionWrapper>> future;
+  final void Function(
+          List<SelectionWrapper> selected, List<SelectionWrapper> unselected)
+      callback;
 
-  List<String> options = [];
-  List<String> optionsFiltered = [];
-  List<String> optionsSelected;
-  List<String> optionsUnselected;
+  List<SelectionWrapper> options = [];
+  List<SelectionWrapper> optionsFiltered = [];
+  List<SelectionWrapper> optionsSelected;
+  List<SelectionWrapper> optionsUnselected;
   bool tristate;
 
   FutureDialog(
@@ -181,7 +186,8 @@ class FutureDialog {
         setState(
           () {
             optionsFiltered = [...options]
-                .where((e) => e.toLowerCase().contains(s.toLowerCase()))
+                .where((e) =>
+                    e.item.displayName.toLowerCase().contains(s.toLowerCase()))
                 .toList();
           },
         );
@@ -194,7 +200,7 @@ class FutureDialog {
         ? ListView.builder(
             itemCount: optionsFiltered.length,
             itemBuilder: (BuildContext context, int index) {
-              String item = optionsFiltered[index];
+              SelectionWrapper item = optionsFiltered[index];
               return ListTile(
                 dense: true,
                 selected: optionsSelected.contains(item) ||
@@ -206,7 +212,7 @@ class FutureDialog {
                     : optionsUnselected.contains(item)
                         ? const Icon(Icons.close)
                         : null,
-                title: Text(item),
+                title: Text(item.item.displayName),
                 onTap: () {
                   setState(
                     () {
@@ -248,7 +254,7 @@ class FutureDialog {
             title: Text(title),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0))),
-            content: FutureBuilder<List<String>>(
+            content: FutureBuilder<List<SelectionWrapper>>(
               future: future,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
@@ -299,19 +305,19 @@ class FutureDialog {
 }
 
 class MultiSelect extends ConsumerStatefulWidget {
-  final Future<List<String>> Function() loadOptions;
+  final Future<List<SelectionWrapper>> Function() loadOptions;
   final bool tristate;
   final String title;
-  final ValueChanged<List<String>>? onChanged;
-  final ValueChanged<List<String>>? onChangedExclude;
-  final List<String>? initialSelected;
-  final List<String>? initialUnselected;
+  final ValueChanged<List<SelectionWrapper>>? onChangedInclude;
+  final ValueChanged<List<SelectionWrapper>>? onChangedExclude;
+  final List<SelectionWrapper>? initialSelected;
+  final List<SelectionWrapper>? initialUnselected;
 
   const MultiSelect(
       {required this.loadOptions,
       this.tristate = false,
       this.title = "",
-      this.onChanged,
+      this.onChangedInclude,
       this.onChangedExclude,
       this.initialSelected,
       this.initialUnselected,
@@ -322,8 +328,8 @@ class MultiSelect extends ConsumerStatefulWidget {
 }
 
 class _MultiSelectState extends ConsumerState<MultiSelect> {
-  late List<String> _selectedItems;
-  late List<String> _unselectedItems;
+  late List<SelectionWrapper> _selectedItems;
+  late List<SelectionWrapper> _unselectedItems;
 
   @override
   void initState() {
@@ -345,8 +351,8 @@ class _MultiSelectState extends ConsumerState<MultiSelect> {
         _selectedItems = selected;
         _unselectedItems = unselected;
       });
-      if (widget.onChanged != null) {
-        widget.onChanged!(_selectedItems);
+      if (widget.onChangedInclude != null) {
+        widget.onChangedInclude!(_selectedItems);
       }
       if (widget.onChangedExclude != null) {
         widget.onChangedExclude!(_unselectedItems);
@@ -420,15 +426,16 @@ class _MultiSelectState extends ConsumerState<MultiSelect> {
                               spacing: 5,
                               children: _selectedItems
                                   .map((e) => SelectItem(
-                                        e,
+                                        e.item.displayName,
                                         Colors.green[400]!,
                                         Colors.white,
                                         () {
                                           setState(() {
                                             _selectedItems.remove(e);
                                           });
-                                          if (widget.onChanged != null) {
-                                            widget.onChanged!(_selectedItems);
+                                          if (widget.onChangedInclude != null) {
+                                            widget.onChangedInclude!(
+                                                _selectedItems);
                                           }
                                         },
                                       ))
@@ -458,15 +465,16 @@ class _MultiSelectState extends ConsumerState<MultiSelect> {
                               spacing: 5,
                               children: _unselectedItems
                                   .map((e) => SelectItem(
-                                        e,
+                                        e.item.displayName,
                                         Colors.red[400]!,
                                         Colors.white,
                                         () {
                                           setState(() {
                                             _unselectedItems.remove(e);
                                           });
-                                          if (widget.onChanged != null) {
-                                            widget.onChanged!(_unselectedItems);
+                                          if (widget.onChangedInclude != null) {
+                                            widget.onChangedInclude!(
+                                                _unselectedItems);
                                           }
                                         },
                                       ))
@@ -490,8 +498,8 @@ class _MultiSelectState extends ConsumerState<MultiSelect> {
                           _selectedItems = [];
                           _unselectedItems = [];
                         });
-                        if (widget.onChanged != null) {
-                          widget.onChanged!([]);
+                        if (widget.onChangedInclude != null) {
+                          widget.onChangedInclude!([]);
                         }
                         if (widget.onChangedExclude != null) {
                           widget.onChangedExclude!([]);

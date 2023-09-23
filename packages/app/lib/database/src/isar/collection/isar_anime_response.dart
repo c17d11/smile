@@ -1,3 +1,6 @@
+import 'package:app/controller/src/object/anime_rating.dart';
+import 'package:app/controller/src/object/anime_status.dart';
+import 'package:app/controller/src/object/anime_type.dart';
 import 'package:app/controller/state.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';

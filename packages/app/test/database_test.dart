@@ -78,7 +78,7 @@ void main() {
       List<IsarAnime> animes = [anime];
       AnimeQuery query = AnimeQuery()
         ..page = 1
-        ..rating = RatingG();
+        ..rating = AnimeRating.g;
       IsarAnimeResponse isarAnimeResponse =
           IsarAnimeResponse.from(AnimeResponse()..data = animes, query);
 
