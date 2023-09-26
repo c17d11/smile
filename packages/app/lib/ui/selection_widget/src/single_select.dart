@@ -1,5 +1,5 @@
-import 'package:app/ui/selection_widget/select_item.dart';
-import 'package:app/ui/selection_widget/selection_item.dart';
+import 'package:app/ui/selection_widget/src/select_item.dart';
+import 'package:app/ui/selection_widget/src/selection_item.dart';
 import 'package:flutter/material.dart';
 
 class SingleSelect extends StatefulWidget {

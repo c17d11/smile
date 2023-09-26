@@ -69,13 +69,13 @@ class _MultiSelectState extends ConsumerState<MultiSelect> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Text(
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
                   widget.title.toUpperCase(),
                   style: TextStyle(
                     fontSize: 12.0,
@@ -83,18 +83,18 @@ class _MultiSelectState extends ConsumerState<MultiSelect> {
                     color: Colors.grey[800],
                   ),
                 ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.add),
-                    color: Colors.grey[800],
-                    onPressed: showDialog,
-                  ),
-                ],
-              ),
-            ],
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.add),
+                      color: Colors.grey[800],
+                      onPressed: showDialog,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
