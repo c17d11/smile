@@ -2,12 +2,13 @@ import 'package:app/ui/selection_widget/src/future_dialog.dart';
 import 'package:app/ui/selection_widget/src/select_item.dart';
 import 'package:app/ui/selection_widget/src/selection_item.dart';
 import 'package:app/ui/selection_widget/src/selection_wrapper.dart';
+import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
 class MultiSelect<T extends SelectionItem> extends StatefulWidget {
-  final Future<List<T>> Function() loadOptions;
-  final bool tristate;
   final String title;
+  final bool tristate;
+  final Future<List<T>> Function() loadOptions;
   final ValueChanged<List<SelectionItem>>? onChangedInclude;
   final ValueChanged<List<SelectionItem>>? onChangedExclude;
   final List<SelectionWrapper>? initialSelected;
@@ -19,9 +20,9 @@ class MultiSelect<T extends SelectionItem> extends StatefulWidget {
   }
 
   MultiSelect(
-      {required this.loadOptions,
+      {this.title = "",
       this.tristate = false,
-      this.title = "",
+      required this.loadOptions,
       this.onChangedInclude,
       this.onChangedExclude,
       List<T>? initialSelected,
@@ -84,22 +85,11 @@ class _MultiSelectState extends State<MultiSelect> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  widget.title.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey[800],
-                  ),
-                ),
+                TextHeadline(widget.title.toUpperCase()),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.add),
-                      color: Colors.grey[800],
-                      onPressed: showDialog,
-                    ),
+                    AddIcon(onPressed: showDialog),
                   ],
                 ),
               ],
@@ -121,14 +111,7 @@ class _MultiSelectState extends State<MultiSelect> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
-                              "Include".toUpperCase(),
-                              style: TextStyle(
-                                fontSize: 9.0,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey[800],
-                              ),
-                            ),
+                            TextSubtitle("Include".toUpperCase()),
                             Wrap(
                               direction: Axis.horizontal,
                               runSpacing: 5,
@@ -162,14 +145,7 @@ class _MultiSelectState extends State<MultiSelect> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "Exclude".toUpperCase(),
-                              style: TextStyle(
-                                fontSize: 9.0,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey[800],
-                              ),
-                            ),
+                            TextSubtitle("Exclude".toUpperCase()),
                             Wrap(
                               direction: Axis.horizontal,
                               runSpacing: 5,
@@ -205,22 +181,18 @@ class _MultiSelectState extends State<MultiSelect> {
                 children: [
                   if (_selectedItems.isNotEmpty ||
                       _unselectedItems.isNotEmpty) ...[
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _selectedItems = [];
-                          _unselectedItems = [];
-                        });
-                        if (widget.onChangedInclude != null) {
-                          widget.onChangedInclude!([]);
-                        }
-                        if (widget.onChangedExclude != null) {
-                          widget.onChangedExclude!([]);
-                        }
-                      },
-                      icon: const Icon(Icons.clear),
-                      color: Colors.red[400],
-                    ),
+                    ResetIcon(onPressed: () {
+                      setState(() {
+                        _selectedItems = [];
+                        _unselectedItems = [];
+                      });
+                      if (widget.onChangedInclude != null) {
+                        widget.onChangedInclude!([]);
+                      }
+                      if (widget.onChangedExclude != null) {
+                        widget.onChangedExclude!([]);
+                      }
+                    }),
                   ],
                 ],
               ),

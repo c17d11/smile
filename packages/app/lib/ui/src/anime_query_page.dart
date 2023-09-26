@@ -76,7 +76,8 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
       'Status',
       AnimeStatus.values.map((e) => AnimeStatusItem(e)).toList(),
       onChanged: (item) {
-        localQuery.status = (item != null) ? item.status : null;
+        localQuery.status =
+            (item != null) ? (item as AnimeStatusItem).status : null;
       },
       initialValue: (localQuery.status != null)
           ? AnimeStatusItem(localQuery.status!)
@@ -89,7 +90,8 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
       'Rating',
       AnimeRating.values.map((e) => AnimeRatingItem(e)).toList(),
       onChanged: (item) {
-        localQuery.rating = (item != null) ? item.rating : null;
+        localQuery.rating =
+            (item != null) ? (item as AnimeRatingItem).rating : null;
       },
       initialValue: (localQuery.rating != null)
           ? AnimeRatingItem(localQuery.rating!)
@@ -102,7 +104,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
       'Type',
       AnimeType.values.map((e) => AnimeTypeItem(e)).toList(),
       onChanged: (item) {
-        localQuery.type = (item != null) ? item.type : null;
+        localQuery.type = (item != null) ? (item as AnimeTypeItem).type : null;
       },
       initialValue:
           (localQuery.type != null) ? AnimeTypeItem(localQuery.type!) : null,
