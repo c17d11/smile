@@ -1,27 +1,37 @@
-import 'package:app/ui/selection_widget/future_dialog.dart';
-import 'package:app/ui/selection_widget/select_item.dart';
-import 'package:app/ui/selection_widget/selection_item.dart';
+import 'package:app/ui/selection_widget/src/future_dialog.dart';
+import 'package:app/ui/selection_widget/src/select_item.dart';
+import 'package:app/ui/selection_widget/src/selection_item.dart';
+import 'package:app/ui/selection_widget/src/selection_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MultiSelect extends ConsumerStatefulWidget {
-  final Future<List<SelectionWrapper>> Function() loadOptions;
+class MultiSelect<T extends SelectionItem> extends ConsumerStatefulWidget {
+  final Future<List<T>> Function() loadOptions;
   final bool tristate;
   final String title;
-  final ValueChanged<List<SelectionWrapper>>? onChangedInclude;
-  final ValueChanged<List<SelectionWrapper>>? onChangedExclude;
+  final ValueChanged<List<SelectionItem>>? onChangedInclude;
+  final ValueChanged<List<SelectionItem>>? onChangedExclude;
   final List<SelectionWrapper>? initialSelected;
   final List<SelectionWrapper>? initialUnselected;
 
-  const MultiSelect(
+  Future<List<SelectionWrapper>> load() async {
+    List<T> options = await loadOptions();
+    return options.map((e) => SelectionWrapper(e)).toList();
+  }
+
+  MultiSelect(
       {required this.loadOptions,
       this.tristate = false,
       this.title = "",
       this.onChangedInclude,
       this.onChangedExclude,
-      this.initialSelected,
-      this.initialUnselected,
-      super.key});
+      List<T>? initialSelected,
+      List<T>? initialUnselected,
+      super.key})
+      : initialSelected =
+            initialSelected?.map((e) => SelectionWrapper(e)).toList(),
+        initialUnselected =
+            initialUnselected?.map((e) => SelectionWrapper(e)).toList();
 
   @override
   ConsumerState<MultiSelect> createState() => _MultiSelectState();
@@ -46,16 +56,16 @@ class _MultiSelectState extends ConsumerState<MultiSelect> {
         context,
         _selectedItems,
         _unselectedItems,
-        widget.loadOptions(), (selected, unselected) {
+        widget.load(), (selected, unselected) {
       setState(() {
         _selectedItems = selected;
         _unselectedItems = unselected;
       });
       if (widget.onChangedInclude != null) {
-        widget.onChangedInclude!(_selectedItems);
+        widget.onChangedInclude!(_selectedItems.map((e) => e.item).toList());
       }
       if (widget.onChangedExclude != null) {
-        widget.onChangedExclude!(_unselectedItems);
+        widget.onChangedExclude!(_unselectedItems.map((e) => e.item).toList());
       }
     });
 
@@ -135,7 +145,9 @@ class _MultiSelectState extends ConsumerState<MultiSelect> {
                                           });
                                           if (widget.onChangedInclude != null) {
                                             widget.onChangedInclude!(
-                                                _selectedItems);
+                                                _selectedItems
+                                                    .map((e) => e.item)
+                                                    .toList());
                                           }
                                         },
                                       ))
@@ -174,7 +186,9 @@ class _MultiSelectState extends ConsumerState<MultiSelect> {
                                           });
                                           if (widget.onChangedInclude != null) {
                                             widget.onChangedInclude!(
-                                                _unselectedItems);
+                                                _unselectedItems
+                                                    .map((e) => e.item)
+                                                    .toList());
                                           }
                                         },
                                       ))
