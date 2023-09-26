@@ -1,17 +1,17 @@
 import 'package:app/ui/selection_widget/src/select_item.dart';
 import 'package:app/ui/selection_widget/src/selection_item.dart';
 import 'package:app/ui/selection_widget/src/selection_wrapper.dart';
+import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
 class SingleSelect<T extends SelectionItem> extends StatefulWidget {
   final String title;
   final List<SelectionWrapper> options;
   final SelectionWrapper? initialValue;
-  final Function(T? selected)? onChanged;
-  final bool doShowReset;
+  final Function(SelectionItem? selected)? onChanged;
 
   SingleSelect(this.title, List<T> options,
-      {super.key, this.onChanged, initialValue, this.doShowReset = true})
+      {super.key, this.onChanged, initialValue})
       : options = options.map((e) => SelectionWrapper(e)).toList(),
         initialValue =
             initialValue != null ? SelectionWrapper(initialValue) : null;
@@ -92,14 +92,7 @@ class _SingleSelectState extends State<SingleSelect> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(10),
-                  child: Text(
-                    widget.title.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey[800],
-                    ),
-                  ),
+                  child: TextHeadline(widget.title.toUpperCase()),
                 ),
               ],
             ),
@@ -123,12 +116,7 @@ class _SingleSelectState extends State<SingleSelect> {
                     ),
                   ),
                   if (_selected != null) ...[
-                    IconButton(
-                      disabledColor: Colors.grey[400],
-                      icon: const Icon(Icons.clear),
-                      color: Colors.red[400],
-                      onPressed: clearSelection,
-                    ),
+                    ResetIcon(onPressed: clearSelection),
                   ]
                 ],
               ),
