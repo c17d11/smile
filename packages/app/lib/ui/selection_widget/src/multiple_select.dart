@@ -3,9 +3,8 @@ import 'package:app/ui/selection_widget/src/select_item.dart';
 import 'package:app/ui/selection_widget/src/selection_item.dart';
 import 'package:app/ui/selection_widget/src/selection_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MultiSelect<T extends SelectionItem> extends ConsumerStatefulWidget {
+class MultiSelect<T extends SelectionItem> extends StatefulWidget {
   final Future<List<T>> Function() loadOptions;
   final bool tristate;
   final String title;
@@ -34,10 +33,10 @@ class MultiSelect<T extends SelectionItem> extends ConsumerStatefulWidget {
             initialUnselected?.map((e) => SelectionWrapper(e)).toList();
 
   @override
-  ConsumerState<MultiSelect> createState() => _MultiSelectState();
+  State<MultiSelect> createState() => _MultiSelectState();
 }
 
-class _MultiSelectState extends ConsumerState<MultiSelect> {
+class _MultiSelectState extends State<MultiSelect> {
   late List<SelectionWrapper> _selectedItems;
   late List<SelectionWrapper> _unselectedItems;
 
