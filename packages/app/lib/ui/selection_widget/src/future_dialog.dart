@@ -1,4 +1,4 @@
-import 'package:app/ui/selection_widget/selection_item.dart';
+import 'package:app/ui/selection_widget/src/selection_wrapper.dart';
 import 'package:flutter/material.dart';
 
 class FutureDialog {

@@ -1,16 +1,20 @@
 import 'package:app/ui/selection_widget/src/select_item.dart';
 import 'package:app/ui/selection_widget/src/selection_item.dart';
+import 'package:app/ui/selection_widget/src/selection_wrapper.dart';
 import 'package:flutter/material.dart';
 
-class SingleSelect extends StatefulWidget {
+class SingleSelect<T extends SelectionItem> extends StatefulWidget {
   final String title;
   final List<SelectionWrapper> options;
   final SelectionWrapper? initialValue;
-  final Function(SelectionWrapper? selected)? onChanged;
+  final Function(T? selected)? onChanged;
   final bool doShowReset;
 
-  const SingleSelect(this.options, this.title,
-      {super.key, this.onChanged, this.initialValue, this.doShowReset = true});
+  SingleSelect(this.title, List<T> options,
+      {super.key, this.onChanged, initialValue, this.doShowReset = true})
+      : options = options.map((e) => SelectionWrapper(e)).toList(),
+        initialValue =
+            initialValue != null ? SelectionWrapper(initialValue) : null;
 
   @override
   State<SingleSelect> createState() => _SingleSelectState();
@@ -25,7 +29,7 @@ class _SingleSelectState extends State<SingleSelect> {
 
   void callWidgetOnChanged(SelectionWrapper? e) {
     if (widget.onChanged != null) {
-      widget.onChanged!(e);
+      widget.onChanged!(e?.item);
     }
   }
 
