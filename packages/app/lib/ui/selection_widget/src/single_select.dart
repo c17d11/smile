@@ -63,6 +63,46 @@ class _SingleSelectState extends State<SingleSelect> {
     }
   }
 
+  Widget buildMenuRow() {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: 44),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            TextHeadline(widget.title.toUpperCase()),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildContentRow() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 0, 10, 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+            child: Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runSpacing: 5,
+              spacing: 5,
+              direction: Axis.horizontal,
+              children: widget.options.map((e) => buildItem(e)).toList(),
+            ),
+          ),
+          if (_selected != null) ...[
+            ResetIcon(onPressed: clearSelection),
+          ]
+        ],
+      ),
+    );
+  }
+
   Widget buildItem(SelectionWrapper e) {
     return e == _selected
         ? selectedTemplate.copyWith(
@@ -78,50 +118,12 @@ class _SingleSelectState extends State<SingleSelect> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey[200],
-      ),
+      color: Colors.grey[200],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 24),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: TextHeadline(widget.title.toUpperCase()),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(minHeight: 40),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 5,
-                      spacing: 5,
-                      direction: Axis.horizontal,
-                      children:
-                          widget.options.map((e) => buildItem(e)).toList(),
-                    ),
-                  ),
-                  if (_selected != null) ...[
-                    ResetIcon(onPressed: clearSelection),
-                  ]
-                ],
-              ),
-            ),
-          ),
+          buildMenuRow(),
+          buildContentRow(),
         ],
       ),
     );
