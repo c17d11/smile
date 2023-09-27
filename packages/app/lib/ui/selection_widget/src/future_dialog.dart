@@ -1,18 +1,17 @@
 import 'package:app/ui/selection_widget/src/selection_wrapper.dart';
+import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
 class FutureDialog {
   final String title;
   BuildContext context;
-  final Future<List<SelectionWrapper>> future;
-  final void Function(
-          List<SelectionWrapper> selected, List<SelectionWrapper> unselected)
-      callback;
+  final Future<WrapperList> future;
+  final void Function(WrapperList selected, WrapperList unselected) callback;
 
-  List<SelectionWrapper> options = [];
-  List<SelectionWrapper> optionsFiltered = [];
-  List<SelectionWrapper> optionsSelected;
-  List<SelectionWrapper> optionsUnselected;
+  WrapperList options = [];
+  WrapperList optionsFiltered = [];
+  WrapperList optionsSelected;
+  WrapperList optionsUnselected;
   bool tristate;
 
   FutureDialog(
@@ -26,39 +25,21 @@ class FutureDialog {
   )   : optionsSelected = [...optionsSelected],
         optionsUnselected = [...optionsUnselected];
 
-  Widget wrapDialogBoxConstraints(Widget w) {
+  Widget wrapInBoxConstraints(Widget w) {
     return ConstrainedBox(
         constraints: BoxConstraints(
           maxHeight: MediaQuery.of(context).size.height * 0.8,
           maxWidth: MediaQuery.of(context).size.width * 0.5,
         ),
-        child: Container(
+        child: SizedBox(
           height: 1000,
           width: 400,
-          // color: Colors.grey[200],
           child: w,
         ));
   }
 
   Widget buildTextSearch(StateSetter setState) {
-    return TextField(
-      style: const TextStyle(fontSize: 14.0),
-      textAlignVertical: TextAlignVertical.center,
-      decoration: InputDecoration(
-        isDense: true,
-        filled: true,
-        fillColor: Colors.white,
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(color: Colors.grey[300]!),
-        ),
-        hintText: 'Enter a search term',
-      ),
+    return CustomTextField(
       onChanged: (s) {
         setState(
           () {
@@ -73,6 +54,29 @@ class FutureDialog {
   }
 
   Widget buildOptionsList(StateSetter setState) {
+    void onTap(SelectionWrapper item) {
+      setState(
+        () {
+          if (tristate) {
+            if (optionsSelected.contains(item)) {
+              optionsSelected.remove(item);
+              optionsUnselected.add(item);
+            } else if (optionsUnselected.contains(item)) {
+              optionsUnselected.remove(item);
+            } else {
+              optionsSelected.add(item);
+            }
+          } else {
+            if (optionsSelected.contains(item)) {
+              optionsSelected.remove(item);
+            } else {
+              optionsSelected.add(item);
+            }
+          }
+        },
+      );
+    }
+
     return options.isNotEmpty
         ? ListView.builder(
             itemCount: optionsFiltered.length,
@@ -82,40 +86,43 @@ class FutureDialog {
                 dense: true,
                 selected: optionsSelected.contains(item) ||
                     optionsUnselected.contains(item),
-                selectedColor:
-                    optionsSelected.contains(item) ? Colors.green : Colors.red,
+                selectedColor: optionsSelected.contains(item)
+                    ? Colors.green[400]
+                    : Colors.red[400],
                 trailing: optionsSelected.contains(item)
                     ? const Icon(Icons.check)
                     : optionsUnselected.contains(item)
                         ? const Icon(Icons.close)
                         : null,
                 title: Text(item.item.displayName),
-                onTap: () {
-                  setState(
-                    () {
-                      if (tristate) {
-                        if (optionsSelected.contains(item)) {
-                          optionsSelected.remove(item);
-                          optionsUnselected.add(item);
-                        } else if (optionsUnselected.contains(item)) {
-                          optionsUnselected.remove(item);
-                        } else {
-                          optionsSelected.add(item);
-                        }
-                      } else {
-                        if (optionsSelected.contains(item)) {
-                          optionsSelected.remove(item);
-                        } else {
-                          optionsSelected.add(item);
-                        }
-                      }
-                    },
-                  );
-                },
+                onTap: () => onTap(item),
               );
             },
           )
         : const Center(child: Text("No items"));
+  }
+
+  Widget buildData() {
+    return StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+      return wrapInBoxConstraints(
+        Column(
+          children: [
+            buildTextSearch(setState),
+            const SizedBox(height: 10),
+            Expanded(child: buildOptionsList(setState)),
+          ],
+        ),
+      );
+    });
+  }
+
+  Widget buildError() {
+    return const Center(child: TextHeadline('There was an error :('));
+  }
+
+  Widget buildLoading() {
+    return const Center(child: CircularProgressIndicator());
   }
 
   void show() {
@@ -124,39 +131,24 @@ class FutureDialog {
       builder: (context) {
         return WillPopScope(
           onWillPop: () async {
-            return false;
+            return true;
           },
           child: AlertDialog(
-            // backgroundColor: Colors.grey[200],
-            title: Text(title),
+            title: TextWindow(title),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0))),
-            content: FutureBuilder<List<SelectionWrapper>>(
+            content: FutureBuilder<WrapperList>(
               future: future,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   options = snapshot.data!;
                   optionsFiltered = options;
-                  return StatefulBuilder(
-                      builder: (BuildContext context, StateSetter setState) {
-                    return wrapDialogBoxConstraints(Column(
-                      children: [
-                        buildTextSearch(setState),
-                        const SizedBox(height: 10),
-                        Expanded(
-                          child: buildOptionsList(setState),
-                        ),
-                      ],
-                    ));
-                  });
+                  return buildData();
                 }
                 if (snapshot.hasError) {
-                  return Text(
-                    'There was an error :(',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  );
+                  return buildError();
                 }
-                return const Center(child: CircularProgressIndicator());
+                return buildLoading();
               },
             ),
             actions: <Widget>[
