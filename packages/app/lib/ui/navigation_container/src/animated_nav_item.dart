@@ -1,4 +1,5 @@
 import 'package:app/ui/navigation_container/src/animated_icon_button.dart';
+import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedNavItem extends StatelessWidget {
@@ -26,21 +27,13 @@ class AnimatedNavItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           AnimatedIconButton(
-              icon: icon,
-              selectedIcon: selectedIcon,
-              isSelected: isSelected,
-              onPressed: onPressed),
-          const SizedBox(height: 5),
-          Text(
-            label,
-            maxLines: 1,
-            style: TextStyle(
-              fontSize: 10,
-              color: Colors.grey[700],
-              fontWeight: FontWeight.w800,
-              fontStyle: FontStyle.normal,
-            ),
+            icon: icon,
+            selectedIcon: selectedIcon,
+            isSelected: isSelected,
+            onPressed: onPressed,
           ),
+          const SizedBox(height: 5),
+          Text(label, maxLines: 1, style: AppStyle.menu),
         ],
       ),
     );
