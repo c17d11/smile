@@ -83,16 +83,23 @@ class _SingleSelectState extends State<SingleSelect> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Flexible(
-            child: Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              runSpacing: 5,
-              spacing: 5,
-              direction: Axis.horizontal,
-              children: widget.options.map((e) => buildItem(e)).toList(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  runSpacing: 5,
+                  spacing: 5,
+                  direction: Axis.horizontal,
+                  children: widget.options.map((e) => buildItem(e)).toList(),
+                ),
+                const SizedBox(height: 10),
+              ],
             ),
           ),
           ResetIcon(onPressed: _selected != null ? clearSelection : null),
