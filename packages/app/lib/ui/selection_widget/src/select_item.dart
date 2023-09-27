@@ -1,5 +1,21 @@
 import 'package:flutter/material.dart';
 
+class SelectedChip extends SelectChip {
+  SelectedChip({super.text, super.onPressed, super.key})
+      : super(
+          background: Colors.green[400]!,
+          foreground: Colors.white,
+        );
+}
+
+class UnselectedChip extends SelectChip {
+  UnselectedChip({super.text, super.onPressed, super.key})
+      : super(
+          background: Colors.red[400]!,
+          foreground: Colors.white,
+        );
+}
+
 class SelectChip extends StatelessWidget {
   final Color background;
   final Color foreground;
