@@ -64,17 +64,14 @@ class _SingleSelectState extends State<SingleSelect> {
   }
 
   Widget buildMenuRow() {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: 44),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextHeadline(widget.title.toUpperCase()),
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 14, 10, 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          TextHeadline(widget.title.toUpperCase()),
+        ],
       ),
     );
   }
@@ -89,7 +86,7 @@ class _SingleSelectState extends State<SingleSelect> {
           Flexible(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
