@@ -71,7 +71,7 @@ class _MultiSelectState extends State<MultiSelect> {
 
   Widget buildMenuRow() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
+      padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,23 +88,53 @@ class _MultiSelectState extends State<MultiSelect> {
     );
   }
 
-  Widget buildReset() {
-    void onPressed() {
-      setState(() {
-        _selectedItems = [];
-        _unselectedItems = [];
-      });
-      if (widget.onChangedInclude != null) {
-        widget.onChangedInclude!([]);
-      }
-      if (widget.onChangedExclude != null) {
-        widget.onChangedExclude!([]);
-      }
-    }
-
+  Widget buildContentRow() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
-      child: ResetIcon(onPressed: onPressed),
+      padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                if (_selectedItems.isNotEmpty) ...[
+                  buildSelectedItems(
+                    "INCLUDE",
+                    _selectedItems,
+                    SelectedChip(),
+                    widget.onChangedInclude,
+                  ),
+                  const SizedBox(height: 5),
+                ],
+                if (_unselectedItems.isNotEmpty) ...[
+                  buildSelectedItems(
+                    "EXCLUDE",
+                    _unselectedItems,
+                    UnselectedChip(),
+                    widget.onChangedExclude,
+                  ),
+                  const SizedBox(height: 5),
+                ],
+                if (_selectedItems.isNotEmpty ||
+                    _unselectedItems.isNotEmpty) ...[
+                  const SizedBox(height: 5),
+                ]
+              ],
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (_selectedItems.isNotEmpty || _unselectedItems.isNotEmpty) ...[
+                buildReset(),
+              ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -123,27 +153,41 @@ class _MultiSelectState extends State<MultiSelect> {
       }
     }
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          TextSubtitle(title),
-          Wrap(
-            direction: Axis.horizontal,
-            runSpacing: 5,
-            spacing: 5,
-            children: items
-                .map((e) => template.copyWith(
-                      text: e.item.displayName,
-                      onPressed: () => onPressed(e),
-                    ))
-                .toList(),
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        TextSubtitle(title),
+        Wrap(
+          direction: Axis.horizontal,
+          runSpacing: 5,
+          spacing: 5,
+          children: items
+              .map((e) => template.copyWith(
+                    text: e.item.displayName,
+                    onPressed: () => onPressed(e),
+                  ))
+              .toList(),
+        ),
+      ],
     );
+  }
+
+  Widget buildReset() {
+    void onPressed() {
+      setState(() {
+        _selectedItems = [];
+        _unselectedItems = [];
+      });
+      if (widget.onChangedInclude != null) {
+        widget.onChangedInclude!([]);
+      }
+      if (widget.onChangedExclude != null) {
+        widget.onChangedExclude!([]);
+      }
+    }
+
+    return ResetIcon(onPressed: onPressed);
   }
 
   @override
@@ -154,45 +198,7 @@ class _MultiSelectState extends State<MultiSelect> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           buildMenuRow(),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    if (_selectedItems.isNotEmpty) ...[
-                      buildSelectedItems(
-                        "INCLUDE",
-                        _selectedItems,
-                        SelectedChip(),
-                        widget.onChangedInclude,
-                      )
-                    ],
-                    if (_unselectedItems.isNotEmpty) ...[
-                      buildSelectedItems(
-                        "EXCLUDE",
-                        _unselectedItems,
-                        UnselectedChip(),
-                        widget.onChangedExclude,
-                      )
-                    ],
-                  ],
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  if (_selectedItems.isNotEmpty ||
-                      _unselectedItems.isNotEmpty) ...[
-                    buildReset(),
-                  ],
-                ],
-              ),
-            ],
-          ),
+          buildContentRow(),
         ],
       ),
     );
