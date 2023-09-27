@@ -1,3 +1,4 @@
+import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedIconButton extends StatefulWidget {
@@ -25,9 +26,9 @@ class _AnimatedIconButtonState extends State<AnimatedIconButton> {
       child: IconButton(
         key: ValueKey<bool>(widget.isSelected),
         onPressed: widget.onPressed,
-        style: IconButton.styleFrom(
-          backgroundColor: widget.isSelected ? Colors.grey[300] : null,
-        ),
+        style: widget.isSelected
+            ? AppStyle.menuButtonActiveStyle
+            : AppStyle.menuButtonInactiveStyle,
         icon: widget.icon,
         selectedIcon: widget.selectedIcon,
         isSelected: widget.isSelected,

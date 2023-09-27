@@ -30,14 +30,14 @@ class _AppState extends ConsumerState<App> {
           useMaterial3: true,
 
           // IconButton theme mimicing material3 NavigationBar buttons
-          iconButtonTheme: IconButtonThemeData(
-            style: IconButton.styleFrom(
-              minimumSize: const Size(50, 20),
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100)),
-            ),
-          ),
+          // iconButtonTheme: IconButtonThemeData(
+          //   style: IconButton.styleFrom(
+          //     minimumSize: const Size(50, 20),
+          //     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+          //     shape: RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.circular(100)),
+          //   ),
+          // ),
         ),
         initialRoute: 'home',
         routes: {

@@ -12,6 +12,29 @@ class AppStyle {
         fontWeight: FontWeight.w500,
         color: Colors.grey[800],
       );
+  static TextStyle get menu => TextStyle(
+        fontSize: 10,
+        color: Colors.grey[700],
+        fontWeight: FontWeight.w800,
+        fontStyle: FontStyle.normal,
+      );
+
+  static ButtonStyle get menuButtonActiveStyle => IconButton.styleFrom(
+        backgroundColor: Colors.grey[300],
+        minimumSize: const Size(50, 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+      );
+
+  static ButtonStyle get menuButtonInactiveStyle => IconButton.styleFrom(
+        minimumSize: const Size(50, 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+      );
+
+  static ButtonStyle get actionButtonStyle => IconButton.styleFrom(
+        padding: const EdgeInsets.all(10),
+      );
 }
 
 class TextHeadline extends StatelessWidget {
@@ -53,17 +76,18 @@ class ResetIcon extends ActionIcon {
 }
 
 abstract class ActionIcon extends StatelessWidget {
-  final void Function()? onPressed;
   final Icon icon;
   final Color? disabledColor;
   final Color? color;
+  final void Function()? onPressed;
 
-  const ActionIcon(
-      {required this.icon,
-      required this.color,
-      required this.disabledColor,
-      this.onPressed,
-      super.key});
+  const ActionIcon({
+    required this.icon,
+    required this.color,
+    required this.disabledColor,
+    this.onPressed,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +96,7 @@ abstract class ActionIcon extends StatelessWidget {
       icon: icon,
       color: color,
       disabledColor: disabledColor,
+      style: AppStyle.actionButtonStyle,
     );
   }
 }
