@@ -81,7 +81,7 @@ class _SingleSelectState extends State<SingleSelect> {
 
   Widget buildContentRow() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 10, 10),
+      padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,9 +95,7 @@ class _SingleSelectState extends State<SingleSelect> {
               children: widget.options.map((e) => buildItem(e)).toList(),
             ),
           ),
-          if (_selected != null) ...[
-            ResetIcon(onPressed: clearSelection),
-          ]
+          ResetIcon(onPressed: _selected != null ? clearSelection : null),
         ],
       ),
     );

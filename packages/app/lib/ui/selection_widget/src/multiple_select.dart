@@ -92,7 +92,7 @@ class _MultiSelectState extends State<MultiSelect> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Flexible(
@@ -125,14 +125,9 @@ class _MultiSelectState extends State<MultiSelect> {
               ],
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if (_selectedItems.isNotEmpty || _unselectedItems.isNotEmpty) ...[
-                buildReset(),
-              ],
-            ],
-          ),
+          if (_selectedItems.isNotEmpty || _unselectedItems.isNotEmpty) ...[
+            buildReset(),
+          ],
         ],
       ),
     );
