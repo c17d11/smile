@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,21 +28,25 @@ class RangeFormatter extends TextInputFormatter {
 
 class RangeSelect extends ConsumerStatefulWidget {
   final String title;
-  double minValue;
-  double maxValue;
-  double? initialMin;
-  double? initialMax;
+  final double minValue;
+  final double maxValue;
+  final double? initialMin;
+  final double? initialMax;
   final double? stepSize;
   final bool showInts;
   final ValueChanged<RangeValues?>? onChanged;
 
-  RangeSelect(this.title, this.minValue, this.maxValue,
-      {super.key,
-      this.stepSize,
-      this.onChanged,
-      this.showInts = false,
-      this.initialMin,
-      this.initialMax});
+  const RangeSelect(
+    this.title,
+    this.minValue,
+    this.maxValue, {
+    super.key,
+    this.stepSize,
+    this.onChanged,
+    this.showInts = false,
+    this.initialMin,
+    this.initialMax,
+  });
 
   @override
   ConsumerState<RangeSelect> createState() => _RangeSelectState();
@@ -49,7 +54,7 @@ class RangeSelect extends ConsumerStatefulWidget {
 
 class _RangeSelectState extends ConsumerState<RangeSelect> {
   late RangeValues values;
-  late List<double> lower;
+  // late List<double> lower;
 
   void _resetValues() {
     if (widget.onChanged != null) {
@@ -57,7 +62,7 @@ class _RangeSelectState extends ConsumerState<RangeSelect> {
     }
     setState(() {
       values = RangeValues(widget.minValue, widget.maxValue);
-      lower = List<double>.generate(50, (index) => values.start - index);
+      // lower = List<double>.generate(50, (index) => values.start - index);
     });
   }
 
@@ -82,78 +87,75 @@ class _RangeSelectState extends ConsumerState<RangeSelect> {
         widget.initialMax ?? widget.maxValue);
   }
 
+  Widget buildMenuRow() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 14, 10, 0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          TextHeadline(widget.title.toUpperCase()),
+        ],
+      ),
+    );
+  }
+
+  Widget buildContentRow() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(5, 0, 10, 0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(child: buildSlider()),
+          ResetIcon(onPressed: isDefault() ? null : _resetValues),
+        ],
+      ),
+    );
+  }
+
+  Widget buildSlider() {
+    return SliderTheme(
+      data: SliderTheme.of(context).copyWith(
+        activeTrackColor: Colors.green[400],
+        inactiveTrackColor: Colors.grey[400],
+        trackShape: const RectangularSliderTrackShape(),
+        trackHeight: 4.0,
+        thumbColor: Colors.green[500],
+        rangeThumbShape: widget.showInts
+            ? CustomRangeSliderThumpShape<int>(
+                values.start.toInt(), values.end.toInt(), 32)
+            : CustomRangeSliderThumpShape<double>(
+                values.start.toDouble(), values.end.toDouble(), 32),
+        showValueIndicator: ShowValueIndicator.never,
+        overlayColor: Colors.green[400]!.withAlpha(32),
+        overlayShape: const RoundSliderOverlayShape(overlayRadius: 24.0),
+        tickMarkShape: const RoundSliderTickMarkShape(),
+        activeTickMarkColor: Colors.grey[200],
+        inactiveTickMarkColor: Colors.grey[200],
+      ),
+      child: RangeSlider(
+        values: values,
+        onChanged: _setValues,
+        divisions: (widget.stepSize == null)
+            ? null
+            : (widget.maxValue - widget.minValue) ~/ widget.stepSize!,
+        min: widget.minValue,
+        max: widget.maxValue,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.grey[200],
-      child: Padding(
-        padding: EdgeInsets.all(10),
-        child: Column(
-          children: [
-            ConstrainedBox(
-              constraints: BoxConstraints(minHeight: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    widget.title.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey[800],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: SliderTheme(
-                    data: SliderTheme.of(context).copyWith(
-                      activeTrackColor: Colors.green[400],
-                      inactiveTrackColor: Colors.grey[400],
-                      trackShape: RectangularSliderTrackShape(),
-                      trackHeight: 4.0,
-                      thumbColor: Colors.green[500],
-                      rangeThumbShape: widget.showInts
-                          ? CustomRangeSliderThumpShape<int>(
-                              values.start.toInt(), values.end.toInt(), 32)
-                          : CustomRangeSliderThumpShape<double>(
-                              values.start.toDouble(),
-                              values.end.toDouble(),
-                              32),
-                      showValueIndicator: ShowValueIndicator.never,
-                      overlayColor: Colors.red.withAlpha(32),
-                      overlayShape:
-                          RoundSliderOverlayShape(overlayRadius: 28.0),
-                      tickMarkShape: RoundSliderTickMarkShape(),
-                      activeTickMarkColor: Colors.grey[200],
-                      inactiveTickMarkColor: Colors.grey[200],
-                    ),
-                    child: RangeSlider(
-                      values: values,
-                      onChanged: _setValues,
-                      divisions: (widget.stepSize == null)
-                          ? null
-                          : (widget.maxValue - widget.minValue) ~/
-                              widget.stepSize!,
-                      min: widget.minValue,
-                      max: widget.maxValue,
-                    ),
-                  ),
-                ),
-                IconButton(
-                    disabledColor: Colors.grey[400],
-                    icon: const Icon(Icons.clear),
-                    color: Colors.red[400],
-                    onPressed: isDefault() ? null : _resetValues),
-              ],
-            ),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildMenuRow(),
+          buildContentRow(),
+        ],
       ),
     );
   }
@@ -168,7 +170,7 @@ class CustomRangeSliderThumpShape<T extends num> extends RangeSliderThumbShape {
 
   @override
   Size getPreferredSize(bool isEnabled, bool isDiscrete) {
-    return const Size(32, 32);
+    return const Size(24, 24);
   }
 
   @override
