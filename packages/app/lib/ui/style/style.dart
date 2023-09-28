@@ -101,7 +101,7 @@ class AddIcon extends ActionIcon {
   AddIcon({super.onPressed, super.key})
       : super(
           icon: const Icon(Icons.add),
-          color: Colors.grey[800],
+          color: Colors.grey[600],
           disabledColor: Colors.grey[400]!,
         );
 }
@@ -110,7 +110,7 @@ class ResetIcon extends ActionIcon {
   ResetIcon({super.onPressed, super.key})
       : super(
           icon: const Icon(Icons.clear),
-          color: Colors.red[400],
+          color: Colors.red[600],
           disabledColor: Colors.grey[400]!,
         );
 }

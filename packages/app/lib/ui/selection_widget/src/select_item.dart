@@ -11,7 +11,7 @@ class SelectedChip extends SelectChip {
 class UnselectedChip extends SelectChip {
   UnselectedChip({super.text, super.onPressed, super.key})
       : super(
-          background: Colors.red[400]!,
+          background: Colors.red[600]!,
           foreground: Colors.white,
         );
 }

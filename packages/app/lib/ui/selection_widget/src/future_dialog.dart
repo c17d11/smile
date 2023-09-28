@@ -88,7 +88,7 @@ class FutureDialog {
                     optionsUnselected.contains(item),
                 selectedColor: optionsSelected.contains(item)
                     ? Colors.green[400]
-                    : Colors.red[400],
+                    : Colors.red[800],
                 trailing: optionsSelected.contains(item)
                     ? const Icon(Icons.check)
                     : optionsUnselected.contains(item)
