@@ -80,7 +80,7 @@ class _SingleSelectState extends State<SingleSelect> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Flexible(
