@@ -153,6 +153,7 @@ class _MultiSelectState extends State<MultiSelect> {
       mainAxisSize: MainAxisSize.min,
       children: [
         TextSubtitle(title),
+        const SizedBox(height: 5),
         Wrap(
           direction: Axis.horizontal,
           runSpacing: 5,
@@ -160,7 +161,7 @@ class _MultiSelectState extends State<MultiSelect> {
           children: items
               .map((e) => template.copyWith(
                     text: e.item.displayName,
-                    onPressed: () => onPressed(e),
+                    onClear: () => onPressed(e),
                   ))
               .toList(),
         ),
