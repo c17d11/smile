@@ -109,7 +109,7 @@ class ScrollSelect extends StatelessWidget {
   final int maxValue;
   final int value;
   final bool isSet;
-  final Function(int) onSelect;
+  final Function(int?) onSelect;
 
   const ScrollSelect({
     required this.title,
@@ -127,7 +127,6 @@ class ScrollSelect extends StatelessWidget {
       text: "$value",
       background: isSet ? Colors.green[400]! : Colors.grey[400]!,
       foreground: Colors.white,
-      isPadded: true,
       onPressed: () => _pickValue(
         title,
         context,
@@ -136,6 +135,7 @@ class ScrollSelect extends StatelessWidget {
         maxValue,
         (newValue) => onSelect(newValue),
       ),
+      onClear: isSet ? () => onSelect(null) : null,
     );
   }
 }

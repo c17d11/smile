@@ -117,18 +117,18 @@ class _RangeSelectState extends ConsumerState<RangeSelect> {
   Widget buildSlider() {
     return SliderTheme(
       data: SliderTheme.of(context).copyWith(
-        activeTrackColor: Colors.green[400],
+        activeTrackColor: Colors.green[200],
         inactiveTrackColor: Colors.grey[400],
         trackShape: const RectangularSliderTrackShape(),
-        trackHeight: 4.0,
-        thumbColor: Colors.green[500],
+        trackHeight: 1.0,
+        thumbColor: Colors.green[400],
         rangeThumbShape: widget.showInts
             ? CustomRangeSliderThumpShape<int>(
                 values.start.toInt(), values.end.toInt(), 32)
             : CustomRangeSliderThumpShape<double>(
                 values.start.toDouble(), values.end.toDouble(), 32),
         showValueIndicator: ShowValueIndicator.never,
-        overlayColor: Colors.green[400]!.withAlpha(32),
+        overlayColor: Colors.green[200]!.withAlpha(32),
         overlayShape: const RoundSliderOverlayShape(overlayRadius: 24.0),
         tickMarkShape: const RoundSliderTickMarkShape(),
         activeTickMarkColor: Colors.grey[200],
@@ -187,7 +187,7 @@ class CustomRangeSliderThumpShape<T extends num> extends RangeSliderThumbShape {
     final Canvas canvas = context.canvas;
     final Paint strokePaint = Paint()
       ..color = sliderTheme.thumbColor ?? Colors.yellow
-      ..strokeWidth = 3.0
+      ..strokeWidth = 2.0
       ..style = PaintingStyle.stroke;
     canvas.drawCircle(center, 7.5, Paint()..color = Colors.white);
     canvas.drawCircle(center, 7.5, strokePaint);
@@ -202,7 +202,7 @@ class CustomRangeSliderThumpShape<T extends num> extends RangeSliderThumbShape {
     TextSpan span = TextSpan(
         style: TextStyle(
             fontSize: height * .3,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w500,
             color: sliderTheme.thumbColor,
             height: 1),
         text: '$value');
