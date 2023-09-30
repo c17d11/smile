@@ -138,6 +138,8 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
   Widget buildYearWidget(AnimeQuery localQuery) {
     return YearSelect(
       title: "Year",
+      initMinValue: localQuery.minYear,
+      initMaxValue: localQuery.maxYear,
       onMinChanged: (min) => localQuery.minYear = min,
       onMaxChanged: (max) => localQuery.maxYear = max,
     );

@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 
 class YearSelect extends StatefulWidget {
   final String title;
+  final int? initMinValue;
+  final int? initMaxValue;
   final Function(int?) onMinChanged;
   final Function(int?) onMaxChanged;
 
   const YearSelect({
     required this.title,
+    this.initMinValue,
+    this.initMaxValue,
     required this.onMinChanged,
     required this.onMaxChanged,
     super.key,
@@ -21,6 +25,13 @@ class YearSelect extends StatefulWidget {
 class _YearSelectState extends State<YearSelect> {
   int? minYear;
   int? maxYear;
+
+  @override
+  void initState() {
+    super.initState();
+    minYear = widget.initMinValue;
+    maxYear = widget.initMaxValue;
+  }
 
   bool isValueSet() => minYear != null || maxYear != null;
 
