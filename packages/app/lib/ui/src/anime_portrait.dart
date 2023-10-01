@@ -17,7 +17,7 @@ class AnimePortrait extends ConsumerWidget {
         elevation: 5,
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        color: Theme.of(context).colorScheme.background,
+        color: Colors.grey[200],
         child: (anime == null)
             ? Container(
                 color: Colors.green[200],
