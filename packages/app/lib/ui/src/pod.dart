@@ -34,12 +34,15 @@ final initPod = FutureProvider<bool>((ref) async {
   return true;
 });
 
-final animeSearchControllerPod =
-    StateNotifierProvider<AnimeSearchController, AsyncValue<List<AnimeIntern>>>(
-        (ref) {
+final animeSearchControllerPod = StateNotifierProvider.family<
+    AnimeSearchController,
+    AsyncValue<AnimeResponseIntern>,
+    AnimeQuery>((ref, arg) {
   Database db = ref.watch(databasePod);
   JikanApi api = ref.watch(apiPod);
-  return AnimeSearchController(db, api);
+  AnimeSearchController controller = AnimeSearchController(db, api);
+  controller.get(arg);
+  return controller;
 });
 
 final producerPod =
@@ -66,9 +69,9 @@ final animeControllerPod =
 final animeQueryPod = Provider.family<AnimeQueryIntern, IconItem>(
     (ref, arg) => AnimeQueryIntern());
 
-extension AsyncValueUi on AsyncValue<List<AnimeIntern>> {
-  bool get isLoading => this is AsyncLoading<List<AnimeIntern>>;
-  bool get isError => this is AsyncError<List<AnimeIntern>>;
+extension AsyncValueUi on AsyncValue<AnimeResponseIntern> {
+  bool get isLoading => this is AsyncLoading<AnimeResponseIntern>;
+  bool get isError => this is AsyncError<AnimeResponseIntern>;
 
   void showSnackBarOnError(BuildContext context) =>
       whenOrNull(error: (error, _) {
