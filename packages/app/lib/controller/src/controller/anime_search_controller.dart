@@ -1,15 +1,16 @@
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
+import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class AnimeSearchController
-    extends StateNotifier<AsyncValue<List<AnimeIntern>>> {
+    extends StateNotifier<AsyncValue<AnimeResponseIntern>> {
   final Database _database;
   final JikanApi _api;
 
   AnimeSearchController(this._database, this._api)
-      : super(const AsyncValue.data([]));
+      : super(AsyncValue.data(IsarAnimeResponse(q: "")));
 
   Future<AnimeResponseIntern?> _getDatabaseResponse(AnimeQuery query) async {
     AnimeResponseIntern? res = await _database.getAnimeResponse(query);
@@ -43,8 +44,8 @@ class AnimeSearchController
       state = const AsyncLoading();
       AnimeResponseIntern res = await _getResponse(query);
 
-      List<AnimeIntern> animes = res.data ?? [];
-      state = AsyncValue.data(animes);
+      // List<AnimeIntern> animes = res.data ?? [];
+      state = AsyncValue.data(res);
     } on JikanApiException catch (e, stacktrace) {
       state = AsyncError(e, stacktrace);
 
