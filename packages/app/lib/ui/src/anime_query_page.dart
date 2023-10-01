@@ -168,13 +168,14 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
       appBar: AppBar(
         title: const Text("Filter"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Container(
-                color: Colors.grey[300],
+      body: Container(
+        color: Colors.grey[300],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: Column(
@@ -201,31 +202,25 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
                 ),
               ),
             ),
-          ),
-          GestureDetector(
-            child: Container(
-              height: 40,
-              color: Colors.green[400],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Apply",
-                    style: TextStyle(
-                      color: Colors.grey[800],
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ],
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.green[200],
+                  minimumSize: const Size.fromHeight(50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                onPressed: () {
+                  query.override(localQuery);
+                  Navigator.pop(context);
+                },
+                child: TextHeadline("Apply".toUpperCase()),
               ),
             ),
-            onTap: () {
-              query.override(localQuery);
-              Navigator.pop(context);
-            },
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
