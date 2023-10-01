@@ -52,7 +52,8 @@ install_flutter() {
 	echo "Installing flutter:"
 	mkdir -p $FLTR
 	# Use 3.10.6, newer versions up to 3.13.3 throws exceptions (in debug-mode) in http package when looking up host
-	wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.10.6-stable.tar.xz -qO- | tar -xvJf - -C $FLTR --strip-components 1
+	# wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.10.6-stable.tar.xz -qO- | tar -xvJf - -C $FLTR --strip-components 1
+	wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.13.6-stable.tar.xz -qO- | tar -xvJf - -C $FLTR --strip-components 1
 }
 
 install_cmdline_tools() {
