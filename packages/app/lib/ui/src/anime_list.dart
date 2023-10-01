@@ -1,11 +1,8 @@
-import 'package:app/controller/state.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
-import 'package:app/ui/src/anime_portrait.dart';
+import 'package:app/ui/src/anime_response.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
-import 'pod.dart';
 
 class AnimeList extends ConsumerStatefulWidget {
   final IconItem page;
@@ -17,53 +14,52 @@ class AnimeList extends ConsumerStatefulWidget {
 }
 
 class _AnimeListState extends ConsumerState<AnimeList> {
-  final ScrollController _scrollViewController = ScrollController();
-  bool isScrollingDown = false;
+  final _scroll = ScrollController();
+
+  List<AnimeResponseView> pages = [
+    AnimeResponseView(query: AnimeQuery()),
+  ];
+
+  void load() {
+    AnimeQuery lastQuery = pages.last.query;
+    // int nextPage = (pages.last.query.page ?? 1) + 1;
+
+    setState(() {
+      // pages.add(AnimeResponseView(query: lastQuery..page = nextPage));
+      pages.add(AnimeResponseView(query: lastQuery));
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    _scrollViewController.addListener(() {
-      if (_scrollViewController.position.userScrollDirection ==
-          ScrollDirection.reverse) {
-        if (!isScrollingDown) {
-          isScrollingDown = true;
-          setState(() {});
-        }
-      }
 
-      if (_scrollViewController.position.userScrollDirection ==
-          ScrollDirection.forward) {
-        if (isScrollingDown) {
-          isScrollingDown = false;
-          setState(() {});
-        }
+    _scroll.addListener(() {
+      // at bottom
+      if (_scroll.offset >= _scroll.position.maxScrollExtent) {
+        load();
       }
     });
   }
 
   @override
   void dispose() {
-    _scrollViewController.dispose();
-    _scrollViewController.removeListener(() {});
+    _scroll.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    AsyncValue<List<AnimeIntern>> animes = ref.watch(animeSearchControllerPod);
-
-    ref.listen<AsyncValue<List<AnimeIntern>>>(animeSearchControllerPod,
-        (_, state) => state.showSnackBarOnError(context));
-
-    return Column(
-      children: [
-        AnimatedContainer(
-          duration: const Duration(microseconds: 200),
-          curve: Curves.fastOutSlowIn,
-          height: isScrollingDown ? 0 : 40,
-          child: AppBar(
-            actions: <Widget>[
+    return NotificationListener(
+      child: CustomScrollView(
+        controller: _scroll,
+        physics: const AlwaysScrollableScrollPhysics(),
+        slivers: <Widget>[
+          SliverAppBar(
+            backgroundColor: Colors.white,
+            floating: true,
+            pinned: false,
+            actions: [
               IconButton(
                 onPressed: () {
                   Navigator.pushNamed(context, 'anime-query',
@@ -73,23 +69,19 @@ class _AnimeListState extends ConsumerState<AnimeList> {
               )
             ],
           ),
-        ),
-        TextButton(
-            onPressed: () =>
-                ref.read(animeSearchControllerPod.notifier).get(AnimeQuery()),
-            child: const Text("Load data")),
-        Expanded(
-          child: GridView.builder(
-              itemCount: animes.value?.length,
-              controller: _scrollViewController,
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 150,
-                childAspectRatio: (7 / 10),
-              ),
-              itemBuilder: (context, index) =>
-                  AnimePortrait(animes.value?[index])),
-        ),
-      ],
+          ...pages,
+        ],
+      ),
+      onNotification: (scrollNotification) {
+        // load more if viewport fits all at start
+        if (scrollNotification is ScrollMetricsNotification) {
+          ScrollMetricsNotification scroll = scrollNotification;
+          if (scroll.metrics.extentAfter < scroll.metrics.extentInside) {
+            load();
+          }
+        }
+        return true;
+      },
     );
   }
 }
