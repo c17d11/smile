@@ -3,6 +3,7 @@ import 'package:app/controller/src/object/anime_rating.dart';
 import 'package:app/controller/src/object/anime_status.dart';
 import 'package:app/controller/src/object/anime_type.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
+import 'package:app/controller/src/object/sfw_item.dart';
 import 'package:app/ui/selection_widget/src/multiple_select.dart';
 import 'package:app/ui/selection_widget/src/query_widget.dart';
 import 'package:app/controller/state.dart';
@@ -145,6 +146,17 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
+  Widget buildSfwWidget(AnimeQuery localQuery) {
+    return SingleSelect(
+      'Sfw',
+      [SfwItem(true), SfwItem(false)],
+      onChanged: (item) {
+        localQuery.sfw = (item != null) ? (item as SfwItem).sfw : null;
+      },
+      initialValue: (localQuery.sfw != null) ? SfwItem(localQuery.sfw!) : null,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final page = ModalRoute.of(context)?.settings.arguments as IconItem;
@@ -182,6 +194,8 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
                       buildScoreWidget(localQuery),
                       const SizedBox(height: 10),
                       buildYearWidget(localQuery),
+                      const SizedBox(height: 10),
+                      buildSfwWidget(localQuery),
                     ],
                   ),
                 ),
