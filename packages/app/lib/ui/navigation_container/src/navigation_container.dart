@@ -23,27 +23,26 @@ class NavigationContainer extends StatelessWidget {
     bool isWideScreen = MediaQuery.of(context).size.aspectRatio > 1;
 
     return Container(
-        color: Colors.grey[200],
-        child: isWideScreen
-            ? Row(
-                children: [
-                  NavBarPortrait(
-                      items: portraitItems,
-                      onSelected: (NavItem e) =>
-                          {if (e is IconItem) onClick(e)},
-                      selectedItem: startItem),
-                  Expanded(child: content),
-                ],
-              )
-            : Column(
-                children: [
-                  Expanded(child: content),
-                  NavBarLandscape(
-                      items: landscapeItems,
-                      onSelected: (NavItem e) =>
-                          {if (e is IconItem) onClick(e)},
-                      selectedItem: startItem),
-                ],
-              ));
+      color: Colors.grey[200],
+      child: isWideScreen
+          ? Row(
+              children: [
+                NavBarPortrait(
+                    items: portraitItems,
+                    onSelected: (NavItem e) => {if (e is IconItem) onClick(e)},
+                    selectedItem: startItem),
+                Expanded(child: content),
+              ],
+            )
+          : Column(
+              children: [
+                Expanded(child: content),
+                NavBarLandscape(
+                    items: landscapeItems,
+                    onSelected: (NavItem e) => {if (e is IconItem) onClick(e)},
+                    selectedItem: startItem),
+              ],
+            ),
+    );
   }
 }
