@@ -19,4 +19,10 @@ class AnimeQuery {
   List<Genre>? genresInclude;
   List<Genre>? genresExclude;
   int? page;
+
+  @override
+  bool operator ==(Object other) => other is AnimeQuery && other.page == page;
+
+  @override
+  int get hashCode => page ?? 0;
 }
