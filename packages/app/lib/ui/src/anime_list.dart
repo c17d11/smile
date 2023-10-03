@@ -22,11 +22,11 @@ class _AnimeListState extends ConsumerState<AnimeList> {
 
   void load() {
     AnimeQuery lastQuery = pages.last.query;
-    // int nextPage = (pages.last.query.page ?? 1) + 1;
+    int nextPage = (pages.last.query.page ?? 1) + 1;
 
     setState(() {
-      // pages.add(AnimeResponseView(query: lastQuery..page = nextPage));
-      pages.add(AnimeResponseView(query: lastQuery));
+      pages.add(AnimeResponseView(query: lastQuery..page = nextPage));
+      // pages.add(AnimeResponseView(query: lastQuery));
     });
   }
 
@@ -74,12 +74,12 @@ class _AnimeListState extends ConsumerState<AnimeList> {
       ),
       onNotification: (scrollNotification) {
         // load more if viewport fits all at start
-        if (scrollNotification is ScrollMetricsNotification) {
-          ScrollMetricsNotification scroll = scrollNotification;
-          if (scroll.metrics.extentAfter < scroll.metrics.extentInside) {
-            load();
-          }
-        }
+        // if (scrollNotification is ScrollMetricsNotification) {
+        //   ScrollMetricsNotification scroll = scrollNotification;
+        //   if (scroll.metrics.extentAfter < scroll.metrics.extentInside) {
+        //     load();
+        //   }
+        // }
         return true;
       },
     );
