@@ -43,8 +43,6 @@ class AnimeSearchController
     try {
       state = const AsyncLoading();
       AnimeResponseIntern res = await _getResponse(query);
-
-      // List<AnimeIntern> animes = res.data ?? [];
       state = AsyncValue.data(res);
     } on JikanApiException catch (e, stacktrace) {
       state = AsyncError(e, stacktrace);
