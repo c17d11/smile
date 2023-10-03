@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:jikan_api/src/jikan_api_facade.dart';
 import 'http/dio_wrapper.dart';
@@ -34,9 +35,16 @@ class MockInterceptor implements Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    final pathUnderscope = options.path.replaceAll('/', '_');
+    String pathUnderscope = options.path.replaceAll('/', '_');
+    pathUnderscope = pathUnderscope.replaceAll('?', '_');
+    pathUnderscope = pathUnderscope.replaceAll('=', '_');
     final resourcePath = _jsonDir + pathUnderscope + _jsonExtension;
-    final data = await rootBundle.load(resourcePath);
+    ByteData data;
+    try {
+      data = await rootBundle.load(resourcePath);
+    } on FlutterError {
+      data = await rootBundle.load(_jsonDir + 'anime-empty' + _jsonExtension);
+    }
     final map = json.decode(
       utf8.decode(
         data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),

@@ -1,0 +1,30 @@
+{
+  "pagination": {
+    "last_visible_page": 1013,
+    "has_next_page": true,
+    "current_page": 2,
+    "items": {
+      "count": 25,
+      "total": 25303,
+      "per_page": 25
+    }
+  },
+  "data": [
+    {
+      "mal_id": 44,
+      "url": "https://myanimelist.net/anime/44/Rurouni_Kenshin__Meiji_Kenkaku_Romantan_-_Tsuioku-hen",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1656/137618.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1656/137618t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1656/137618l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1656/137618.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1656/137618t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1656/137618l.webp"
+        }
+      }
+    }
+  ]
+}
