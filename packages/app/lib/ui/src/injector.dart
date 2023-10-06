@@ -16,6 +16,8 @@ class Injector {
           container.resolve<Database>(), container.resolve<JikanApi>()));
     } else {
       container.registerSingleton<JikanApi>((container) => JikanApiImpl());
+      container.registerSingleton((container) => PopulateDatabase(
+          container.resolve<Database>(), container.resolve<JikanApi>()));
     }
 
     container.registerSingleton((container) => Database());
