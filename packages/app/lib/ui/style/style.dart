@@ -97,6 +97,16 @@ class TextOption extends StatelessWidget {
   }
 }
 
+class TextFields extends StatelessWidget {
+  final String text;
+  const TextFields(this.text, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(text, style: AppStyle.textfield);
+  }
+}
+
 class AddIcon extends ActionIcon {
   AddIcon({super.onPressed, super.key})
       : super(
