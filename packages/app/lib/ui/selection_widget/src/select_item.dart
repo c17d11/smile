@@ -21,6 +21,7 @@ class SelectChip extends StatelessWidget {
   final Function()? onPressed;
   final Function()? onClear;
   final bool isPadded;
+  final double fontSize;
 
   const SelectChip({
     this.text = "",
@@ -29,6 +30,7 @@ class SelectChip extends StatelessWidget {
     this.isPadded = false,
     this.onPressed,
     this.onClear,
+    this.fontSize = 10.0,
     super.key,
   });
 
@@ -77,8 +79,8 @@ class SelectChip extends StatelessWidget {
               text.toUpperCase(),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 10,
+              style: TextStyle(
+                fontSize: fontSize,
               ),
             ),
           ),
