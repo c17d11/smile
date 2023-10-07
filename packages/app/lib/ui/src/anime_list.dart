@@ -37,7 +37,6 @@ class _AnimeListState extends State<AnimeList> {
   void loadNext() {
     AnimeQuery newQuery = AnimeQueryIntern.from(pages.last.query);
     newQuery.page = (newQuery.page ?? 1) + 1;
-
     setState(() {
       pages.add(AnimeResponseView(query: newQuery));
     });
@@ -65,9 +64,17 @@ class _AnimeListState extends State<AnimeList> {
 
   @override
   Widget build(BuildContext context) {
-    return NotificationListener(
+    return NotificationListener<ScrollMetricsNotification>(
+      onNotification: (notification) {
+        if (notification.metrics.extentTotal <
+            MediaQuery.of(context).size.height) {
+          loadNext();
+        }
+        return false;
+      },
       child: CustomScrollView(
         controller: _scroll,
+        shrinkWrap: true,
         physics: const AlwaysScrollableScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
@@ -87,9 +94,6 @@ class _AnimeListState extends State<AnimeList> {
           ...pages,
         ],
       ),
-      onNotification: (scrollNotification) {
-        return false;
-      },
     );
   }
 }
