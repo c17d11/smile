@@ -1,32 +1,45 @@
+import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/anime_response.dart';
+import 'package:app/ui/src/pod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
-class AnimeList extends ConsumerStatefulWidget {
+class AnimeListPage extends ConsumerWidget {
   final IconItem page;
 
-  const AnimeList({required this.page, super.key});
+  const AnimeListPage({required this.page, super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AnimeListState();
+  Widget build(BuildContext context, WidgetRef ref) {
+    AnimeQuery query = ref.watch(animeQueryPod(page));
+
+    return AnimeList(page: page, initQuery: query, key: UniqueKey());
+  }
 }
 
-class _AnimeListState extends ConsumerState<AnimeList> {
+class AnimeList extends StatefulWidget {
+  final IconItem page;
+  final AnimeQuery initQuery;
+
+  const AnimeList({required this.page, required this.initQuery, super.key});
+
+  @override
+  State<AnimeList> createState() => _AnimeListState();
+}
+
+class _AnimeListState extends State<AnimeList> {
   final _scroll = ScrollController();
 
-  List<AnimeResponseView> pages = [
-    AnimeResponseView(query: AnimeQuery()),
-  ];
+  late List<AnimeResponseView> pages;
 
-  void load() {
-    AnimeQuery lastQuery = pages.last.query;
-    int nextPage = (pages.last.query.page ?? 1) + 1;
+  void loadNext() {
+    AnimeQuery newQuery = AnimeQueryIntern.from(pages.last.query);
+    newQuery.page = (newQuery.page ?? 1) + 1;
 
     setState(() {
-      pages.add(AnimeResponseView(query: lastQuery..page = nextPage));
-      // pages.add(AnimeResponseView(query: lastQuery));
+      pages.add(AnimeResponseView(query: newQuery));
     });
   }
 
@@ -34,10 +47,12 @@ class _AnimeListState extends ConsumerState<AnimeList> {
   void initState() {
     super.initState();
 
+    pages = [AnimeResponseView(query: widget.initQuery)];
+
     _scroll.addListener(() {
       // at bottom
       if (_scroll.offset >= _scroll.position.maxScrollExtent) {
-        load();
+        loadNext();
       }
     });
   }
@@ -73,14 +88,7 @@ class _AnimeListState extends ConsumerState<AnimeList> {
         ],
       ),
       onNotification: (scrollNotification) {
-        // load more if viewport fits all at start
-        // if (scrollNotification is ScrollMetricsNotification) {
-        //   ScrollMetricsNotification scroll = scrollNotification;
-        //   if (scroll.metrics.extentAfter < scroll.metrics.extentInside) {
-        //     load();
-        //   }
-        // }
-        return true;
+        return false;
       },
     );
   }
