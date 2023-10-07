@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class AnimeQueryIntern extends AnimeQuery {
@@ -33,5 +35,13 @@ class AnimeQueryIntern extends AnimeQuery {
       ..genresExclude = q.genresExclude
       ..page = q.page;
     return animeQueryIntern;
+  }
+}
+
+class AnimeQueryNotifier extends StateNotifier<AnimeQuery> {
+  AnimeQueryNotifier() : super(AnimeQuery());
+
+  void set(AnimeQuery newQuery) {
+    state = newQuery;
   }
 }
