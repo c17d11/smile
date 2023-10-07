@@ -109,7 +109,7 @@ class _SingleSelectState extends State<SingleSelect> {
     return e == _selected
         ? selectedTemplate.copyWith(
             text: e.item.displayName,
-            onPressed: createChipOnPressed(e),
+            onPressed: clearSelection,
           )
         : unselectedTemplate.copyWith(
             text: e.item.displayName,
