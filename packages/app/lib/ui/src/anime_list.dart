@@ -31,22 +31,35 @@ class AnimeList extends StatefulWidget {
 
 class _AnimeListState extends State<AnimeList> {
   final _scroll = ScrollController();
+  int lastPage = 1;
+  int currentPage = 1;
 
   late List<AnimeResponseView> pages;
 
+  void onLastPage(int? last) {
+    if (last != null) {
+      lastPage = last;
+    }
+  }
+
   void loadNext() {
     AnimeQuery newQuery = AnimeQueryIntern.from(pages.last.query);
-    newQuery.page = (newQuery.page ?? 1) + 1;
-    setState(() {
-      pages.add(AnimeResponseView(query: newQuery));
-    });
+    ++currentPage;
+    if (currentPage <= lastPage) {
+      newQuery.page = currentPage;
+      setState(() {
+        pages.add(AnimeResponseView(onLastPage: onLastPage, query: newQuery));
+      });
+    }
   }
 
   @override
   void initState() {
     super.initState();
 
-    pages = [AnimeResponseView(query: widget.initQuery)];
+    pages = [
+      AnimeResponseView(onLastPage: onLastPage, query: widget.initQuery)
+    ];
 
     _scroll.addListener(() {
       // at bottom

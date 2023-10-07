@@ -8,7 +8,9 @@ import 'package:jikan_api/jikan_api.dart';
 
 class AnimeResponseView extends ConsumerWidget {
   final AnimeQuery query;
-  const AnimeResponseView({required this.query, super.key});
+  final void Function(int?) onLastPage;
+  const AnimeResponseView(
+      {required this.onLastPage, required this.query, super.key});
 
   Widget buildLoading() {
     return const SliverFillRemaining(
@@ -23,6 +25,8 @@ class AnimeResponseView extends ConsumerWidget {
   Widget buildHeader(AnimeResponseIntern? res) {
     String currentPage = res?.pagination?.currentPage.toString() ?? "";
     String lastPage = res?.pagination?.lastVisiblePage.toString() ?? "";
+
+    onLastPage(res?.pagination?.lastVisiblePage);
 
     return SliverToBoxAdapter(
         child: Column(
