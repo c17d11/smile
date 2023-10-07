@@ -26,6 +26,7 @@ class NavigationContainer extends StatelessWidget {
       color: Colors.grey[200],
       child: isWideScreen
           ? Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 NavBarPortrait(
                     items: portraitItems,
@@ -35,6 +36,7 @@ class NavigationContainer extends StatelessWidget {
               ],
             )
           : Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Expanded(child: content),
                 NavBarLandscape(
