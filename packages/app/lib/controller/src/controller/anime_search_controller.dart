@@ -50,4 +50,24 @@ class AnimeSearchController
       // TODO: Database error
     }
   }
+
+  Future<void> update(AnimeIntern anime) async {
+    try {
+      // state = const AsyncLoading();
+      await _database.insertAnime(anime);
+
+      if (state.hasValue) {
+        AnimeResponseIntern res = state.value!;
+        res.data =
+            res.data?.map((a) => a.malId == anime.malId ? anime : a).toList();
+
+        state = AsyncValue.data(res);
+      }
+      // assert(state.hasValue);
+    } on JikanApiException catch (e, stacktrace) {
+      state = AsyncError(e, stacktrace);
+
+      // TODO: Database error
+    }
+  }
 }
