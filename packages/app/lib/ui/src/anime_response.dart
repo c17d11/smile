@@ -35,11 +35,16 @@ class AnimeResponseView extends ConsumerWidget {
     ));
   }
 
-  Widget buildAnimeList(List<AnimeIntern> animes) {
+  Widget buildAnimeList(WidgetRef ref, List<AnimeIntern> animes) {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
-          childCount: animes.length,
-          (context, index) => AnimePortrait(animes[index])),
+        childCount: animes.length,
+        (context, index) => AnimePortrait(
+          animes[index],
+          onChange: (value) =>
+              ref.read(animeSearchControllerPod(query).notifier).update(value),
+        ),
+      ),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 150,
         childAspectRatio: 7 / 10,
@@ -65,7 +70,7 @@ class AnimeResponseView extends ConsumerWidget {
             : SliverMainAxisGroup(
                 slivers: <Widget>[
                   buildHeader(resIntern),
-                  buildAnimeList(animes),
+                  buildAnimeList(ref, animes),
                 ],
               );
   }
