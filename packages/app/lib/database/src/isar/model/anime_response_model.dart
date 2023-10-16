@@ -12,6 +12,7 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
   @override
   Future<void> insertAnimeResponse(AnimeResponseIntern arg) async {
     IsarAnimeResponse res = arg as IsarAnimeResponse;
+    res.isarPagination = IsarPagination.from(res.pagination);
 
     List<IsarAnime> animes =
         res.data?.map((e) => IsarAnime.fromIntern(e)).toList() ?? [];
@@ -34,6 +35,7 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
     });
 
     res?.data = res?.isarAnimes.toList();
+    res?.pagination = res?.isarPagination;
     return res;
   }
 

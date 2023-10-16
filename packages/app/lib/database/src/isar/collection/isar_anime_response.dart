@@ -1,6 +1,3 @@
-import 'package:app/controller/src/object/anime_rating.dart';
-import 'package:app/controller/src/object/anime_status.dart';
-import 'package:app/controller/src/object/anime_type.dart';
 import 'package:app/controller/state.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
@@ -16,6 +13,7 @@ class IsarAnimeResponse extends AnimeResponseIntern {
   String q;
 
   final isarAnimes = IsarLinks<IsarAnime>();
+  IsarPagination? isarPagination;
 
   IsarAnimeResponse({required this.q});
 
@@ -45,5 +43,20 @@ class IsarAnimeResponse extends AnimeResponseIntern {
       ..pagination = res.pagination
       ..data = res.data?.map((e) => IsarAnime.from(e)).toList();
     return isarRes;
+  }
+}
+
+@embedded
+class IsarPagination extends Pagination {
+  static IsarPagination? from(Pagination? pagination) {
+    if (pagination == null) return null;
+    IsarPagination p = IsarPagination()
+      ..lastVisiblePage = pagination.lastVisiblePage
+      ..hasNextPage = pagination.hasNextPage
+      ..currentPage = pagination.currentPage
+      ..itemCount = pagination.itemCount
+      ..itemTotal = pagination.itemTotal
+      ..itemPerPage = pagination.itemPerPage;
+    return p;
   }
 }
