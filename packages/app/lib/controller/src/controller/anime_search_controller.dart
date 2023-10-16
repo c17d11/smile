@@ -51,6 +51,29 @@ class AnimeSearchController
     }
   }
 
+  Future<void> getFavorites(int page) async {
+    try {
+      state = const AsyncLoading();
+      List<AnimeIntern> favorites = await _database.getFavoriteAnimes(page);
+
+      AnimeResponseIntern res = IsarAnimeResponse(q: "favorites");
+      res.data = favorites;
+      res.pagination = Pagination()
+        ..currentPage = 1
+        ..hasNextPage = false
+        ..itemCount = favorites.length
+        ..itemPerPage = favorites.length
+        ..itemTotal = favorites.length
+        ..lastVisiblePage = 1;
+
+      state = AsyncValue.data(res);
+    } on JikanApiException catch (e, stacktrace) {
+      state = AsyncError(e, stacktrace);
+
+      // TODO: Database error
+    }
+  }
+
   Future<void> update(AnimeIntern anime) async {
     try {
       // state = const AsyncLoading();
