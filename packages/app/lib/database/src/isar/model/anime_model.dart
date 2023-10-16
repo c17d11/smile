@@ -35,6 +35,20 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
   }
 
   @override
+  Future<List<AnimeIntern>> getFavoriteAnimes(int page) async {
+    late List<IsarAnime> animes;
+    await read(() async {
+      animes = await db.isarAnimes
+          .filter()
+          .isFavoriteEqualTo(true)
+          .offset(25 * (page - 1))
+          .limit(25)
+          .findAll();
+    });
+    return animes;
+  }
+
+  @override
   Future<bool> deleteAnime(int malId) async {
     bool success = false;
     await write(() async {

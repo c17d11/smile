@@ -101,6 +101,11 @@ class IsarDatabase implements Database {
   }
 
   @override
+  Future<List<AnimeIntern>> getFavoriteAnimes(int page) async {
+    return await animeModel.getFavoriteAnimes(page);
+  }
+
+  @override
   Future<List<ProducerIntern>> getAllProducers() async {
     return await producerModel.getAllProducers();
   }
