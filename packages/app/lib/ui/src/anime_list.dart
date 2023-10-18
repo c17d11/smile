@@ -4,7 +4,6 @@ import 'package:app/ui/src/anime_response.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jikan_api/jikan_api.dart';
 
 class AnimeListPage extends ConsumerWidget {
   final IconItem page;
