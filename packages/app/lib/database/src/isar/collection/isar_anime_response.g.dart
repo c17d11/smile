@@ -27,8 +27,14 @@ const IsarAnimeResponseSchema = CollectionSchema(
       name: r'expires',
       type: IsarType.dateTime,
     ),
-    r'q': PropertySchema(
+    r'isarPagination': PropertySchema(
       id: 2,
+      name: r'isarPagination',
+      type: IsarType.object,
+      target: r'IsarPagination',
+    ),
+    r'q': PropertySchema(
+      id: 3,
       name: r'q',
       type: IsarType.string,
     )
@@ -61,7 +67,7 @@ const IsarAnimeResponseSchema = CollectionSchema(
       single: false,
     )
   },
-  embeddedSchemas: {},
+  embeddedSchemas: {r'IsarPagination': IsarPaginationSchema},
   getId: _isarAnimeResponseGetId,
   getLinks: _isarAnimeResponseGetLinks,
   attach: _isarAnimeResponseAttach,
@@ -74,6 +80,14 @@ int _isarAnimeResponseEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  {
+    final value = object.isarPagination;
+    if (value != null) {
+      bytesCount += 3 +
+          IsarPaginationSchema.estimateSize(
+              value, allOffsets[IsarPagination]!, allOffsets);
+    }
+  }
   bytesCount += 3 + object.q.length * 3;
   return bytesCount;
 }
@@ -86,7 +100,13 @@ void _isarAnimeResponseSerialize(
 ) {
   writer.writeDateTime(offsets[0], object.date);
   writer.writeDateTime(offsets[1], object.expires);
-  writer.writeString(offsets[2], object.q);
+  writer.writeObject<IsarPagination>(
+    offsets[2],
+    allOffsets,
+    IsarPaginationSchema.serialize,
+    object.isarPagination,
+  );
+  writer.writeString(offsets[3], object.q);
 }
 
 IsarAnimeResponse _isarAnimeResponseDeserialize(
@@ -96,11 +116,16 @@ IsarAnimeResponse _isarAnimeResponseDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = IsarAnimeResponse(
-    q: reader.readString(offsets[2]),
+    q: reader.readString(offsets[3]),
   );
   object.date = reader.readDateTimeOrNull(offsets[0]);
   object.expires = reader.readDateTimeOrNull(offsets[1]);
   object.id = id;
+  object.isarPagination = reader.readObjectOrNull<IsarPagination>(
+    offsets[2],
+    IsarPaginationSchema.deserialize,
+    allOffsets,
+  );
   return object;
 }
 
@@ -116,6 +141,12 @@ P _isarAnimeResponseDeserializeProp<P>(
     case 1:
       return (reader.readDateTimeOrNull(offset)) as P;
     case 2:
+      return (reader.readObjectOrNull<IsarPagination>(
+        offset,
+        IsarPaginationSchema.deserialize,
+        allOffsets,
+      )) as P;
+    case 3:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -543,6 +574,24 @@ extension IsarAnimeResponseQueryFilter
   }
 
   QueryBuilder<IsarAnimeResponse, IsarAnimeResponse, QAfterFilterCondition>
+      isarPaginationIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'isarPagination',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarAnimeResponse, IsarAnimeResponse, QAfterFilterCondition>
+      isarPaginationIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'isarPagination',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarAnimeResponse, IsarAnimeResponse, QAfterFilterCondition>
       qEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -680,7 +729,14 @@ extension IsarAnimeResponseQueryFilter
 }
 
 extension IsarAnimeResponseQueryObject
-    on QueryBuilder<IsarAnimeResponse, IsarAnimeResponse, QFilterCondition> {}
+    on QueryBuilder<IsarAnimeResponse, IsarAnimeResponse, QFilterCondition> {
+  QueryBuilder<IsarAnimeResponse, IsarAnimeResponse, QAfterFilterCondition>
+      isarPagination(FilterQuery<IsarPagination> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'isarPagination');
+    });
+  }
+}
 
 extension IsarAnimeResponseQueryLinks
     on QueryBuilder<IsarAnimeResponse, IsarAnimeResponse, QFilterCondition> {
@@ -892,9 +948,531 @@ extension IsarAnimeResponseQueryProperty
     });
   }
 
+  QueryBuilder<IsarAnimeResponse, IsarPagination?, QQueryOperations>
+      isarPaginationProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'isarPagination');
+    });
+  }
+
   QueryBuilder<IsarAnimeResponse, String, QQueryOperations> qProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'q');
     });
   }
 }
+
+// **************************************************************************
+// IsarEmbeddedGenerator
+// **************************************************************************
+
+// coverage:ignore-file
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+
+const IsarPaginationSchema = Schema(
+  name: r'IsarPagination',
+  id: -3773604925593886929,
+  properties: {
+    r'currentPage': PropertySchema(
+      id: 0,
+      name: r'currentPage',
+      type: IsarType.long,
+    ),
+    r'hasNextPage': PropertySchema(
+      id: 1,
+      name: r'hasNextPage',
+      type: IsarType.bool,
+    ),
+    r'itemCount': PropertySchema(
+      id: 2,
+      name: r'itemCount',
+      type: IsarType.long,
+    ),
+    r'itemPerPage': PropertySchema(
+      id: 3,
+      name: r'itemPerPage',
+      type: IsarType.long,
+    ),
+    r'itemTotal': PropertySchema(
+      id: 4,
+      name: r'itemTotal',
+      type: IsarType.long,
+    ),
+    r'lastVisiblePage': PropertySchema(
+      id: 5,
+      name: r'lastVisiblePage',
+      type: IsarType.long,
+    )
+  },
+  estimateSize: _isarPaginationEstimateSize,
+  serialize: _isarPaginationSerialize,
+  deserialize: _isarPaginationDeserialize,
+  deserializeProp: _isarPaginationDeserializeProp,
+);
+
+int _isarPaginationEstimateSize(
+  IsarPagination object,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  var bytesCount = offsets.last;
+  return bytesCount;
+}
+
+void _isarPaginationSerialize(
+  IsarPagination object,
+  IsarWriter writer,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  writer.writeLong(offsets[0], object.currentPage);
+  writer.writeBool(offsets[1], object.hasNextPage);
+  writer.writeLong(offsets[2], object.itemCount);
+  writer.writeLong(offsets[3], object.itemPerPage);
+  writer.writeLong(offsets[4], object.itemTotal);
+  writer.writeLong(offsets[5], object.lastVisiblePage);
+}
+
+IsarPagination _isarPaginationDeserialize(
+  Id id,
+  IsarReader reader,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  final object = IsarPagination();
+  object.currentPage = reader.readLongOrNull(offsets[0]);
+  object.hasNextPage = reader.readBoolOrNull(offsets[1]);
+  object.itemCount = reader.readLongOrNull(offsets[2]);
+  object.itemPerPage = reader.readLongOrNull(offsets[3]);
+  object.itemTotal = reader.readLongOrNull(offsets[4]);
+  object.lastVisiblePage = reader.readLongOrNull(offsets[5]);
+  return object;
+}
+
+P _isarPaginationDeserializeProp<P>(
+  IsarReader reader,
+  int propertyId,
+  int offset,
+  Map<Type, List<int>> allOffsets,
+) {
+  switch (propertyId) {
+    case 0:
+      return (reader.readLongOrNull(offset)) as P;
+    case 1:
+      return (reader.readBoolOrNull(offset)) as P;
+    case 2:
+      return (reader.readLongOrNull(offset)) as P;
+    case 3:
+      return (reader.readLongOrNull(offset)) as P;
+    case 4:
+      return (reader.readLongOrNull(offset)) as P;
+    case 5:
+      return (reader.readLongOrNull(offset)) as P;
+    default:
+      throw IsarError('Unknown property with id $propertyId');
+  }
+}
+
+extension IsarPaginationQueryFilter
+    on QueryBuilder<IsarPagination, IsarPagination, QFilterCondition> {
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      currentPageIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'currentPage',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      currentPageIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'currentPage',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      currentPageEqualTo(int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'currentPage',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      currentPageGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'currentPage',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      currentPageLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'currentPage',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      currentPageBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'currentPage',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      hasNextPageIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'hasNextPage',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      hasNextPageIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'hasNextPage',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      hasNextPageEqualTo(bool? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'hasNextPage',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemCountIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'itemCount',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemCountIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'itemCount',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemCountEqualTo(int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'itemCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemCountGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'itemCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemCountLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'itemCount',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemCountBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'itemCount',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemPerPageIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'itemPerPage',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemPerPageIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'itemPerPage',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemPerPageEqualTo(int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'itemPerPage',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemPerPageGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'itemPerPage',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemPerPageLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'itemPerPage',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemPerPageBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'itemPerPage',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemTotalIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'itemTotal',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemTotalIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'itemTotal',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemTotalEqualTo(int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'itemTotal',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemTotalGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'itemTotal',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemTotalLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'itemTotal',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      itemTotalBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'itemTotal',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      lastVisiblePageIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'lastVisiblePage',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      lastVisiblePageIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'lastVisiblePage',
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      lastVisiblePageEqualTo(int? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'lastVisiblePage',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      lastVisiblePageGreaterThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'lastVisiblePage',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      lastVisiblePageLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'lastVisiblePage',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarPagination, IsarPagination, QAfterFilterCondition>
+      lastVisiblePageBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'lastVisiblePage',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+}
+
+extension IsarPaginationQueryObject
+    on QueryBuilder<IsarPagination, IsarPagination, QFilterCondition> {}
