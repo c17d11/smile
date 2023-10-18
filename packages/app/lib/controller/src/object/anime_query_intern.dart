@@ -19,8 +19,8 @@ class AnimeQueryIntern extends AnimeQuery {
     page = q.page;
   }
 
-  static AnimeQuery from(AnimeQuery q) {
-    AnimeQuery animeQueryIntern = AnimeQuery()
+  static AnimeQueryIntern from(AnimeQuery q) {
+    AnimeQueryIntern animeQueryIntern = AnimeQueryIntern()
       ..searchTerm = q.searchTerm
       ..type = q.type
       ..rating = q.rating
@@ -38,10 +38,10 @@ class AnimeQueryIntern extends AnimeQuery {
   }
 }
 
-class AnimeQueryNotifier extends StateNotifier<AnimeQuery> {
-  AnimeQueryNotifier() : super(AnimeQuery());
+class AnimeQueryNotifier extends StateNotifier<AnimeQueryIntern> {
+  AnimeQueryNotifier() : super(AnimeQueryIntern());
 
-  void set(AnimeQuery newQuery) {
+  void set(AnimeQueryIntern newQuery) {
     state = newQuery;
   }
 }

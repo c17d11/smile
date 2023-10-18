@@ -160,7 +160,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     final page = ModalRoute.of(context)?.settings.arguments as IconItem;
 
     final query = ref.read(animeQueryPod(page));
-    AnimeQuery localQuery = AnimeQueryIntern.from(query);
+    AnimeQueryIntern localQuery = AnimeQueryIntern.from(query);
 
     return Scaffold(
       appBar: AppBar(
