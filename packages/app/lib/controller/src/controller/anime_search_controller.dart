@@ -55,16 +55,18 @@ class AnimeSearchController
     try {
       state = const AsyncLoading();
       List<AnimeIntern> favorites = await _database.getFavoriteAnimes(page);
+      int favoriteCount = await _database.countFavoriteAnimes();
+      int pageCount = _database.countFavoriteAnimePages(favoriteCount);
 
       AnimeResponseIntern res = IsarAnimeResponse(q: "favorites");
       res.data = favorites;
       res.pagination = Pagination()
-        ..currentPage = 1
+        ..currentPage = page
         ..hasNextPage = false
         ..itemCount = favorites.length
         ..itemPerPage = favorites.length
-        ..itemTotal = favorites.length
-        ..lastVisiblePage = 1;
+        ..itemTotal = favoriteCount
+        ..lastVisiblePage = pageCount;
 
       state = AsyncValue.data(res);
     } on JikanApiException catch (e, stacktrace) {

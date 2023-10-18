@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class AnimeQueryIntern extends AnimeQuery {
+  bool? isFavorite;
+
   void override(AnimeQuery q) {
     searchTerm = q.searchTerm;
     type = q.type;
@@ -19,7 +21,7 @@ class AnimeQueryIntern extends AnimeQuery {
     page = q.page;
   }
 
-  static AnimeQueryIntern from(AnimeQuery q) {
+  static AnimeQueryIntern from(AnimeQueryIntern q) {
     AnimeQueryIntern animeQueryIntern = AnimeQueryIntern()
       ..searchTerm = q.searchTerm
       ..type = q.type
@@ -33,7 +35,8 @@ class AnimeQueryIntern extends AnimeQuery {
       ..producers = q.producers
       ..genresInclude = q.genresInclude
       ..genresExclude = q.genresExclude
-      ..page = q.page;
+      ..page = q.page
+      ..isFavorite = q.isFavorite;
     return animeQueryIntern;
   }
 }

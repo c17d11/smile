@@ -1,4 +1,5 @@
 import 'package:app/ui/navigation_container/navigation_container.dart';
+import 'package:app/ui/src/anime_favorite_page.dart';
 import 'package:app/ui/src/anime_list.dart';
 import 'package:flutter/material.dart';
 
@@ -30,9 +31,7 @@ class FavoriteNavItem extends IconItem {
 
   @override
   Widget buildContent() {
-    return Container(
-      color: Colors.green[300],
-    );
+    return AnimeFavoritePage(page: this);
   }
 }
 

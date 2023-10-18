@@ -37,11 +37,15 @@ final initPod = FutureProvider<bool>((ref) async {
 final animeSearchControllerPod = StateNotifierProvider.family<
     AnimeSearchController,
     AsyncValue<AnimeResponseIntern>,
-    AnimeQuery>((ref, arg) {
+    AnimeQueryIntern>((ref, arg) {
   Database db = ref.watch(databasePod);
   JikanApi api = ref.watch(apiPod);
   AnimeSearchController controller = AnimeSearchController(db, api);
-  controller.get(arg);
+  if (arg.isFavorite ?? false) {
+    controller.getFavorites(arg.page ?? 1);
+  } else {
+    controller.get(arg);
+  }
   return controller;
 });
 
