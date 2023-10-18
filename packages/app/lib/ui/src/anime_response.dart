@@ -1,3 +1,4 @@
+import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/pod.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class AnimeResponseView extends ConsumerWidget {
-  final AnimeQuery query;
+  final AnimeQueryIntern query;
   final void Function(int?) onLastPage;
   const AnimeResponseView(
       {required this.onLastPage, required this.query, super.key});

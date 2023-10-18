@@ -13,7 +13,7 @@ class AnimeListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AnimeQuery query = ref.watch(animeQueryPod(page));
+    AnimeQueryIntern query = ref.watch(animeQueryPod(page));
 
     return AnimeList(page: page, initQuery: query, key: UniqueKey());
   }
@@ -21,7 +21,7 @@ class AnimeListPage extends ConsumerWidget {
 
 class AnimeList extends StatefulWidget {
   final IconItem page;
-  final AnimeQuery initQuery;
+  final AnimeQueryIntern initQuery;
 
   const AnimeList({required this.page, required this.initQuery, super.key});
 
@@ -43,7 +43,7 @@ class _AnimeListState extends State<AnimeList> {
   }
 
   void loadNext() {
-    AnimeQuery newQuery = AnimeQueryIntern.from(pages.last.query);
+    AnimeQueryIntern newQuery = AnimeQueryIntern.from(pages.last.query);
     ++currentPage;
     if (currentPage <= lastPage) {
       newQuery.page = currentPage;

@@ -66,9 +66,8 @@ final animeControllerPod =
   return AnimeController(db, api);
 });
 
-final animeQueryPod =
-    StateNotifierProvider.family<AnimeQueryNotifier, AnimeQuery, IconItem>(
-        (ref, arg) => AnimeQueryNotifier());
+final animeQueryPod = StateNotifierProvider.family<AnimeQueryNotifier,
+    AnimeQueryIntern, IconItem>((ref, arg) => AnimeQueryNotifier());
 
 extension AsyncValueUi on AsyncValue<AnimeResponseIntern> {
   bool get isLoading => this is AsyncLoading<AnimeResponseIntern>;
