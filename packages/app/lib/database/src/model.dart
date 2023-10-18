@@ -8,6 +8,8 @@ abstract interface class AnimeModel {
   Future<AnimeIntern?> getAnime(int malId);
   Future<List<AnimeIntern>> getAllAnimes();
   Future<List<AnimeIntern>> getFavoriteAnimes(int page);
+  Future<int> countFavoriteAnimes();
+  int countFavoriteAnimePages(int favoriteAnimeCount);
   Future<bool> deleteAnime(int malId);
   AnimeIntern createAnimeIntern(Anime anime);
 }

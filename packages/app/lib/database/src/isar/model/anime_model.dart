@@ -41,11 +41,26 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
       animes = await db.isarAnimes
           .filter()
           .isFavoriteEqualTo(true)
-          .offset(25 * (page - 1))
-          .limit(25)
+          .offset(10 * (page - 1))
+          .limit(10)
           .findAll();
     });
     return animes;
+  }
+
+  @override
+  Future<int> countFavoriteAnimes() async {
+    late int favoriteCount;
+    await read(() async {
+      favoriteCount =
+          await db.isarAnimes.filter().isFavoriteEqualTo(true).count();
+    });
+    return favoriteCount;
+  }
+
+  @override
+  int countFavoriteAnimePages(int favoriteAnimeCount) {
+    return (favoriteAnimeCount / 10).ceil();
   }
 
   @override
