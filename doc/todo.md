@@ -5,9 +5,6 @@ UI for the Jikan api.
 Tasks to be done at some point.
 
 ### Before 1.0.0
-- [ ] Favorites. Mark animes as favorite and view favorites in separate page
-	- [ ] Add functionality to heart button
-	- [ ] Create favorite page
 - [ ] Sorting results
 	- [ ] AnimeQuery add sorting field
 	- [ ] Anime query page add options for sorting
@@ -32,6 +29,7 @@ Tasks to be done at some point.
 	- [ ] Use dark mode throughout the whole app
 	- [ ] Hero animation between list and details
 	- [ ] Check if other image from api response should be used
+- [ ] Refactor pod.dart
 
 ### Future
 - [ ] Blacklist. Like favorite but opposite. The blacklisted should be hidden in the results
@@ -54,3 +52,6 @@ Tasks to be done at some point.
 
 
 ### Completed
+- [x] Favorites. Mark animes as favorite and view favorites in separate page
+	- [x] Add functionality to heart button
+	- [x] Create favorite page
