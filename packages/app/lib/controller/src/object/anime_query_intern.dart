@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
@@ -19,6 +18,8 @@ class AnimeQueryIntern extends AnimeQuery {
     genresInclude = q.genresInclude;
     genresExclude = q.genresExclude;
     page = q.page;
+    orderBy = q.orderBy;
+    sort = q.sort;
   }
 
   static AnimeQueryIntern from(AnimeQueryIntern q) {
@@ -36,6 +37,8 @@ class AnimeQueryIntern extends AnimeQuery {
       ..genresInclude = q.genresInclude
       ..genresExclude = q.genresExclude
       ..page = q.page
+      ..orderBy = q.orderBy
+      ..sort = q.sort
       ..isFavorite = q.isFavorite;
     return animeQueryIntern;
   }

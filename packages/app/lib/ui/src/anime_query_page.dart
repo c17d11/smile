@@ -1,5 +1,7 @@
+import 'package:app/controller/src/object/anime_order.dart';
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/anime_rating.dart';
+import 'package:app/controller/src/object/anime_sort.dart';
 import 'package:app/controller/src/object/anime_status.dart';
 import 'package:app/controller/src/object/anime_type.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
@@ -25,7 +27,33 @@ class AnimeQueryPage extends ConsumerStatefulWidget {
 }
 
 class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
-  Widget buildSearchTermWidget(AnimeQuery localQuery) {
+  Widget buildOrderWidget(AnimeQueryIntern localQuery) {
+    return SingleSelect(
+      'Order by',
+      AnimeOrder.values.map((e) => AnimeOrderItem(e)).toList(),
+      onChanged: (item) {
+        localQuery.orderBy =
+            (item != null) ? (item as AnimeOrderItem).order : null;
+      },
+      initialValue: (localQuery.orderBy != null)
+          ? AnimeOrderItem(localQuery.orderBy!)
+          : null,
+    );
+  }
+
+  Widget buildSortWidget(AnimeQueryIntern localQuery) {
+    return SingleSelect(
+      'Sort',
+      AnimeSort.values.map((e) => AnimeSortItem(e)).toList(),
+      onChanged: (item) {
+        localQuery.sort = (item != null) ? (item as AnimeSortItem).sort : null;
+      },
+      initialValue:
+          (localQuery.sort != null) ? AnimeSortItem(localQuery.sort!) : null,
+    );
+  }
+
+  Widget buildSearchTermWidget(AnimeQueryIntern localQuery) {
     return QueryWidget(
       onChanged: (String s) {
         localQuery.searchTerm = s;
@@ -44,7 +72,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     return ref.read(genrePod).value ?? [];
   }
 
-  Widget buildProducerWidget(AnimeQuery localQuery) {
+  Widget buildProducerWidget(AnimeQueryIntern localQuery) {
     return MultiSelect<ProducerIntern>(
       title: "Producers",
       loadOptions: loadProducers,
@@ -56,7 +84,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Widget buildGenreWidget(AnimeQuery localQuery) {
+  Widget buildGenreWidget(AnimeQueryIntern localQuery) {
     return MultiSelect<GenreIntern>(
       title: "Genres",
       tristate: true,
@@ -74,7 +102,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Widget buildAnimeStatusWidget(AnimeQuery localQuery) {
+  Widget buildAnimeStatusWidget(AnimeQueryIntern localQuery) {
     return SingleSelect(
       'Status',
       AnimeStatus.values.map((e) => AnimeStatusItem(e)).toList(),
@@ -88,7 +116,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Widget buildAnimeRatingWidget(AnimeQuery localQuery) {
+  Widget buildAnimeRatingWidget(AnimeQueryIntern localQuery) {
     return SingleSelect(
       'Rating',
       AnimeRating.values.map((e) => AnimeRatingItem(e)).toList(),
@@ -102,7 +130,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Widget buildAnimeTypeWidget(AnimeQuery localQuery) {
+  Widget buildAnimeTypeWidget(AnimeQueryIntern localQuery) {
     return SingleSelect(
       'Type',
       AnimeType.values.map((e) => AnimeTypeItem(e)).toList(),
@@ -114,7 +142,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Widget buildScoreWidget(AnimeQuery localQuery) {
+  Widget buildScoreWidget(AnimeQueryIntern localQuery) {
     return RangeSelect(
       "Score",
       0,
@@ -134,7 +162,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Widget buildYearWidget(AnimeQuery localQuery) {
+  Widget buildYearWidget(AnimeQueryIntern localQuery) {
     return YearSelect(
       title: "Year",
       initMinValue: localQuery.minYear,
@@ -144,7 +172,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Widget buildSfwWidget(AnimeQuery localQuery) {
+  Widget buildSfwWidget(AnimeQueryIntern localQuery) {
     return SingleSelect(
       'Sfw',
       [SfwItem(true), SfwItem(false)],
@@ -195,6 +223,10 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
                       buildYearWidget(localQuery),
                       const SizedBox(height: 10),
                       buildSfwWidget(localQuery),
+                      const SizedBox(height: 10),
+                      buildOrderWidget(localQuery),
+                      const SizedBox(height: 10),
+                      buildSortWidget(localQuery),
                     ],
                   ),
                 ),
