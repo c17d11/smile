@@ -9,6 +9,8 @@ export 'src/object/anime_query.dart';
 export 'src/object/anime_rating.dart';
 export 'src/object/anime_status.dart';
 export 'src/object/anime_type.dart';
+export 'src/object/anime_order.dart';
+export 'src/object/anime_sort.dart';
 export 'src/object/anime.dart';
 export 'src/object/exception.dart';
 export 'src/object/genre.dart';

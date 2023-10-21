@@ -6,7 +6,7 @@ Tasks to be done at some point.
 
 ### Before 1.0.0
 - [ ] Sorting results
-	- [ ] AnimeQuery add sorting field
+	- [x] AnimeQuery add sorting field
 	- [ ] Anime query page add options for sorting
 - [ ] Schedule. View current season
 	- [ ] Create anime list where each day is separated as a page

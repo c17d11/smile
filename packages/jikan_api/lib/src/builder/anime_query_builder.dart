@@ -1,3 +1,5 @@
+import 'package:jikan_api/src/object/anime_order.dart';
+import 'package:jikan_api/src/object/anime_sort.dart';
 import 'package:jikan_api/src/object/genre.dart';
 
 import 'builder.dart';
@@ -94,6 +96,14 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
     return "genres_exclude=$genreMalIds";
   }
 
+  String buildOrderBy(AnimeOrder? orderBy) {
+    return orderBy != null ? "order_by=${orderBy.queryName}" : "";
+  }
+
+  String buildSort(AnimeSort? sort) {
+    return sort != null ? "sort=${sort.queryName}" : "";
+  }
+
   @override
   String build(AnimeQuery arg) {
     List<String> queries = [
@@ -110,6 +120,8 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
       buildProducersQuery(arg.producers),
       buildGenresIncludeQuery(arg.genresInclude),
       buildGenresExcludeQuery(arg.genresExclude),
+      buildOrderBy(arg.orderBy),
+      buildSort(arg.sort),
     ];
     return queries.where((e) => e.isNotEmpty).join("&");
   }

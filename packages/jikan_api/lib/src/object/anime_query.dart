@@ -1,3 +1,5 @@
+import 'package:jikan_api/src/object/anime_order.dart';
+import 'package:jikan_api/src/object/anime_sort.dart';
 import 'package:jikan_api/src/object/genre.dart';
 
 import 'anime_rating.dart';
@@ -19,4 +21,6 @@ class AnimeQuery {
   List<Genre>? genresInclude;
   List<Genre>? genresExclude;
   int? page;
+  AnimeOrder? orderBy;
+  AnimeSort? sort;
 }
