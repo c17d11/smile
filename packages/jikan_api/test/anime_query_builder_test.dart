@@ -1,8 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jikan_api/src/builder/anime_query_builder.dart';
 import 'package:jikan_api/src/builder/builder.dart';
+import 'package:jikan_api/src/object/anime_order.dart';
 import 'package:jikan_api/src/object/anime_query.dart';
 import 'package:jikan_api/src/object/anime_rating.dart';
+import 'package:jikan_api/src/object/anime_sort.dart';
 import 'package:jikan_api/src/object/anime_status.dart';
 import 'package:jikan_api/src/object/anime_type.dart';
 import 'package:jikan_api/src/object/producer.dart';
@@ -26,7 +28,9 @@ void main() {
           Producer()..malId = 1,
           Producer()..malId = 2,
         ]
-        ..page = 1,
+        ..page = 1
+        ..orderBy = AnimeOrder.malId
+        ..sort = AnimeSort.asc,
     );
     List<String> subQueries = s.split("&");
 
@@ -59,6 +63,13 @@ void main() {
     });
     test('Correct producers', () {
       expect(subQueries.contains("producers=1,2"), isTrue);
+    });
+    test('Correct orderBy', () {
+      expect(subQueries.contains("order_by=mal_id"), isTrue);
+    });
+
+    test('Correct sort', () {
+      expect(subQueries.contains("sort=asc"), isTrue);
     });
   });
 
