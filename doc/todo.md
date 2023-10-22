@@ -5,9 +5,6 @@ UI for the Jikan api.
 Tasks to be done at some point.
 
 ### Before 1.0.0
-- [ ] Sorting results
-	- [x] AnimeQuery add sorting field
-	- [ ] Anime query page add options for sorting
 - [ ] Schedule. View current season
 	- [ ] Create anime list where each day is separated as a page
 - [ ] Settings. Create settings page
@@ -55,3 +52,6 @@ Tasks to be done at some point.
 - [x] Favorites. Mark animes as favorite and view favorites in separate page
 	- [x] Add functionality to heart button
 	- [x] Create favorite page
+- [x] Sorting results
+	- [x] AnimeQuery add sorting field
+	- [x] Anime query page add options for sorting
