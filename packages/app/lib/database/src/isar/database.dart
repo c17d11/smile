@@ -1,12 +1,15 @@
 import 'dart:io';
 
+import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/src/object/producer_response_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/database/src/isar/collection/isar_genre.dart';
 import 'package:app/database/src/isar/collection/isar_producer_response.dart';
+import 'package:app/database/src/isar/collection/isar_query.dart';
 import 'package:app/database/src/isar/model/anime_model.dart';
+import 'package:app/database/src/isar/model/anime_query_model.dart';
 import 'package:app/database/src/isar/model/anime_response_model.dart';
 import 'package:app/database/src/isar/model/genre_model.dart';
 import 'package:app/database/src/isar/model/producer_model.dart';
@@ -28,6 +31,7 @@ class IsarDatabase implements Database {
   late IsarProducerResponseModel producerResponseModel =
       IsarProducerResponseModel(instance);
   late IsarGenreModel genreModel = IsarGenreModel(instance);
+  late IsarAnimeQueryModel queryModel = IsarAnimeQueryModel(instance);
 
   @override
   Future<void> init() async {
@@ -41,6 +45,7 @@ class IsarDatabase implements Database {
           IsarProducerSchema,
           IsarProducerResponseSchema,
           IsarGenreSchema,
+          IsarQuerySchema,
         ],
         directory: dir.path,
         inspector: true,
@@ -195,6 +200,16 @@ class IsarDatabase implements Database {
   @override
   Future<void> insertGenres(List<Genre> genres) async {
     await genreModel.insertGenres(genres);
+  }
+
+  @override
+  Future<AnimeQueryIntern?> getQuery(String page) async {
+    return await queryModel.getQuery(page);
+  }
+
+  @override
+  Future<void> updateQuery(String page, AnimeQueryIntern query) async {
+    await queryModel.updateQuery(page, query);
   }
 }
 
