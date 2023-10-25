@@ -1,3 +1,4 @@
+import 'package:app/database/src/database_base.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
@@ -45,9 +46,17 @@ class AnimeQueryIntern extends AnimeQuery {
 }
 
 class AnimeQueryNotifier extends StateNotifier<AnimeQueryIntern> {
-  AnimeQueryNotifier() : super(AnimeQueryIntern());
+  final Database db;
+  final String page;
+  AnimeQueryNotifier(this.page, this.db) : super(AnimeQueryIntern());
 
-  void set(AnimeQueryIntern newQuery) {
+  Future<void> load() async {
+    AnimeQueryIntern? query = await db.getQuery(page);
+    state = query ?? AnimeQueryIntern();
+  }
+
+  Future<void> set(AnimeQueryIntern newQuery) async {
+    await db.updateQuery(page, newQuery);
     state = newQuery;
   }
 }

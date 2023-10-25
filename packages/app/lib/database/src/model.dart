@@ -1,3 +1,4 @@
+import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/src/object/producer_response_intern.dart';
 import 'package:app/controller/state.dart';
@@ -45,10 +46,16 @@ abstract interface class GenreModel {
   Future<bool> deleteGenre(int malId);
 }
 
+abstract interface class AnimeQueryModel {
+  Future<void> updateQuery(String page, AnimeQueryIntern query);
+  Future<AnimeQueryIntern?> getQuery(String page);
+}
+
 abstract interface class ModelProxy
     implements
         AnimeModel,
         AnimeResponseModel,
         ProducerModel,
         ProducerResponseModel,
-        GenreModel {}
+        GenreModel,
+        AnimeQueryModel {}
