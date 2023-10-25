@@ -5,6 +5,9 @@ UI for the Jikan api.
 Tasks to be done at some point.
 
 ### Before 1.0.0
+- [ ] Store search for each page in database
+	To prevent reloading to default query both when switching page
+	and starting the app.
 - [ ] Schedule. View current season
 	- [ ] Create anime list where each day is separated as a page
 - [ ] Settings. Create settings page
