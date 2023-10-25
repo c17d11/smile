@@ -14,32 +14,10 @@ class AnimeFavoritePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     AnimeQueryIntern query = ref.watch(animeQueryPod(page));
 
-    return
-        //Container();
-        AnimeList(
-            page: page, initQuery: query..isFavorite = true, key: UniqueKey());
-
-    // return CustomScrollView(
-    //   shrinkWrap: true,
-    //   physics: const AlwaysScrollableScrollPhysics(),
-    //   slivers: <Widget>[
-    //     SliverAppBar(
-    //       backgroundColor: Colors.white,
-    //       floating: true,
-    //       pinned: false,
-    //       actions: [
-    //         IconButton(
-    //           onPressed: () {
-    //             // Navigator.pushNamed(context, 'anime-query',
-    //             //     arguments: widget.page);
-    //           },
-    //           icon: const Icon(Icons.sort),
-    //         )
-    //       ],
-    //     ),
-    //     AnimeResponseView(
-    //         query: AnimeQueryIntern()..isFavorite = true, returnPage: (_) {}),
-    //   ],
-    // );
+    return AnimeList(
+      page: page,
+      initQuery: query..isFavorite = true,
+      key: UniqueKey(),
+    );
   }
 }
