@@ -29,7 +29,11 @@ class IsarAnimeResponse extends AnimeResponseIntern {
       "${q.maxYear}",
       "${q.sfw}",
       "${q.producers}",
+      "${q.genresInclude}",
+      "${q.genresExclude}",
       "${q.page}",
+      "${q.orderBy}",
+      "${q.sort}",
     ];
     String query = queries.join("-");
     return query;
