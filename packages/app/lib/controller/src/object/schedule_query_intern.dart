@@ -38,6 +38,12 @@ class ScheduleQueryIntern extends ScheduleQuery {
           ..page = 1;
       case ScheduleFriday:
         return query
+          ..day = ScheduleSaturday()
+          ..page = 1;
+      case ScheduleSaturday:
+        return query..day = ScheduleSunday();
+      case ScheduleSunday:
+        return query
           ..day = ScheduleOther()
           ..page = 1;
       case ScheduleOther:

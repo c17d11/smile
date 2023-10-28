@@ -43,7 +43,21 @@ class ScheduleFriday implements ScheduleDay {
   String get text => 'Friday';
 }
 
-// TODO saturday and sunday??
+class ScheduleSaturday implements ScheduleDay {
+  @override
+  String get code => 'saturday';
+
+  @override
+  String get text => 'Saturday';
+}
+
+class ScheduleSunday implements ScheduleDay {
+  @override
+  String get code => 'sunday';
+
+  @override
+  String get text => 'Sunday';
+}
 
 class ScheduleUnknown implements ScheduleDay {
   @override
