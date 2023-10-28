@@ -57,6 +57,10 @@ class JikanApi {
     return anime;
   }
 
+  String buildAnimeSearchQuery(AnimeQuery query) {
+    return _animeSearchApi.buildQuery(query);
+  }
+
   Future<AnimeResponse> searchAnimes(AnimeQuery query) async {
     AnimeResponse res = await _animeSearchApi.call(query);
     return res;

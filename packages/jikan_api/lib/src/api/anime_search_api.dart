@@ -30,8 +30,8 @@ class AnimeSearchApi implements Api<AnimeQuery, AnimeResponse> {
 
   @override
   Future<AnimeResponse> call(AnimeQuery arg) async {
-    String query = buildQuery(arg);
-    HttpResult res = await client.get("anime$query");
+    String query = "anime${buildQuery(arg)}";
+    HttpResult res = await client.get(query);
     if (res.error != null) {
       JikanApiException error = errorParser.parse(res.error!);
       return Future.error(error);
@@ -39,6 +39,7 @@ class AnimeSearchApi implements Api<AnimeQuery, AnimeResponse> {
     Pagination pagination = paginationParser.parse(res.data ?? {});
     List<Anime> animes = animeSearchParser.parse(res.data ?? {});
     return AnimeResponse()
+      ..query = query
       ..pagination = pagination
       ..data = animes;
   }

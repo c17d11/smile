@@ -30,8 +30,8 @@ class ScheduleSearchApi implements Api<ScheduleQuery, AnimeResponse> {
 
   @override
   Future<AnimeResponse> call(ScheduleQuery arg) async {
-    String query = buildQuery(arg);
-    HttpResult res = await client.get("schedules$query");
+    String query = "schedules${buildQuery(arg)}";
+    HttpResult res = await client.get(query);
     if (res.error != null) {
       JikanApiException error = errorParser.parse(res.error!);
       return Future.error(error);
@@ -39,6 +39,7 @@ class ScheduleSearchApi implements Api<ScheduleQuery, AnimeResponse> {
     Pagination pagination = paginationParser.parse(res.data ?? {});
     List<Anime> animes = animeSearchParser.parse(res.data ?? {});
     return AnimeResponse()
+      ..query = query
       ..pagination = pagination
       ..data = animes;
   }
