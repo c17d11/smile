@@ -2,6 +2,7 @@ import 'package:app/ui/src/anime_details.dart';
 import 'package:app/ui/src/anime_query_page.dart';
 import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/pod.dart';
+import 'package:app/ui/src/schedule_query_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -44,6 +45,7 @@ class _AppState extends ConsumerState<App> {
           'home': (context) => const HomePage(),
           'anime-details': (context) => const AnimeDetails(),
           'anime-query': (context) => const AnimeQueryPage(),
+          'schedule-query': (context) => const ScheduleQueryPage(),
         },
       ),
       error: (err, stack) => Text('Error: $err'),

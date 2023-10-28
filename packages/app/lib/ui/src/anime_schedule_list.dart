@@ -1,16 +1,13 @@
 import 'package:app/controller/src/object/schedule_query_intern.dart';
-import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/anime_schedule_response.dart';
 import 'package:flutter/material.dart';
 
 class AnimeScheduleList extends StatefulWidget {
-  final IconItem page;
   final ScheduleQueryIntern initQuery;
   final Function(ScheduleQueryIntern) onNextPageQuery;
   final Function(ScheduleQueryIntern) onLastQuery;
 
   const AnimeScheduleList({
-    required this.page,
     required this.initQuery,
     required this.onNextPageQuery,
     required this.onLastQuery,
@@ -97,8 +94,7 @@ class _AnimeScheduleListState extends State<AnimeScheduleList> {
             actions: [
               IconButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, 'anime-query',
-                      arguments: widget.page);
+                  Navigator.pushNamed(context, 'schedule-query');
                 },
                 icon: const Icon(Icons.sort),
               )

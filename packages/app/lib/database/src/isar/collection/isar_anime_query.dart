@@ -4,7 +4,7 @@ import 'package:app/database/src/isar/collection/isar_producer.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
 
-part 'isar_query.g.dart';
+part 'isar_anime_query.g.dart';
 
 @Collection(ignore: {
   'type',
@@ -16,7 +16,7 @@ part 'isar_query.g.dart';
   'genresInclude',
   'genresExclude'
 })
-class IsarQuery extends AnimeQueryIntern {
+class IsarAnimeQuery extends AnimeQueryIntern {
   Id? id;
 
   @Index(unique: true, replace: true)
@@ -41,8 +41,8 @@ class IsarQuery extends AnimeQueryIntern {
   final isarGenresInclude = IsarLinks<IsarGenre>();
   final isarGenresExclude = IsarLinks<IsarGenre>();
 
-  static IsarQuery from(String pageUi, AnimeQueryIntern q) {
-    IsarQuery query = IsarQuery()
+  static IsarAnimeQuery from(String pageUi, AnimeQueryIntern q) {
+    IsarAnimeQuery query = IsarAnimeQuery()
       ..searchTerm = q.searchTerm
       ..isarType = q.type
       ..isarRating = q.rating

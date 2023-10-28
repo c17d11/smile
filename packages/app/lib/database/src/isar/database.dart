@@ -3,17 +3,20 @@ import 'dart:io';
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/src/object/producer_response_intern.dart';
+import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/database/src/isar/collection/isar_genre.dart';
 import 'package:app/database/src/isar/collection/isar_producer_response.dart';
-import 'package:app/database/src/isar/collection/isar_query.dart';
+import 'package:app/database/src/isar/collection/isar_anime_query.dart';
+import 'package:app/database/src/isar/collection/isar_schedule_query.dart';
 import 'package:app/database/src/isar/model/anime_model.dart';
 import 'package:app/database/src/isar/model/anime_query_model.dart';
 import 'package:app/database/src/isar/model/anime_response_model.dart';
 import 'package:app/database/src/isar/model/genre_model.dart';
 import 'package:app/database/src/isar/model/producer_model.dart';
 import 'package:app/database/src/isar/model/producer_response_model.dart';
+import 'package:app/database/src/isar/model/schedule_query_model.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'package:path_provider/path_provider.dart';
@@ -31,7 +34,9 @@ class IsarDatabase implements Database {
   late IsarProducerResponseModel producerResponseModel =
       IsarProducerResponseModel(instance);
   late IsarGenreModel genreModel = IsarGenreModel(instance);
-  late IsarAnimeQueryModel queryModel = IsarAnimeQueryModel(instance);
+  late IsarAnimeQueryModel animeQueryModel = IsarAnimeQueryModel(instance);
+  late IsarScheduleQueryModel scheduleQueryModel =
+      IsarScheduleQueryModel(instance);
 
   @override
   Future<void> init() async {
@@ -45,7 +50,8 @@ class IsarDatabase implements Database {
           IsarProducerSchema,
           IsarProducerResponseSchema,
           IsarGenreSchema,
-          IsarQuerySchema,
+          IsarAnimeQuerySchema,
+          IsarScheduleQuerySchema,
         ],
         directory: dir.path,
         inspector: true,
@@ -202,13 +208,23 @@ class IsarDatabase implements Database {
   }
 
   @override
-  Future<AnimeQueryIntern?> getQuery(String page) async {
-    return await queryModel.getQuery(page);
+  Future<AnimeQueryIntern?> getAnimeQuery(String page) async {
+    return await animeQueryModel.getAnimeQuery(page);
   }
 
   @override
-  Future<void> updateQuery(String page, AnimeQueryIntern query) async {
-    await queryModel.updateQuery(page, query);
+  Future<void> updateAnimeQuery(String page, AnimeQueryIntern query) async {
+    await animeQueryModel.updateAnimeQuery(page, query);
+  }
+
+  @override
+  Future<ScheduleQueryIntern?> getScheduleQuery() async {
+    return await scheduleQueryModel.getScheduleQuery();
+  }
+
+  @override
+  Future<void> updateScheduleQuery(ScheduleQueryIntern query) async {
+    return await scheduleQueryModel.updateScheduleQuery(query);
   }
 }
 
