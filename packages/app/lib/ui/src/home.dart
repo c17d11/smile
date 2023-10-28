@@ -1,6 +1,7 @@
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/anime_favorite_page.dart';
 import 'package:app/ui/src/anime_list.dart';
+import 'package:app/ui/src/anime_schedule_page.dart';
 import 'package:flutter/material.dart';
 
 class HomeNavItem extends IconItem {
@@ -47,9 +48,7 @@ class ScheduleNavItem extends IconItem {
 
   @override
   Widget buildContent() {
-    return Container(
-      color: Colors.red[300],
-    );
+    return AnimeSchedulePage(page: this);
   }
 }
 
