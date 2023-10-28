@@ -75,9 +75,8 @@ class IsarDatabase implements Database {
   }
 
   @override
-  AnimeResponseIntern createAnimeResponseIntern(
-      AnimeResponse res, AnimeQuery query) {
-    return animeResponseModel.createAnimeResponseIntern(res, query);
+  AnimeResponseIntern createAnimeResponseIntern(AnimeResponse res) {
+    return animeResponseModel.createAnimeResponseIntern(res);
   }
 
   @override
@@ -91,7 +90,7 @@ class IsarDatabase implements Database {
   }
 
   @override
-  Future<bool> deleteAnimeResponse(AnimeQuery query) async {
+  Future<bool> deleteAnimeResponse(String query) async {
     return await animeResponseModel.deleteAnimeResponse(query);
   }
 
@@ -131,7 +130,7 @@ class IsarDatabase implements Database {
   }
 
   @override
-  Future<AnimeResponseIntern?> getAnimeResponse(AnimeQuery query) async {
+  Future<AnimeResponseIntern?> getAnimeResponse(String query) async {
     return await animeResponseModel.getAnimeResponse(query);
   }
 

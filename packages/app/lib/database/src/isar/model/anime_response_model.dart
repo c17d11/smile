@@ -27,11 +27,11 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
   }
 
   @override
-  Future<AnimeResponseIntern?> getAnimeResponse(AnimeQuery query) async {
-    String isarQuery = IsarAnimeResponse.createQueryString(query);
+  Future<AnimeResponseIntern?> getAnimeResponse(String query) async {
+    // TODO: check query string and prevent possible injection.
     IsarAnimeResponse? res;
     await read(() async {
-      res = await db.isarAnimeResponses.where().qEqualTo(isarQuery).findFirst();
+      res = await db.isarAnimeResponses.where().qEqualTo(query).findFirst();
     });
 
     res?.data = res?.isarAnimes.toList();
@@ -40,20 +40,18 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
   }
 
   @override
-  Future<bool> deleteAnimeResponse(AnimeQuery query) async {
-    String isarQuery = IsarAnimeResponse.createQueryString(query);
-
+  Future<bool> deleteAnimeResponse(String query) async {
+    // TODO: check query string and prevent possible injection.
     bool success = false;
     await write(() async {
-      success = await db.isarAnimeResponses.deleteByIndex("q", [isarQuery]);
+      success = await db.isarAnimeResponses.deleteByIndex("q", [query]);
     });
 
     return success;
   }
 
   @override
-  AnimeResponseIntern createAnimeResponseIntern(
-      AnimeResponse res, AnimeQuery query) {
-    return IsarAnimeResponse.from(res, query);
+  AnimeResponseIntern createAnimeResponseIntern(AnimeResponse res) {
+    return IsarAnimeResponse.from(res);
   }
 }
