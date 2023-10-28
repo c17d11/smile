@@ -36,15 +36,19 @@ class _AnimeScheduleListState extends State<AnimeScheduleList> {
 
     if (newQuery.page! <= lastPage) {
       setState(() {
-        pages.add(
-            AnimeScheduleResponseView(onLastPage: onLastPage, query: newQuery));
+        pages.add(AnimeScheduleResponseView(
+          onLastPage: onLastPage,
+          query: newQuery,
+        ));
       });
     } else {
       ScheduleQueryIntern? newQuery = widget.onLastQuery(lastQuery);
       if (newQuery != null) {
         setState(() {
-          pages.add(AnimeScheduleResponseView(
-              onLastPage: onLastPage, query: newQuery));
+          pages.addAll([
+            AnimeScheduleResponseView(
+                onLastPage: onLastPage, query: newQuery, bigHeader: true)
+          ]);
         });
       }
     }
@@ -55,7 +59,8 @@ class _AnimeScheduleListState extends State<AnimeScheduleList> {
     super.initState();
 
     pages = [
-      AnimeScheduleResponseView(onLastPage: onLastPage, query: widget.initQuery)
+      AnimeScheduleResponseView(
+          onLastPage: onLastPage, query: widget.initQuery, bigHeader: true)
     ];
 
     _scroll.addListener(() {
