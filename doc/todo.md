@@ -7,10 +7,10 @@ Tasks to be done at some point.
 ### Before 1.0.0
 - [ ] Schedule. View current season
 	- [x] Create anime list where each day is separated as a page
-	- [ ] Adjust query page for schedule
+	- [x] Adjust query page for schedule
 		Other params than anime search
-	- [ ] Store last schedule query in database
-	- [ ] Fix: save anime from schedule
+	- [x] Store last schedule query in database
+	- [x] Fix: save anime from schedule
 		Favorites does not get saved correctly
 	- [ ] Add sliver headline for each day
 - [ ] Settings. Create settings page
