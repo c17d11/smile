@@ -81,6 +81,10 @@ class JikanApi {
     return res;
   }
 
+  String buildScheduleSearchQuery(ScheduleQuery query) {
+    return _scheduleSearchApi.buildQuery(query);
+  }
+
   Future<AnimeResponse> searchSchedule(ScheduleQuery query) async {
     AnimeResponse res = await _scheduleSearchApi.call(query);
     return res;

@@ -2,6 +2,7 @@ import 'package:app/controller/src/controller/genre_controller.dart';
 import 'package:app/controller/src/controller/producer_controller.dart';
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
+import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
 import 'package:app/database/src/populate_database.dart';
@@ -46,6 +47,17 @@ final animeSearchControllerPod = StateNotifierProvider.family<
   } else {
     controller.get(arg);
   }
+  return controller;
+});
+
+final animeScheduleSearchControllerPod = StateNotifierProvider.family<
+    AnimeSearchController,
+    AsyncValue<AnimeResponseIntern>,
+    ScheduleQueryIntern>((ref, arg) {
+  Database db = ref.watch(databasePod);
+  JikanApi api = ref.watch(apiPod);
+  AnimeSearchController controller = AnimeSearchController(db, api);
+  controller.getSchedule(arg);
   return controller;
 });
 

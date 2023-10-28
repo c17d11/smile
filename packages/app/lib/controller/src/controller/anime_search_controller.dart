@@ -1,3 +1,4 @@
+import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
 import 'package:app/database/src/isar/collection/isar_anime_response.dart';
@@ -23,9 +24,10 @@ class AnimeSearchController
     return resIntern;
   }
 
-    // TODO: move this function to 'state'
-    AnimeResponseIntern resIntern =
-        _database.createAnimeResponseIntern(res, query);
+  Future<AnimeResponseIntern> _getApiScheduleResponse(
+      ScheduleQuery query) async {
+    AnimeResponse res = await _api.searchSchedule(query);
+    AnimeResponseIntern resIntern = _database.createAnimeResponseIntern(res);
     return resIntern;
   }
 
@@ -39,6 +41,17 @@ class AnimeSearchController
     AnimeResponseIntern? res = await _getDatabaseResponse(queryString);
     if (res == null) {
       res = await _getApiResponse(query);
+      await _storeResponse(res);
+    }
+    return res;
+  }
+
+  Future<AnimeResponseIntern> _getScheduleResponse(ScheduleQuery query) async {
+    String queryString = _api.buildScheduleSearchQuery(query);
+
+    AnimeResponseIntern? res = await _getDatabaseResponse(queryString);
+    if (res == null) {
+      res = await _getApiScheduleResponse(query);
       await _storeResponse(res);
     }
     return res;
@@ -77,6 +90,17 @@ class AnimeSearchController
     } on JikanApiException catch (e, stacktrace) {
       state = AsyncError(e, stacktrace);
 
+      // TODO: Database error
+    }
+  }
+
+  Future<void> getSchedule(ScheduleQueryIntern query) async {
+    try {
+      state = const AsyncLoading();
+      AnimeResponseIntern res = await _getScheduleResponse(query);
+      state = AsyncValue.data(res);
+    } on JikanApiException catch (e, stacktrace) {
+      state = AsyncError(e, stacktrace);
       // TODO: Database error
     }
   }
