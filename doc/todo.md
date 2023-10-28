@@ -5,14 +5,6 @@ UI for the Jikan api.
 Tasks to be done at some point.
 
 ### Before 1.0.0
-- [ ] Schedule. View current season
-	- [x] Create anime list where each day is separated as a page
-	- [x] Adjust query page for schedule
-		Other params than anime search
-	- [x] Store last schedule query in database
-	- [x] Fix: save anime from schedule
-		Favorites does not get saved correctly
-	- [ ] Add sliver headline for each day
 - [ ] Settings. Create settings page
 	- [ ] Set jikan api rate limit
 	- [ ] Database section
@@ -64,3 +56,11 @@ Tasks to be done at some point.
 - [x] Store search for each page in database
 	To prevent reloading to default query both when switching page
 	and starting the app.
+- [x] Schedule. View current season
+	- [x] Create anime list where each day is separated as a page
+	- [x] Adjust query page for schedule
+		Other params than anime search
+	- [x] Store last schedule query in database
+	- [x] Fix: save anime from schedule
+		Favorites does not get saved correctly
+	- [x] Add sliver headline for each day
