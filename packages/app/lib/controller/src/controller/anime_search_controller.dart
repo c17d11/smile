@@ -12,13 +12,16 @@ class AnimeSearchController
   AnimeSearchController(this._database, this._api)
       : super(AsyncValue.data(IsarAnimeResponse(q: "")));
 
-  Future<AnimeResponseIntern?> _getDatabaseResponse(AnimeQuery query) async {
+  Future<AnimeResponseIntern?> _getDatabaseResponse(String query) async {
     AnimeResponseIntern? res = await _database.getAnimeResponse(query);
     return res;
   }
 
   Future<AnimeResponseIntern> _getApiResponse(AnimeQuery query) async {
     AnimeResponse res = await _api.searchAnimes(query);
+    AnimeResponseIntern resIntern = _database.createAnimeResponseIntern(res);
+    return resIntern;
+  }
 
     // TODO: move this function to 'state'
     AnimeResponseIntern resIntern =
@@ -31,7 +34,9 @@ class AnimeSearchController
   }
 
   Future<AnimeResponseIntern> _getResponse(AnimeQuery query) async {
-    AnimeResponseIntern? res = await _getDatabaseResponse(query);
+    String queryString = _api.buildAnimeSearchQuery(query);
+
+    AnimeResponseIntern? res = await _getDatabaseResponse(queryString);
     if (res == null) {
       res = await _getApiResponse(query);
       await _storeResponse(res);

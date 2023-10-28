@@ -17,10 +17,9 @@ abstract interface class AnimeModel {
 
 abstract interface class AnimeResponseModel {
   Future<void> insertAnimeResponse(AnimeResponseIntern res);
-  Future<AnimeResponseIntern?> getAnimeResponse(AnimeQuery query);
-  Future<bool> deleteAnimeResponse(AnimeQuery query);
-  AnimeResponseIntern createAnimeResponseIntern(
-      AnimeResponse res, AnimeQuery query);
+  Future<AnimeResponseIntern?> getAnimeResponse(String query);
+  Future<bool> deleteAnimeResponse(String query);
+  AnimeResponseIntern createAnimeResponseIntern(AnimeResponse res);
 }
 
 abstract interface class ProducerModel {

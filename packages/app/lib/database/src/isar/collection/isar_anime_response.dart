@@ -17,31 +17,8 @@ class IsarAnimeResponse extends AnimeResponseIntern {
 
   IsarAnimeResponse({required this.q});
 
-  static String createQueryString(AnimeQuery q) {
-    List<String> queries = [
-      "${q.searchTerm}",
-      "${q.type?.lowerCase}",
-      "${q.rating?.lowerCase}",
-      "${q.status?.lowerCase}",
-      "${q.minScore}",
-      "${q.maxScore}",
-      "${q.minYear}",
-      "${q.maxYear}",
-      "${q.sfw}",
-      "${q.producers}",
-      "${q.genresInclude}",
-      "${q.genresExclude}",
-      "${q.page}",
-      "${q.orderBy}",
-      "${q.sort}",
-    ];
-    String query = queries.join("-");
-    return query;
-  }
-
-  static IsarAnimeResponse from(AnimeResponse res, AnimeQuery query) {
-    String q = createQueryString(query);
-    IsarAnimeResponse isarRes = IsarAnimeResponse(q: q)
+  static IsarAnimeResponse from(AnimeResponse res) {
+    IsarAnimeResponse isarRes = IsarAnimeResponse(q: res.query!)
       ..date = res.date
       ..expires = res.expires
       ..pagination = res.pagination
