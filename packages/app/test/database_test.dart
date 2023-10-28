@@ -76,16 +76,19 @@ void main() {
     test('Insert Replaces Existing', () async {
       IsarAnime anime = IsarAnime.from(Anime()..malId = 1);
       List<IsarAnime> animes = [anime];
-      AnimeQuery query = AnimeQuery()
-        ..page = 1
-        ..rating = AnimeRating.g;
+      String query = "123";
+
       IsarAnimeResponse isarAnimeResponse =
-          IsarAnimeResponse.from(AnimeResponse()..data = animes, query);
+          IsarAnimeResponse.from(AnimeResponse()
+            ..query = query
+            ..data = animes);
 
       await db.insertAnimeResponse(isarAnimeResponse);
 
       IsarAnimeResponse isarAnimeResponse2 =
-          IsarAnimeResponse.from(AnimeResponse()..data = [], query);
+          IsarAnimeResponse.from(AnimeResponse()
+            ..query = query
+            ..data = []);
 
       await db.insertAnimeResponse(isarAnimeResponse2);
 
@@ -96,22 +99,22 @@ void main() {
     });
 
     test('Delete Fails If Not In Database', () async {
-      bool success = await db.deleteAnimeResponse(AnimeQuery());
+      bool success = await db.deleteAnimeResponse("123");
       expect(success, isFalse);
     });
 
     test('Delete Removes Item', () async {
       AnimeResponseIntern res =
-          IsarAnimeResponse.from(AnimeResponse(), AnimeQuery());
+          IsarAnimeResponse.from(AnimeResponse()..query = "");
       await db.insertAnimeResponse(res);
 
-      AnimeResponseIntern? ret = await db.getAnimeResponse(AnimeQuery());
+      AnimeResponseIntern? ret = await db.getAnimeResponse("");
       expect(ret, isNotNull);
 
-      bool success = await db.deleteAnimeResponse(AnimeQuery());
+      bool success = await db.deleteAnimeResponse("");
       expect(success, isTrue);
 
-      ret = await db.getAnimeResponse(AnimeQuery());
+      ret = await db.getAnimeResponse("");
       expect(ret, isNull);
     });
   });

@@ -19,6 +19,7 @@ class IsarAnimeResponse extends AnimeResponseIntern {
 
   static IsarAnimeResponse from(AnimeResponse res) {
     IsarAnimeResponse isarRes = IsarAnimeResponse(q: res.query!)
+      ..query = res.query
       ..date = res.date
       ..expires = res.expires
       ..pagination = res.pagination
