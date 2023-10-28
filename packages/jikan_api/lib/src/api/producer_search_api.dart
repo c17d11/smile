@@ -30,8 +30,8 @@ class ProducerSearchApi implements Api<ProducerQuery, ProducerResponse> {
 
   @override
   Future<ProducerResponse> call(ProducerQuery arg) async {
-    String query = buildQuery(arg);
-    HttpResult res = await client.get("producers$query");
+    String query = "producers${buildQuery(arg)}";
+    HttpResult res = await client.get(query);
     if (res.error != null) {
       JikanApiException error = errorParser.parse(res.error!);
       return Future.error(error);
@@ -40,6 +40,7 @@ class ProducerSearchApi implements Api<ProducerQuery, ProducerResponse> {
     Pagination pagination = paginationParser.parse(res.data ?? {});
     List<Producer> producers = producerSearchParser.parse(res.data ?? {});
     return ProducerResponse()
+      ..query = query
       ..pagination = pagination
       ..data = producers;
   }

@@ -3,6 +3,7 @@ import 'anime.dart';
 import 'producer.dart';
 
 abstract class Response<T> {
+  String? query;
   DateTime? date;
   DateTime? expires;
   Pagination? pagination;
