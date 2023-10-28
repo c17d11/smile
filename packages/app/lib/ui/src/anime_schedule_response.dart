@@ -9,8 +9,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class AnimeScheduleResponseView extends ConsumerWidget {
   final ScheduleQueryIntern query;
   final void Function(int?) onLastPage;
+  final bool bigHeader;
   const AnimeScheduleResponseView(
-      {required this.onLastPage, required this.query, super.key});
+      {required this.onLastPage,
+      required this.query,
+      super.key,
+      this.bigHeader = false});
 
   Widget buildLoading() {
     return const SliverFillRemaining(
@@ -32,8 +36,25 @@ class AnimeScheduleResponseView extends ConsumerWidget {
         child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Divider(),
-        TextHeadline("${res?.query} $currentPage / $lastPage")
+        if (bigHeader)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4),
+            child: Container(
+              width: double.infinity,
+              color: Colors.grey[300],
+              child: Padding(
+                padding: const EdgeInsets.all(4),
+                child: DefaultTextStyle(
+                  style: AppStyle.windowtitle,
+                  child: Text(
+                    "${query.day?.text}",
+                  ),
+                ),
+              ),
+            ),
+          ),
+        if (!bigHeader) const Divider(),
+        TextHeadline("$currentPage / $lastPage")
       ],
     ));
   }
