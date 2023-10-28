@@ -1,3 +1,5 @@
+import 'package:app/database/src/database_base.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class ScheduleQueryIntern extends ScheduleQuery {
@@ -55,5 +57,20 @@ class ScheduleQueryIntern extends ScheduleQuery {
       default:
         throw Exception('Wrong schedule query day');
     }
+  }
+}
+
+class ScheduleQueryNotifier extends StateNotifier<ScheduleQueryIntern> {
+  final Database db;
+  ScheduleQueryNotifier(this.db) : super(ScheduleQueryIntern());
+
+  Future<void> load() async {
+    ScheduleQueryIntern? query = await db.getScheduleQuery();
+    state = query ?? ScheduleQueryIntern();
+  }
+
+  Future<void> set(ScheduleQueryIntern newQuery) async {
+    await db.updateScheduleQuery(newQuery);
+    state = newQuery;
   }
 }

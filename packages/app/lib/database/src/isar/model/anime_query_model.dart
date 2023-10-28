@@ -1,7 +1,7 @@
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/database/src/isar/collection/isar_genre.dart';
 import 'package:app/database/src/isar/collection/isar_producer.dart';
-import 'package:app/database/src/isar/collection/isar_query.dart';
+import 'package:app/database/src/isar/collection/isar_anime_query.dart';
 import 'package:app/database/src/isar/model.dart';
 import 'package:app/database/src/model.dart';
 import 'package:isar/isar.dart';
@@ -10,10 +10,10 @@ class IsarAnimeQueryModel extends IsarModel implements AnimeQueryModel {
   IsarAnimeQueryModel(super.db);
 
   @override
-  Future<AnimeQueryIntern?> getQuery(String page) async {
-    IsarQuery? query;
+  Future<AnimeQueryIntern?> getAnimeQuery(String page) async {
+    IsarAnimeQuery? query;
     await read(() async {
-      query = await db.isarQuerys.filter().pageUiEqualTo(page).findFirst();
+      query = await db.isarAnimeQuerys.filter().pageUiEqualTo(page).findFirst();
     });
     query?.type = query?.isarType;
     query?.rating = query?.isarRating;
@@ -27,8 +27,8 @@ class IsarAnimeQueryModel extends IsarModel implements AnimeQueryModel {
   }
 
   @override
-  Future<void> updateQuery(String page, AnimeQueryIntern query) async {
-    IsarQuery isarQuery = IsarQuery.from(page, query);
+  Future<void> updateAnimeQuery(String page, AnimeQueryIntern query) async {
+    IsarAnimeQuery isarQuery = IsarAnimeQuery.from(page, query);
 
     List<IsarProducer> producers =
         isarQuery.producers?.map((e) => IsarProducer.from(e)).toList() ?? [];
@@ -50,7 +50,7 @@ class IsarAnimeQueryModel extends IsarModel implements AnimeQueryModel {
         await db.isarGenres.putAll(genresExclude);
         isarQuery.isarGenresExclude.addAll(genresExclude);
       }
-      await db.isarQuerys.put(isarQuery);
+      await db.isarAnimeQuerys.put(isarQuery);
       await isarQuery.isarProducers.save();
       await isarQuery.isarGenresInclude.save();
       await isarQuery.isarGenresExclude.save();

@@ -1,6 +1,7 @@
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/src/object/producer_response_intern.dart';
+import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:jikan_api/jikan_api.dart';
 
@@ -46,8 +47,13 @@ abstract interface class GenreModel {
 }
 
 abstract interface class AnimeQueryModel {
-  Future<void> updateQuery(String page, AnimeQueryIntern query);
-  Future<AnimeQueryIntern?> getQuery(String page);
+  Future<void> updateAnimeQuery(String page, AnimeQueryIntern query);
+  Future<AnimeQueryIntern?> getAnimeQuery(String page);
+}
+
+abstract interface class ScheduleQueryModel {
+  Future<void> updateScheduleQuery(ScheduleQueryIntern query);
+  Future<ScheduleQueryIntern?> getScheduleQuery();
 }
 
 abstract interface class ModelProxy
@@ -57,4 +63,5 @@ abstract interface class ModelProxy
         ProducerModel,
         ProducerResponseModel,
         GenreModel,
-        AnimeQueryModel {}
+        AnimeQueryModel,
+        ScheduleQueryModel {}

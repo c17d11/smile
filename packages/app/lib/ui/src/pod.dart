@@ -90,6 +90,14 @@ final animeQueryPod = StateNotifierProvider.family
   return notifier;
 });
 
+final scheduleQueryPod =
+    StateNotifierProvider<ScheduleQueryNotifier, ScheduleQueryIntern>((ref) {
+  Database db = ref.watch(databasePod);
+  final notifier = ScheduleQueryNotifier(db);
+  notifier.load();
+  return notifier;
+});
+
 extension AsyncValueUi on AsyncValue<AnimeResponseIntern> {
   bool get isLoading => this is AsyncLoading<AnimeResponseIntern>;
   bool get isError => this is AsyncError<AnimeResponseIntern>;

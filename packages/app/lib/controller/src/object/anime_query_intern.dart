@@ -51,12 +51,12 @@ class AnimeQueryNotifier extends StateNotifier<AnimeQueryIntern> {
   AnimeQueryNotifier(this.page, this.db) : super(AnimeQueryIntern());
 
   Future<void> load() async {
-    AnimeQueryIntern? query = await db.getQuery(page);
+    AnimeQueryIntern? query = await db.getAnimeQuery(page);
     state = query ?? AnimeQueryIntern();
   }
 
   Future<void> set(AnimeQueryIntern newQuery) async {
-    await db.updateQuery(page, newQuery);
+    await db.updateAnimeQuery(page, newQuery);
     state = newQuery;
   }
 }
