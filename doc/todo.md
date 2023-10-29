@@ -7,6 +7,7 @@ Tasks to be done at some point.
 ### Before 1.0.0
 - [ ] Settings. Create settings page
 	- [ ] Set jikan api rate limit
+	- [ ] Cache expiration length
 	- [ ] Database section
 		- [ ] Drop database
 		- [ ] View database size
