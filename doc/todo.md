@@ -5,13 +5,7 @@ UI for the Jikan api.
 Tasks to be done at some point.
 
 ### Before 1.0.0
-- [ ] Settings. Create settings page
-	- [ ] Set jikan api rate limit
-	- [ ] Cache expiration length
-	- [ ] Database section
-		- [ ] Drop database
-		- [ ] View database size
-		- [ ] Drop individual collection
+- [ ] Add expiration to responses
 - [ ] News page
 	- [ ] Section for api news
 		- [ ] Select which anime to watch for news updates
@@ -26,6 +20,7 @@ Tasks to be done at some point.
 	- [ ] Hero animation between list and details
 	- [ ] Check if other image from api response should be used
 - [ ] Refactor pod.dart
+- [ ] Verifiy that adjusting rate limit works.
 
 ### Future
 - [ ] Blacklist. Like favorite but opposite. The blacklisted should be hidden in the results
@@ -48,6 +43,12 @@ Tasks to be done at some point.
 
 
 ### Completed
+- [x] Settings. Create settings page
+	- [x] Set jikan api rate limit
+	- [x] Cache expiration length
+	- [x] Database section
+		- [x] Drop database
+		- [x] View database size
 - [x] Favorites. Mark animes as favorite and view favorites in separate page
 	- [x] Add functionality to heart button
 	- [x] Create favorite page
