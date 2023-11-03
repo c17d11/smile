@@ -2,6 +2,7 @@ import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/anime_favorite_page.dart';
 import 'package:app/ui/src/anime_list.dart';
 import 'package:app/ui/src/anime_schedule_page.dart';
+import 'package:app/ui/src/settings_page.dart';
 import 'package:flutter/material.dart';
 
 class HomeNavItem extends IconItem {
@@ -82,9 +83,7 @@ class SettingsNavItem extends IconItem {
 
   @override
   Widget buildContent() {
-    return Container(
-      color: Colors.purple[300],
-    );
+    return const SettingsPage();
   }
 }
 

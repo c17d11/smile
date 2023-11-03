@@ -1,7 +1,7 @@
 import 'package:isar/isar.dart';
 
 abstract class IsarModel {
-  final Isar db;
+  late final Isar db;
   IsarModel(this.db);
 
   Future<void> write(Future Function() f) async {
