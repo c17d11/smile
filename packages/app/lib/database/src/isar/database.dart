@@ -4,12 +4,14 @@ import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/src/object/producer_response_intern.dart';
 import 'package:app/controller/src/object/schedule_query_intern.dart';
+import 'package:app/controller/src/object/settings_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/database/src/isar/collection/isar_genre.dart';
 import 'package:app/database/src/isar/collection/isar_producer_response.dart';
 import 'package:app/database/src/isar/collection/isar_anime_query.dart';
 import 'package:app/database/src/isar/collection/isar_schedule_query.dart';
+import 'package:app/database/src/isar/collection/isar_settings.dart';
 import 'package:app/database/src/isar/model/anime_model.dart';
 import 'package:app/database/src/isar/model/anime_query_model.dart';
 import 'package:app/database/src/isar/model/anime_response_model.dart';
@@ -17,8 +19,10 @@ import 'package:app/database/src/isar/model/genre_model.dart';
 import 'package:app/database/src/isar/model/producer_model.dart';
 import 'package:app/database/src/isar/model/producer_response_model.dart';
 import 'package:app/database/src/isar/model/schedule_query_model.dart';
+import 'package:app/database/src/isar/model/settings_model.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'collection/isar_anime_response.dart';
 import 'collection/isar_producer.dart';
@@ -37,6 +41,7 @@ class IsarDatabase implements Database {
   late IsarAnimeQueryModel animeQueryModel = IsarAnimeQueryModel(instance);
   late IsarScheduleQueryModel scheduleQueryModel =
       IsarScheduleQueryModel(instance);
+  late IsarSettingsModel settingsModel = IsarSettingsModel(instance);
 
   @override
   Future<void> init() async {
@@ -52,6 +57,7 @@ class IsarDatabase implements Database {
           IsarGenreSchema,
           IsarAnimeQuerySchema,
           IsarScheduleQuerySchema,
+          IsarSettingsSchema,
         ],
         directory: dir.path,
         inspector: true,
@@ -77,7 +83,39 @@ class IsarDatabase implements Database {
   @override
   Future<void> remove() async {
     await init();
-    await instance.close(deleteFromDisk: true);
+    await instance.writeTxn(() async {
+      await instance.clear();
+    });
+  }
+
+  @override
+  Future<String> getDatabaseSize() async {
+    Directory dir = await getApplicationDocumentsDirectory();
+
+    try {
+      if (dir.existsSync()) {
+        int sizeBytes = 0;
+        dir
+            .listSync(recursive: true, followLinks: false)
+            .forEach((FileSystemEntity entity) {
+          if (entity is File &&
+              (basename(entity.path).endsWith("isar") ||
+                  basename(entity.path).endsWith("isar.lock"))) {
+            sizeBytes += entity.lengthSync();
+          }
+        });
+        if (sizeBytes > (1024 * 1024)) {
+          return "${(sizeBytes / (1024 * 1024)).toStringAsFixed(1)} MB";
+        }
+        if (sizeBytes > 1024) {
+          return "${(sizeBytes / 1024).toStringAsFixed(1)} KB";
+        }
+        return "$sizeBytes B";
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    return "Empty";
   }
 
   @override
@@ -225,6 +263,16 @@ class IsarDatabase implements Database {
   @override
   Future<void> updateScheduleQuery(ScheduleQueryIntern query) async {
     return await scheduleQueryModel.updateScheduleQuery(query);
+  }
+
+  @override
+  Future<Settings?> getSettings() async {
+    return await settingsModel.getSettings();
+  }
+
+  @override
+  Future<void> updateSettings(Settings s) async {
+    await settingsModel.updateSettings(s);
   }
 }
 

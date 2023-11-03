@@ -3,6 +3,7 @@ import 'package:app/controller/src/controller/producer_controller.dart';
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/src/object/schedule_query_intern.dart';
+import 'package:app/controller/src/object/settings_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
 import 'package:app/database/src/populate_database.dart';
@@ -11,11 +12,18 @@ import 'package:app/ui/src/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 final depencyInjectorPod = Provider((ref) => Injector()..setup());
 
 final apiPod = Provider<JikanApi>((ref) {
-  return ref.watch(depencyInjectorPod).container.resolve<JikanApi>();
+  final apiSettings = ref.watch(apiSettingsPod);
+  final api = ref.watch(depencyInjectorPod).container.resolve<JikanApi>();
+  api.setRequestRate(
+    requestsPerSecond: apiSettings.requestsPerSecond,
+    requestsPerMinute: apiSettings.requestsPerMinute,
+  );
+  return api;
 });
 
 final databasePod = Provider((ref) {
@@ -96,6 +104,23 @@ final scheduleQueryPod =
   final notifier = ScheduleQueryNotifier(db);
   notifier.load();
   return notifier;
+});
+
+final settingsPod = StateNotifierProvider<SettingsNotifier, Settings>((ref) {
+  Database db = ref.watch(databasePod);
+  final notifier = SettingsNotifier(db);
+  notifier.load();
+  return notifier;
+});
+
+final apiSettingsPod = Provider<JikanApiSettings>((ref) {
+  final settings = ref.watch(settingsPod);
+  return settings.apiSettings;
+});
+
+final packageInfoPod = FutureProvider<PackageInfo>((ref) async {
+  final info = await PackageInfo.fromPlatform();
+  return info;
 });
 
 extension AsyncValueUi on AsyncValue<AnimeResponseIntern> {

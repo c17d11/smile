@@ -2,6 +2,7 @@ import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/pod.dart';
+import 'package:app/ui/src/text_divider.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,23 +37,7 @@ class AnimeScheduleResponseView extends ConsumerWidget {
         child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (bigHeader)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Container(
-              width: double.infinity,
-              color: Colors.grey[300],
-              child: Padding(
-                padding: const EdgeInsets.all(4),
-                child: DefaultTextStyle(
-                  style: AppStyle.windowtitle,
-                  child: Text(
-                    "${query.day?.text}",
-                  ),
-                ),
-              ),
-            ),
-          ),
+        if (bigHeader) TextDivider("${query.day?.text}"),
         if (!bigHeader) const Divider(),
         TextHeadline("$currentPage / $lastPage")
       ],

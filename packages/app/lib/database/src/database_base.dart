@@ -15,5 +15,8 @@ abstract interface class Database implements ModelProxy {
   /// Remove all data including the database-files
   Future<void> remove();
 
+  /// Returns the database size as readable string.
+  Future<String> getDatabaseSize();
+
   factory Database() => database;
 }
