@@ -5,7 +5,7 @@ import 'package:app/database/src/model.dart';
 import 'package:isar/isar.dart';
 
 class IsarSettingsModel extends IsarModel implements SettingsModel {
-  IsarSettingsModel(super.db);
+  IsarSettingsModel(super.db, {required super.expirationHours});
 
   @override
   Future<Settings?> getSettings() async {

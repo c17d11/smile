@@ -5,7 +5,7 @@ import 'package:app/database/src/model.dart';
 import 'package:isar/isar.dart';
 
 class IsarScheduleQueryModel extends IsarModel implements ScheduleQueryModel {
-  IsarScheduleQueryModel(super.db);
+  IsarScheduleQueryModel(super.db, {required super.expirationHours});
 
   @override
   Future<ScheduleQueryIntern?> getScheduleQuery() async {

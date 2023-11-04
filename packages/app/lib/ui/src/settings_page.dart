@@ -69,7 +69,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         (s.dbSettings.cacheTimeoutHours!).toDouble(),
         stepSize: 1,
         showInts: true,
-        min: 1,
+        min: 0,
         max: 72,
         onChanged: (value) {
           if (value == null) {

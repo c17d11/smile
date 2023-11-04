@@ -1,4 +1,5 @@
 import 'package:app/controller/state.dart';
+import 'package:app/database/src/isar/collection/isar_expiration.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'isar_anime.dart';
@@ -6,7 +7,7 @@ import 'isar_anime.dart';
 part 'isar_anime_response.g.dart';
 
 @Collection(ignore: {'data', 'pagination'})
-class IsarAnimeResponse extends AnimeResponseIntern {
+class IsarAnimeResponse extends AnimeResponseIntern with IsarExpiration {
   Id? id;
 
   @Index(unique: true, replace: true)
@@ -15,7 +16,9 @@ class IsarAnimeResponse extends AnimeResponseIntern {
   final isarAnimes = IsarLinks<IsarAnime>();
   IsarPagination? isarPagination;
 
-  IsarAnimeResponse({required this.q});
+  IsarAnimeResponse({required this.q}) {
+    storedAt = DateTime.now();
+  }
 
   static IsarAnimeResponse from(AnimeResponse res) {
     IsarAnimeResponse isarRes = IsarAnimeResponse(q: res.query!)

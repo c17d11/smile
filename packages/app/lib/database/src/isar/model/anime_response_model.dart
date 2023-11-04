@@ -7,7 +7,7 @@ import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
-  IsarAnimeResponseModel(super.db);
+  IsarAnimeResponseModel(super.db, {required super.expirationHours});
 
   @override
   Future<void> insertAnimeResponse(AnimeResponseIntern arg) async {
@@ -33,6 +33,7 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
     await read(() async {
       res = await db.isarAnimeResponses.where().qEqualTo(query).findFirst();
     });
+    if (isExpired(res)) return null;
 
     res?.data = res?.isarAnimes.toList();
     res?.pagination = res?.isarPagination;

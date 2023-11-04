@@ -8,7 +8,7 @@ import 'package:jikan_api/jikan_api.dart';
 
 class IsarProducerResponseModel extends IsarModel
     implements ProducerResponseModel {
-  IsarProducerResponseModel(super.db);
+  IsarProducerResponseModel(super.db, {required super.expirationHours});
 
   @override
   Future<void> insertProducerResponse(ProducerResponseIntern arg) async {
@@ -37,7 +37,7 @@ class IsarProducerResponseModel extends IsarModel
           .qEqualTo(isarQuery)
           .findFirst();
     });
-
+    if (isExpired(res)) return null;
     res?.data = res?.isarProducers.toList();
     return res;
   }
