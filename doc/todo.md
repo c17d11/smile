@@ -5,7 +5,6 @@ UI for the Jikan api.
 Tasks to be done at some point.
 
 ### Before 1.0.0
-- [ ] Add expiration to responses
 - [ ] News page
 	- [ ] Section for api news
 		- [ ] Select which anime to watch for news updates
@@ -43,6 +42,7 @@ Tasks to be done at some point.
 
 
 ### Completed
+- [x] Add expiration to responses
 - [x] Settings. Create settings page
 	- [x] Set jikan api rate limit
 	- [x] Cache expiration length
