@@ -22,11 +22,6 @@ class JikanApi {
   late Http _primaryHttpClient;
   late Http _secondaryHttpClient;
 
-  final RateManger _rateManager = RateManger([
-    RateLimit(2, 1, const Duration(seconds: 1)),
-    RateLimit(50, 10, const Duration(seconds: 60)),
-  ]);
-
   late AnimeApi _animeApi;
   late AnimeSearchApi _animeSearchApi;
   late GenreSearchApi _genreSearchApi;
@@ -38,8 +33,12 @@ class JikanApi {
   late ScheduleFetchAllTask _fetchAllScheduleTask;
 
   JikanApi(this._httpClient) {
-    _primaryHttpClient = PrimaryHttpClient(_httpClient, _rateManager);
-    _secondaryHttpClient = SecondaryHttpClient(_httpClient, _rateManager);
+    setRequestRate();
+  }
+
+  void init(RateManger rateManager) {
+    _primaryHttpClient = PrimaryHttpClient(_httpClient, rateManager);
+    _secondaryHttpClient = SecondaryHttpClient(_httpClient, rateManager);
 
     _animeApi = AnimeApi(_primaryHttpClient);
     _animeSearchApi = AnimeSearchApi(_primaryHttpClient);
@@ -50,6 +49,17 @@ class JikanApi {
 
     _fetchAllProducerTask = ProducerFetchAllTask(_secondaryHttpClient);
     _fetchAllScheduleTask = ScheduleFetchAllTask(_secondaryHttpClient);
+  }
+
+  void setRequestRate({int? requestsPerSecond, int? requestsPerMinute}) {
+    init(
+      RateManger(
+        [
+          RateLimit(requestsPerSecond ?? 2, 1, const Duration(seconds: 1)),
+          RateLimit(requestsPerMinute ?? 50, 10, const Duration(seconds: 60)),
+        ],
+      ),
+    );
   }
 
   Future<Anime> getAnime(int malId) async {
