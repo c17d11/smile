@@ -1,10 +1,17 @@
 import 'package:app/controller/state.dart';
+import 'package:app/ui/src/anime_details.dart';
 import 'package:flutter/material.dart';
 
 class AnimePortrait extends StatelessWidget {
   final AnimeIntern? anime;
+  final String responseId;
   final void Function(AnimeIntern) onChange;
-  const AnimePortrait(this.anime, {required this.onChange, super.key});
+  const AnimePortrait(
+    this.anime, {
+    required this.responseId,
+    required this.onChange,
+    super.key,
+  });
 
   Widget buildNull() {
     return Card(
@@ -17,12 +24,16 @@ class AnimePortrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String heroTag = "$responseId-anime-${anime?.malId}";
     return anime == null
         ? buildNull()
         : GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, 'anime-details', arguments: anime)
-                  .then(
+              Navigator.pushNamed(
+                context,
+                'anime-details',
+                arguments: AnimeDetailsArgs(anime!, heroTag),
+              ).then(
                 (value) => onChange(value as AnimeIntern),
               );
             },
@@ -44,11 +55,14 @@ class AnimePortrait extends StatelessWidget {
                             Expanded(
                               child: Stack(
                                 children: [
-                                  Positioned.fill(
+                                  Hero(
+                                    tag: heroTag,
                                     child: FadeInImage.assetNetwork(
                                       placeholder: 'assets/coffee.webp',
                                       image: anime!.imageUrl ?? '',
                                       fit: BoxFit.cover,
+                                      width: double.infinity,
+                                      height: double.infinity,
                                       imageErrorBuilder:
                                           (context, error, stackTrace) =>
                                               Text(anime!.imageUrl ?? ""),

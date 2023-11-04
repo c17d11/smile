@@ -43,6 +43,12 @@ class AnimeQueryIntern extends AnimeQuery {
       ..isFavorite = q.isFavorite;
     return animeQueryIntern;
   }
+
+  static AnimeQueryIntern nextPage(AnimeQueryIntern q) {
+    AnimeQueryIntern query = AnimeQueryIntern.from(q);
+    query.page = (query.page ?? 1) + 1;
+    return query;
+  }
 }
 
 class AnimeQueryNotifier extends StateNotifier<AnimeQueryIntern> {
