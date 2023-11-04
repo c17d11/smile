@@ -29,7 +29,6 @@ class AnimeScheduleResponseView extends ConsumerWidget {
 
   Widget buildHeader(AnimeResponseIntern? res) {
     String currentPage = res?.pagination?.currentPage.toString() ?? "";
-    String lastPage = res?.pagination?.lastVisiblePage.toString() ?? "";
 
     onLastPage(res?.pagination?.lastVisiblePage);
 
@@ -38,8 +37,7 @@ class AnimeScheduleResponseView extends ConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (bigHeader) TextDivider("${query.day?.text}"),
-        if (!bigHeader) const Divider(),
-        TextHeadline("$currentPage / $lastPage")
+        if (!bigHeader) TextDivider("${query.day?.text} page $currentPage"),
       ],
     ));
   }

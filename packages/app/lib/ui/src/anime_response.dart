@@ -2,6 +2,7 @@ import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/pod.dart';
+import 'package:app/ui/src/text_divider.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,7 +32,9 @@ class AnimeResponseView extends ConsumerWidget {
     return SliverToBoxAdapter(
         child: Column(
       mainAxisSize: MainAxisSize.min,
-      children: [const Divider(), TextHeadline("$currentPage / $lastPage")],
+      children: [
+        TextDivider("Page $currentPage of $lastPage"),
+      ],
     ));
   }
 
