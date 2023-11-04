@@ -17,6 +17,8 @@ class AnimeFavoritePage extends ConsumerWidget {
     return AnimeList(
       page: page,
       initQuery: query..isFavorite = true,
+      onNextPageQuery: (query) => AnimeQueryIntern.nextPage(query),
+      onLastQuery: (query) => null,
       key: UniqueKey(),
     );
   }

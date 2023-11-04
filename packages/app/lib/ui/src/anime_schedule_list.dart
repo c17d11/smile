@@ -45,10 +45,8 @@ class _AnimeScheduleListState extends State<AnimeScheduleList> {
       ScheduleQueryIntern? newQuery = widget.onLastQuery(lastQuery);
       if (newQuery != null) {
         setState(() {
-          pages.addAll([
-            AnimeScheduleResponseView(
-                onLastPage: onLastPage, query: newQuery, bigHeader: true)
-          ]);
+          pages.add(AnimeScheduleResponseView(
+              onLastPage: onLastPage, query: newQuery, bigHeader: true));
         });
       }
     }

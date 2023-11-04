@@ -14,15 +14,29 @@ class AnimeListPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     AnimeQueryIntern query = ref.watch(animeQueryPod(page));
 
-    return AnimeList(page: page, initQuery: query, key: UniqueKey());
+    return AnimeList(
+      page: page,
+      initQuery: query,
+      onNextPageQuery: (query) => AnimeQueryIntern.nextPage(query),
+      onLastQuery: (query) => null,
+      key: UniqueKey(),
+    );
   }
 }
 
 class AnimeList extends StatefulWidget {
   final IconItem page;
   final AnimeQueryIntern initQuery;
+  final Function(AnimeQueryIntern) onNextPageQuery;
+  final Function(AnimeQueryIntern) onLastQuery;
 
-  const AnimeList({required this.page, required this.initQuery, super.key});
+  const AnimeList({
+    required this.page,
+    required this.initQuery,
+    required this.onNextPageQuery,
+    required this.onLastQuery,
+    super.key,
+  });
 
   @override
   State<AnimeList> createState() => _AnimeListState();
@@ -42,13 +56,23 @@ class _AnimeListState extends State<AnimeList> {
   }
 
   void loadNext() {
-    AnimeQueryIntern newQuery = AnimeQueryIntern.from(pages.last.query);
-    ++currentPage;
-    if (currentPage <= lastPage) {
-      newQuery.page = currentPage;
+    AnimeQueryIntern lastQuery = AnimeQueryIntern.from(pages.last.query);
+    AnimeQueryIntern newQuery = widget.onNextPageQuery(lastQuery);
+
+    if (newQuery.page! <= lastPage) {
       setState(() {
-        pages.add(AnimeResponseView(onLastPage: onLastPage, query: newQuery));
+        pages.add(AnimeResponseView(
+          onLastPage: onLastPage,
+          query: newQuery,
+        ));
       });
+    } else {
+      AnimeQueryIntern? newQuery = widget.onLastQuery(lastQuery);
+      if (newQuery != null) {
+        setState(() {
+          pages.add(AnimeResponseView(onLastPage: onLastPage, query: newQuery));
+        });
+      }
     }
   }
 
