@@ -155,4 +155,22 @@ void main() {
       expect(producers.length, equals(0));
     });
   });
+
+  group('Expiration', () {
+    setUp(() async {
+      AnimeIntern anime = IsarAnime.from(Anime()..malId = 10);
+      await db.insertAnime(anime..title = "1");
+    });
+
+    test('Get Anime When Not Expired', () async {
+      AnimeIntern? a = await db.getAnime(10);
+      expect(a, isNotNull);
+    });
+
+    test('Get Null When Expired', () async {
+      db.setExpirationHours(0);
+      AnimeIntern? a = await db.getAnime(10);
+      expect(a, isNull);
+    });
+  });
 }
