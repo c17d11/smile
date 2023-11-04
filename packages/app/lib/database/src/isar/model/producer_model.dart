@@ -5,7 +5,7 @@ import 'package:app/database/src/model.dart';
 import 'package:isar/isar.dart';
 
 class IsarProducerModel extends IsarModel implements ProducerModel {
-  IsarProducerModel(super.db);
+  IsarProducerModel(super.db, {required super.expirationHours});
 
   @override
   Future<void> insertProducer(ProducerIntern producer) async {
@@ -21,6 +21,7 @@ class IsarProducerModel extends IsarModel implements ProducerModel {
     await read(() async {
       producer = await db.isarProducers.get(id);
     });
+    if (isExpired(producer)) return null;
     return producer;
   }
 

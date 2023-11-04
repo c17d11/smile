@@ -6,7 +6,7 @@ import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class IsarGenreModel extends IsarModel implements GenreModel {
-  IsarGenreModel(super.db);
+  IsarGenreModel(super.db, {required super.expirationHours});
 
   @override
   Future<void> insertGenre(GenreIntern genre) async {
@@ -22,6 +22,7 @@ class IsarGenreModel extends IsarModel implements GenreModel {
     await read(() async {
       genre = await db.isarGenres.get(id);
     });
+    if (isExpired(genre)) return null;
     return genre;
   }
 

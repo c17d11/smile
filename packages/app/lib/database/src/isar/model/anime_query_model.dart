@@ -7,7 +7,7 @@ import 'package:app/database/src/model.dart';
 import 'package:isar/isar.dart';
 
 class IsarAnimeQueryModel extends IsarModel implements AnimeQueryModel {
-  IsarAnimeQueryModel(super.db);
+  IsarAnimeQueryModel(super.db, {required super.expirationHours});
 
   @override
   Future<AnimeQueryIntern?> getAnimeQuery(String page) async {

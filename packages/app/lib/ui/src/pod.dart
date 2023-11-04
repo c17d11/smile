@@ -30,6 +30,13 @@ final databasePod = Provider((ref) {
   return ref.watch(depencyInjectorPod).container.resolve<Database>();
 });
 
+final databaseUpdatePod = Provider((ref) {
+  final db = ref.watch(databasePod);
+  final dbSettings = ref.watch(databaseSettingsPod);
+  db.setExpirationHours(dbSettings.cacheTimeoutHours!);
+  return db;
+});
+
 final initPod = FutureProvider<bool>((ref) async {
   await ref.watch(databasePod).init();
 
@@ -47,7 +54,7 @@ final animeSearchControllerPod = StateNotifierProvider.family<
     AnimeSearchController,
     AsyncValue<AnimeResponseIntern>,
     AnimeQueryIntern>((ref, arg) {
-  Database db = ref.watch(databasePod);
+  Database db = ref.watch(databaseUpdatePod);
   JikanApi api = ref.watch(apiPod);
   AnimeSearchController controller = AnimeSearchController(db, api);
   if (arg.isFavorite ?? false) {
@@ -62,7 +69,7 @@ final animeScheduleSearchControllerPod = StateNotifierProvider.family<
     AnimeSearchController,
     AsyncValue<AnimeResponseIntern>,
     ScheduleQueryIntern>((ref, arg) {
-  Database db = ref.watch(databasePod);
+  Database db = ref.watch(databaseUpdatePod);
   JikanApi api = ref.watch(apiPod);
   AnimeSearchController controller = AnimeSearchController(db, api);
   controller.getSchedule(arg);
@@ -72,20 +79,20 @@ final animeScheduleSearchControllerPod = StateNotifierProvider.family<
 final producerPod =
     StateNotifierProvider<ProducerController, AsyncValue<List<ProducerIntern>>>(
         (ref) {
-  Database db = ref.watch(databasePod);
+  Database db = ref.watch(databaseUpdatePod);
   return ProducerController(db);
 });
 
 final genrePod =
     StateNotifierProvider<GenreController, AsyncValue<List<GenreIntern>>>(
         (ref) {
-  Database db = ref.watch(databasePod);
+  Database db = ref.watch(databaseUpdatePod);
   return GenreController(db);
 });
 
 final animeControllerPod =
     StateNotifierProvider<AnimeController, AsyncValue<AnimeIntern?>>((ref) {
-  Database db = ref.watch(databasePod);
+  Database db = ref.watch(databaseUpdatePod);
   JikanApi api = ref.watch(apiPod);
   return AnimeController(db, api);
 });
@@ -116,6 +123,11 @@ final settingsPod = StateNotifierProvider<SettingsNotifier, Settings>((ref) {
 final apiSettingsPod = Provider<JikanApiSettings>((ref) {
   final settings = ref.watch(settingsPod);
   return settings.apiSettings;
+});
+
+final databaseSettingsPod = Provider<DatabaseSettings>((ref) {
+  final settings = ref.watch(settingsPod);
+  return settings.dbSettings;
 });
 
 final packageInfoPod = FutureProvider<PackageInfo>((ref) async {

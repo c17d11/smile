@@ -1,4 +1,5 @@
 import 'package:app/controller/src/object/producer_response_intern.dart';
+import 'package:app/database/src/isar/collection/isar_expiration.dart';
 import 'package:app/database/src/isar/collection/isar_producer.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
@@ -6,7 +7,7 @@ import 'package:jikan_api/jikan_api.dart';
 part 'isar_producer_response.g.dart';
 
 @Collection(ignore: {'data', 'pagination'})
-class IsarProducerResponse extends ProducerResponseIntern {
+class IsarProducerResponse extends ProducerResponseIntern with IsarExpiration {
   Id? id;
 
   @Index(unique: true, replace: true)
@@ -14,7 +15,9 @@ class IsarProducerResponse extends ProducerResponseIntern {
 
   final isarProducers = IsarLinks<IsarProducer>();
 
-  IsarProducerResponse({required this.q});
+  IsarProducerResponse({required this.q}) {
+    storedAt = DateTime.now();
+  }
 
   static String createQueryString(ProducerQuery q) {
     List<String> queries = [

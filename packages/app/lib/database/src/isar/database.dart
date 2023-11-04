@@ -31,17 +31,22 @@ import '../database_base.dart';
 class IsarDatabase implements Database {
   late final Isar instance;
 
-  late IsarAnimeModel animeModel = IsarAnimeModel(instance);
+  late IsarAnimeModel animeModel =
+      IsarAnimeModel(instance, expirationHours: 24);
   late IsarAnimeResponseModel animeResponseModel =
-      IsarAnimeResponseModel(instance);
-  late IsarProducerModel producerModel = IsarProducerModel(instance);
+      IsarAnimeResponseModel(instance, expirationHours: 24);
+  late IsarProducerModel producerModel =
+      IsarProducerModel(instance, expirationHours: 24);
   late IsarProducerResponseModel producerResponseModel =
-      IsarProducerResponseModel(instance);
-  late IsarGenreModel genreModel = IsarGenreModel(instance);
-  late IsarAnimeQueryModel animeQueryModel = IsarAnimeQueryModel(instance);
+      IsarProducerResponseModel(instance, expirationHours: 24);
+  late IsarGenreModel genreModel =
+      IsarGenreModel(instance, expirationHours: 24);
+  late IsarAnimeQueryModel animeQueryModel =
+      IsarAnimeQueryModel(instance, expirationHours: 24);
   late IsarScheduleQueryModel scheduleQueryModel =
-      IsarScheduleQueryModel(instance);
-  late IsarSettingsModel settingsModel = IsarSettingsModel(instance);
+      IsarScheduleQueryModel(instance, expirationHours: 24);
+  late IsarSettingsModel settingsModel =
+      IsarSettingsModel(instance, expirationHours: 24);
 
   @override
   Future<void> init() async {
@@ -273,6 +278,18 @@ class IsarDatabase implements Database {
   @override
   Future<void> updateSettings(Settings s) async {
     await settingsModel.updateSettings(s);
+  }
+
+  @override
+  void setExpirationHours(int hours) {
+    animeModel.expirationHours = hours;
+    animeResponseModel.expirationHours = hours;
+    producerModel.expirationHours = hours;
+    producerResponseModel.expirationHours = hours;
+    genreModel.expirationHours = hours;
+    animeQueryModel.expirationHours = hours;
+    scheduleQueryModel.expirationHours = hours;
+    settingsModel.expirationHours = hours;
   }
 }
 

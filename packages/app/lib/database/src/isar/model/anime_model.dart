@@ -6,7 +6,7 @@ import 'package:jikan_api/jikan_api.dart';
 import '../collection/isar_anime.dart';
 
 class IsarAnimeModel extends IsarModel implements AnimeModel {
-  IsarAnimeModel(super.db);
+  IsarAnimeModel(super.db, {required super.expirationHours});
 
   @override
   Future<void> insertAnime(AnimeIntern anime) async {
@@ -22,6 +22,7 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
     await read(() async {
       anime = await db.isarAnimes.get(malId);
     });
+    if (isExpired(anime)) return null;
     return anime;
   }
 

@@ -1,4 +1,5 @@
 import 'package:app/controller/state.dart';
+import 'package:app/database/src/isar/collection/isar_expiration.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'isar_producer.dart';
@@ -6,12 +7,14 @@ import 'isar_producer.dart';
 part 'isar_anime.g.dart';
 
 @Collection(ignore: {'producers', 'genres'})
-class IsarAnime extends AnimeIntern {
+class IsarAnime extends AnimeIntern with IsarExpiration {
   @Index(unique: true, replace: true)
   Id id;
   final isarProducers = IsarLinks<IsarProducer>();
 
-  IsarAnime({required this.id});
+  IsarAnime({required this.id}) {
+    storedAt = DateTime.now();
+  }
 
   static IsarAnime fromIntern(AnimeIntern t) {
     IsarAnime anime = from(t);
