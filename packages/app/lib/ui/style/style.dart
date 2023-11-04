@@ -125,6 +125,15 @@ class ResetIcon extends ActionIcon {
         );
 }
 
+class InfoIcon extends ActionIcon {
+  InfoIcon({super.onPressed, super.key})
+      : super(
+          icon: const Icon(Icons.question_mark),
+          color: Colors.grey[600],
+          disabledColor: Colors.grey[600],
+        );
+}
+
 abstract class ActionIcon extends StatelessWidget {
   final Icon icon;
   final Color? disabledColor;
