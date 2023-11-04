@@ -123,7 +123,9 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails> {
 
   @override
   Widget build(BuildContext context) {
-    final anime = ModalRoute.of(context)?.settings.arguments as AnimeIntern;
+    final animeArgs =
+        ModalRoute.of(context)?.settings.arguments as AnimeDetailsArgs;
+    final anime = animeArgs.anime;
     const collapsedBarHeight = 60.0;
     const expandedBarHeight = 600.0;
 
@@ -184,7 +186,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Hero(
-                          tag: "anime-${anime.malId}",
+                          tag: animeArgs.heroTag,
                           child: FadeInImage.assetNetwork(
                             placeholder: 'assets/coffee.webp',
                             image: anime.imageUrl ?? '',
@@ -390,4 +392,10 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails> {
     //   },
     // );
   }
+}
+
+class AnimeDetailsArgs {
+  final AnimeIntern anime;
+  final String heroTag;
+  const AnimeDetailsArgs(this.anime, this.heroTag);
 }
