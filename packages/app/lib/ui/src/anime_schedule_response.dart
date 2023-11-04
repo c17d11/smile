@@ -44,12 +44,13 @@ class AnimeScheduleResponseView extends ConsumerWidget {
     ));
   }
 
-  Widget buildAnimeList(WidgetRef ref, List<AnimeIntern> animes) {
+  Widget buildAnimeList(WidgetRef ref, int? page, List<AnimeIntern> animes) {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         childCount: animes.length,
         (context, index) => AnimePortrait(
           animes[index],
+          responseId: page.toString(),
           onChange: (value) => ref
               .read(animeScheduleSearchControllerPod(query).notifier)
               .update(value),
@@ -81,7 +82,11 @@ class AnimeScheduleResponseView extends ConsumerWidget {
             : SliverMainAxisGroup(
                 slivers: <Widget>[
                   buildHeader(resIntern),
-                  buildAnimeList(ref, animes),
+                  buildAnimeList(
+                    ref,
+                    resIntern?.pagination?.currentPage,
+                    animes,
+                  ),
                 ],
               );
   }

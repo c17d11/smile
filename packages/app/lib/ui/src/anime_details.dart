@@ -183,11 +183,14 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        FadeInImage.assetNetwork(
-                          placeholder: 'assets/coffee.webp',
-                          image: anime.imageUrl ?? '',
-                          fit: BoxFit.cover,
-                          alignment: Alignment.center,
+                        Hero(
+                          tag: "anime-${anime.malId}",
+                          child: FadeInImage.assetNetwork(
+                            placeholder: 'assets/coffee.webp',
+                            image: anime.imageUrl ?? '',
+                            // fit: BoxFit.cover,
+                            alignment: Alignment.center,
+                          ),
                         ),
                         const SizedBox(height: 10),
                         Text(
