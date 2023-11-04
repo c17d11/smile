@@ -19,3 +19,6 @@ pubspec.lock
 .flutter-plugins*
 
 **/*.g.dart
+
+**/*.isar
+**/*.isar.lock
