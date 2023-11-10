@@ -11,6 +11,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import 'package:tuple/tuple.dart';
 
+const Color _background = Colors.black;
+final Color _backgroundSecondary = Colors.grey[900]!;
+final Color _foreground = Colors.grey[300]!;
+final Color _foregroundSecondary = Colors.grey[400]!;
+
 class CustomChip extends StatelessWidget {
   final Widget child;
 
@@ -20,9 +25,9 @@ class CustomChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.grey[200],
+          color: _backgroundSecondary,
           borderRadius: BorderRadius.circular(100),
-          border: Border.all(color: Colors.grey[300]!)),
+          border: Border.all(color: _backgroundSecondary)),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         child: child,
@@ -41,7 +46,7 @@ class CustomTextChip extends CustomChip {
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              color: Colors.grey[800]!,
+              color: _foregroundSecondary,
             ),
           ),
         );
@@ -56,14 +61,14 @@ class CustomIconTextChip extends CustomChip {
               Icon(
                 icon,
                 size: 16,
-                color: Colors.grey[800]!,
+                color: _foregroundSecondary,
               ),
               Text(
                 text,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: Colors.grey[800]!,
+                  color: _foregroundSecondary,
                 ),
               ),
             ],
@@ -86,8 +91,7 @@ class CustomDisplayRow extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> prods = items.map((e) => CustomTextChip(text: e)).toList();
 
-    return Container(
-      color: Colors.grey[200],
+    return SizedBox(
       width: width,
       child: Padding(
         padding: const EdgeInsets.all(10),
@@ -100,7 +104,7 @@ class CustomDisplayRow extends StatelessWidget {
               style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w800,
-                  color: Colors.grey[800]),
+                  color: _foreground),
             ),
             if (prods.isNotEmpty) ...[
               const SizedBox(height: 5),
@@ -132,178 +136,165 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
   }
 
   Widget buildApiContent(AnimeIntern anime) {
-    return Container(
-      color: Colors.grey[300],
-      child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 2.5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 2.5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            alignment: WrapAlignment.spaceEvenly,
             children: [
-              Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                alignment: WrapAlignment.spaceEvenly,
-                children: [
-                  IntrinsicHeight(
-                    child: CustomDisplayRow(
-                        width: MediaQuery.of(context).size.width / 3 - 15,
-                        title: "TYPE",
-                        items: [anime.type ?? '']),
-                  ),
-                  IntrinsicHeight(
-                    child: CustomDisplayRow(
-                        width: MediaQuery.of(context).size.width / 3 - 15,
-                        title: "STATUS",
-                        items: [anime.status ?? '']),
-                  ),
-                  IntrinsicHeight(
-                    child: CustomDisplayRow(
-                        width: MediaQuery.of(context).size.width / 3 - 15,
-                        title: "RATING",
-                        items: [anime.rating ?? '']),
-                  ),
-                ],
+              IntrinsicHeight(
+                child: CustomDisplayRow(
+                    width: MediaQuery.of(context).size.width / 3 - 15,
+                    title: "TYPE",
+                    items: [anime.type ?? '']),
               ),
-              const SizedBox(height: 10),
-              CustomDisplayRow(
-                  width: MediaQuery.of(context).size.width,
-                  title: "PRODUCERS",
-                  items: anime.producers
-                          ?.map<String>((e) => e.title ?? "")
-                          .where((e) => e != "")
-                          .toList() ??
-                      []),
-              const SizedBox(height: 10),
-              CustomDisplayRow(
-                  width: MediaQuery.of(context).size.width,
-                  title: "GENRES",
-                  items: anime.genres
-                          ?.map<String>((e) => e.name ?? "")
-                          .where((e) => e != "")
-                          .toList() ??
-                      []),
-              const SizedBox(height: 10),
-              Container(
-                color: Colors.grey[200],
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text(
-                        'SYNPOSIS',
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                            color: Colors.grey[800]),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        '${anime.synopsis}',
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w800,
-                            color: Colors.grey[800]),
-                      ),
-                    ],
-                  ),
-                ),
+              IntrinsicHeight(
+                child: CustomDisplayRow(
+                    width: MediaQuery.of(context).size.width / 3 - 15,
+                    title: "STATUS",
+                    items: [anime.status ?? '']),
               ),
-              const SizedBox(height: 10),
-              Container(
-                color: Colors.grey[200],
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text(
-                        'BACKGROUND',
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                            color: Colors.grey[800]),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        '${anime.background}',
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w800,
-                            color: Colors.grey[800]),
-                      ),
-                    ],
-                  ),
-                ),
+              IntrinsicHeight(
+                child: CustomDisplayRow(
+                    width: MediaQuery.of(context).size.width / 3 - 15,
+                    title: "RATING",
+                    items: [anime.rating ?? '']),
               ),
             ],
-          )),
+          ),
+          const SizedBox(height: 10),
+          CustomDisplayRow(
+              width: MediaQuery.of(context).size.width,
+              title: "PRODUCERS",
+              items: anime.producers
+                      ?.map<String>((e) => e.title ?? "")
+                      .where((e) => e != "")
+                      .toList() ??
+                  []),
+          const SizedBox(height: 10),
+          CustomDisplayRow(
+              width: MediaQuery.of(context).size.width,
+              title: "GENRES",
+              items: anime.genres
+                      ?.map<String>((e) => e.name ?? "")
+                      .where((e) => e != "")
+                      .toList() ??
+                  []),
+          const SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Text(
+                  'SYNPOSIS',
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                      color: _foreground),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  '${anime.synopsis}',
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w800,
+                      color: _foregroundSecondary),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Text(
+                  'BACKGROUND',
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                      color: _foreground),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  '${anime.background}',
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w800,
+                      color: _foregroundSecondary),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   Widget buildCustomContent(AnimeIntern anime) {
-    return Container(
-      color: Colors.grey[300],
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 2.5),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            anime.isFavorite = !(anime.isFavorite ?? false);
-                          });
-                        },
-                        child: Icon(
-                          (anime.isFavorite ?? false)
-                              ? Icons.favorite
-                              : Icons.favorite_outline,
-                          size: 24,
-                          color: Colors.red[700],
-                        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 2.5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(5),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          anime.isFavorite = !(anime.isFavorite ?? false);
+                        });
+                      },
+                      child: Icon(
+                        (anime.isFavorite ?? false)
+                            ? Icons.favorite
+                            : Icons.favorite_outline,
+                        size: 24,
+                        color: Colors.red[700],
                       ),
-                    ],
-                  ),
-                  Material(
-                    child: SliderSelect(
-                      "Personal score",
-                      """How about it?""",
-                      5,
-                      stepSize: 0.5,
-                      showInts: false,
-                      min: 0,
-                      max: 10,
-                      onChanged: (value) {},
                     ),
-                  ),
-                  MultiSelect<GenreIntern>(
-                    title: "Tags",
-                    tristate: false,
-                    loadOptions: loadGenres,
-                    initialSelected: [],
-                    onChangedInclude: (items) {},
-                  ),
-                  const TextField(
-                    maxLines: null,
-                    keyboardType: TextInputType.multiline,
-                  ),
-                ],
-              ),
+                  ],
+                ),
+                SliderSelect(
+                  "Personal score",
+                  """How about it?""",
+                  5,
+                  stepSize: 0.5,
+                  showInts: false,
+                  min: 0,
+                  max: 10,
+                  onChanged: (value) {},
+                ),
+                MultiSelect<GenreIntern>(
+                  title: "Tags",
+                  tristate: false,
+                  loadOptions: loadGenres,
+                  initialSelected: [],
+                  onChangedInclude: (items) {},
+                ),
+                const TextField(
+                  maxLines: null,
+                  keyboardType: TextInputType.multiline,
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -321,6 +312,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
     ];
 
     return Scaffold(
+      backgroundColor: _background,
       body: DefaultTabController(
         length: tabs.length,
         child: NestedScrollView(
@@ -331,9 +323,9 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
               sliver: MultiSliver(
                 children: [
                   SliverAppBar(
-                    backgroundColor: Colors.black,
+                    backgroundColor: _background,
                     leading: BackButton(
-                      color: Colors.white,
+                      color: _foreground,
                       onPressed: () {
                         Navigator.pop(context, anime);
                       },
@@ -345,7 +337,6 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                     flexibleSpace: LayoutBuilder(builder:
                         (BuildContext context, BoxConstraints constraints) {
                       var top = constraints.biggest.height;
-
                       return FlexibleSpaceBar(
                         titlePadding: EdgeInsets.zero,
                         title: Container(
@@ -381,8 +372,8 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                                           .round() *
                                       (3 - 1),
                               overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                color: Colors.white,
+                              style: TextStyle(
+                                color: _foreground,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w400,
                               ),
@@ -456,21 +447,14 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                     delegate: SliverAppBarDelegate(
                       minHeight: 40,
                       maxHeight: 40,
-                      child: Material(
-                        child: Container(
-                          color: Colors.grey[300],
-                          child: TabBar(
-                            tabs: tabs
-                                .map((e) => Tab(
-                                        child: Text(
-                                      e.item1.toUpperCase(),
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                    )))
-                                .toList(),
-                          ),
-                        ),
+                      child: TabBar(
+                        indicatorColor: _foregroundSecondary,
+                        labelColor: _foreground,
+                        unselectedLabelColor: _foregroundSecondary,
+                        dividerColor: _foreground,
+                        tabs: tabs
+                            .map((e) => Tab(child: Text(e.item1.toUpperCase())))
+                            .toList(),
                       ),
                     ),
                   ),
