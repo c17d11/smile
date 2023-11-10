@@ -1,8 +1,15 @@
 import 'dart:ui';
 
+import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/state.dart';
+import 'package:app/ui/selection_widget/src/multiple_select.dart';
+import 'package:app/ui/src/pod.dart';
+import 'package:app/ui/src/slider_select.dart';
+import 'package:app/ui/src/sliver_app_bar_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sliver_tools/sliver_tools.dart';
+import 'package:tuple/tuple.dart';
 
 class CustomChip extends StatelessWidget {
   final Widget child;
@@ -67,7 +74,7 @@ class CustomIconTextChip extends CustomChip {
 class CustomDisplayRow extends StatelessWidget {
   final List<String> items;
   final String title;
-  final width;
+  final double width;
 
   const CustomDisplayRow(
       {required this.title,
@@ -117,280 +124,379 @@ class AnimeDetails extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _AnimeDetailsState();
 }
 
-class _AnimeDetailsState extends ConsumerState<AnimeDetails> {
-  bool isCollapsed = false;
-  final scroll = ScrollController();
+class _AnimeDetailsState extends ConsumerState<AnimeDetails>
+    with SingleTickerProviderStateMixin {
+  Future<List<GenreIntern>> loadGenres() async {
+    await ref.read(genrePod.notifier).get();
+    return ref.read(genrePod).value ?? [];
+  }
+
+  Widget buildApiContent(AnimeIntern anime) {
+    return Container(
+      color: Colors.grey[300],
+      child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 2.5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                alignment: WrapAlignment.spaceEvenly,
+                children: [
+                  IntrinsicHeight(
+                    child: CustomDisplayRow(
+                        width: MediaQuery.of(context).size.width / 3 - 15,
+                        title: "TYPE",
+                        items: [anime.type ?? '']),
+                  ),
+                  IntrinsicHeight(
+                    child: CustomDisplayRow(
+                        width: MediaQuery.of(context).size.width / 3 - 15,
+                        title: "STATUS",
+                        items: [anime.status ?? '']),
+                  ),
+                  IntrinsicHeight(
+                    child: CustomDisplayRow(
+                        width: MediaQuery.of(context).size.width / 3 - 15,
+                        title: "RATING",
+                        items: [anime.rating ?? '']),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              CustomDisplayRow(
+                  width: MediaQuery.of(context).size.width,
+                  title: "PRODUCERS",
+                  items: anime.producers
+                          ?.map<String>((e) => e.title ?? "")
+                          .where((e) => e != "")
+                          .toList() ??
+                      []),
+              const SizedBox(height: 10),
+              CustomDisplayRow(
+                  width: MediaQuery.of(context).size.width,
+                  title: "GENRES",
+                  items: anime.genres
+                          ?.map<String>((e) => e.name ?? "")
+                          .where((e) => e != "")
+                          .toList() ??
+                      []),
+              const SizedBox(height: 10),
+              Container(
+                color: Colors.grey[200],
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'SYNPOSIS',
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.grey[800]),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        '${anime.synopsis}',
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.grey[800]),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Container(
+                color: Colors.grey[200],
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'BACKGROUND',
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.grey[800]),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        '${anime.background}',
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.grey[800]),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          )),
+    );
+  }
+
+  Widget buildCustomContent(AnimeIntern anime) {
+    return Container(
+      color: Colors.grey[300],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 2.5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(5),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            anime.isFavorite = !(anime.isFavorite ?? false);
+                          });
+                        },
+                        child: Icon(
+                          (anime.isFavorite ?? false)
+                              ? Icons.favorite
+                              : Icons.favorite_outline,
+                          size: 24,
+                          color: Colors.red[700],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Material(
+                    child: SliderSelect(
+                      "Personal score",
+                      """How about it?""",
+                      5,
+                      stepSize: 0.5,
+                      showInts: false,
+                      min: 0,
+                      max: 10,
+                      onChanged: (value) {},
+                    ),
+                  ),
+                  MultiSelect<GenreIntern>(
+                    title: "Tags",
+                    tristate: false,
+                    loadOptions: loadGenres,
+                    initialSelected: [],
+                    onChangedInclude: (items) {},
+                  ),
+                  const TextField(
+                    maxLines: null,
+                    keyboardType: TextInputType.multiline,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final animeArgs =
         ModalRoute.of(context)?.settings.arguments as AnimeDetailsArgs;
     final anime = animeArgs.anime;
-    const collapsedBarHeight = 60.0;
     const expandedBarHeight = 600.0;
 
-    return NotificationListener<ScrollNotification>(
-      onNotification: (notification) {
-        setState(() {
-          isCollapsed = scroll.hasClients &&
-              scroll.offset > (expandedBarHeight - collapsedBarHeight);
-        });
-        return false;
-      },
-      child: CustomScrollView(
-        controller: scroll,
-        physics: const AlwaysScrollableScrollPhysics(),
-        slivers: <Widget>[
-          SliverAppBar(
-            backgroundColor: isCollapsed ? Colors.black : Colors.white,
-            leading: BackButton(
-              color: Colors.white,
-              onPressed: () {
-                Navigator.pop(context, anime);
-              },
-            ),
-            pinned: true,
-            expandedHeight: expandedBarHeight,
-            collapsedHeight: collapsedBarHeight,
-            flexibleSpace: FlexibleSpaceBar(
-              title: isCollapsed
-                  ? Text(
-                      "${anime.title}",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    )
-                  : null,
-              background: Stack(
-                alignment: AlignmentDirectional.center,
+    List<Tuple2<String, Widget>> tabs = [
+      Tuple2("info", buildApiContent(anime)),
+      Tuple2("notes", buildCustomContent(anime)),
+    ];
+
+    return Scaffold(
+      body: DefaultTabController(
+        length: tabs.length,
+        child: NestedScrollView(
+          headerSliverBuilder:
+              (BuildContext context, bool innerBoxIsScrolled) => <Widget>[
+            SliverOverlapAbsorber(
+              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+              sliver: MultiSliver(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                      image: NetworkImage(
-                        anime.imageUrl ?? '',
-                      ),
-                      fit: BoxFit.cover,
-                    )),
-                    height: MediaQuery.of(context).size.height,
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
-                      child: Container(
-                        decoration:
-                            BoxDecoration(color: Colors.black.withOpacity(0.3)),
-                      ),
+                  SliverAppBar(
+                    backgroundColor: Colors.black,
+                    leading: BackButton(
+                      color: Colors.white,
+                      onPressed: () {
+                        Navigator.pop(context, anime);
+                      },
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Hero(
-                          tag: animeArgs.heroTag,
-                          child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/coffee.webp',
-                            image: anime.imageUrl ?? '',
-                            // fit: BoxFit.cover,
-                            alignment: Alignment.center,
+                    pinned: true,
+                    expandedHeight: expandedBarHeight,
+                    forceElevated: innerBoxIsScrolled,
+                    collapsedHeight: kToolbarHeight, // this is the default
+                    flexibleSpace: LayoutBuilder(builder:
+                        (BuildContext context, BoxConstraints constraints) {
+                      var top = constraints.biggest.height;
+
+                      return FlexibleSpaceBar(
+                        titlePadding: EdgeInsets.zero,
+                        title: Container(
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Color(0x00000000),
+                                Color(0x90000000),
+                              ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          "${anime.title}",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 27,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        Wrap(
-                          spacing: 5,
-                          runSpacing: 5,
-                          alignment: WrapAlignment.center,
-                          children: [
-                            CustomTextChip(text: "${anime.year}"),
-                            CustomIconTextChip(
-                                text: "${anime.score}", icon: Icons.star),
-                            CustomTextChip(text: "${anime.episodes} episodes"),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: ConstrainedBox(
-              constraints:
-                  BoxConstraints(minHeight: MediaQuery.of(context).size.height),
-              child: Container(
-                color: Colors.grey[300],
-                child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 5, horizontal: 2.5),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(5),
-                          child: Container(
-                            color: Colors.grey[200],
-                            child: Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  // Text(
-                                  //   "Rate ",
-                                  //   style: TextStyle(
-                                  //       fontSize: 14,
-                                  //       fontWeight: FontWeight.w800,
-                                  //       color: Colors.grey[800]),
-                                  // ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        anime.isFavorite =
-                                            !(anime.isFavorite ?? false);
-                                      });
-                                      // ref
-                                      //     .read(animeControllerPod
-                                      //         .notifier)
-                                      //     .update(anime
-                                      //       ..isFavorite =
-                                      //           !(anime.isFavorite ??
-                                      //               false));
-                                    },
-                                    child: Icon(
-                                      (anime.isFavorite ?? false)
-                                          ? Icons.favorite
-                                          : Icons.favorite_outline,
-                                      size: 24,
-                                      color: Colors.red[700],
-                                    ),
-                                  ),
-                                ],
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.only(
+                              start: 72 +
+                                  (top - kToolbarHeight) /
+                                      (expandedBarHeight - kToolbarHeight) *
+                                      (20 - 72),
+                              bottom: 16,
+                              top: 16 +
+                                  (top - kToolbarHeight) /
+                                      (expandedBarHeight - kToolbarHeight) *
+                                      (30 - 16),
+                            ),
+                            child: Text(
+                              "${anime.title}",
+                              maxLines: 1 +
+                                  ((top - kToolbarHeight) /
+                                              (expandedBarHeight -
+                                                  kToolbarHeight))
+                                          .round() *
+                                      (3 - 1),
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400,
                               ),
                             ),
                           ),
                         ),
-                        Wrap(
-                          spacing: 10,
-                          runSpacing: 10,
-                          alignment: WrapAlignment.spaceEvenly,
+                        collapseMode: CollapseMode.parallax,
+                        stretchModes: const [
+                          StretchMode.zoomBackground,
+                          StretchMode.blurBackground,
+                          StretchMode.fadeTitle,
+                        ],
+                        background: Stack(
+                          alignment: AlignmentDirectional.center,
                           children: [
-                            IntrinsicHeight(
-                              child: CustomDisplayRow(
-                                  width: MediaQuery.of(context).size.width / 3 -
-                                      15,
-                                  title: "TYPE",
-                                  items: [anime.type ?? '']),
+                            Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                image: NetworkImage(
+                                  anime.imageUrl ?? '',
+                                ),
+                                fit: BoxFit.cover,
+                              )),
+                              height: MediaQuery.of(context).size.height,
+                              child: BackdropFilter(
+                                filter:
+                                    ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.3)),
+                                ),
+                              ),
                             ),
-                            IntrinsicHeight(
-                              child: CustomDisplayRow(
-                                  width: MediaQuery.of(context).size.width / 3 -
-                                      15,
-                                  title: "STATUS",
-                                  items: [anime.status ?? '']),
-                            ),
-                            IntrinsicHeight(
-                              child: CustomDisplayRow(
-                                  width: MediaQuery.of(context).size.width / 3 -
-                                      15,
-                                  title: "RATING",
-                                  items: [anime.rating ?? '']),
+                            Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Hero(
+                                    tag: animeArgs.heroTag,
+                                    child: FadeInImage.assetNetwork(
+                                      placeholder: 'assets/coffee.webp',
+                                      image: anime.imageUrl ?? '',
+                                      alignment: Alignment.center,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 20),
+                                  Wrap(
+                                    spacing: 5,
+                                    runSpacing: 5,
+                                    alignment: WrapAlignment.center,
+                                    children: [
+                                      CustomTextChip(text: "${anime.year}"),
+                                      CustomIconTextChip(
+                                          text: "${anime.score}",
+                                          icon: Icons.star),
+                                      CustomTextChip(
+                                          text: "${anime.episodes} episodes"),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10),
-                        CustomDisplayRow(
-                            width: MediaQuery.of(context).size.width,
-                            title: "PRODUCERS",
-                            items: anime.producers
-                                    ?.map<String>((e) => e.title ?? "")
-                                    .where((e) => e != "")
-                                    .toList() ??
-                                []),
-                        const SizedBox(height: 10),
-                        CustomDisplayRow(
-                            width: MediaQuery.of(context).size.width,
-                            title: "GENRES",
-                            items: anime.genres
-                                    ?.map<String>((e) => e.name ?? "")
-                                    .where((e) => e != "")
-                                    .toList() ??
-                                []),
-                        const SizedBox(height: 10),
-                        Container(
-                          color: Colors.grey[200],
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  'SYNPOSIS',
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.grey[800]),
-                                ),
-                                const SizedBox(height: 5),
-                                Text(
-                                  '${anime.synopsis}',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.grey[800]),
-                                ),
-                              ],
-                            ),
+                      );
+                    }),
+                  ),
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: SliverAppBarDelegate(
+                      minHeight: 40,
+                      maxHeight: 40,
+                      child: Material(
+                        child: Container(
+                          color: Colors.grey[300],
+                          child: TabBar(
+                            tabs: tabs
+                                .map((e) => Tab(
+                                        child: Text(
+                                      e.item1.toUpperCase(),
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                    )))
+                                .toList(),
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        Container(
-                          color: Colors.grey[200],
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  'BACKGROUND',
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.grey[800]),
-                                ),
-                                const SizedBox(height: 5),
-                                Text(
-                                  '${anime.background}',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.grey[800]),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
+          ],
+          body: TabBarView(
+            children: tabs
+                .map((e) => Builder(
+                    builder: (BuildContext context) => CustomScrollView(
+                            key: PageStorageKey<String>(e.item1),
+                            slivers: [
+                              SliverOverlapInjector(
+                                handle: NestedScrollView
+                                    .sliverOverlapAbsorberHandleFor(context),
+                              ),
+                              SliverToBoxAdapter(
+                                child: e.item2,
+                              ),
+                            ])))
+                .toList(),
           ),
-        ],
+        ),
       ),
     );
-    //   },
-    // );
   }
 }
 
