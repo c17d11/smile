@@ -3,13 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-const Color _background = Colors.black;
-final Color _backgroundSecondary = Colors.grey[900]!;
-final Color _foreground = Colors.grey[300]!;
-final Color _foregroundSecondary = Colors.grey[400]!;
-final Color _primary = Colors.teal.shade200;
-final Color _primarySecondary = Colors.teal.shade400;
-
 class RangeFormatter extends TextInputFormatter {
   final double min;
   final double max;
@@ -139,20 +132,20 @@ class _SliderSelectState extends ConsumerState<SliderSelect> {
   Widget buildSlider() {
     return SliderTheme(
       data: SliderTheme.of(context).copyWith(
-        activeTrackColor: _primary,
-        inactiveTrackColor: _foregroundSecondary,
+        activeTrackColor: Theme.of(context).colorScheme.primary,
+        inactiveTrackColor: Theme.of(context).colorScheme.onBackground,
         trackShape: const RectangularSliderTrackShape(),
         trackHeight: 1.0,
-        thumbColor: _primarySecondary,
+        thumbColor: Theme.of(context).colorScheme.primary,
         thumbShape: widget.showInts
-            ? CustomSliderThumpShape<int>(v.toInt(), 32)
-            : CustomSliderThumpShape<double>(v, 32),
+            ? CustomSliderThumpShape<int>(v.toInt(), 32, context)
+            : CustomSliderThumpShape<double>(v, 32, context),
         showValueIndicator: ShowValueIndicator.never,
-        overlayColor: _primary.withAlpha(32),
+        overlayColor: Theme.of(context).colorScheme.primary,
         overlayShape: const RoundSliderOverlayShape(overlayRadius: 24.0),
         tickMarkShape: const RoundSliderTickMarkShape(),
-        activeTickMarkColor: _foregroundSecondary,
-        inactiveTickMarkColor: _foregroundSecondary,
+        activeTickMarkColor: Theme.of(context).colorScheme.primary,
+        inactiveTickMarkColor: Theme.of(context).colorScheme.onBackground,
       ),
       child: Slider(
         value: v,
@@ -168,16 +161,13 @@ class _SliderSelectState extends ConsumerState<SliderSelect> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: _background,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          buildMenuRow(),
-          if (showDescription) buildDescription(),
-          buildContentRow(),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        buildMenuRow(),
+        if (showDescription) buildDescription(),
+        buildContentRow(),
+      ],
     );
   }
 }
@@ -185,8 +175,9 @@ class _SliderSelectState extends ConsumerState<SliderSelect> {
 class CustomSliderThumpShape<T extends num> extends SliderComponentShape {
   int height;
   T displayValue;
+  BuildContext parentContext;
 
-  CustomSliderThumpShape(this.displayValue, this.height);
+  CustomSliderThumpShape(this.displayValue, this.height, this.parentContext);
 
   @override
   Size getPreferredSize(bool isEnabled, bool isDiscrete) {
@@ -210,7 +201,8 @@ class CustomSliderThumpShape<T extends num> extends SliderComponentShape {
       ..color = sliderTheme.thumbColor ?? Colors.yellow
       ..strokeWidth = 2.0
       ..style = PaintingStyle.stroke;
-    canvas.drawCircle(center, 7.5, Paint()..color = _background);
+    canvas.drawCircle(center, 7.5,
+        Paint()..color = Theme.of(parentContext).colorScheme.background);
     canvas.drawCircle(center, 7.5, strokePaint);
 
     final offset = Offset(center.dx, center.dy - height / 2);
