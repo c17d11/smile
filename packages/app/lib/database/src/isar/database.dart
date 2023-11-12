@@ -5,6 +5,7 @@ import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/src/object/producer_response_intern.dart';
 import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/src/object/settings_intern.dart';
+import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/database/src/isar/collection/isar_genre.dart';
@@ -12,6 +13,7 @@ import 'package:app/database/src/isar/collection/isar_producer_response.dart';
 import 'package:app/database/src/isar/collection/isar_anime_query.dart';
 import 'package:app/database/src/isar/collection/isar_schedule_query.dart';
 import 'package:app/database/src/isar/collection/isar_settings.dart';
+import 'package:app/database/src/isar/collection/isar_tag.dart';
 import 'package:app/database/src/isar/model/anime_model.dart';
 import 'package:app/database/src/isar/model/anime_query_model.dart';
 import 'package:app/database/src/isar/model/anime_response_model.dart';
@@ -20,6 +22,7 @@ import 'package:app/database/src/isar/model/producer_model.dart';
 import 'package:app/database/src/isar/model/producer_response_model.dart';
 import 'package:app/database/src/isar/model/schedule_query_model.dart';
 import 'package:app/database/src/isar/model/settings_model.dart';
+import 'package:app/database/src/isar/model/tag_model.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'package:path/path.dart';
@@ -47,6 +50,7 @@ class IsarDatabase implements Database {
       IsarScheduleQueryModel(instance, expirationHours: 24);
   late IsarSettingsModel settingsModel =
       IsarSettingsModel(instance, expirationHours: 24);
+  late IsarTagModel tagModel = IsarTagModel(instance, expirationHours: 24);
 
   @override
   Future<void> init() async {
@@ -63,6 +67,7 @@ class IsarDatabase implements Database {
           IsarAnimeQuerySchema,
           IsarScheduleQuerySchema,
           IsarSettingsSchema,
+          IsarTagSchema,
         ],
         directory: dir.path,
         inspector: true,
@@ -290,6 +295,21 @@ class IsarDatabase implements Database {
     animeQueryModel.expirationHours = hours;
     scheduleQueryModel.expirationHours = hours;
     settingsModel.expirationHours = hours;
+  }
+
+  @override
+  Future<bool> deleteTag(Tag tag) async {
+    return await tagModel.deleteTag(tag);
+  }
+
+  @override
+  Future<List<Tag>?> getAllTags() async {
+    return await tagModel.getAllTags();
+  }
+
+  @override
+  Future<void> insertTag(Tag tag) async {
+    return await tagModel.insertTag(tag);
   }
 }
 
