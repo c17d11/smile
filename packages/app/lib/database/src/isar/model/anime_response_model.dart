@@ -2,6 +2,7 @@ import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/database/src/isar/model.dart';
+import 'package:app/database/src/isar/model/anime_model.dart';
 import 'package:app/database/src/model.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
