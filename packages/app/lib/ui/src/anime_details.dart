@@ -241,8 +241,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                             ? Icons.favorite
                             : Icons.favorite_outline,
                         size: 24,
-                        // color: Colors.red[700],
-                        color: _primarySecondary,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                   ],

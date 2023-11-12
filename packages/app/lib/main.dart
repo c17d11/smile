@@ -27,7 +27,15 @@ class _AppState extends ConsumerState<App> {
     return init.when(
       data: (initSuccessful) => MaterialApp(
         theme: ThemeData(
-          colorSchemeSeed: const Color(0xff6750a4),
+          // colorSchemeSeed: const Color(0xff6750a4),
+          // brightness: Brightness.dark,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Color.fromARGB(10, 155, 12, 12),
+            primary: Color.fromARGB(255, 135, 109, 212),
+            secondary: Color.fromARGB(255, 24, 193, 190),
+            error: Color.fromARGB(255, 178, 99, 93),
+            brightness: Brightness.dark,
+          ),
           useMaterial3: true,
 
           // IconButton theme mimicing material3 NavigationBar buttons
