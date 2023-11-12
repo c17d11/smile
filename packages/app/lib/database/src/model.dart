@@ -65,7 +65,7 @@ abstract interface class SettingsModel {
 
 abstract interface class TagModel {
   Future<void> insertTag(Tag tag);
-  Future<List<Tag>?> getAllTags();
+  Future<List<Tag>> getAllTags();
   Future<bool> deleteTag(Tag tag);
 }
 
