@@ -2,10 +2,12 @@ import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/pod.dart';
+import 'package:app/ui/src/sliver_app_bar_delegate.dart';
 import 'package:app/ui/src/text_divider.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
 class AnimeScheduleResponseView extends ConsumerWidget {
   final ScheduleQueryIntern query;
@@ -27,19 +29,19 @@ class AnimeScheduleResponseView extends ConsumerWidget {
         child: Center(child: TextHeadline("No data")));
   }
 
-  Widget buildHeader(AnimeResponseIntern? res) {
+  Widget buildHeader(AnimeResponseIntern? res, BuildContext context) {
     String currentPage = res?.pagination?.currentPage.toString() ?? "";
 
     onLastPage(res?.pagination?.lastVisiblePage);
 
-    return SliverToBoxAdapter(
-        child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (bigHeader) TextDivider("${query.day?.text}"),
-        if (!bigHeader) TextDivider("${query.day?.text} page $currentPage"),
-      ],
-    ));
+    return SliverPinnedHeader(
+      child: Container(
+        color: Theme.of(context).colorScheme.background,
+        child: bigHeader
+            ? TextDivider("${query.day?.text}")
+            : TextDivider("${query.day?.text} page $currentPage"),
+      ),
+    );
   }
 
   Widget buildAnimeList(WidgetRef ref, int? page, List<AnimeIntern> animes) {
@@ -77,9 +79,10 @@ class AnimeScheduleResponseView extends ConsumerWidget {
         ? buildLoading()
         : animes == null
             ? buildNoData()
-            : SliverMainAxisGroup(
-                slivers: <Widget>[
-                  buildHeader(resIntern),
+            : MultiSliver(
+                pushPinnedChildren: true,
+                children: [
+                  buildHeader(resIntern, context),
                   buildAnimeList(
                     ref,
                     resIntern?.pagination?.currentPage,

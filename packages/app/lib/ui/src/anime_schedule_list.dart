@@ -91,9 +91,9 @@ class _AnimeScheduleListState extends State<AnimeScheduleList> {
         physics: const AlwaysScrollableScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.background,
             floating: true,
-            pinned: false,
+            pinned: true,
             actions: [
               IconButton(
                 onPressed: () {

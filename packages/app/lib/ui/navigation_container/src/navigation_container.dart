@@ -28,7 +28,7 @@ class NavigationContainer extends StatelessWidget {
     bool isWideScreen = MediaQuery.of(context).size.aspectRatio > 1;
 
     return Container(
-      color: _background,
+      color: Theme.of(context).colorScheme.background,
       child: isWideScreen
           ? Row(
               crossAxisAlignment: CrossAxisAlignment.start,

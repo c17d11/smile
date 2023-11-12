@@ -212,7 +212,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
         filled: true,
-        fillColor: _foregroundSecondary,
         suffixIcon: showReset
             ? ResetIcon(
                 onPressed: () {
