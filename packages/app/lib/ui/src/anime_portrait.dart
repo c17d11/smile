@@ -2,6 +2,12 @@ import 'package:app/controller/state.dart';
 import 'package:app/ui/src/anime_details.dart';
 import 'package:flutter/material.dart';
 
+const Color _background = Colors.black;
+final Color _backgroundSecondary = Colors.grey[900]!;
+final Color _foreground = Colors.grey[300]!;
+final Color _foregroundSecondary = Colors.grey[400]!;
+final Color _foregroundThird = Colors.grey[600]!;
+
 class AnimePortrait extends StatelessWidget {
   final AnimeIntern? anime;
   final String responseId;
@@ -18,7 +24,7 @@ class AnimePortrait extends StatelessWidget {
       elevation: 5,
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-      color: Colors.grey[200],
+      color: _backgroundSecondary,
     );
   }
 
@@ -42,7 +48,7 @@ class AnimePortrait extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
-              color: Colors.grey[200],
+              color: _background,
               child: (anime == null)
                   ? Container(
                       color: Colors.green[200],
@@ -85,21 +91,25 @@ class AnimePortrait extends StatelessWidget {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Row(children: [
-                                        GestureDetector(
-                                          onTap: () => onChange(anime!
-                                            ..isFavorite =
-                                                !(anime!.isFavorite ?? false)),
-                                          child: Icon(
-                                            (anime?.isFavorite ?? false)
-                                                ? Icons.favorite
-                                                : Icons.favorite_outline,
-                                            size: 24,
-                                            color: Colors.red[700],
-                                          ),
-                                        ),
-                                      ]),
+                                      padding: const EdgeInsets.all(4),
+                                      child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () => onChange(anime!
+                                                ..isFavorite =
+                                                    !(anime!.isFavorite ??
+                                                        false)),
+                                              child: Icon(
+                                                (anime?.isFavorite ?? false)
+                                                    ? Icons.favorite
+                                                    : Icons.favorite_outline,
+                                                size: 24,
+                                                color: Colors.red[900],
+                                              ),
+                                            ),
+                                          ]),
                                     ),
                                   ),
                                 ],
@@ -118,7 +128,7 @@ class AnimePortrait extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 12.0,
                                       fontWeight: FontWeight.w600,
-                                      color: Colors.grey[800],
+                                      color: _foregroundSecondary,
                                     ),
                                   ),
                                   Row(
@@ -133,9 +143,10 @@ class AnimePortrait extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.end,
                                         children: [
-                                          const Icon(
+                                          Icon(
                                             Icons.star,
                                             size: 14,
+                                            color: _foregroundThird,
                                           ),
                                           Text(
                                             anime!.score?.toStringAsFixed(1) ??
@@ -143,7 +154,7 @@ class AnimePortrait extends StatelessWidget {
                                             style: TextStyle(
                                               fontSize: 10.0,
                                               fontWeight: FontWeight.w800,
-                                              color: Colors.grey[800],
+                                              color: _foregroundThird,
                                             ),
                                           ),
                                         ],
@@ -153,7 +164,7 @@ class AnimePortrait extends StatelessWidget {
                                         style: TextStyle(
                                           fontSize: 10.0,
                                           fontWeight: FontWeight.w800,
-                                          color: Colors.grey[800],
+                                          color: _foregroundThird,
                                         ),
                                       ),
                                     ],

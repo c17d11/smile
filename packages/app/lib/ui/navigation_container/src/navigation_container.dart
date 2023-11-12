@@ -3,6 +3,11 @@ import 'package:app/ui/navigation_container/src/nav_bar.dart';
 import 'package:app/ui/navigation_container/src/nav_item.dart';
 import 'package:flutter/material.dart';
 
+const Color _background = Colors.black;
+final Color _backgroundSecondary = Colors.grey[900]!;
+final Color _foreground = Colors.grey[300]!;
+final Color _foregroundSecondary = Colors.grey[400]!;
+
 class NavigationContainer extends StatelessWidget {
   final NavItem startItem;
   final List<NavItem> landscapeItems;
@@ -23,7 +28,7 @@ class NavigationContainer extends StatelessWidget {
     bool isWideScreen = MediaQuery.of(context).size.aspectRatio > 1;
 
     return Container(
-      color: Colors.grey[200],
+      color: _background,
       child: isWideScreen
           ? Row(
               crossAxisAlignment: CrossAxisAlignment.start,
