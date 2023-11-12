@@ -50,7 +50,7 @@ final initPod = FutureProvider<bool>((ref) async {
   return true;
 });
 
-final animeSearchControllerPod = StateNotifierProvider.family<
+final animeSearchControllerPod = StateNotifierProvider.family.autoDispose<
     AnimeSearchController,
     AsyncValue<AnimeResponseIntern>,
     AnimeQueryIntern>((ref, arg) {
@@ -62,17 +62,18 @@ final animeSearchControllerPod = StateNotifierProvider.family<
   } else {
     controller.get(arg);
   }
+  ref.keepAlive();
   return controller;
 });
 
-final animeScheduleSearchControllerPod = StateNotifierProvider.family<
-    AnimeSearchController,
-    AsyncValue<AnimeResponseIntern>,
-    ScheduleQueryIntern>((ref, arg) {
+final animeScheduleSearchControllerPod = StateNotifierProvider.family
+    .autoDispose<AnimeSearchController, AsyncValue<AnimeResponseIntern>,
+        ScheduleQueryIntern>((ref, arg) {
   Database db = ref.watch(databaseUpdatePod);
   JikanApi api = ref.watch(apiPod);
   AnimeSearchController controller = AnimeSearchController(db, api);
   controller.getSchedule(arg);
+  ref.keepAlive();
   return controller;
 });
 
