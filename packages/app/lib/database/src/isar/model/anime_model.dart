@@ -1,4 +1,5 @@
 import 'package:app/controller/state.dart';
+import 'package:app/database/src/isar/collection/isar_tag.dart';
 import 'package:app/database/src/isar/model.dart';
 import 'package:app/database/src/model.dart';
 import 'package:isar/isar.dart';
@@ -11,8 +12,16 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
   @override
   Future<void> insertAnime(AnimeIntern anime) async {
     IsarAnime isarAnime = anime as IsarAnime;
+    List<IsarTag> tags =
+        isarAnime.tags?.map<IsarTag>((e) => IsarTag.fromTag(e)).toList() ?? [];
+
     await write(() async {
+      if (tags.isNotEmpty) {
+        await db.isarTags.putAll(tags);
+        isarAnime.isarTags.addAll(tags);
+      }
       await db.isarAnimes.put(isarAnime);
+      await isarAnime.isarTags.save();
     });
   }
 

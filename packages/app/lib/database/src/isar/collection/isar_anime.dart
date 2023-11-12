@@ -1,16 +1,18 @@
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/collection/isar_expiration.dart';
+import 'package:app/database/src/isar/collection/isar_tag.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'isar_producer.dart';
 
 part 'isar_anime.g.dart';
 
-@Collection(ignore: {'producers', 'genres'})
+@Collection(ignore: {'producers', 'genres', 'tags'})
 class IsarAnime extends AnimeIntern with IsarExpiration {
   @Index(unique: true, replace: true)
   Id id;
   final isarProducers = IsarLinks<IsarProducer>();
+  final isarTags = IsarLinks<IsarTag>();
 
   IsarAnime({required this.id}) {
     storedAt = DateTime.now();
@@ -20,7 +22,8 @@ class IsarAnime extends AnimeIntern with IsarExpiration {
     IsarAnime anime = from(t);
     anime
       ..isBlacklisted = t.isBlacklisted
-      ..isFavorite = t.isFavorite;
+      ..isFavorite = t.isFavorite
+      ..tags = t.tags;
     return anime;
   }
 
