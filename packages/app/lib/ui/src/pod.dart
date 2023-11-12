@@ -1,9 +1,11 @@
 import 'package:app/controller/src/controller/genre_controller.dart';
 import 'package:app/controller/src/controller/producer_controller.dart';
+import 'package:app/controller/src/controller/tag_controller.dart';
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/src/object/settings_intern.dart';
+import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
 import 'package:app/database/src/populate_database.dart';
@@ -89,6 +91,12 @@ final genrePod =
         (ref) {
   Database db = ref.watch(databaseUpdatePod);
   return GenreController(db);
+});
+
+final tagPod =
+    StateNotifierProvider<TagController, AsyncValue<List<Tag>>>((ref) {
+  Database db = ref.watch(databaseUpdatePod);
+  return TagController(db);
 });
 
 final animeControllerPod =

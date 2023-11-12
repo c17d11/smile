@@ -303,7 +303,7 @@ class IsarDatabase implements Database {
   }
 
   @override
-  Future<List<Tag>?> getAllTags() async {
+  Future<List<Tag>> getAllTags() async {
     return await tagModel.getAllTags();
   }
 
