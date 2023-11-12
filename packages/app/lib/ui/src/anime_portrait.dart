@@ -48,7 +48,7 @@ class AnimePortrait extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
-              color: _background,
+              color: Theme.of(context).colorScheme.background,
               child: (anime == null)
                   ? Container(
                       color: Colors.green[200],

@@ -145,7 +145,7 @@ class FutureDialog {
           },
           child: AlertDialog(
             backgroundColor: _background,
-            title: TextWindow(title),
+            title: Text(title),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0))),
             content: FutureBuilder<WrapperList>(

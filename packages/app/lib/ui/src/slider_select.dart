@@ -141,7 +141,7 @@ class _SliderSelectState extends ConsumerState<SliderSelect> {
             ? CustomSliderThumpShape<int>(v.toInt(), 32, context)
             : CustomSliderThumpShape<double>(v, 32, context),
         showValueIndicator: ShowValueIndicator.never,
-        overlayColor: Theme.of(context).colorScheme.primary,
+        overlayColor: Theme.of(context).colorScheme.primary.withAlpha(64),
         overlayShape: const RoundSliderOverlayShape(overlayRadius: 24.0),
         tickMarkShape: const RoundSliderTickMarkShape(),
         activeTickMarkColor: Theme.of(context).colorScheme.primary,

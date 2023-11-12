@@ -119,9 +119,9 @@ class _AnimeListState extends State<AnimeList> {
         physics: const AlwaysScrollableScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
-            backgroundColor: _background,
+            backgroundColor: Theme.of(context).colorScheme.background,
             floating: true,
-            pinned: false,
+            pinned: true,
             actions: [
               IconButton(
                 onPressed: () {

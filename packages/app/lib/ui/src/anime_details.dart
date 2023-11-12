@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/selection_widget/src/multiple_select.dart';
+import 'package:app/ui/src/like_select.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/slider_select.dart';
 import 'package:app/ui/src/sliver_app_bar_delegate.dart';
@@ -27,9 +28,9 @@ class CustomChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: _backgroundSecondary,
+          color: Theme.of(context).colorScheme.background,
           borderRadius: BorderRadius.circular(100),
-          border: Border.all(color: _backgroundSecondary)),
+          border: Border.all(color: _backgroundSecondary, width: 2)),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         child: child,
@@ -226,25 +227,14 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
           Padding(
             padding: const EdgeInsets.all(5),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          anime.isFavorite = !(anime.isFavorite ?? false);
-                        });
-                      },
-                      child: Icon(
-                        (anime.isFavorite ?? false)
-                            ? Icons.favorite
-                            : Icons.favorite_outline,
-                        size: 24,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ],
+                LikeSelect(
+                  "Favorite",
+                  anime.isFavorite ?? false,
+                  onChanged: (bool b) => setState(() {
+                    anime.isFavorite = b;
+                  }),
                 ),
                 SliderSelect(
                   "Personal score",
@@ -412,26 +402,40 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                   SliverPersistentHeader(
                     pinned: false,
                     delegate: SliverAppBarDelegate(
-                      minHeight: 40,
-                      maxHeight: 100,
-                      child: Container(
-                        color: _background,
-                        child: Wrap(
-                          spacing: 10,
-                          runSpacing: 10,
-                          alignment: WrapAlignment.spaceEvenly,
-                          children: [
-                            CustomTextChip(text: "${anime.type}"),
-                            CustomTextChip(text: "${anime.year}"),
-                            CustomIconTextChip(
-                                text: "${anime.score}", icon: Icons.star),
-                            CustomTextChip(text: "${anime.episodes} episodes"),
-                            CustomTextChip(text: "${anime.status}"),
-                            CustomTextChip(text: "${anime.rating}"),
-                          ],
-                        ),
-                      ),
-                    ),
+                        minHeight: 90,
+                        maxHeight: 90,
+                        child: Container(
+                          color: Theme.of(context).colorScheme.background,
+                          child: Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      CustomTextChip(text: "${anime.type}"),
+                                      const SizedBox(width: 10),
+                                      CustomTextChip(text: "${anime.year}"),
+                                      const SizedBox(width: 10),
+                                      CustomIconTextChip(
+                                          text: "${anime.score}",
+                                          icon: Icons.star),
+                                      const SizedBox(width: 10),
+                                      CustomTextChip(
+                                          text: "${anime.episodes} episodes")
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      CustomTextChip(text: "${anime.status}"),
+                                      const SizedBox(width: 10),
+                                      CustomTextChip(text: "${anime.rating}"),
+                                    ],
+                                  )
+                                ],
+                              )),
+                        )),
                   ),
                   SliverPersistentHeader(
                     pinned: true,

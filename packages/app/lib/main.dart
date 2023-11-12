@@ -34,6 +34,7 @@ class _AppState extends ConsumerState<App> {
             primary: Color.fromARGB(255, 135, 109, 212),
             secondary: Color.fromARGB(255, 24, 193, 190),
             error: Color.fromARGB(255, 178, 99, 93),
+            background: Colors.black,
             brightness: Brightness.dark,
           ),
           useMaterial3: true,

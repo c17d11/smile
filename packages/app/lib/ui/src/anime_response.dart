@@ -6,6 +6,7 @@ import 'package:app/ui/src/text_divider.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
 class AnimeResponseView extends ConsumerWidget {
   final AnimeQueryIntern query;
@@ -23,19 +24,26 @@ class AnimeResponseView extends ConsumerWidget {
         child: Center(child: TextHeadline("No data")));
   }
 
-  Widget buildHeader(AnimeResponseIntern? res) {
+  Widget buildHeader(AnimeResponseIntern? res, BuildContext context) {
     String currentPage = res?.pagination?.currentPage.toString() ?? "";
     String lastPage = res?.pagination?.lastVisiblePage.toString() ?? "";
 
     onLastPage(res?.pagination?.lastVisiblePage);
 
-    return SliverToBoxAdapter(
-        child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        TextDivider("Page $currentPage of $lastPage"),
-      ],
-    ));
+    // return SliverToBoxAdapter(
+    //     child: Column(
+    //   mainAxisSize: MainAxisSize.min,
+    //   children: [
+    //     TextDivider("Page $currentPage of $lastPage"),
+    //   ],
+    // ));
+
+    return SliverPinnedHeader(
+      child: Container(
+        color: Theme.of(context).colorScheme.background,
+        child: TextDivider("Page $currentPage of $lastPage"),
+      ),
+    );
   }
 
   Widget buildAnimeList(WidgetRef ref, int? page, List<AnimeIntern> animes) {
@@ -71,9 +79,10 @@ class AnimeResponseView extends ConsumerWidget {
         ? buildLoading()
         : animes == null
             ? buildNoData()
-            : SliverMainAxisGroup(
-                slivers: <Widget>[
-                  buildHeader(resIntern),
+            : MultiSliver(
+                pushPinnedChildren: true,
+                children: <Widget>[
+                  buildHeader(resIntern, context),
                   buildAnimeList(
                     ref,
                     resIntern?.pagination?.currentPage,
