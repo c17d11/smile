@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+const Color _background = Colors.black;
+final Color _backgroundSecondary = Colors.grey[900]!;
+final Color _foreground = Colors.grey[300]!;
+final Color _foregroundSecondary = Colors.grey[400]!;
+final Color _primary = Colors.teal.shade200;
+final Color _primarySecondary = Colors.teal.shade400;
+
 class RangeFormatter extends TextInputFormatter {
   final double min;
   final double max;
@@ -132,20 +139,20 @@ class _SliderSelectState extends ConsumerState<SliderSelect> {
   Widget buildSlider() {
     return SliderTheme(
       data: SliderTheme.of(context).copyWith(
-        activeTrackColor: Colors.green[200],
-        inactiveTrackColor: Colors.grey[400],
+        activeTrackColor: _primary,
+        inactiveTrackColor: _foregroundSecondary,
         trackShape: const RectangularSliderTrackShape(),
         trackHeight: 1.0,
-        thumbColor: Colors.green[400],
+        thumbColor: _primarySecondary,
         thumbShape: widget.showInts
             ? CustomSliderThumpShape<int>(v.toInt(), 32)
             : CustomSliderThumpShape<double>(v, 32),
         showValueIndicator: ShowValueIndicator.never,
-        overlayColor: Colors.green[200]!.withAlpha(32),
+        overlayColor: _primary.withAlpha(32),
         overlayShape: const RoundSliderOverlayShape(overlayRadius: 24.0),
         tickMarkShape: const RoundSliderTickMarkShape(),
-        activeTickMarkColor: Colors.grey[200],
-        inactiveTickMarkColor: Colors.grey[200],
+        activeTickMarkColor: _foregroundSecondary,
+        inactiveTickMarkColor: _foregroundSecondary,
       ),
       child: Slider(
         value: v,
@@ -162,7 +169,7 @@ class _SliderSelectState extends ConsumerState<SliderSelect> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[200],
+      color: _background,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -203,7 +210,7 @@ class CustomSliderThumpShape<T extends num> extends SliderComponentShape {
       ..color = sliderTheme.thumbColor ?? Colors.yellow
       ..strokeWidth = 2.0
       ..style = PaintingStyle.stroke;
-    canvas.drawCircle(center, 7.5, Paint()..color = Colors.white);
+    canvas.drawCircle(center, 7.5, Paint()..color = _background);
     canvas.drawCircle(center, 7.5, strokePaint);
 
     final offset = Offset(center.dx, center.dy - height / 2);

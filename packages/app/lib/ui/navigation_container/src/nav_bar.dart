@@ -1,6 +1,11 @@
 import 'package:app/ui/navigation_container/src/nav_item.dart';
 import 'package:flutter/material.dart';
 
+const Color _background = Colors.black;
+final Color _backgroundSecondary = Colors.grey[900]!;
+final Color _foreground = Colors.grey[300]!;
+final Color _foregroundSecondary = Colors.grey[400]!;
+
 abstract class NavBar extends StatelessWidget {
   final List<NavItem> items;
   final NavItem selectedItem;
@@ -46,15 +51,15 @@ class NavBarPortrait extends NavBar {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Row(children: [
+    return Row(
+      children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: buildItems(),
         ),
-        const VerticalDivider(thickness: 1, width: 1),
-      ]),
+        VerticalDivider(thickness: 1, width: 1, color: _backgroundSecondary),
+      ],
     );
   }
 }

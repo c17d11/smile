@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+const Color _background = Colors.black;
+final Color _backgroundSecondary = Colors.grey[900]!;
+final Color _foreground = Colors.grey[300]!;
+final Color _foregroundSecondary = Colors.grey[400]!;
+final Color _foregroundThird = Colors.grey[600]!;
+
 class AppStyle {
   static TextStyle get windowtitle => TextStyle(
         fontSize: 24.0,
@@ -10,13 +16,13 @@ class AppStyle {
   static TextStyle get textfield => TextStyle(
         fontSize: 14.0,
         fontWeight: FontWeight.w500,
-        color: Colors.grey[800],
+        color: _foregroundSecondary,
       );
 
   static TextStyle get headline => TextStyle(
         fontSize: 12.0,
         fontWeight: FontWeight.w500,
-        color: Colors.grey[800],
+        color: _foregroundSecondary,
       );
 
   static TextStyle get subtitle => TextStyle(
@@ -27,7 +33,7 @@ class AppStyle {
 
   static TextStyle get menu => TextStyle(
         fontSize: 10,
-        color: Colors.grey[700],
+        color: _foregroundSecondary,
         fontWeight: FontWeight.w800,
         fontStyle: FontStyle.normal,
       );
@@ -40,13 +46,14 @@ class AppStyle {
       );
 
   static ButtonStyle get menuButtonActiveStyle => IconButton.styleFrom(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: _backgroundSecondary,
       minimumSize: const Size(50, 20),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-      hoverColor: Colors.grey[300]);
+      hoverColor: _backgroundSecondary);
 
   static ButtonStyle get menuButtonInactiveStyle => IconButton.styleFrom(
+        foregroundColor: _foregroundThird,
         minimumSize: const Size(50, 20),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
@@ -205,7 +212,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
         filled: true,
-        fillColor: Colors.white,
+        fillColor: _foregroundSecondary,
         suffixIcon: showReset
             ? ResetIcon(
                 onPressed: () {
@@ -219,7 +226,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(color: Colors.grey[300]!),
+          borderSide: BorderSide(color: _backgroundSecondary),
         ),
         hintText: "Enter title",
       ),

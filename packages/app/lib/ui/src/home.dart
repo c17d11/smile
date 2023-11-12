@@ -99,28 +99,30 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return NavigationContainer(
-      startItem: selectedContent,
-      landscapeItems: [
-        NewsNavItem(),
-        FavoriteNavItem(),
-        HomeNavItem(),
-        ScheduleNavItem(),
-        SettingsNavItem(),
-      ],
-      portraitItems: [
-        HomeNavItem(),
-        FavoriteNavItem(),
-        ScheduleNavItem(),
-        NewsNavItem(),
-        SpaceItem(),
-        SettingsNavItem(),
-      ],
-      content: selectedContent.buildContent(),
-      onClick: (IconItem selected) => setState(
-        () {
-          selectedContent = selected;
-        },
+    return Scaffold(
+      body: NavigationContainer(
+        startItem: selectedContent,
+        landscapeItems: [
+          NewsNavItem(),
+          FavoriteNavItem(),
+          HomeNavItem(),
+          ScheduleNavItem(),
+          SettingsNavItem(),
+        ],
+        portraitItems: [
+          HomeNavItem(),
+          FavoriteNavItem(),
+          ScheduleNavItem(),
+          NewsNavItem(),
+          SpaceItem(),
+          SettingsNavItem(),
+        ],
+        content: SafeArea(child: selectedContent.buildContent()),
+        onClick: (IconItem selected) => setState(
+          () {
+            selectedContent = selected;
+          },
+        ),
       ),
     );
   }

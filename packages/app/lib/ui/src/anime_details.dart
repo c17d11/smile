@@ -15,6 +15,8 @@ const Color _background = Colors.black;
 final Color _backgroundSecondary = Colors.grey[900]!;
 final Color _foreground = Colors.grey[300]!;
 final Color _foregroundSecondary = Colors.grey[400]!;
+final Color _primary = Colors.teal.shade200;
+final Color _primarySecondary = Colors.teal.shade400;
 
 class CustomChip extends StatelessWidget {
   final Widget child;
@@ -141,32 +143,6 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            alignment: WrapAlignment.spaceEvenly,
-            children: [
-              IntrinsicHeight(
-                child: CustomDisplayRow(
-                    width: MediaQuery.of(context).size.width / 3 - 15,
-                    title: "TYPE",
-                    items: [anime.type ?? '']),
-              ),
-              IntrinsicHeight(
-                child: CustomDisplayRow(
-                    width: MediaQuery.of(context).size.width / 3 - 15,
-                    title: "STATUS",
-                    items: [anime.status ?? '']),
-              ),
-              IntrinsicHeight(
-                child: CustomDisplayRow(
-                    width: MediaQuery.of(context).size.width / 3 - 15,
-                    title: "RATING",
-                    items: [anime.rating ?? '']),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
           CustomDisplayRow(
               width: MediaQuery.of(context).size.width,
               title: "PRODUCERS",
@@ -265,7 +241,8 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                             ? Icons.favorite
                             : Icons.favorite_outline,
                         size: 24,
-                        color: Colors.red[700],
+                        // color: Colors.red[700],
+                        color: _primarySecondary,
                       ),
                     ),
                   ],
@@ -337,113 +314,125 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                     flexibleSpace: LayoutBuilder(builder:
                         (BuildContext context, BoxConstraints constraints) {
                       var top = constraints.biggest.height;
-                      return FlexibleSpaceBar(
-                        titlePadding: EdgeInsets.zero,
-                        title: Container(
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                Color(0x00000000),
-                                Color(0x90000000),
-                              ],
-                            ),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.only(
-                              start: 72 +
-                                  (top - kToolbarHeight) /
-                                      (expandedBarHeight - kToolbarHeight) *
-                                      (10 - 72),
-                              bottom: 16 +
-                                  (top - kToolbarHeight) /
-                                      (expandedBarHeight - kToolbarHeight) *
-                                      (10 - 16),
-                              top: 16 +
-                                  (top - kToolbarHeight) /
-                                      (expandedBarHeight - kToolbarHeight) *
-                                      (30 - 16),
-                            ),
-                            child: Text(
-                              "${anime.title}",
-                              maxLines: 1 +
-                                  ((top - kToolbarHeight) /
-                                              (expandedBarHeight -
-                                                  kToolbarHeight))
-                                          .round() *
-                                      (3 - 1),
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                color: _foreground,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ),
-                        collapseMode: CollapseMode.parallax,
-                        stretchModes: const [
-                          StretchMode.zoomBackground,
-                          StretchMode.blurBackground,
-                          StretchMode.fadeTitle,
-                        ],
-                        background: Stack(
-                          alignment: AlignmentDirectional.center,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                image: NetworkImage(
-                                  anime.imageUrl ?? '',
-                                ),
-                                fit: BoxFit.cover,
-                              )),
-                              height: MediaQuery.of(context).size.height,
-                              child: BackdropFilter(
-                                filter:
-                                    ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.black.withOpacity(0.3)),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Hero(
-                                    tag: animeArgs.heroTag,
-                                    child: FadeInImage.assetNetwork(
-                                      placeholder: 'assets/coffee.webp',
-                                      image: anime.imageUrl ?? '',
-                                      alignment: Alignment.center,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 20),
-                                  Wrap(
-                                    spacing: 5,
-                                    runSpacing: 5,
-                                    alignment: WrapAlignment.center,
-                                    children: [
-                                      CustomTextChip(text: "${anime.year}"),
-                                      CustomIconTextChip(
-                                          text: "${anime.score}",
-                                          icon: Icons.star),
-                                      CustomTextChip(
-                                          text: "${anime.episodes} episodes"),
-                                    ],
-                                  ),
+                      return SafeArea(
+                        child: FlexibleSpaceBar(
+                          titlePadding: EdgeInsets.zero,
+                          title: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.black.withAlpha(0),
+                                  Colors.black.withAlpha(255),
                                 ],
                               ),
                             ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.only(
+                                start: 72 +
+                                    (top - kToolbarHeight) /
+                                        (expandedBarHeight - kToolbarHeight) *
+                                        (10 - 72),
+                                bottom: 16 +
+                                    (top - kToolbarHeight) /
+                                        (expandedBarHeight - kToolbarHeight) *
+                                        (10 - 16),
+                                top: 16 +
+                                    (top - kToolbarHeight) /
+                                        (expandedBarHeight - kToolbarHeight) *
+                                        (30 - 16),
+                              ),
+                              child: Text(
+                                "${anime.title}",
+                                maxLines: 1 +
+                                    ((top - kToolbarHeight) /
+                                                (expandedBarHeight -
+                                                    kToolbarHeight))
+                                            .round() *
+                                        (3 - 1),
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: _foreground,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ),
+                          collapseMode: CollapseMode.parallax,
+                          stretchModes: const [
+                            StretchMode.zoomBackground,
+                            StretchMode.blurBackground,
+                            StretchMode.fadeTitle,
                           ],
+                          background: Stack(
+                            alignment: AlignmentDirectional.center,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                  image: NetworkImage(
+                                    anime.imageUrl ?? '',
+                                  ),
+                                  fit: BoxFit.cover,
+                                )),
+                                height: MediaQuery.of(context).size.height,
+                                child: BackdropFilter(
+                                  filter: ImageFilter.blur(
+                                      sigmaX: 8.0, sigmaY: 8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(0.3)),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Hero(
+                                      tag: animeArgs.heroTag,
+                                      child: FadeInImage.assetNetwork(
+                                        placeholder: 'assets/coffee.webp',
+                                        image: anime.imageUrl ?? '',
+                                        alignment: Alignment.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     }),
+                  ),
+                  SliverPersistentHeader(
+                    pinned: false,
+                    delegate: SliverAppBarDelegate(
+                      minHeight: 40,
+                      maxHeight: 100,
+                      child: Container(
+                        color: _background,
+                        child: Wrap(
+                          spacing: 10,
+                          runSpacing: 10,
+                          alignment: WrapAlignment.spaceEvenly,
+                          children: [
+                            CustomTextChip(text: "${anime.type}"),
+                            CustomTextChip(text: "${anime.year}"),
+                            CustomIconTextChip(
+                                text: "${anime.score}", icon: Icons.star),
+                            CustomTextChip(text: "${anime.episodes} episodes"),
+                            CustomTextChip(text: "${anime.status}"),
+                            CustomTextChip(text: "${anime.rating}"),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                   SliverPersistentHeader(
                     pinned: true,

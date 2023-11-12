@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 
+const Color _background = Colors.black;
+final Color _backgroundSecondary = Colors.grey[900]!;
+final Color _foreground = Colors.grey[300]!;
+final Color _foregroundSecondary = Colors.grey[400]!;
+final Color _primary = Colors.teal.shade200;
+final Color _primarySecondary = Colors.teal.shade400;
+
 class SelectedChip extends SelectChip {
   SelectedChip({super.text, super.onPressed, super.key})
       : super(
-          background: Colors.green[400]!,
+          // background: Colors.green[400]!,
+          background: _backgroundSecondary,
         );
 }
 
 class UnselectedChip extends SelectChip {
   UnselectedChip({super.text, super.onPressed, super.key})
       : super(
-          background: Colors.red[600]!,
+          // background: Colors.red[600]!,
+          background: _backgroundSecondary,
         );
 }
 
@@ -85,9 +94,10 @@ class SelectChip extends StatelessWidget {
             ),
           ),
           if (onClear != null) ...[
-            const SizedBox(
+            SizedBox(
               height: 20,
               child: VerticalDivider(
+                color: _backgroundSecondary,
                 width: 1,
                 thickness: 1,
                 indent: 2,
@@ -97,7 +107,7 @@ class SelectChip extends StatelessWidget {
             IconButton(
               onPressed: onClear,
               icon: FittedBox(
-                child: Icon(Icons.clear, color: Colors.red[600]!),
+                child: Icon(Icons.clear, color: Colors.red[900]!),
               ),
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
               style: IconButton.styleFrom(
