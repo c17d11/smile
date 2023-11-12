@@ -304,7 +304,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
     final animeArgs =
         ModalRoute.of(context)?.settings.arguments as AnimeDetailsArgs;
     final anime = animeArgs.anime;
-    const expandedBarHeight = 600.0;
+    const expandedBarHeight = 500.0;
 
     List<Tuple2<String, Widget>> tabs = [
       Tuple2("info", buildApiContent(anime)),
@@ -356,8 +356,11 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                               start: 72 +
                                   (top - kToolbarHeight) /
                                       (expandedBarHeight - kToolbarHeight) *
-                                      (20 - 72),
-                              bottom: 16,
+                                      (10 - 72),
+                              bottom: 16 +
+                                  (top - kToolbarHeight) /
+                                      (expandedBarHeight - kToolbarHeight) *
+                                      (10 - 16),
                               top: 16 +
                                   (top - kToolbarHeight) /
                                       (expandedBarHeight - kToolbarHeight) *
@@ -447,14 +450,18 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                     delegate: SliverAppBarDelegate(
                       minHeight: 40,
                       maxHeight: 40,
-                      child: TabBar(
-                        indicatorColor: _foregroundSecondary,
-                        labelColor: _foreground,
-                        unselectedLabelColor: _foregroundSecondary,
-                        dividerColor: _foreground,
-                        tabs: tabs
-                            .map((e) => Tab(child: Text(e.item1.toUpperCase())))
-                            .toList(),
+                      child: Container(
+                        color: _background,
+                        child: TabBar(
+                          indicatorColor: _foregroundSecondary,
+                          labelColor: _foreground,
+                          unselectedLabelColor: _foregroundSecondary,
+                          dividerColor: _foreground,
+                          tabs: tabs
+                              .map((e) =>
+                                  Tab(child: Text(e.item1.toUpperCase())))
+                              .toList(),
+                        ),
                       ),
                     ),
                   ),
