@@ -44,7 +44,7 @@ class AnimePortrait extends StatelessWidget {
               );
             },
             child: Card(
-              elevation: 5,
+              elevation: 0,
               clipBehavior: Clip.antiAlias,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
