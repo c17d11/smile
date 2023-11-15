@@ -1,8 +1,10 @@
 import 'dart:ui';
 
-import 'package:app/controller/src/object/genre_intern.dart';
+import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/selection_widget/src/multiple_select.dart';
+import 'package:app/ui/selection_widget/src/single_select.dart';
+import 'package:app/ui/selection_widget/src/tag_select.dart';
 import 'package:app/ui/src/like_select.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/slider_select.dart';
@@ -133,12 +135,14 @@ class AnimeDetails extends ConsumerStatefulWidget {
 
 class _AnimeDetailsState extends ConsumerState<AnimeDetails>
     with SingleTickerProviderStateMixin {
-  Future<List<GenreIntern>> loadGenres() async {
-    await ref.read(genrePod.notifier).get();
-    return ref.read(genrePod).value ?? [];
+  AnimeIntern? localAnime;
+
+  Future<List<Tag>> loadTags() async {
+    await ref.read(tagPod.notifier).get();
+    return ref.read(tagPod).value ?? [];
   }
 
-  Widget buildApiContent(AnimeIntern anime) {
+  Widget buildApiContent() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 2.5),
       child: Column(
@@ -147,7 +151,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
           CustomDisplayRow(
               width: MediaQuery.of(context).size.width,
               title: "PRODUCERS",
-              items: anime.producers
+              items: localAnime!.producers
                       ?.map<String>((e) => e.title ?? "")
                       .where((e) => e != "")
                       .toList() ??
@@ -156,7 +160,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
           CustomDisplayRow(
               width: MediaQuery.of(context).size.width,
               title: "GENRES",
-              items: anime.genres
+              items: localAnime!.genres
                       ?.map<String>((e) => e.name ?? "")
                       .where((e) => e != "")
                       .toList() ??
@@ -178,7 +182,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  '${anime.synopsis}',
+                  '${localAnime!.synopsis}',
                   style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w800,
@@ -204,7 +208,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  '${anime.background}',
+                  '${localAnime!.background}',
                   style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w800,
@@ -218,7 +222,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
     );
   }
 
-  Widget buildCustomContent(AnimeIntern anime) {
+  Widget buildCustomContent() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 2.5),
       child: Column(
@@ -231,9 +235,9 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
               children: [
                 LikeSelect(
                   "Favorite",
-                  anime.isFavorite ?? false,
+                  localAnime!.isFavorite ?? false,
                   onChanged: (bool b) => setState(() {
-                    anime.isFavorite = b;
+                    localAnime!.isFavorite = b;
                   }),
                 ),
                 SliderSelect(
@@ -246,13 +250,22 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                   max: 10,
                   onChanged: (value) {},
                 ),
-                MultiSelect<GenreIntern>(
-                  title: "Tags",
-                  tristate: false,
-                  loadOptions: loadGenres,
-                  initialSelected: [],
-                  onChangedInclude: (items) {},
+                MultiSelect<Tag>(
+                  title: 'Tags',
+                  loadOptions: loadTags,
+                  initialSelected: localAnime!.tags,
+                  onChangedInclude: (items) {
+                    localAnime!.tags = items.map((e) => e as Tag).toList();
+                  },
                 ),
+                // TagSelect<Tag>(
+                //   title: "Tags",
+                //   loadOptions: loadTags,
+                //   initialSelected: const [],
+                //   onChangedInclude: (items) {
+                //     // ref.read(tagPod.notifier).
+                // },
+                // ),
                 const TextField(
                   maxLines: null,
                   keyboardType: TextInputType.multiline,
@@ -269,12 +282,12 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
   Widget build(BuildContext context) {
     final animeArgs =
         ModalRoute.of(context)?.settings.arguments as AnimeDetailsArgs;
-    final anime = animeArgs.anime;
+    localAnime = animeArgs.anime;
     const expandedBarHeight = 500.0;
 
     List<Tuple2<String, Widget>> tabs = [
-      Tuple2("info", buildApiContent(anime)),
-      Tuple2("notes", buildCustomContent(anime)),
+      Tuple2("info", buildApiContent()),
+      Tuple2("notes", buildCustomContent()),
     ];
 
     return Scaffold(
@@ -293,7 +306,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                     leading: BackButton(
                       color: _foreground,
                       onPressed: () {
-                        Navigator.pop(context, anime);
+                        Navigator.pop(context, localAnime);
                       },
                     ),
                     pinned: true,
@@ -334,7 +347,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                                         (30 - 16),
                               ),
                               child: Text(
-                                "${anime.title}",
+                                "${localAnime!.title}",
                                 maxLines: 1 +
                                     ((top - kToolbarHeight) /
                                                 (expandedBarHeight -
@@ -363,7 +376,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                   image: NetworkImage(
-                                    anime.imageUrl ?? '',
+                                    localAnime!.imageUrl ?? '',
                                   ),
                                   fit: BoxFit.cover,
                                 )),
@@ -386,7 +399,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                                       tag: animeArgs.heroTag,
                                       child: FadeInImage.assetNetwork(
                                         placeholder: 'assets/coffee.webp',
-                                        image: anime.imageUrl ?? '',
+                                        image: localAnime!.imageUrl ?? '',
                                         alignment: Alignment.center,
                                       ),
                                     ),
@@ -413,24 +426,29 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                                 children: [
                                   Row(
                                     children: [
-                                      CustomTextChip(text: "${anime.type}"),
+                                      CustomTextChip(
+                                          text: "${localAnime!.type}"),
                                       const SizedBox(width: 10),
-                                      CustomTextChip(text: "${anime.year}"),
+                                      CustomTextChip(
+                                          text: "${localAnime!.year}"),
                                       const SizedBox(width: 10),
                                       CustomIconTextChip(
-                                          text: "${anime.score}",
+                                          text: "${localAnime!.score}",
                                           icon: Icons.star),
                                       const SizedBox(width: 10),
                                       CustomTextChip(
-                                          text: "${anime.episodes} episodes")
+                                          text:
+                                              "${localAnime!.episodes} episodes")
                                     ],
                                   ),
                                   const SizedBox(height: 10),
                                   Row(
                                     children: [
-                                      CustomTextChip(text: "${anime.status}"),
+                                      CustomTextChip(
+                                          text: "${localAnime!.status}"),
                                       const SizedBox(width: 10),
-                                      CustomTextChip(text: "${anime.rating}"),
+                                      CustomTextChip(
+                                          text: "${localAnime!.rating}"),
                                     ],
                                   )
                                 ],

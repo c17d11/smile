@@ -2,6 +2,7 @@ import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/database/src/isar/collection/isar_genre.dart';
 import 'package:app/database/src/isar/collection/isar_producer.dart';
 import 'package:app/database/src/isar/collection/isar_anime_query.dart';
+import 'package:app/database/src/isar/collection/isar_tag.dart';
 import 'package:app/database/src/isar/model.dart';
 import 'package:app/database/src/model.dart';
 import 'package:isar/isar.dart';
@@ -23,6 +24,7 @@ class IsarAnimeQueryModel extends IsarModel implements AnimeQueryModel {
     query?.producers = query?.isarProducers.toList();
     query?.genresInclude = query?.isarGenresInclude.toList();
     query?.genresExclude = query?.isarGenresExclude.toList();
+    query?.tag = query?.isarTag.value?.toTag();
     return query;
   }
 
@@ -36,6 +38,8 @@ class IsarAnimeQueryModel extends IsarModel implements AnimeQueryModel {
         isarQuery.genresInclude?.map((e) => IsarGenre.from(e)).toList() ?? [];
     List<IsarGenre> genresExclude =
         isarQuery.genresExclude?.map((e) => IsarGenre.from(e)).toList() ?? [];
+    IsarTag? tag =
+        isarQuery.tag != null ? IsarTag.fromTag(isarQuery.tag!) : null;
 
     await write(() async {
       if (producers.isNotEmpty) {
@@ -50,10 +54,14 @@ class IsarAnimeQueryModel extends IsarModel implements AnimeQueryModel {
         await db.isarGenres.putAll(genresExclude);
         isarQuery.isarGenresExclude.addAll(genresExclude);
       }
+      if (tag != null) {
+        await db.isarTags.put(tag);
+      }
       await db.isarAnimeQuerys.put(isarQuery);
       await isarQuery.isarProducers.save();
       await isarQuery.isarGenresInclude.save();
       await isarQuery.isarGenresExclude.save();
+      await isarQuery.isarTag.save();
     });
   }
 }

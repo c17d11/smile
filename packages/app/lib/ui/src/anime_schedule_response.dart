@@ -1,8 +1,8 @@
+import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/pod.dart';
-import 'package:app/ui/src/sliver_app_bar_delegate.dart';
 import 'package:app/ui/src/text_divider.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +54,7 @@ class AnimeScheduleResponseView extends ConsumerWidget {
           onChange: (value) => ref
               .read(animeScheduleSearchControllerPod(query).notifier)
               .update(value),
+          refQuery: AnimeQueryIntern(),
         ),
       ),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

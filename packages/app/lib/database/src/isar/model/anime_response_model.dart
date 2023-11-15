@@ -1,5 +1,4 @@
 import 'package:app/controller/state.dart';
-import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/database/src/isar/model.dart';
 import 'package:app/database/src/isar/model/anime_model.dart';
@@ -8,20 +7,19 @@ import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
-  IsarAnimeResponseModel(super.db, {required super.expirationHours});
+  final IsarAnimeModel _animeModel;
+  IsarAnimeResponseModel(super.db, {required super.expirationHours})
+      : _animeModel = IsarAnimeModel(db, expirationHours: expirationHours);
 
   @override
   Future<void> insertAnimeResponse(AnimeResponseIntern arg) async {
     IsarAnimeResponse res = arg as IsarAnimeResponse;
     res.isarPagination = IsarPagination.from(res.pagination);
 
-    List<IsarAnime> animes =
-        res.data?.map((e) => IsarAnime.fromIntern(e)).toList() ?? [];
     await write(() async {
-      if (animes.isNotEmpty) {
-        await db.isarAnimes.putAll(animes);
-        res.isarAnimes.addAll(animes);
-      }
+      final isarAnimes = await _animeModel.insertAnimesInTxn(res.data ?? []);
+      res.isarAnimes.clear();
+      res.isarAnimes.addAll(isarAnimes);
       await db.isarAnimeResponses.put(res);
       await res.isarAnimes.save();
     });
@@ -36,7 +34,7 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
     });
     if (isExpired(res)) return null;
 
-    res?.data = res?.isarAnimes.toList();
+    res?.data = _animeModel.getAnimesFromIsar(res?.isarAnimes.toList() ?? []);
     res?.pagination = res?.isarPagination;
     return res;
   }

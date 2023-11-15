@@ -164,8 +164,18 @@ class IsarDatabase implements Database {
   }
 
   @override
+  Future<List<AnimeIntern>> getCollection(Tag tag, int page) async {
+    return await animeModel.getCollection(tag, page);
+  }
+
+  @override
   Future<int> countFavoriteAnimes() async {
     return await animeModel.countFavoriteAnimes();
+  }
+
+  @override
+  Future<int> countCollectionAnimes(Tag tag) async {
+    return await animeModel.countCollectionAnimes(tag);
   }
 
   @override
@@ -308,8 +318,8 @@ class IsarDatabase implements Database {
   }
 
   @override
-  Future<void> insertTag(Tag tag) async {
-    return await tagModel.insertTag(tag);
+  Future<void> insertTags(List<Tag> tags) async {
+    return await tagModel.insertTags(tags);
   }
 }
 

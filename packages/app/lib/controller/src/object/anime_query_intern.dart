@@ -1,9 +1,11 @@
+import 'package:app/controller/src/object/tag.dart';
 import 'package:app/database/src/database_base.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class AnimeQueryIntern extends AnimeQuery {
   bool? isFavorite;
+  Tag? tag;
 
   void override(AnimeQuery q) {
     searchTerm = q.searchTerm;
@@ -40,7 +42,8 @@ class AnimeQueryIntern extends AnimeQuery {
       ..page = q.page
       ..orderBy = q.orderBy
       ..sort = q.sort
-      ..isFavorite = q.isFavorite;
+      ..isFavorite = q.isFavorite
+      ..tag = q.tag;
     return animeQueryIntern;
   }
 

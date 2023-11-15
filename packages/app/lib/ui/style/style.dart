@@ -171,8 +171,15 @@ abstract class ActionIcon extends StatelessWidget {
 class CustomTextField extends StatefulWidget {
   final String? initialValue;
   final Function? onChanged;
+  final String? customSuffixText;
+  final Function(String)? onCustomSuffixPress;
 
-  const CustomTextField({this.initialValue, this.onChanged, super.key});
+  const CustomTextField(
+      {this.initialValue,
+      this.onChanged,
+      this.customSuffixText,
+      this.onCustomSuffixPress,
+      super.key});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -213,10 +220,24 @@ class _CustomTextFieldState extends State<CustomTextField> {
       decoration: InputDecoration(
         filled: true,
         suffixIcon: showReset
-            ? ResetIcon(
-                onPressed: () {
-                  _controller.text = "";
-                },
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (widget.customSuffixText != null)
+                    TextButton(
+                        onPressed: () {
+                          if (widget.onCustomSuffixPress != null) {
+                            widget.onCustomSuffixPress!(_controller.text);
+                          }
+                        },
+                        child: Text(widget.customSuffixText!)),
+                  ResetIcon(
+                    onPressed: () {
+                      _controller.text = "";
+                    },
+                  )
+                ],
               )
             : null,
         isDense: true,
@@ -228,6 +249,44 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderSide: BorderSide(color: _backgroundSecondary),
         ),
         hintText: "Enter title",
+      ),
+    );
+  }
+}
+
+class ActionTextField extends StatefulWidget {
+  final Function? onPressed;
+
+  const ActionTextField({this.onPressed, super.key});
+
+  @override
+  State<ActionTextField> createState() => _ActionTextFieldState();
+}
+
+class _ActionTextFieldState extends State<ActionTextField> {
+  final TextEditingController _controller = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: _controller,
+      style: const TextStyle(fontSize: 14.0),
+      textAlignVertical: TextAlignVertical.center,
+      decoration: InputDecoration(
+        filled: true,
+        suffixIcon: AddIcon(
+          onPressed: () {
+            if (widget.onPressed != null) widget.onPressed!(_controller.text);
+          },
+        ),
+        isDense: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: BorderSide(color: _backgroundSecondary),
+        ),
+        hintText: "Enter text",
       ),
     );
   }

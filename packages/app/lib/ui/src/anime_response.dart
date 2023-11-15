@@ -30,14 +30,6 @@ class AnimeResponseView extends ConsumerWidget {
 
     onLastPage(res?.pagination?.lastVisiblePage);
 
-    // return SliverToBoxAdapter(
-    //     child: Column(
-    //   mainAxisSize: MainAxisSize.min,
-    //   children: [
-    //     TextDivider("Page $currentPage of $lastPage"),
-    //   ],
-    // ));
-
     return SliverPinnedHeader(
       child: Container(
         color: Theme.of(context).colorScheme.background,
@@ -46,15 +38,16 @@ class AnimeResponseView extends ConsumerWidget {
     );
   }
 
-  Widget buildAnimeList(WidgetRef ref, int? page, List<AnimeIntern> animes) {
+  Widget buildAnimeList(int? page, List<AnimeIntern> animes,
+      void Function(AnimeIntern) onChanged) {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         childCount: animes.length,
         (context, index) => AnimePortrait(
           animes[index],
           responseId: page.toString(),
-          onChange: (value) =>
-              ref.read(animeSearchControllerPod(query).notifier).update(value),
+          onChange: onChanged,
+          refQuery: query,
         ),
       ),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -72,23 +65,65 @@ class AnimeResponseView extends ConsumerWidget {
     ref.listen<AsyncValue<AnimeResponseIntern>>(animeSearchControllerPod(query),
         (_, state) => state.showSnackBarOnError(context));
 
+    // onChange(value) =>
+    //     ref.read(animeSearchControllerPod(query).notifier).update(value);
+
     AnimeResponseIntern? resIntern = res.value;
     List<AnimeIntern>? animes = resIntern?.data;
 
-    return res.isLoading
-        ? buildLoading()
-        : animes == null
-            ? buildNoData()
-            : MultiSliver(
-                pushPinnedChildren: true,
-                children: <Widget>[
-                  buildHeader(resIntern, context),
-                  buildAnimeList(
-                    ref,
-                    resIntern?.pagination?.currentPage,
-                    animes,
-                  ),
-                ],
-              );
+    if (res.isLoading) {
+      return buildLoading();
+    }
+    if (animes == null) {
+      return buildNoData();
+    }
+    return MultiSliver(
+      pushPinnedChildren: true,
+      children: <Widget>[
+        buildHeader(resIntern, context),
+        buildAnimeList(
+          resIntern?.pagination?.currentPage,
+          animes,
+          (_) {},
+        ),
+      ],
+    );
   }
 }
+
+// class AnimeResponseSliver extends ConsumerWidget {
+//   final AnimeResponseIntern response;
+//   const AnimeResponseSliver({required this.response, super.key});
+
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     String currentPage = response.pagination?.currentPage.toString() ?? "";
+//     String lastPage = response.pagination?.lastVisiblePage.toString() ?? "";
+//     List<AnimeIntern> animes = response.data ?? [];
+
+//     return MultiSliver(
+//       pushPinnedChildren: true,
+//       children: <Widget>[
+//         SliverPinnedHeader(
+//           child: Container(
+//             color: Theme.of(context).colorScheme.background,
+//             child: TextDivider("Page $currentPage of $lastPage"),
+//           ),
+//         ),
+//         SliverGrid(
+//           delegate: SliverChildBuilderDelegate(
+//             childCount: animes.length,
+//             (context, index) => AnimePortrait(animes[index],
+//                 responseId: currentPage.toString(), onChange: (value) => null
+//                 // ref.read(animeSearchControllerPod(query).notifier).update(value),
+//                 ),
+//           ),
+//           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+//             maxCrossAxisExtent: 150,
+//             childAspectRatio: 7 / 10,
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
