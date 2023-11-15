@@ -1,3 +1,4 @@
+import 'package:app/controller/src/controller/anime_collection_controller.dart';
 import 'package:app/controller/src/controller/genre_controller.dart';
 import 'package:app/controller/src/controller/producer_controller.dart';
 import 'package:app/controller/src/controller/tag_controller.dart';
@@ -52,19 +53,15 @@ final initPod = FutureProvider<bool>((ref) async {
   return true;
 });
 
-final animeSearchControllerPod = StateNotifierProvider.family.autoDispose<
+final animeSearchControllerPod = StateNotifierProvider.family<
     AnimeSearchController,
     AsyncValue<AnimeResponseIntern>,
     AnimeQueryIntern>((ref, arg) {
   Database db = ref.watch(databaseUpdatePod);
   JikanApi api = ref.watch(apiPod);
   AnimeSearchController controller = AnimeSearchController(db, api);
-  if (arg.isFavorite ?? false) {
-    controller.getFavorites(arg.page ?? 1);
-  } else {
-    controller.get(arg);
-  }
-  ref.keepAlive();
+  controller.get(arg);
+  // ref.keepAlive();
   return controller;
 });
 
@@ -96,7 +93,9 @@ final genrePod =
 final tagPod =
     StateNotifierProvider<TagController, AsyncValue<List<Tag>>>((ref) {
   Database db = ref.watch(databaseUpdatePod);
-  return TagController(db);
+  TagController controller = TagController(db);
+  controller.get();
+  return controller;
 });
 
 final animeControllerPod =

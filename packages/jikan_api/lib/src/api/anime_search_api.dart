@@ -25,12 +25,12 @@ class AnimeSearchApi implements Api<AnimeQuery, AnimeResponse> {
   String buildQuery(AnimeQuery arg) {
     String query = builder.build(arg);
     query = query.isEmpty ? "" : "?$query";
-    return query;
+    return "anime$query";
   }
 
   @override
   Future<AnimeResponse> call(AnimeQuery arg) async {
-    String query = "anime${buildQuery(arg)}";
+    String query = buildQuery(arg);
     HttpResult res = await client.get(query);
     if (res.error != null) {
       JikanApiException error = errorParser.parse(res.error!);

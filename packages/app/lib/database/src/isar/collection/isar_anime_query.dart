@@ -1,6 +1,7 @@
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/database/src/isar/collection/isar_genre.dart';
 import 'package:app/database/src/isar/collection/isar_producer.dart';
+import 'package:app/database/src/isar/collection/isar_tag.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
 
@@ -14,7 +15,8 @@ part 'isar_anime_query.g.dart';
   'sort',
   'producers',
   'genresInclude',
-  'genresExclude'
+  'genresExclude',
+  'tag'
 })
 class IsarAnimeQuery extends AnimeQueryIntern {
   Id? id;
@@ -41,6 +43,8 @@ class IsarAnimeQuery extends AnimeQueryIntern {
   final isarGenresInclude = IsarLinks<IsarGenre>();
   final isarGenresExclude = IsarLinks<IsarGenre>();
 
+  final isarTag = IsarLink<IsarTag>();
+
   static IsarAnimeQuery from(String pageUi, AnimeQueryIntern q) {
     IsarAnimeQuery query = IsarAnimeQuery()
       ..searchTerm = q.searchTerm
@@ -59,6 +63,7 @@ class IsarAnimeQuery extends AnimeQueryIntern {
       ..isarOrder = q.orderBy
       ..isarSort = q.sort
       ..isFavorite = q.isFavorite
+      ..tag = q.tag
       ..pageUi = pageUi;
     return query;
   }

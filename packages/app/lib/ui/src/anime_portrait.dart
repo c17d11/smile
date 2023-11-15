@@ -1,6 +1,9 @@
+import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/src/anime_details.dart';
+import 'package:app/ui/src/pod.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 const Color _background = Colors.black;
 final Color _backgroundSecondary = Colors.grey[900]!;
@@ -8,14 +11,16 @@ final Color _foreground = Colors.grey[300]!;
 final Color _foregroundSecondary = Colors.grey[400]!;
 final Color _foregroundThird = Colors.grey[600]!;
 
-class AnimePortrait extends StatelessWidget {
+class AnimePortrait extends ConsumerWidget {
   final AnimeIntern? anime;
   final String responseId;
   final void Function(AnimeIntern) onChange;
+  final AnimeQueryIntern refQuery;
   const AnimePortrait(
     this.anime, {
     required this.responseId,
     required this.onChange,
+    required this.refQuery,
     super.key,
   });
 
@@ -29,7 +34,7 @@ class AnimePortrait extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     String heroTag = "$responseId-anime-${anime?.malId}";
     return anime == null
         ? buildNull()
@@ -39,9 +44,12 @@ class AnimePortrait extends StatelessWidget {
                 context,
                 'anime-details',
                 arguments: AnimeDetailsArgs(anime!, heroTag),
-              ).then(
-                (value) => onChange(value as AnimeIntern),
-              );
+              ).then((value) async {
+                await ref
+                    .read(animeSearchControllerPod(refQuery).notifier)
+                    .update(value as AnimeIntern);
+                ref.invalidate(tagPod);
+              });
             },
             child: Card(
               elevation: 0,
@@ -97,10 +105,15 @@ class AnimePortrait extends StatelessWidget {
                                               CrossAxisAlignment.start,
                                           children: [
                                             GestureDetector(
-                                              onTap: () => onChange(anime!
-                                                ..isFavorite =
-                                                    !(anime!.isFavorite ??
-                                                        false)),
+                                              onTap: () => ref
+                                                  .read(
+                                                      animeSearchControllerPod(
+                                                              refQuery)
+                                                          .notifier)
+                                                  .update(anime!
+                                                    ..isFavorite =
+                                                        !(anime!.isFavorite ??
+                                                            false)),
                                               child: Icon(
                                                 (anime?.isFavorite ?? false)
                                                     ? Icons.favorite

@@ -18,6 +18,12 @@ class IsarAnime extends AnimeIntern with IsarExpiration {
     storedAt = DateTime.now();
   }
 
+  AnimeIntern toAnime() {
+    producers = isarProducers.toList();
+    tags = isarTags.map((e) => e.toTag()).toList();
+    return this;
+  }
+
   static IsarAnime fromIntern(AnimeIntern t) {
     IsarAnime anime = from(t);
     anime
@@ -51,6 +57,10 @@ class IsarAnime extends AnimeIntern with IsarExpiration {
       ..genres = t.genres
       ..episodes = t.episodes
       ..imageUrl = t.imageUrl;
+    if (t is AnimeIntern) {
+      anime.isFavorite = t.isFavorite;
+      anime.tags = t.tags;
+    }
     return anime;
   }
 }

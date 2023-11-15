@@ -1,5 +1,6 @@
 import 'package:app/ui/src/anime_details.dart';
 import 'package:app/ui/src/anime_query_page.dart';
+import 'package:app/ui/src/collection_page.dart';
 import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/schedule_query_page.dart';
@@ -30,10 +31,10 @@ class _AppState extends ConsumerState<App> {
           // colorSchemeSeed: const Color(0xff6750a4),
           // brightness: Brightness.dark,
           colorScheme: ColorScheme.fromSeed(
-            seedColor: Color.fromARGB(10, 155, 12, 12),
-            primary: Color.fromARGB(255, 135, 109, 212),
-            secondary: Color.fromARGB(255, 24, 193, 190),
-            error: Color.fromARGB(255, 178, 99, 93),
+            seedColor: const Color.fromARGB(10, 155, 12, 12),
+            primary: const Color.fromARGB(255, 135, 109, 212),
+            secondary: const Color.fromARGB(255, 24, 193, 190),
+            error: const Color.fromARGB(255, 178, 99, 93),
             background: Colors.black,
             brightness: Brightness.dark,
           ),
@@ -55,6 +56,7 @@ class _AppState extends ConsumerState<App> {
           'anime-details': (context) => const AnimeDetails(),
           'anime-query': (context) => const AnimeQueryPage(),
           'schedule-query': (context) => const ScheduleQueryPage(),
+          'collection': (context) => const AnimeCollectionPage(),
         },
       ),
       error: (err, stack) => Text('Error: $err'),

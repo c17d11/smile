@@ -7,12 +7,18 @@ import 'package:isar/isar.dart';
 class IsarTagModel extends IsarModel implements TagModel {
   IsarTagModel(super.db, {required super.expirationHours});
 
+  Future<List<IsarTag>> insertTagsInTxn(List<Tag> tags) async {
+    List<IsarTag> isarTags = tags.map((e) => IsarTag.fromTag(e)).toList();
+    await db.isarTags.putAllByIndex('name', isarTags);
+    return isarTags;
+  }
+
   @override
   Future<bool> deleteTag(Tag tag) async {
     bool success = false;
 
     await write(() async {
-      success = await db.isarTags.delete(tag.id);
+      success = await db.isarTags.deleteByIndex('name', [tag.name]);
     });
     return success;
   }
@@ -27,10 +33,9 @@ class IsarTagModel extends IsarModel implements TagModel {
   }
 
   @override
-  Future<void> insertTag(Tag tag) async {
-    IsarTag isarTag = IsarTag.fromTag(tag);
+  Future<void> insertTags(List<Tag> tags) async {
     await write(() async {
-      await db.isarTags.put(isarTag);
+      await insertTagsInTxn(tags);
     });
   }
 }

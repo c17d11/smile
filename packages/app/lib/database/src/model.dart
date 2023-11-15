@@ -12,7 +12,9 @@ abstract interface class AnimeModel {
   Future<AnimeIntern?> getAnime(int malId);
   Future<List<AnimeIntern>> getAllAnimes();
   Future<List<AnimeIntern>> getFavoriteAnimes(int page);
+  Future<List<AnimeIntern>> getCollection(Tag tag, int page);
   Future<int> countFavoriteAnimes();
+  Future<int> countCollectionAnimes(Tag tag);
   int countFavoriteAnimePages(int favoriteAnimeCount);
   Future<bool> deleteAnime(int malId);
   AnimeIntern createAnimeIntern(Anime anime);
@@ -64,7 +66,7 @@ abstract interface class SettingsModel {
 }
 
 abstract interface class TagModel {
-  Future<void> insertTag(Tag tag);
+  Future<void> insertTags(List<Tag> tags);
   Future<List<Tag>> getAllTags();
   Future<bool> deleteTag(Tag tag);
 }

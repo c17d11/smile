@@ -2,6 +2,7 @@ import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/anime_favorite_page.dart';
 import 'package:app/ui/src/anime_list.dart';
 import 'package:app/ui/src/anime_schedule_page.dart';
+import 'package:app/ui/src/collection_page.dart';
 import 'package:app/ui/src/settings_page.dart';
 import 'package:flutter/material.dart';
 
@@ -53,21 +54,19 @@ class ScheduleNavItem extends IconItem {
   }
 }
 
-class NewsNavItem extends IconItem {
+class CollectionsNavItem extends IconItem {
   @override
-  String get label => "News";
+  String get label => "Collections";
 
   @override
-  Icon get icon => const Icon(Icons.new_releases_outlined);
+  Icon get icon => const Icon(Icons.collections_bookmark_outlined);
 
   @override
-  Icon get selectedIcon => const Icon(Icons.new_releases);
+  Icon get selectedIcon => const Icon(Icons.collections_bookmark);
 
   @override
   Widget buildContent() {
-    return Container(
-      color: Colors.yellow[300],
-    );
+    return CollectionPage(page: this);
   }
 }
 
@@ -103,7 +102,7 @@ class _HomePageState extends State<HomePage> {
       body: NavigationContainer(
         startItem: selectedContent,
         landscapeItems: [
-          NewsNavItem(),
+          CollectionsNavItem(),
           FavoriteNavItem(),
           HomeNavItem(),
           ScheduleNavItem(),
@@ -113,7 +112,7 @@ class _HomePageState extends State<HomePage> {
           HomeNavItem(),
           FavoriteNavItem(),
           ScheduleNavItem(),
-          NewsNavItem(),
+          CollectionsNavItem(),
           SpaceItem(),
           SettingsNavItem(),
         ],

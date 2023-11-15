@@ -25,4 +25,29 @@ class TagController extends StateNotifier<AsyncValue<List<Tag>>> {
       // TODO: Database error
     }
   }
+
+  Future<void> insertTags(List<Tag> tags) async {
+    try {
+      state = const AsyncLoading();
+      await _database.insertTags(tags);
+      tags = await _getDatabaseTags();
+      state = AsyncValue.data(tags);
+    } on JikanApiException catch (e, stacktrace) {
+      state = AsyncError(e, stacktrace);
+
+      // TODO: Database error
+    }
+  }
+
+  Future<void> removeTag(Tag tag) async {
+    try {
+      bool success = await _database.deleteTag(tag);
+      if (success) {
+        state = AsyncValue.data(
+            state.asData!.value.where((e) => e != tag).toList());
+      }
+    } on Exception catch (e, stacktrace) {
+      state = AsyncError(e, stacktrace);
+    }
+  }
 }
