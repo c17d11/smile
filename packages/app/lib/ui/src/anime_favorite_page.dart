@@ -29,17 +29,7 @@ class AnimeFavoritePage extends ConsumerWidget {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
             <Widget>[
           SliverAppBar(
-            backgroundColor: Theme.of(context).colorScheme.background,
-            floating: true,
             pinned: true,
-            actions: [
-              IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, 'anime-query', arguments: page);
-                },
-                icon: const Icon(Icons.sort),
-              )
-            ],
           ),
         ],
         body: AnimeList(
