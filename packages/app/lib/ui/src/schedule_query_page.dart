@@ -62,7 +62,6 @@ class _ScheduleQueryPageState extends ConsumerState<ScheduleQueryPage> {
         title: const Text("Filter"),
       ),
       body: Container(
-        color: Colors.grey[300],
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
@@ -87,7 +86,7 @@ class _ScheduleQueryPageState extends ConsumerState<ScheduleQueryPage> {
               padding: const EdgeInsets.all(10),
               child: TextButton(
                 style: TextButton.styleFrom(
-                  backgroundColor: Colors.green[200],
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   minimumSize: const Size.fromHeight(50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -97,7 +96,12 @@ class _ScheduleQueryPageState extends ConsumerState<ScheduleQueryPage> {
                   ref.read(scheduleQueryPod.notifier).set(localQuery);
                   Navigator.pop(context);
                 },
-                child: TextHeadline("Apply".toUpperCase()),
+                child: Text("APPLY",
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).colorScheme.background,
+                    )),
               ),
             ),
           ],
