@@ -118,7 +118,7 @@ class AddIcon extends ActionIcon {
   AddIcon({super.onPressed, super.key})
       : super(
           icon: const Icon(Icons.add),
-          color: Colors.grey[600],
+          color: _foregroundSecondary,
           disabledColor: Colors.grey[400]!,
         );
 }
