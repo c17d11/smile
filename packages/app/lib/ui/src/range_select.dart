@@ -115,22 +115,22 @@ class _RangeSelectState extends ConsumerState<RangeSelect> {
   Widget buildSlider() {
     return SliderTheme(
       data: SliderTheme.of(context).copyWith(
-        activeTrackColor: Colors.green[200],
-        inactiveTrackColor: Colors.grey[400],
+        activeTrackColor: Theme.of(context).colorScheme.primary,
+        inactiveTrackColor: Theme.of(context).colorScheme.onBackground,
         trackShape: const RectangularSliderTrackShape(),
         trackHeight: 1.0,
-        thumbColor: Colors.green[400],
+        thumbColor: Theme.of(context).colorScheme.primary,
         rangeThumbShape: widget.showInts
             ? CustomRangeSliderThumpShape<int>(
-                values.start.toInt(), values.end.toInt(), 32)
+                values.start.toInt(), values.end.toInt(), 32, context)
             : CustomRangeSliderThumpShape<double>(
-                values.start.toDouble(), values.end.toDouble(), 32),
+                values.start.toDouble(), values.end.toDouble(), 32, context),
         showValueIndicator: ShowValueIndicator.never,
-        overlayColor: Colors.green[200]!.withAlpha(32),
+        overlayColor: Theme.of(context).colorScheme.primary.withAlpha(64),
         overlayShape: const RoundSliderOverlayShape(overlayRadius: 24.0),
         tickMarkShape: const RoundSliderTickMarkShape(),
-        activeTickMarkColor: Colors.grey[200],
-        inactiveTickMarkColor: Colors.grey[200],
+        activeTickMarkColor: Theme.of(context).colorScheme.primary,
+        inactiveTickMarkColor: Theme.of(context).colorScheme.onBackground,
       ),
       child: RangeSlider(
         values: values,
@@ -162,8 +162,10 @@ class CustomRangeSliderThumpShape<T extends num> extends RangeSliderThumbShape {
   T min;
   T max;
   int height;
+  BuildContext parentContext;
 
-  CustomRangeSliderThumpShape(this.min, this.max, this.height);
+  CustomRangeSliderThumpShape(
+      this.min, this.max, this.height, this.parentContext);
 
   @override
   Size getPreferredSize(bool isEnabled, bool isDiscrete) {
@@ -186,7 +188,8 @@ class CustomRangeSliderThumpShape<T extends num> extends RangeSliderThumbShape {
       ..color = sliderTheme.thumbColor ?? Colors.yellow
       ..strokeWidth = 2.0
       ..style = PaintingStyle.stroke;
-    canvas.drawCircle(center, 7.5, Paint()..color = Colors.white);
+    canvas.drawCircle(center, 7.5,
+        Paint()..color = Theme.of(parentContext).colorScheme.background);
     canvas.drawCircle(center, 7.5, strokePaint);
     if (thumb == null) {
       return;
