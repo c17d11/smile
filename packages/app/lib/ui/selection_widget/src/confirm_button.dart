@@ -2,6 +2,12 @@ import 'package:app/ui/selection_widget/src/select_item.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
+const Color _background = Colors.black;
+final Color _backgroundSecondary = Colors.grey[900]!;
+final Color _foreground = Colors.grey[300]!;
+final Color _foregroundSecondary = Colors.grey[400]!;
+final Color _foregroundThird = Colors.grey[600]!;
+
 void _confirm(
   String title,
   String description,
@@ -68,7 +74,7 @@ class ConfirmButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectChip(
       text: title,
-      background: Colors.grey[400]!,
+      background: _backgroundSecondary,
       foreground: Colors.white,
       onPressed: () => _confirm(
         title,

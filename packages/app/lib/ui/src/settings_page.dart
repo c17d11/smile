@@ -129,15 +129,14 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
     Widget buildStatistics() {
       return Container(
-          color: Colors.grey[200],
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              buildStatisticsMenuRow(),
-              buildStatisticsContentRow(),
-              const SizedBox(height: 10),
-            ],
-          ));
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildStatisticsMenuRow(),
+          buildStatisticsContentRow(),
+          const SizedBox(height: 10),
+        ],
+      ));
     }
 
     Widget buildAboutWidget() {
@@ -160,7 +159,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
     return Scaffold(
       body: Container(
-        color: Colors.grey[300],
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
@@ -188,7 +186,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               padding: const EdgeInsets.all(10),
               child: TextButton(
                 style: TextButton.styleFrom(
-                  backgroundColor: Colors.green[200],
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   minimumSize: const Size.fromHeight(50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -197,7 +195,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 onPressed: () {
                   ref.read(settingsPod.notifier).set(localSettings);
                 },
-                child: TextHeadline("Apply".toUpperCase()),
+                child: Text("APPLY",
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).colorScheme.background,
+                    )),
               ),
             ),
           ],
