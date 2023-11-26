@@ -235,7 +235,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
               padding: const EdgeInsets.all(10),
               child: TextButton(
                 style: TextButton.styleFrom(
-                  backgroundColor: Colors.green[200],
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   minimumSize: const Size.fromHeight(50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -245,7 +245,12 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
                   ref.read(animeQueryPod(page).notifier).set(localQuery);
                   Navigator.pop(context);
                 },
-                child: TextHeadline("Apply".toUpperCase()),
+                child: Text("APPLY",
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).colorScheme.background,
+                    )),
               ),
             ),
           ],
