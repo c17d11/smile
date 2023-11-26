@@ -4,6 +4,8 @@ import 'package:app/ui/selection_widget/src/selection_wrapper.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
+final Color _backgroundSecondary = Colors.grey[900]!;
+
 class SingleSelect<T extends SelectionItem> extends StatefulWidget {
   final String title;
   final List<SelectionWrapper> options;
@@ -25,7 +27,7 @@ class _SingleSelectState extends State<SingleSelect> {
   SelectChip selectedTemplate = SelectChip(
       background: Colors.green[400]!, foreground: Colors.white, isPadded: true);
   SelectChip unselectedTemplate =
-      SelectChip(background: Colors.grey[400]!, foreground: Colors.white);
+      SelectChip(background: _backgroundSecondary, foreground: Colors.white);
 
   void callWidgetOnChanged(SelectionWrapper? e) {
     if (widget.onChanged != null) {
@@ -120,7 +122,6 @@ class _SingleSelectState extends State<SingleSelect> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[200],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

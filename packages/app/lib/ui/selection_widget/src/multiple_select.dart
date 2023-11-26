@@ -196,7 +196,6 @@ class _MultiSelectState extends State<MultiSelect> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: _background,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

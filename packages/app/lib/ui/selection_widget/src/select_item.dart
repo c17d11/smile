@@ -10,16 +10,16 @@ final Color _primarySecondary = Colors.teal.shade400;
 class SelectedChip extends SelectChip {
   SelectedChip({super.text, super.onPressed, super.key})
       : super(
-          // background: Colors.green[400]!,
-          background: _backgroundSecondary,
+          background: Colors.green[400]!,
+          // background: _backgroundSecondary,
         );
 }
 
 class UnselectedChip extends SelectChip {
   UnselectedChip({super.text, super.onPressed, super.key})
       : super(
-          // background: Colors.red[600]!,
-          background: _backgroundSecondary,
+          background: Colors.red[600]!,
+          // background: _backgroundSecondary,
         );
 }
 

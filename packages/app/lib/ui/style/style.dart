@@ -215,10 +215,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: _controller,
-      style: const TextStyle(fontSize: 14.0),
+      style: const TextStyle(fontSize: 12.0, fontStyle: FontStyle.italic),
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
-        filled: true,
         suffixIcon: showReset
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -242,11 +241,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
             : null,
         isDense: true,
         border: OutlineInputBorder(
+          borderSide: BorderSide(width: 2),
           borderRadius: BorderRadius.circular(10.0),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(color: _backgroundSecondary),
+          borderSide: BorderSide(color: Colors.grey[800]!, width: 2),
         ),
         hintText: "Enter title",
       ),
