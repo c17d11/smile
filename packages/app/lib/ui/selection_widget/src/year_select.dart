@@ -130,7 +130,6 @@ class _YearSelectState extends State<YearSelect> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[200],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

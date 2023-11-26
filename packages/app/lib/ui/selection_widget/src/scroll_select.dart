@@ -2,6 +2,8 @@ import 'package:app/ui/selection_widget/src/select_item.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
+final Color _backgroundSecondary = Colors.grey[900]!;
+
 void _pickValue(
   String title,
   BuildContext context,
@@ -125,7 +127,7 @@ class ScrollSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectChip(
       text: "$value",
-      background: isSet ? Colors.green[400]! : Colors.grey[400]!,
+      background: isSet ? Colors.green[400]! : _backgroundSecondary,
       foreground: Colors.white,
       onPressed: () => _pickValue(
         title,

@@ -195,7 +195,6 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
         title: const Text("Filter"),
       ),
       body: Container(
-        color: Colors.grey[300],
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,

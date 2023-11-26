@@ -147,7 +147,6 @@ class _RangeSelectState extends ConsumerState<RangeSelect> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[200],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
