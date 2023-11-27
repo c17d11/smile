@@ -16,18 +16,20 @@ class TextDivider extends StatelessWidget {
           const Expanded(
             child: Divider(),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: DefaultTextStyle(
-              style: AppStyle.headline,
-              child: Text(
-                text.toUpperCase(),
+          if (text != "") ...[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: DefaultTextStyle(
+                style: AppStyle.headline,
+                child: Text(
+                  text.toUpperCase(),
+                ),
               ),
             ),
-          ),
-          const Expanded(
-            child: Divider(),
-          ),
+            const Expanded(
+              child: Divider(),
+            ),
+          ]
         ],
       ),
     );
