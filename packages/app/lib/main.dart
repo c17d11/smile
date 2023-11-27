@@ -1,8 +1,8 @@
 import 'package:app/ui/src/anime_details.dart';
-import 'package:app/ui/src/anime_home.dart';
+import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/anime_query_page.dart';
 import 'package:app/ui/src/collection_page.dart';
-import 'package:app/ui/src/home.dart';
+import 'package:app/ui/src/nav_items.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/schedule_query_page.dart';
 import 'package:flutter/material.dart';
