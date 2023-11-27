@@ -90,19 +90,6 @@ class _AnimeScheduleListState extends State<AnimeScheduleList> {
         shrinkWrap: true,
         physics: const AlwaysScrollableScrollPhysics(),
         slivers: <Widget>[
-          SliverAppBar(
-            backgroundColor: Theme.of(context).colorScheme.background,
-            floating: true,
-            pinned: true,
-            actions: [
-              IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, 'schedule-query');
-                },
-                icon: const Icon(Icons.sort),
-              )
-            ],
-          ),
           ...pages,
         ],
       ),

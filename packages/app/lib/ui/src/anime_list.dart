@@ -4,7 +4,6 @@ import 'package:app/ui/src/anime_response.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sliver_tools/sliver_tools.dart';
 
 const Color _background = Colors.black;
 final Color _backgroundSecondary = Colors.grey[900]!;
@@ -21,30 +20,12 @@ class AnimeListPage extends ConsumerWidget {
     AnimeQueryIntern query = ref.watch(animeQueryPod(page));
 
     return Scaffold(
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
-            <Widget>[
-          SliverAppBar(
-            backgroundColor: Theme.of(context).colorScheme.background,
-            floating: true,
-            pinned: true,
-            actions: [
-              IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, 'anime-query', arguments: page);
-                },
-                icon: const Icon(Icons.sort),
-              )
-            ],
-          ),
-        ],
-        body: AnimeList(
-          page: page,
-          initQuery: query,
-          onNextPageQuery: (query) => AnimeQueryIntern.nextPage(query),
-          onLastQuery: (query) => null,
-          key: UniqueKey(),
-        ),
+      body: AnimeList(
+        page: page,
+        initQuery: query,
+        onNextPageQuery: (query) => AnimeQueryIntern.nextPage(query),
+        onLastQuery: (query) => null,
+        key: UniqueKey(),
       ),
     );
   }
@@ -139,23 +120,6 @@ class _AnimeListState extends State<AnimeList> {
         shrinkWrap: true,
         physics: const AlwaysScrollableScrollPhysics(),
         slivers: <Widget>[
-          // SliverAppBar(
-          //   title: Text(widget.initQuery.tag?.name ?? ""),
-          // ),
-          // SliverAppBar(
-          //   backgroundColor: Theme.of(context).colorScheme.background,
-          //   floating: true,
-          //   pinned: true,
-          //   actions: [
-          //     IconButton(
-          //       onPressed: () {
-          //         Navigator.pushNamed(context, 'anime-query',
-          //             arguments: widget.page);
-          //       },
-          //       icon: const Icon(Icons.sort),
-          //     )
-          //   ],
-          // ),
           ...pages,
         ],
       ),

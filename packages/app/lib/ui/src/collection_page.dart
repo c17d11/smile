@@ -1,14 +1,11 @@
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
-import 'package:app/ui/selection_widget/src/select_item.dart';
 import 'package:app/ui/src/anime_list.dart';
 import 'package:app/ui/src/pod.dart';
-import 'package:app/ui/src/sliver_app_bar_delegate.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:isar/isar.dart';
 
 class AnimeCollectionPage extends ConsumerStatefulWidget {
   const AnimeCollectionPage({super.key});
@@ -157,75 +154,6 @@ class _CollectionPageState extends ConsumerState<CollectionPage> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-                title: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                    onPressed: () => showDialog(
-                          context: context,
-                          builder: (context) {
-                            TextEditingController controller =
-                                TextEditingController();
-                            return WillPopScope(
-                              onWillPop: () async {
-                                return true;
-                              },
-                              child: AlertDialog(
-                                title: TextWindow("Enter tag name"),
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8.0))),
-                                content: StatefulBuilder(builder:
-                                    (BuildContext context,
-                                        StateSetter setState) {
-                                  return ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                      maxHeight:
-                                          MediaQuery.of(context).size.height *
-                                              0.8,
-                                      maxWidth:
-                                          MediaQuery.of(context).size.width *
-                                              0.5,
-                                    ),
-                                    child: SizedBox(
-                                        height: 150,
-                                        width: 200,
-                                        child:
-                                            TextField(controller: controller)),
-                                  );
-                                }),
-                                actions: <Widget>[
-                                  TextButton(
-                                    child: const Text('Cancel'),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                  TextButton(
-                                    child: const Text('Apply'),
-                                    onPressed: () {
-                                      Navigator.pop(context, controller.text);
-                                    },
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        ).then((value) async {
-                          if (value != null) {
-                            await ref
-                                .read(tagPod.notifier)
-                                .insertTags([Tag(value, 0)]);
-                            setState(() {});
-                          }
-                        }),
-                    child: Text("New collection"))
-              ],
-            )),
-          ),
           buildTags(tags),
         ],
       ),
