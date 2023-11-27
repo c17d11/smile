@@ -3,8 +3,6 @@ import 'dart:ui';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/selection_widget/src/multiple_select.dart';
-import 'package:app/ui/selection_widget/src/single_select.dart';
-import 'package:app/ui/selection_widget/src/tag_select.dart';
 import 'package:app/ui/src/like_select.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/slider_select.dart';
@@ -258,14 +256,6 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                     localAnime!.tags = items.map((e) => e as Tag).toList();
                   },
                 ),
-                // TagSelect<Tag>(
-                //   title: "Tags",
-                //   loadOptions: loadTags,
-                //   initialSelected: const [],
-                //   onChangedInclude: (items) {
-                //     // ref.read(tagPod.notifier).
-                // },
-                // ),
                 const TextField(
                   maxLines: null,
                   keyboardType: TextInputType.multiline,
@@ -463,10 +453,10 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                       child: Container(
                         color: _background,
                         child: TabBar(
-                          indicatorColor: _foregroundSecondary,
-                          labelColor: _foreground,
+                          indicatorColor: Theme.of(context).colorScheme.primary,
+                          labelColor: Theme.of(context).colorScheme.primary,
                           unselectedLabelColor: _foregroundSecondary,
-                          dividerColor: _foreground,
+                          dividerColor: Theme.of(context).colorScheme.primary,
                           tabs: tabs
                               .map((e) =>
                                   Tab(child: Text(e.item1.toUpperCase())))
