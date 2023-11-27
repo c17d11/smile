@@ -1,219 +1,150 @@
-import 'package:app/controller/src/object/tag.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
-import 'package:app/ui/src/anime_favorite_page.dart';
-import 'package:app/ui/src/anime_home.dart';
-import 'package:app/ui/src/anime_list.dart';
-import 'package:app/ui/src/anime_schedule_page.dart';
-import 'package:app/ui/src/collection_page.dart';
-import 'package:app/ui/src/pod.dart';
-import 'package:app/ui/src/settings_page.dart';
-import 'package:app/ui/style/style.dart';
+import 'package:app/ui/src/nav_items.dart';
+import 'package:app/ui/src/text_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeNavItem extends IconItem {
+abstract class PageGroup {
+  String get title;
+  List<IconItem> get pages;
+  void onNavigate(WidgetRef ref);
+}
+
+class AnimeGroup extends PageGroup {
   @override
-  String get label => "Browse";
+  void onNavigate(WidgetRef ref) =>
+      ref.read(pageGroupPod.notifier).state = this;
 
   @override
-  Icon get icon => const Icon(Icons.home_outlined);
+  List<IconItem> get pages => [
+        HomeNavItem(),
+        ScheduleNavItem(),
+        FavoriteNavItem(),
+        CollectionsNavItem(),
+      ];
 
   @override
-  Icon get selectedIcon => const Icon(Icons.home);
+  String get title => "Anime";
+}
+
+class OtherGroup extends PageGroup {
+  @override
+  void onNavigate(WidgetRef ref) =>
+      ref.read(pageGroupPod.notifier).state = this;
 
   @override
-  Widget buildContent() {
-    return AnimeListPage(page: this);
-  }
+  List<IconItem> get pages => [ProducersNavItem(), GenresNavItem()];
 
   @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return IconButton(
-      onPressed: () {
-        Navigator.pushNamed(context, 'anime-query', arguments: this);
+  String get title => "Other";
+}
+
+class SettingsGroup extends PageGroup {
+  @override
+  void onNavigate(WidgetRef ref) =>
+      ref.read(pageGroupPod.notifier).state = this;
+
+  @override
+  List<IconItem> get pages => [SettingsNavItem()];
+
+  @override
+  String get title => "";
+}
+
+final pageGroupPod = StateProvider<PageGroup>((ref) => AnimeGroup());
+final pageIndexPod = StateProvider<int>((ref) => 0);
+final pagePod = StateProvider<IconItem?>((ref) {
+  final group = ref.watch(pageGroupPod);
+  final index = ref.watch(pageIndexPod);
+  return group.pages[index];
+});
+
+class HomePage extends ConsumerStatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  ConsumerState<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends ConsumerState<HomePage> {
+  Widget buildListTile(IconItem item, WidgetRef ref, PageGroup g, int index) {
+    return ListTile(
+      leading: ref.read(pagePod) == item ? item.selectedIcon : item.icon,
+      title: Text(item.label),
+      selected: ref.read(pagePod) == item,
+      onTap: () {
+        ref.read(pageGroupPod.notifier).state = g;
+        ref.read(pageIndexPod.notifier).state = index;
+        Navigator.pop(context);
       },
-      icon: const Icon(Icons.sort),
     );
   }
-}
 
-class FavoriteNavItem extends IconItem {
-  @override
-  String get label => "Favorite";
-
-  @override
-  Icon get icon => const Icon(Icons.favorite_outline);
-
-  @override
-  Icon get selectedIcon => const Icon(Icons.favorite);
-
-  @override
-  Widget buildContent() {
-    return AnimeFavoritePage(page: this);
-  }
-
-  @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return Container();
-  }
-}
-
-class ScheduleNavItem extends IconItem {
-  @override
-  String get label => "Schedule";
-
-  @override
-  Icon get icon => const Icon(Icons.calendar_month_outlined);
-
-  @override
-  Icon get selectedIcon => const Icon(Icons.calendar_month);
-
-  @override
-  Widget buildContent() {
-    return AnimeSchedulePage(page: this);
-  }
-
-  @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return IconButton(
-      onPressed: () {
-        Navigator.pushNamed(context, 'schedule-query');
-      },
-      icon: const Icon(Icons.sort),
+  Widget buildNavigationDestination(IconItem item) {
+    return NavigationDestination(
+      selectedIcon: item.selectedIcon,
+      icon: item.icon,
+      label: item.label,
     );
   }
-}
-
-class CollectionsNavItem extends IconItem {
-  @override
-  String get label => "Collections";
 
   @override
-  Icon get icon => const Icon(Icons.collections_bookmark_outlined);
+  Widget build(BuildContext context) {
+    PageGroup? group = ref.watch(pageGroupPod);
+    int index = ref.watch(pageIndexPod);
+    IconItem? page = ref.watch(pagePod);
 
-  @override
-  Icon get selectedIcon => const Icon(Icons.collections_bookmark);
-
-  @override
-  Widget buildContent() {
-    return CollectionPage(page: this);
-  }
-
-  @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return TextButton(
-        onPressed: () => showDialog(
-              context: context,
-              builder: (context) {
-                TextEditingController controller = TextEditingController();
-                return WillPopScope(
-                  onWillPop: () async {
-                    return true;
-                  },
-                  child: AlertDialog(
-                    title: TextWindow("Enter tag name"),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                    content: StatefulBuilder(
-                        builder: (BuildContext context, StateSetter setState) {
-                      return ConstrainedBox(
-                        constraints: BoxConstraints(
-                          maxHeight: MediaQuery.of(context).size.height * 0.8,
-                          maxWidth: MediaQuery.of(context).size.width * 0.5,
-                        ),
-                        child: SizedBox(
-                            height: 150,
-                            width: 200,
-                            child: TextField(controller: controller)),
-                      );
-                    }),
-                    actions: <Widget>[
-                      TextButton(
-                        child: const Text('Cancel'),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      TextButton(
-                        child: const Text('Apply'),
-                        onPressed: () {
-                          Navigator.pop(context, controller.text);
-                        },
-                      ),
-                    ],
-                  ),
-                );
+    return Scaffold(
+      appBar: AppBar(
+        actions: page != null ? [page.buildAppBarWidget(context, ref)] : [],
+      ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                child: null),
+            ...[
+              TextDivider(AnimeGroup().title),
+              ...AnimeGroup()
+                  .pages
+                  .asMap()
+                  .entries
+                  .map((e) => buildListTile(e.value, ref, AnimeGroup(), e.key))
+            ],
+            ...[
+              TextDivider(OtherGroup().title),
+              ...OtherGroup()
+                  .pages
+                  .asMap()
+                  .entries
+                  .map((e) => buildListTile(e.value, ref, OtherGroup(), e.key))
+            ],
+            const Spacer(),
+            ...[
+              TextDivider(SettingsGroup().title),
+              ...SettingsGroup().pages.asMap().entries.map(
+                  (e) => buildListTile(e.value, ref, SettingsGroup(), e.key))
+            ],
+          ],
+        ),
+      ),
+      body: page != null ? page.buildContent() : null,
+      bottomNavigationBar: (group?.pages.length ?? 0) > 1
+          ? NavigationBar(
+              backgroundColor: Theme.of(context).colorScheme.background,
+              indicatorColor: Theme.of(context).colorScheme.primary,
+              shadowColor: Theme.of(context).colorScheme.secondary,
+              onDestinationSelected: (value) {
+                ref.read(pageIndexPod.notifier).state = value;
               },
-            ).then((value) async {
-              if (value != null) {
-                await ref.read(tagPod.notifier).insertTags([Tag(value, 0)]);
-                ref.invalidate(pagePod);
-                // setState(() {});
-              }
-            }),
-        child: Text("New collection"));
-  }
-}
-
-class SettingsNavItem extends IconItem {
-  @override
-  String get label => "Settings";
-
-  @override
-  Icon get icon => const Icon(Icons.settings_outlined);
-
-  @override
-  Icon get selectedIcon => const Icon(Icons.settings);
-
-  @override
-  Widget buildContent() {
-    return const SettingsPage();
-  }
-
-  @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return Container();
-  }
-}
-
-class ProducersNavItem extends IconItem {
-  @override
-  String get label => "Producers";
-
-  @override
-  Icon get icon => const Icon(Icons.business_outlined);
-
-  @override
-  Icon get selectedIcon => const Icon(Icons.business);
-
-  @override
-  Widget buildContent() {
-    return Container(color: Colors.yellow);
-  }
-
-  @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return Container();
-  }
-}
-
-class GenresNavItem extends IconItem {
-  @override
-  String get label => "Genres";
-
-  @override
-  Icon get icon => const Icon(Icons.label_outline);
-
-  @override
-  Icon get selectedIcon => const Icon(Icons.label);
-
-  @override
-  Widget buildContent() {
-    return Container(color: Colors.yellow);
-  }
-
-  @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return Container();
+              selectedIndex: index,
+              destinations: group!.pages
+                  .map((e) => buildNavigationDestination(e))
+                  .toList())
+          : null,
+    );
   }
 }
