@@ -1,4 +1,5 @@
 import 'package:app/ui/src/anime_details.dart';
+import 'package:app/ui/src/anime_home.dart';
 import 'package:app/ui/src/anime_query_page.dart';
 import 'package:app/ui/src/collection_page.dart';
 import 'package:app/ui/src/home.dart';
@@ -31,9 +32,9 @@ class _AppState extends ConsumerState<App> {
           // colorSchemeSeed: const Color(0xff6750a4),
           // brightness: Brightness.dark,
           colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(10, 155, 12, 12),
-            primary: const Color.fromARGB(255, 135, 109, 212),
-            secondary: const Color.fromARGB(255, 24, 193, 190),
+            seedColor: Color.fromARGB(255, 161, 202, 200),
+            primary: const Color.fromARGB(255, 161, 202, 200),
+            secondary: Color.fromARGB(255, 176, 161, 202),
             error: const Color.fromARGB(255, 178, 99, 93),
             background: Colors.black,
             brightness: Brightness.dark,
@@ -60,7 +61,10 @@ class _AppState extends ConsumerState<App> {
         },
       ),
       error: (err, stack) => Text('Error: $err'),
-      loading: () => const CircularProgressIndicator(),
+      loading: () => Container(
+        color: const Color.fromARGB(255, 161, 202, 200),
+        child: Image.asset('assets/coffee.webp', fit: BoxFit.none),
+      ),
     );
   }
 }
