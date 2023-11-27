@@ -1,6 +1,7 @@
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/anime_favorite_page.dart';
+import 'package:app/ui/src/genre_list.dart';
 import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/anime_list.dart';
 import 'package:app/ui/src/anime_schedule_page.dart';
@@ -209,7 +210,7 @@ class GenresNavItem extends IconItem {
 
   @override
   Widget buildContent() {
-    return Container(color: Colors.yellow);
+    return GenreListPage();
   }
 
   @override

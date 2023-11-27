@@ -43,11 +43,11 @@ final databaseUpdatePod = Provider((ref) {
 final initPod = FutureProvider<bool>((ref) async {
   await ref.watch(databasePod).init();
 
-  await ref
-      .watch(depencyInjectorPod)
-      .container
-      .resolve<PopulateDatabase>()
-      .populate();
+  // await ref
+  //     .watch(depencyInjectorPod)
+  //     .container
+  //     .resolve<PopulateDatabase>()
+  //     .populate();
 
   // successful init
   return true;
@@ -80,14 +80,18 @@ final producerPod =
     StateNotifierProvider<ProducerController, AsyncValue<List<ProducerIntern>>>(
         (ref) {
   Database db = ref.watch(databaseUpdatePod);
-  return ProducerController(db);
+  JikanApi api = ref.watch(apiPod);
+  return ProducerController(db, api);
 });
 
 final genrePod =
     StateNotifierProvider<GenreController, AsyncValue<List<GenreIntern>>>(
         (ref) {
   Database db = ref.watch(databaseUpdatePod);
-  return GenreController(db);
+  JikanApi api = ref.watch(apiPod);
+  GenreController genres = GenreController(db, api);
+  genres.get();
+  return genres;
 });
 
 final tagPod =
@@ -105,8 +109,8 @@ final animeControllerPod =
   return AnimeController(db, api);
 });
 
-final animeQueryPod = StateNotifierProvider.family
-    .autoDispose<AnimeQueryNotifier, AnimeQueryIntern, IconItem>((ref, arg) {
+final animeQueryPod = StateNotifierProvider.family<AnimeQueryNotifier,
+    AnimeQueryIntern, IconItem>((ref, arg) {
   Database db = ref.watch(databasePod);
   final notifier = AnimeQueryNotifier(arg.label, db);
   notifier.load();
