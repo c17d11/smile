@@ -121,4 +121,8 @@ class JikanApi {
   List<Anime> getFetchAllScheduleResult() {
     return _fetchAllScheduleTask.getResult();
   }
+
+  String buildProducerSearchQuery(ProducerQuery query) {
+    return _producerSearchApi.buildQuery(query);
+  }
 }

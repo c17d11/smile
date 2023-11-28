@@ -69,3 +69,39 @@ class AnimeQueryNotifier extends StateNotifier<AnimeQueryIntern> {
     state = newQuery;
   }
 }
+
+class ProducerQueryIntern extends ProducerQuery {
+  void override(ProducerQuery q) {
+    searchTerm = q.searchTerm;
+    page = q.page;
+  }
+
+  static ProducerQueryIntern from(ProducerQueryIntern q) {
+    ProducerQueryIntern query = ProducerQueryIntern()
+      ..searchTerm = q.searchTerm
+      ..page = q.page;
+    return query;
+  }
+
+  static ProducerQueryIntern nextPage(ProducerQueryIntern q) {
+    ProducerQueryIntern query = ProducerQueryIntern.from(q);
+    query.page = (query.page ?? 1) + 1;
+    return query;
+  }
+}
+
+class ProducerQueryNotifier extends StateNotifier<ProducerQueryIntern> {
+  final Database db;
+  final String page;
+  ProducerQueryNotifier(this.page, this.db) : super(ProducerQueryIntern());
+
+  Future<void> load() async {
+    ProducerQueryIntern? query = await db.getProducerQuery(page);
+    state = query ?? ProducerQueryIntern();
+  }
+
+  Future<void> set(ProducerQueryIntern newQuery) async {
+    await db.updateProducerQuery(page, newQuery);
+    state = newQuery;
+  }
+}

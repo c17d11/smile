@@ -9,8 +9,7 @@ class PopulateDatabase {
 
   Future<void> populateProducers() async {
     ProducerResponse res = await _api.searchProducers(ProducerQuery());
-    ProducerResponseIntern resIntern =
-        _db.createProducerResponseIntern(res, ProducerQuery());
+    ProducerResponseIntern resIntern = _db.createProducerResponseIntern(res);
     await _db.insertProducerResponse(resIntern);
   }
 

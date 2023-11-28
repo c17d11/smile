@@ -7,6 +7,7 @@ import 'package:app/ui/src/anime_list.dart';
 import 'package:app/ui/src/anime_schedule_page.dart';
 import 'package:app/ui/src/collection_page.dart';
 import 'package:app/ui/src/pod.dart';
+import 'package:app/ui/src/producer_list.dart';
 import 'package:app/ui/src/settings_page.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
@@ -189,7 +190,7 @@ class ProducersNavItem extends IconItem {
 
   @override
   Widget buildContent() {
-    return Container(color: Colors.yellow);
+    return ProducerListPage(page: this);
   }
 
   @override

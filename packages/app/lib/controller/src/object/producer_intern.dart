@@ -15,4 +15,15 @@ class ProducerIntern extends Producer with SelectionItem {
       ..imageUrl = p.imageUrl;
     return producerIntern;
   }
+
+  static Producer to(ProducerIntern p) {
+    Producer producer = Producer()
+      ..malId = p.malId
+      ..title = p.title
+      ..established = p.established
+      ..about = p.about
+      ..count = p.count
+      ..imageUrl = p.imageUrl;
+    return producer;
+  }
 }
