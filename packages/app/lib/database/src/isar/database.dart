@@ -9,6 +9,7 @@ import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/database/src/isar/collection/isar_genre.dart';
+import 'package:app/database/src/isar/collection/isar_producer_query.dart';
 import 'package:app/database/src/isar/collection/isar_producer_response.dart';
 import 'package:app/database/src/isar/collection/isar_anime_query.dart';
 import 'package:app/database/src/isar/collection/isar_schedule_query.dart';
@@ -19,6 +20,7 @@ import 'package:app/database/src/isar/model/anime_query_model.dart';
 import 'package:app/database/src/isar/model/anime_response_model.dart';
 import 'package:app/database/src/isar/model/genre_model.dart';
 import 'package:app/database/src/isar/model/producer_model.dart';
+import 'package:app/database/src/isar/model/producer_query_model.dart';
 import 'package:app/database/src/isar/model/producer_response_model.dart';
 import 'package:app/database/src/isar/model/schedule_query_model.dart';
 import 'package:app/database/src/isar/model/settings_model.dart';
@@ -46,6 +48,8 @@ class IsarDatabase implements Database {
       IsarGenreModel(instance, expirationHours: 24);
   late IsarAnimeQueryModel animeQueryModel =
       IsarAnimeQueryModel(instance, expirationHours: 24);
+  late IsarProducerQueryModel producerQueryModel =
+      IsarProducerQueryModel(instance, expirationHours: 24);
   late IsarScheduleQueryModel scheduleQueryModel =
       IsarScheduleQueryModel(instance, expirationHours: 24);
   late IsarSettingsModel settingsModel =
@@ -66,6 +70,7 @@ class IsarDatabase implements Database {
           IsarGenreSchema,
           IsarAnimeQuerySchema,
           IsarScheduleQuerySchema,
+          IsarProducerQuerySchema,
           IsarSettingsSchema,
           IsarTagSchema,
         ],
@@ -219,9 +224,8 @@ class IsarDatabase implements Database {
   }
 
   @override
-  ProducerResponseIntern createProducerResponseIntern(
-      ProducerResponse res, ProducerQuery query) {
-    return IsarProducerResponse.from(res, query);
+  ProducerResponseIntern createProducerResponseIntern(ProducerResponse res) {
+    return IsarProducerResponse.from(res);
   }
 
   @override
@@ -230,8 +234,7 @@ class IsarDatabase implements Database {
   }
 
   @override
-  Future<ProducerResponseIntern?> getProducerResponse(
-      ProducerQuery query) async {
+  Future<ProducerResponseIntern?> getProducerResponse(String query) async {
     return await producerResponseModel.getProducerResponse(query);
   }
 
@@ -320,6 +323,17 @@ class IsarDatabase implements Database {
   @override
   Future<void> insertTags(List<Tag> tags) async {
     return await tagModel.insertTags(tags);
+  }
+
+  @override
+  Future<ProducerQueryIntern?> getProducerQuery(String page) async {
+    return await producerQueryModel.getProducerQuery(page);
+  }
+
+  @override
+  Future<void> updateProducerQuery(
+      String page, ProducerQueryIntern query) async {
+    return await producerQueryModel.updateProducerQuery(page, query);
   }
 }
 

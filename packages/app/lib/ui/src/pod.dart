@@ -1,9 +1,11 @@
 import 'package:app/controller/src/controller/anime_collection_controller.dart';
 import 'package:app/controller/src/controller/genre_controller.dart';
 import 'package:app/controller/src/controller/producer_controller.dart';
+import 'package:app/controller/src/controller/producer_search_controller.dart';
 import 'package:app/controller/src/controller/tag_controller.dart';
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
+import 'package:app/controller/src/object/producer_response_intern.dart';
 import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/src/object/settings_intern.dart';
 import 'package:app/controller/src/object/tag.dart';
@@ -80,8 +82,24 @@ final producerPod =
     StateNotifierProvider<ProducerController, AsyncValue<List<ProducerIntern>>>(
         (ref) {
   Database db = ref.watch(databaseUpdatePod);
+  return ProducerController(db);
+});
+
+final producerSearchPod = StateNotifierProvider.family<ProducerSearchController,
+    AsyncValue<ProducerResponseIntern>, ProducerQueryIntern>((ref, arg) {
+  Database db = ref.watch(databaseUpdatePod);
   JikanApi api = ref.watch(apiPod);
-  return ProducerController(db, api);
+  ProducerSearchController controller = ProducerSearchController(db, api);
+  controller.get(arg);
+  return controller;
+});
+
+final producerQueryPod = StateNotifierProvider.family<ProducerQueryNotifier,
+    ProducerQueryIntern, IconItem>((ref, arg) {
+  Database db = ref.watch(databasePod);
+  final notifier = ProducerQueryNotifier(arg.label, db);
+  notifier.load();
+  return notifier;
 });
 
 final genrePod =
@@ -150,6 +168,17 @@ final packageInfoPod = FutureProvider<PackageInfo>((ref) async {
 extension AsyncValueUi on AsyncValue<AnimeResponseIntern> {
   bool get isLoading => this is AsyncLoading<AnimeResponseIntern>;
   bool get isError => this is AsyncError<AnimeResponseIntern>;
+
+  void showSnackBarOnError(BuildContext context) =>
+      whenOrNull(error: (error, _) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(error.toString())));
+      });
+}
+
+extension AsyncValueUiProducer on AsyncValue<ProducerResponseIntern> {
+  bool get isLoading => this is AsyncLoading<ProducerResponseIntern>;
+  bool get isError => this is AsyncError<ProducerResponseIntern>;
 
   void showSnackBarOnError(BuildContext context) =>
       whenOrNull(error: (error, _) {

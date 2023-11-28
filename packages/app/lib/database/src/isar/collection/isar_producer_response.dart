@@ -28,9 +28,8 @@ class IsarProducerResponse extends ProducerResponseIntern with IsarExpiration {
     return query;
   }
 
-  static IsarProducerResponse from(ProducerResponse res, ProducerQuery query) {
-    String q = createQueryString(query);
-    IsarProducerResponse isarRes = IsarProducerResponse(q: q)
+  static IsarProducerResponse from(ProducerResponse res) {
+    IsarProducerResponse isarRes = IsarProducerResponse(q: res.query!)
       ..date = res.date
       ..expires = res.expires
       ..pagination = res.pagination

@@ -27,15 +27,10 @@ class IsarProducerResponseModel extends IsarModel
   }
 
   @override
-  Future<ProducerResponseIntern?> getProducerResponse(
-      ProducerQuery query) async {
-    String isarQuery = IsarProducerResponse.createQueryString(query);
+  Future<ProducerResponseIntern?> getProducerResponse(String query) async {
     IsarProducerResponse? res;
     await read(() async {
-      res = await db.isarProducerResponses
-          .where()
-          .qEqualTo(isarQuery)
-          .findFirst();
+      res = await db.isarProducerResponses.where().qEqualTo(query).findFirst();
     });
     if (isExpired(res)) return null;
     res?.data = res?.isarProducers.toList();
@@ -55,8 +50,7 @@ class IsarProducerResponseModel extends IsarModel
   }
 
   @override
-  ProducerResponseIntern createProducerResponseIntern(
-      ProducerResponse res, ProducerQuery query) {
-    return IsarProducerResponse.from(res, query);
+  ProducerResponseIntern createProducerResponseIntern(ProducerResponse res) {
+    return IsarProducerResponse.from(res);
   }
 }

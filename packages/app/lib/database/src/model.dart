@@ -36,10 +36,9 @@ abstract interface class ProducerModel {
 
 abstract interface class ProducerResponseModel {
   Future<void> insertProducerResponse(ProducerResponseIntern res);
-  Future<ProducerResponseIntern?> getProducerResponse(ProducerQuery query);
+  Future<ProducerResponseIntern?> getProducerResponse(String query);
   Future<bool> deleteProducerResponse(ProducerQuery query);
-  ProducerResponseIntern createProducerResponseIntern(
-      ProducerResponse res, ProducerQuery query);
+  ProducerResponseIntern createProducerResponseIntern(ProducerResponse res);
 }
 
 abstract interface class GenreModel {
@@ -53,6 +52,11 @@ abstract interface class GenreModel {
 abstract interface class AnimeQueryModel {
   Future<void> updateAnimeQuery(String page, AnimeQueryIntern query);
   Future<AnimeQueryIntern?> getAnimeQuery(String page);
+}
+
+abstract interface class ProducerQueryModel {
+  Future<void> updateProducerQuery(String page, ProducerQueryIntern query);
+  Future<ProducerQueryIntern?> getProducerQuery(String page);
 }
 
 abstract interface class ScheduleQueryModel {
@@ -79,6 +83,7 @@ abstract interface class ModelProxy
         ProducerResponseModel,
         GenreModel,
         AnimeQueryModel,
+        ProducerQueryModel,
         ScheduleQueryModel,
         SettingsModel,
         TagModel {}
