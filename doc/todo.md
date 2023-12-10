@@ -11,11 +11,6 @@ Tasks to be done at some point.
 	- [ ] Check if other image from api response should be used
 - [ ] Refactor pod.dart
 - [ ] Verifiy that adjusting rate limit works.
-
-### Future
-- [ ] Blacklist. Like favorite but opposite. The blacklisted should be hidden in the results
-	- [ ] Store in database
-	- [ ] View blacklisted and edit page
 - [ ] Producer page
 	- [ ] Navigate from anime details to producer details page
 	- [ ] Prodcer details page
@@ -23,6 +18,22 @@ Tasks to be done at some point.
 		- [ ] Should contain related animes
 		- [ ] Navigate to anime details form producer details
 - [ ] Genre page like producer page
+
+#### From real device testing
+- [ ] Liking anime in schedule page does not work
+- [ ] Remove question mark in notes
+- [ ] Implement textfield in notes
+- [ ] Implement save score in notes
+- [ ] Fewer step to add tag
+- [ ] Producer and genres not stored in anime in favorites
+- [ ] Favorites not working in browse
+- [ ] Producer popup overflowing
+- [ ] Tags removed from animes
+
+### Future
+- [ ] Blacklist. Like favorite but opposite. The blacklisted should be hidden in the results
+	- [ ] Store in database
+	- [ ] View blacklisted and edit page
 - [ ] View individual anime episode details
 - [ ] View previous seasons
 - [ ] Recommendations in anime details page
