@@ -14,6 +14,10 @@ class IsarProducer extends ProducerIntern with IsarExpiration {
     storedAt = DateTime.now();
   }
 
+  ProducerIntern toProducer() {
+    return this;
+  }
+
   static IsarProducer from(Producer p) {
     IsarProducer producerIntern = IsarProducer(id: p.malId!)
       ..malId = p.malId
