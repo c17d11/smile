@@ -10,8 +10,7 @@ class AnimeCollectionController
     extends StateNotifier<AsyncValue<AnimeResponseIntern>> {
   final Database _database;
 
-  AnimeCollectionController(this._database)
-      : super(AsyncValue.data(IsarAnimeResponse(q: "")));
+  AnimeCollectionController(this._database) : super(const AsyncLoading());
 
   Future<void> get(AnimeQueryIntern query) async {
     try {

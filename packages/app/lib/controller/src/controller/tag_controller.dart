@@ -6,7 +6,7 @@ import 'package:jikan_api/jikan_api.dart';
 class TagController extends StateNotifier<AsyncValue<List<Tag>>> {
   final Database _database;
 
-  TagController(this._database) : super(const AsyncValue.data([]));
+  TagController(this._database) : super(const AsyncLoading());
 
   Future<List<Tag>> _getDatabaseTags() async {
     List<Tag> tags = await _database.getAllTags();

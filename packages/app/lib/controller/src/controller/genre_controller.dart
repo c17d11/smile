@@ -7,7 +7,7 @@ class GenreController extends StateNotifier<AsyncValue<List<GenreIntern>>> {
   final Database _database;
   final JikanApi _api;
 
-  GenreController(this._database, this._api) : super(const AsyncValue.data([]));
+  GenreController(this._database, this._api) : super(const AsyncLoading());
 
   Future<List<GenreIntern>> _getDatabaseGenres() async {
     List<GenreIntern> genres = await _database.getAllGenres();

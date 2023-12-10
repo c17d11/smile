@@ -71,7 +71,7 @@ class AnimeQueryNotifier extends StateNotifier<AnimeQueryIntern> {
 }
 
 class ProducerQueryIntern extends ProducerQuery {
-  void override(ProducerQuery q) {
+  void replace(ProducerQuery q) {
     searchTerm = q.searchTerm;
     page = q.page;
   }
@@ -88,6 +88,15 @@ class ProducerQueryIntern extends ProducerQuery {
     query.page = (query.page ?? 1) + 1;
     return query;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      other is ProducerQueryIntern &&
+      other.page == page &&
+      other.searchTerm == searchTerm;
+
+  @override
+  int get hashCode => page.hashCode ^ searchTerm.hashCode;
 }
 
 class ProducerQueryNotifier extends StateNotifier<ProducerQueryIntern> {

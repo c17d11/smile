@@ -13,7 +13,7 @@ class AnimeSearchController
   final JikanApi _api;
 
   AnimeSearchController(this._database, this._api)
-      : super(AsyncValue.data(IsarAnimeResponse(q: "")));
+      : super(const AsyncLoading());
 
   Future<AnimeResponseIntern?> _getDatabaseResponse(String query) async {
     AnimeResponseIntern? res = await _database.getAnimeResponse(query);
