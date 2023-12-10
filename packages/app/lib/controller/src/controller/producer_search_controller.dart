@@ -1,7 +1,6 @@
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/producer_response_intern.dart';
 import 'package:app/database/src/database_base.dart';
-import 'package:app/database/src/isar/collection/isar_producer_response.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
@@ -11,7 +10,7 @@ class ProducerSearchController
   final JikanApi _api;
 
   ProducerSearchController(this._database, this._api)
-      : super(AsyncValue.data(IsarProducerResponse(q: "")));
+      : super(const AsyncLoading());
 
   Future<ProducerResponseIntern?> _getDatabaseProducers(String query) async {
     ProducerResponseIntern? res = await _database.getProducerResponse(query);

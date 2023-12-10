@@ -7,8 +7,7 @@ class AnimeController extends StateNotifier<AsyncValue<AnimeIntern?>> {
   final Database _database;
   final JikanApi _api;
 
-  AnimeController(this._database, this._api)
-      : super(const AsyncValue.data(null));
+  AnimeController(this._database, this._api) : super(const AsyncLoading());
 
   Future<AnimeIntern?> _getDatabaseAnime(int malId) async {
     AnimeIntern? anime = await _database.getAnime(malId);
