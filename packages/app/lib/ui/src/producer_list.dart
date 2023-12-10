@@ -1,4 +1,3 @@
-import 'package:app/controller/src/controller/producer_search_controller.dart';
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/producer_response_intern.dart';
 import 'package:app/controller/state.dart';
@@ -26,16 +25,79 @@ class ProducerListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ProducerQueryIntern query = ref.watch(producerQueryPod(page));
+    ProducerQueryIntern query = ref.watch(producerQueryPod(ProducersNavItem()));
 
     return Scaffold(
-        body: ProducerList(
-      page: page,
-      initQuery: query,
-      onNextPageQuery: (query) => ProducerQueryIntern.nextPage(query),
-      onLastQuery: (query) => null,
-      key: UniqueKey(),
-    ));
+      body: ProducerList(
+        page: page,
+        initQuery: query,
+        onNextPageQuery: (query) => ProducerQueryIntern.nextPage(query),
+        onLastQuery: (query) => null,
+        key: UniqueKey(),
+      ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () => showDialog(
+                context: context,
+                builder: (context) {
+                  TextEditingController controller = TextEditingController();
+                  return AlertDialog(
+                    title: Text(
+                      "Search producer",
+                      style: TextStyle(
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.w400,
+                        color: _foregroundSecondary,
+                      ),
+                    ),
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                    content: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxHeight: MediaQuery.of(context).size.height * 0.8,
+                        maxWidth: MediaQuery.of(context).size.width * 0.5,
+                      ),
+                      child: TextField(
+                        controller: controller,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(width: 2),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide:
+                                BorderSide(color: Colors.grey[800]!, width: 2),
+                          ),
+                          hintText: "...",
+                        ),
+                      ),
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        child: const Text('Cancel'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      TextButton(
+                        child: const Text('Apply'),
+                        onPressed: () {
+                          Navigator.pop(context, controller.text);
+                        },
+                      ),
+                    ],
+                  );
+                },
+              ).then((value) async {
+                await ref
+                    .read(producerQueryPod(ProducersNavItem()).notifier)
+                    .set(ProducerQueryIntern()..searchTerm = value);
+                ref.invalidate(producerQueryPod(ProducersNavItem()));
+                ref.invalidate(producerSearchPod(query));
+              }),
+          child: const Icon(Icons.search)),
+    );
   }
 }
 
@@ -122,13 +184,15 @@ class _ProducerListState extends State<ProducerList> {
             MediaQuery.of(context).size.height) {
           loadNext();
         }
-        return false;
+        return true;
       },
       child: CustomScrollView(
         controller: _scroll,
         shrinkWrap: true,
         physics: const AlwaysScrollableScrollPhysics(),
         slivers: <Widget>[
+          SliverAppBar(
+              title: Text(pages.last.query.searchTerm ?? ''), pinned: true),
           ...pages,
         ],
       ),
@@ -168,28 +232,12 @@ class ProducerResponseView extends ConsumerWidget {
 
   Widget buildProducerList(int? page, List<ProducerIntern> producers,
       void Function(ProducerIntern) onChanged) {
-    return
-        // SliverPadding(
-        //   padding: const EdgeInsets.all(10),
-        //   sliver: SliverList.separated(
-        //     itemCount: producers.length,
-        //     itemBuilder: (context, index) => ProducerPortrait(
-        //       producers[index],
-        //       responseId: page.toString(),
-        //       onChange: onChanged,
-        //       refQuery: query,
-        //     ),
-        //     separatorBuilder: (context, index) => const SizedBox(height: 10),
-        //   ),
-        // );
-
-        SliverGrid(
+    return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         childCount: producers.length,
         (context, index) => ProducerPortrait(
           producers[index],
           responseId: page.toString(),
-          onChange: onChanged,
           refQuery: query,
         ),
       ),
@@ -207,9 +255,6 @@ class ProducerResponseView extends ConsumerWidget {
 
     ref.listen<AsyncValue<ProducerResponseIntern>>(producerSearchPod(query),
         (_, state) => state.showSnackBarOnError(context));
-
-    // onChange(value) =>
-    //     ref.read(animeSearchControllerPod(query).notifier).update(value);
 
     ProducerResponseIntern? resIntern = res.value;
     List<ProducerIntern>? animes = resIntern?.data;
@@ -232,30 +277,36 @@ class ProducerResponseView extends ConsumerWidget {
       ],
     );
   }
+
+  Widget buildData(ProducerResponseIntern? resIntern, BuildContext context) {
+    List<ProducerIntern>? animes = resIntern?.data;
+    if (animes == null) {
+      return buildNoData();
+    }
+    return MultiSliver(children: [
+      buildHeader(resIntern, context),
+      buildProducerList(
+        resIntern?.pagination?.currentPage,
+        animes,
+        (_) {},
+      ),
+    ]);
+  }
 }
 
 class ProducerPortrait extends ConsumerWidget {
   final ProducerIntern? producer;
   final String responseId;
-  final void Function(ProducerIntern) onChange;
   final ProducerQueryIntern refQuery;
   const ProducerPortrait(
     this.producer, {
     required this.responseId,
-    required this.onChange,
     required this.refQuery,
     super.key,
   });
 
   Widget buildNull() {
-    return
-        // ListTile(
-        //   shape: RoundedRectangleBorder(
-        //     borderRadius: BorderRadius.circular(10),
-        //   ),
-        // );
-
-        Card(
+    return Card(
       elevation: 5,
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -265,8 +316,6 @@ class ProducerPortrait extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    String heroTag = "$responseId-producer-${producer?.malId}";
-
     String s = "";
     if (producer?.established != null) {
       String ss = producer!.established!

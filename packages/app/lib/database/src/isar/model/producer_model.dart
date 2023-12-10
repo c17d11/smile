@@ -7,6 +7,22 @@ import 'package:isar/isar.dart';
 class IsarProducerModel extends IsarModel implements ProducerModel {
   IsarProducerModel(super.db, {required super.expirationHours});
 
+  Future<List<IsarProducer>> insertProducersInTxn(
+      List<ProducerIntern> producers) async {
+    List<IsarProducer> isarProducers = [];
+    for (var producer in producers) {
+      IsarProducer isarProducer = IsarProducer.from(producer);
+      await db.isarProducers.put(isarProducer);
+
+      isarProducers.add(isarProducer);
+    }
+    return isarProducers;
+  }
+
+  List<ProducerIntern> getProducersFromIsar(List<IsarProducer> isarProducers) {
+    return isarProducers.map((e) => e.toProducer()).toList();
+  }
+
   @override
   Future<void> insertProducer(ProducerIntern producer) async {
     IsarProducer isarProducer = producer as IsarProducer;
