@@ -22,4 +22,10 @@ abstract class IconItem extends NavItem {
 
   @override
   String get id => label;
+
+  @override
+  bool operator ==(Object other) => other is IconItem && other.label == label;
+
+  @override
+  int get hashCode => label.hashCode;
 }
