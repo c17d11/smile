@@ -5,15 +5,6 @@ UI for the Jikan api.
 Tasks to be done at some point.
 
 ### Before 1.0.0
-- [ ] News page
-	- [ ] Section for api news
-		- [ ] Select which anime to watch for news updates
-		- [ ] Just display news title
-	- [ ] Section for airing anime episode release
-		- [ ] Calculate when the episode should release and add a news post
-			Start posting after anime been selections for news
-		- [ ] Navigation item should get number overlay displaying number of unseen news
-		- [ ] News should be fetched/calculated in the background
 - [ ] Style app
 	- [ ] Use dark mode throughout the whole app
 	- [ ] Hero animation between list and details
@@ -66,3 +57,14 @@ Tasks to be done at some point.
 	- [x] Fix: save anime from schedule
 		Favorites does not get saved correctly
 	- [x] Add sliver headline for each day
+
+### Scrapped
+- [ ] News page
+	- [ ] Section for api news
+		- [ ] Select which anime to watch for news updates
+		- [ ] Just display news title
+	- [ ] Section for airing anime episode release
+		- [ ] Calculate when the episode should release and add a news post
+			Start posting after anime been selections for news
+		- [ ] Navigation item should get number overlay displaying number of unseen news
+		- [ ] News should be fetched/calculated in the background
