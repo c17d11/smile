@@ -241,12 +241,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
             : null,
         isDense: true,
         border: OutlineInputBorder(
-          borderSide: BorderSide(width: 2),
+          borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.onBackground, width: 2),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.primary, width: 2),
           borderRadius: BorderRadius.circular(10.0),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(color: Colors.grey[800]!, width: 2),
+          borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.onBackground, width: 2),
         ),
         hintText: "Enter title",
       ),
@@ -280,11 +287,19 @@ class _ActionTextFieldState extends State<ActionTextField> {
         ),
         isDense: true,
         border: OutlineInputBorder(
+          borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.onBackground, width: 2),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.primary, width: 2),
           borderRadius: BorderRadius.circular(10.0),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(color: _backgroundSecondary),
+          borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.onBackground, width: 2),
         ),
         hintText: "Enter text",
       ),
