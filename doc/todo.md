@@ -5,6 +5,7 @@ UI for the Jikan api.
 Tasks to be done at some point.
 
 ### Before 1.0.0
+- [ ] Producer popup details from click on chip
 - [ ] Style app
 	- [ ] Use dark mode throughout the whole app
 	- [ ] Hero animation between list and details
