@@ -12,13 +12,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import 'package:tuple/tuple.dart';
 
-const Color _background = Colors.black;
-final Color _backgroundSecondary = Colors.grey[900]!;
-final Color _foreground = Colors.grey[300]!;
-final Color _foregroundSecondary = Colors.grey[400]!;
-final Color _primary = Colors.teal.shade200;
-final Color _primarySecondary = Colors.teal.shade400;
-
 class CustomChip extends StatelessWidget {
   final Widget child;
 
@@ -28,9 +21,10 @@ class CustomChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.background,
-          borderRadius: BorderRadius.circular(100),
-          border: Border.all(color: _backgroundSecondary, width: 2)),
+        borderRadius: BorderRadius.circular(100),
+        border: Border.all(
+            color: Theme.of(context).colorScheme.onBackground, width: 2),
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         child: child,
@@ -49,7 +43,6 @@ class CustomTextChip extends CustomChip {
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              color: _foregroundSecondary,
             ),
           ),
         );
@@ -64,14 +57,12 @@ class CustomIconTextChip extends CustomChip {
               Icon(
                 icon,
                 size: 16,
-                color: _foregroundSecondary,
               ),
               Text(
                 text,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: _foregroundSecondary,
                 ),
               ),
             ],
@@ -105,9 +96,9 @@ class CustomDisplayRow extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w800,
-                  color: _foreground),
+                fontSize: 14,
+                fontWeight: FontWeight.w800,
+              ),
             ),
             if (prods.isNotEmpty) ...[
               const SizedBox(height: 5),
@@ -174,17 +165,18 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                 Text(
                   'SYNPOSIS',
                   style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                      color: _foreground),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
                 const SizedBox(height: 5),
                 Text(
                   '${localAnime!.synopsis}',
                   style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w800,
-                      color: _foregroundSecondary),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ],
             ),
@@ -200,17 +192,18 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                 Text(
                   'BACKGROUND',
                   style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                      color: _foreground),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
                 const SizedBox(height: 5),
                 Text(
                   '${localAnime!.background}',
                   style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w800,
-                      color: _foregroundSecondary),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ],
             ),
@@ -281,7 +274,6 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
     ];
 
     return Scaffold(
-      backgroundColor: _background,
       body: DefaultTabController(
         length: tabs.length,
         child: NestedScrollView(
@@ -292,9 +284,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
               sliver: MultiSliver(
                 children: [
                   SliverAppBar(
-                    backgroundColor: _background,
                     leading: BackButton(
-                      color: _foreground,
                       onPressed: () {
                         Navigator.pop(context, localAnime);
                       },
@@ -309,18 +299,8 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                       return SafeArea(
                         child: FlexibleSpaceBar(
                           titlePadding: EdgeInsets.zero,
-                          title: Container(
+                          title: SizedBox(
                             width: double.infinity,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Colors.black.withAlpha(0),
-                                  Colors.black.withAlpha(255),
-                                ],
-                              ),
-                            ),
                             child: Padding(
                               padding: EdgeInsetsDirectional.only(
                                 start: 72 +
@@ -346,7 +326,6 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                                         (3 - 1),
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                  color: _foreground,
                                   fontSize: 20,
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -376,7 +355,8 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                                       sigmaX: 8.0, sigmaY: 8.0),
                                   child: Container(
                                     decoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.3)),
+                                      color: Colors.black.withOpacity(0.3),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -408,7 +388,6 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                         minHeight: 90,
                         maxHeight: 90,
                         child: Container(
-                          color: Theme.of(context).colorScheme.background,
                           child: Padding(
                               padding: const EdgeInsets.all(8),
                               child: Column(
@@ -450,18 +429,10 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                     delegate: SliverAppBarDelegate(
                       minHeight: 40,
                       maxHeight: 40,
-                      child: Container(
-                        color: _background,
-                        child: TabBar(
-                          indicatorColor: Theme.of(context).colorScheme.primary,
-                          labelColor: Theme.of(context).colorScheme.primary,
-                          unselectedLabelColor: _foregroundSecondary,
-                          dividerColor: Theme.of(context).colorScheme.primary,
-                          tabs: tabs
-                              .map((e) =>
-                                  Tab(child: Text(e.item1.toUpperCase())))
-                              .toList(),
-                        ),
+                      child: TabBar(
+                        tabs: tabs
+                            .map((e) => Tab(child: Text(e.item1.toUpperCase())))
+                            .toList(),
                       ),
                     ),
                   ),
@@ -471,18 +442,23 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
           ],
           body: TabBarView(
             children: tabs
-                .map((e) => Builder(
+                .map(
+                  (e) => Builder(
                     builder: (BuildContext context) => CustomScrollView(
-                            key: PageStorageKey<String>(e.item1),
-                            slivers: [
-                              SliverOverlapInjector(
-                                handle: NestedScrollView
-                                    .sliverOverlapAbsorberHandleFor(context),
-                              ),
-                              SliverToBoxAdapter(
-                                child: e.item2,
-                              ),
-                            ])))
+                      key: PageStorageKey<String>(e.item1),
+                      slivers: [
+                        SliverOverlapInjector(
+                          handle:
+                              NestedScrollView.sliverOverlapAbsorberHandleFor(
+                                  context),
+                        ),
+                        SliverToBoxAdapter(
+                          child: e.item2,
+                        ),
+                      ],
+                    ),
+                  ),
+                )
                 .toList(),
           ),
         ),
