@@ -61,13 +61,24 @@ class ProducerListPage extends ConsumerWidget {
                         decoration: InputDecoration(
                           isDense: true,
                           border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 2),
+                            borderSide: BorderSide(
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
+                                width: 2),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.primary,
+                                width: 2),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
-                            borderSide:
-                                BorderSide(color: Colors.grey[800]!, width: 2),
+                            borderSide: BorderSide(
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
+                                width: 2),
                           ),
                           hintText: "...",
                         ),

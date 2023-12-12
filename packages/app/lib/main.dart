@@ -34,9 +34,14 @@ class _AppState extends ConsumerState<App> {
           colorScheme: ColorScheme.fromSeed(
             seedColor: Color.fromARGB(255, 161, 202, 200),
             primary: const Color.fromARGB(255, 161, 202, 200),
-            secondary: Color.fromARGB(255, 176, 161, 202),
-            error: const Color.fromARGB(255, 178, 99, 93),
-            background: Colors.black,
+            onSurface: Colors.grey[300],
+            onSurfaceVariant: Colors.grey[500],
+            onBackground: Colors.grey[800],
+            error: Colors.red[600],
+            // secondary: Color.fromARGB(255, 176, 161, 202),
+            // error: const Color.fromARGB(255, 178, 99, 93),
+            // background: Colors.black,
+
             brightness: Brightness.dark,
           ),
           useMaterial3: true,
