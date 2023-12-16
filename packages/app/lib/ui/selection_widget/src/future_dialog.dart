@@ -39,7 +39,7 @@ class FutureDialog {
           maxWidth: MediaQuery.of(context).size.width * 0.5,
         ),
         child: SizedBox(
-          height: 1000,
+          height: 600,
           width: 400,
           child: w,
         ));

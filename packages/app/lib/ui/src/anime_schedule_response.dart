@@ -1,3 +1,4 @@
+import 'package:app/controller/src/controller/anime_schedule_state_controller.dart';
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/state.dart';
@@ -44,17 +45,15 @@ class AnimeScheduleResponseView extends ConsumerWidget {
     );
   }
 
-  Widget buildAnimeList(WidgetRef ref, int? page, List<AnimeIntern> animes) {
+  Widget buildAnimeList(int? page, List<AnimeIntern> animes,
+      void Function(AnimeIntern) onChanged) {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         childCount: animes.length,
         (context, index) => AnimePortrait(
           animes[index],
           responseId: page.toString(),
-          onChange: (value) => ref
-              .read(animeScheduleSearchControllerPod(query).notifier)
-              .update(value),
-          refQuery: AnimeQueryIntern(),
+          onTap: onChanged,
         ),
       ),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -66,12 +65,19 @@ class AnimeScheduleResponseView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<AnimeResponseIntern> res =
-        ref.watch(animeScheduleSearchControllerPod(query));
+    // AsyncValue<AnimeResponseIntern> res =
+    //     ref.watch(animeScheduleSearchControllerPod(query));
+    AsyncValue<AnimeResponseIntern> res = ref.watch(animeSchedule(query));
 
     ref.listen<AsyncValue<AnimeResponseIntern>>(
-        animeScheduleSearchControllerPod(query),
-        (_, state) => state.showSnackBarOnError(context));
+        animeSchedule(query), (_, state) => state.showSnackBarOnError(context));
+
+    void saveAnime(AnimeIntern anime) {
+      AnimeResponseIntern newRes = res.value!;
+      newRes.data =
+          newRes.data?.map((e) => e.malId == anime.malId ? anime : e).toList();
+      ref.read(animeSchedule(query).notifier).update(newRes);
+    }
 
     AnimeResponseIntern? resIntern = res.value;
     List<AnimeIntern>? animes = resIntern?.data;
@@ -85,9 +91,9 @@ class AnimeScheduleResponseView extends ConsumerWidget {
                 children: [
                   buildHeader(resIntern, context),
                   buildAnimeList(
-                    ref,
                     resIntern?.pagination?.currentPage,
                     animes,
+                    saveAnime,
                   ),
                 ],
               );

@@ -51,7 +51,7 @@ class FavoriteNavItem extends IconItem {
 
   @override
   Widget buildContent() {
-    return AnimeFavoritePage(page: this);
+    return const AnimeFavoritePage();
   }
 
   @override

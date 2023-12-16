@@ -1,11 +1,15 @@
+import 'package:app/controller/src/controller/anime_collection_state_controller.dart';
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/tag.dart';
+import 'package:app/controller/state.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
+import 'package:app/ui/src/anime_favorite_page.dart';
 import 'package:app/ui/src/anime_list.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tuple/tuple.dart';
 
 class AnimeCollectionPage extends ConsumerStatefulWidget {
   const AnimeCollectionPage({super.key});
@@ -17,7 +21,35 @@ class AnimeCollectionPage extends ConsumerStatefulWidget {
 
 class _AnimeCollectionPageState extends ConsumerState<AnimeCollectionPage> {
   String? search;
-  // Tag? tag;
+  final _scroll = ScrollController();
+  int lastPage = 1;
+  List<CollectionResponseView> responses = [];
+
+  void loadNextResponse() {
+    CollectionResponseView nextRes = responses.last.next();
+    if (lastPage > nextRes.page) {
+      setState(() {
+        responses.add(nextRes);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _scroll.addListener(() {
+      if (_scroll.offset >= _scroll.position.maxScrollExtent) {
+        loadNextResponse();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scroll.dispose();
+    super.dispose();
+  }
 
   Widget buildTags(AsyncValue<List<Tag>> tags) {
     Widget? tagWidget;
@@ -46,10 +78,9 @@ class _AnimeCollectionPageState extends ConsumerState<AnimeCollectionPage> {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)?.settings.arguments as AnimeCollectionPageArgs;
-    final IconItem page = args.page;
-    final Tag tag = args.tag;
 
-    AnimeQueryIntern query = AnimeQueryIntern();
+    responses.add(CollectionResponseView(
+        page: 1, tag: args.tag, updateLastPage: (int page) => lastPage = page));
 
     return Scaffold(
       body: NestedScrollView(
@@ -65,14 +96,20 @@ class _AnimeCollectionPageState extends ConsumerState<AnimeCollectionPage> {
             pinned: true,
           ),
         ],
-        body: AnimeList(
-          page: page,
-          initQuery: query
-            ..page = 1
-            ..tag = tag,
-          onNextPageQuery: (query) => AnimeQueryIntern.nextPage(query),
-          onLastQuery: (query) => null,
-          key: UniqueKey(),
+        body: NotificationListener<ScrollMetricsNotification>(
+          onNotification: (notification) {
+            if (notification.metrics.extentTotal <
+                MediaQuery.of(context).size.height) {
+              loadNextResponse();
+            }
+            return false;
+          },
+          child: CustomScrollView(
+            controller: _scroll,
+            shrinkWrap: true,
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: <Widget>[...responses],
+          ),
         ),
       ),
     );
@@ -133,9 +170,9 @@ class _CollectionPageState extends ConsumerState<CollectionPage> {
               await Navigator.pushNamed(context, 'collection',
                   arguments: AnimeCollectionPageArgs(
                       page: widget.page, tag: tags.value![index]));
-              setState(() {
-                ref.invalidate(tagPod);
-              });
+              // setState(() {
+              //   ref.invalidate(tagPod);
+              // });
             },
           ),
           separatorBuilder: (context, index) => const SizedBox(height: 10),
@@ -149,7 +186,6 @@ class _CollectionPageState extends ConsumerState<CollectionPage> {
   @override
   Widget build(BuildContext context) {
     final tags = ref.watch(tagPod);
-    AnimeQueryIntern query = AnimeQueryIntern();
 
     return Scaffold(
       body: CustomScrollView(
@@ -158,5 +194,43 @@ class _CollectionPageState extends ConsumerState<CollectionPage> {
         ],
       ),
     );
+  }
+}
+
+class CollectionResponseView extends ConsumerWidget
+    with AnimeResponseViewUtils {
+  final int page;
+  final Tag tag;
+  final void Function(int) updateLastPage;
+
+  CollectionResponseView(
+      {required this.page,
+      required this.tag,
+      required this.updateLastPage,
+      super.key});
+
+  CollectionResponseView next() => CollectionResponseView(
+      page: page + 1, tag: tag, updateLastPage: updateLastPage);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final res = ref.watch(animeCollection(Tuple2(page, tag)));
+
+    ref.listen<AsyncValue<AnimeResponseIntern>>(
+        animeCollection(Tuple2(page, tag)),
+        (_, state) => state.showSnackBarOnError(context));
+
+    void saveAnime(AnimeIntern anime) {
+      AnimeResponseIntern newRes = res.value!;
+      newRes.data =
+          newRes.data?.map((e) => e.malId == anime.malId ? anime : e).toList();
+      ref.read(animeCollection(Tuple2(page, tag)).notifier).update(newRes);
+    }
+
+    if (res.hasValue) {
+      updateLastPage(res.value!.pagination?.lastVisiblePage ?? 1);
+    }
+
+    return buildResponse(res, saveAnime);
   }
 }
