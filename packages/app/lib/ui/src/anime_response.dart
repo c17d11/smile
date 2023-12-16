@@ -1,3 +1,4 @@
+import 'package:app/controller/src/controller/anime_search_state_controller.dart';
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/src/anime_portrait.dart';
@@ -43,12 +44,8 @@ class AnimeResponseView extends ConsumerWidget {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         childCount: animes.length,
-        (context, index) => AnimePortrait(
-          animes[index],
-          responseId: page.toString(),
-          onChange: onChanged,
-          refQuery: query,
-        ),
+        (context, index) => AnimePortrait(animes[index],
+            responseId: page.toString(), onTap: onChanged),
       ),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 150,
@@ -59,14 +56,17 @@ class AnimeResponseView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<AnimeResponseIntern> res =
-        ref.watch(animeSearchControllerPod(query));
+    AsyncValue<AnimeResponseIntern> res = ref.watch(animeSearch(query));
 
-    ref.listen<AsyncValue<AnimeResponseIntern>>(animeSearchControllerPod(query),
-        (_, state) => state.showSnackBarOnError(context));
+    ref.listen<AsyncValue<AnimeResponseIntern>>(
+        animeSearch(query), (_, state) => state.showSnackBarOnError(context));
 
-    // onChange(value) =>
-    //     ref.read(animeSearchControllerPod(query).notifier).update(value);
+    void saveAnime(AnimeIntern anime) {
+      AnimeResponseIntern newRes = res.value!;
+      newRes.data =
+          newRes.data?.map((e) => e.malId == anime.malId ? anime : e).toList();
+      ref.read(animeSearch(query).notifier).update(newRes);
+    }
 
     AnimeResponseIntern? resIntern = res.value;
     List<AnimeIntern>? animes = resIntern?.data;
@@ -84,7 +84,7 @@ class AnimeResponseView extends ConsumerWidget {
         buildAnimeList(
           resIntern?.pagination?.currentPage,
           animes,
-          (_) {},
+          saveAnime,
         ),
       ],
     );

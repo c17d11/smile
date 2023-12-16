@@ -5,11 +5,6 @@ import 'package:app/ui/src/pod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-const Color _background = Colors.black;
-final Color _backgroundSecondary = Colors.grey[900]!;
-final Color _foreground = Colors.grey[300]!;
-final Color _foregroundSecondary = Colors.grey[400]!;
-
 class AnimeListPage extends ConsumerWidget {
   final IconItem page;
 

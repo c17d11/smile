@@ -1,4 +1,8 @@
 import 'package:app/controller/src/controller/anime_collection_controller.dart';
+import 'package:app/controller/src/controller/anime_collection_state_controller.dart';
+import 'package:app/controller/src/controller/anime_favorite_state_controller.dart';
+import 'package:app/controller/src/controller/anime_schedule_state_controller.dart';
+import 'package:app/controller/src/controller/anime_search_state_controller.dart';
 import 'package:app/controller/src/controller/genre_controller.dart';
 import 'package:app/controller/src/controller/producer_controller.dart';
 import 'package:app/controller/src/controller/producer_search_controller.dart';
@@ -11,6 +15,7 @@ import 'package:app/controller/src/object/settings_intern.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
+import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/database/src/populate_database.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/injector.dart';
@@ -18,6 +23,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:tuple/tuple.dart';
 
 final depencyInjectorPod = Provider((ref) => Injector()..setup());
 
@@ -55,28 +61,18 @@ final initPod = FutureProvider<bool>((ref) async {
   return true;
 });
 
-final animeSearchControllerPod = StateNotifierProvider.family<
-    AnimeSearchController,
-    AsyncValue<AnimeResponseIntern>,
-    AnimeQueryIntern>((ref, arg) {
-  Database db = ref.watch(databaseUpdatePod);
-  JikanApi api = ref.watch(apiPod);
-  AnimeSearchController controller = AnimeSearchController(db, api);
-  controller.get(arg);
-  // ref.keepAlive();
-  return controller;
-});
+// final animeUpdate =
+//     StateNotifierProvider<AnimeUpdateController, AsyncValue<AnimeIntern>>(
+//         (ref) {
+//   AnimeUpdateController controller = AnimeUpdateController(ref);
+//   return controller;
+// });
 
-final animeScheduleSearchControllerPod = StateNotifierProvider.family
-    .autoDispose<AnimeSearchController, AsyncValue<AnimeResponseIntern>,
-        ScheduleQueryIntern>((ref, arg) {
-  Database db = ref.watch(databaseUpdatePod);
-  JikanApi api = ref.watch(apiPod);
-  AnimeSearchController controller = AnimeSearchController(db, api);
-  controller.getSchedule(arg);
-  ref.keepAlive();
-  return controller;
-});
+// final animeResponseUpdate = StateNotifierProvider<AnimeResponseUpdateController,
+//     AsyncValue<AnimeResponseIntern>>((ref) {
+//   AnimeResponseUpdateController controller = AnimeResponseUpdateController(ref);
+//   return controller;
+// });
 
 final producerPod =
     StateNotifierProvider<ProducerController, AsyncValue<List<ProducerIntern>>>(
@@ -115,6 +111,10 @@ final genrePod =
 final tagPod =
     StateNotifierProvider<TagController, AsyncValue<List<Tag>>>((ref) {
   Database db = ref.watch(databaseUpdatePod);
+  ref.watch(searchChangePod);
+  ref.watch(scheduleChangePod);
+  ref.watch(favoriteChangePod);
+  ref.watch(collectionChangePod);
   TagController controller = TagController(db);
   controller.get();
   return controller;
@@ -186,3 +186,79 @@ extension AsyncValueUiProducer on AsyncValue<ProducerResponseIntern> {
             .showSnackBar(SnackBar(content: Text(error.toString())));
       });
 }
+
+// final animeResponseGet =
+//     FutureProvider.family<AnimeResponseIntern, AnimeQueryIntern>(
+//         (ref, arg) async {
+//   Database db = ref.watch(databaseUpdatePod);
+//   JikanApi api = ref.watch(apiPod);
+//   String queryString = api.buildAnimeSearchQuery(arg);
+//   AnimeResponseIntern? res = await db.getAnimeResponse(queryString);
+//   if (res == null) {
+//     AnimeResponse resApi = await api.searchAnimes(arg);
+//     res = db.createAnimeResponseIntern(resApi);
+//     await db.insertAnimeResponse(res);
+//   }
+//   return res;
+// });
+
+// final animeFavoritesGet =
+//     FutureProvider.family<AnimeResponseIntern, int>((ref, arg) async {
+//   Database db = ref.watch(databaseUpdatePod);
+//   List<AnimeIntern> favorites = await db.getFavoriteAnimes(arg);
+//   int favoriteCount = await db.countFavoriteAnimes();
+//   int pageCount = db.countFavoriteAnimePages(favoriteCount);
+
+//   AnimeResponseIntern res = IsarAnimeResponse(q: "favorites");
+//   res.data = favorites;
+//   res.pagination = Pagination()
+//     ..currentPage = arg
+//     ..hasNextPage = false
+//     ..itemCount = favorites.length
+//     ..itemPerPage = favorites.length
+//     ..itemTotal = favoriteCount
+//     ..lastVisiblePage = pageCount;
+//   return res;
+// });
+
+// final animeScheduleGet =
+//     FutureProvider.family<AnimeResponseIntern, ScheduleQueryIntern>(
+//         (ref, arg) async {
+//   Database db = ref.watch(databaseUpdatePod);
+//   JikanApi api = ref.watch(apiPod);
+//   String queryString = api.buildScheduleSearchQuery(arg);
+//   AnimeResponseIntern? res = await db.getAnimeResponse(queryString);
+//   if (res == null) {
+//     AnimeResponse resApi = await api.searchSchedule(arg);
+//     res = db.createAnimeResponseIntern(resApi);
+//     await db.insertAnimeResponse(res);
+//   }
+//   return res;
+// });
+
+// final animeCollectionGet =
+//     FutureProvider.family<AnimeResponseIntern, AnimeQueryIntern>(
+//         (ref, arg) async {
+//   Database db = ref.watch(databaseUpdatePod);
+//   if (arg.tag == null || arg.page == null) {
+//     return IsarAnimeResponse(q: "");
+//   }
+//   Tag tag = arg.tag!;
+//   int page = arg.page!;
+
+//   List<AnimeIntern> animes = await db.getCollection(tag, page);
+//   int collectionCount = await db.countCollectionAnimes(tag);
+//   int pageCount = db.countFavoriteAnimePages(collectionCount);
+
+//   AnimeResponseIntern res = IsarAnimeResponse(q: "tag${tag.name}");
+//   res.data = animes;
+//   res.pagination = Pagination()
+//     ..currentPage = page
+//     ..hasNextPage = false
+//     ..itemCount = animes.length
+//     ..itemPerPage = animes.length
+//     ..itemTotal = collectionCount
+//     ..lastVisiblePage = pageCount;
+//   return res;
+// });
+

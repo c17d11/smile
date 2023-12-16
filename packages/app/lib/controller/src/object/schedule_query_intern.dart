@@ -58,6 +58,23 @@ class ScheduleQueryIntern extends ScheduleQuery {
         throw Exception('Wrong schedule query day');
     }
   }
+
+  @override
+  bool operator ==(Object other) =>
+      other is ScheduleQueryIntern &&
+      other.page == page &&
+      other.day == day &&
+      other.isForKids == isForKids &&
+      other.sfw == sfw &&
+      other.isApproved == isApproved;
+
+  @override
+  int get hashCode =>
+      page.hashCode ^
+      day.hashCode ^
+      isForKids.hashCode ^
+      sfw.hashCode ^
+      isApproved.hashCode;
 }
 
 class ScheduleQueryNotifier extends StateNotifier<ScheduleQueryIntern> {

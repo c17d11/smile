@@ -5,4 +5,11 @@ abstract class AnimeIntern extends Anime {
   bool? isFavorite;
   bool? isBlacklisted;
   List<Tag>? tags;
+
+  @override
+  bool operator ==(Object other) =>
+      other is AnimeIntern && other.malId == malId;
+
+  @override
+  int get hashCode => malId.hashCode;
 }
