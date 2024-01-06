@@ -21,7 +21,6 @@ Tasks to be done at some point.
 - [ ] Genre page like producer page
 
 #### From real device testing
-- [ ] Producer and genres not stored in anime in favorites
 - [ ] Favorites not working in browse
 - [ ] Producer popup overflowing
 - [ ] Tags removed from animes
@@ -38,6 +37,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] Producer and genres not stored in anime in favorites
 - [x] Implement save score in notes
 - [x] Implement textfield in notes
 - [x] Remove question mark in notes
