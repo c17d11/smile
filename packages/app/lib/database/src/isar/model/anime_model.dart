@@ -1,7 +1,10 @@
+import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/collection/isar_tag.dart';
 import 'package:app/database/src/isar/model.dart';
+import 'package:app/database/src/isar/model/genre_model.dart';
+import 'package:app/database/src/isar/model/producer_model.dart';
 import 'package:app/database/src/isar/model/tag_model.dart';
 import 'package:app/database/src/model.dart';
 import 'package:isar/isar.dart';
@@ -10,20 +13,45 @@ import '../collection/isar_anime.dart';
 
 class IsarAnimeModel extends IsarModel implements AnimeModel {
   final IsarTagModel _tagModel;
+  final IsarProducerModel _producerModel;
+  final IsarGenreModel _genreModel;
 
   IsarAnimeModel(super.db, {required super.expirationHours})
-      : _tagModel = IsarTagModel(db, expirationHours: expirationHours);
+      : _tagModel = IsarTagModel(db, expirationHours: expirationHours),
+        _producerModel =
+            IsarProducerModel(db, expirationHours: expirationHours),
+        _genreModel = IsarGenreModel(db, expirationHours: expirationHours);
 
   Future<List<IsarAnime>> insertAnimesInTxn(List<AnimeIntern> animes) async {
     List<IsarAnime> isarAnimes = [];
     for (var anime in animes) {
       IsarAnime isarAnime = IsarAnime.from(anime);
+
+      // Store linked objects first
       final isarTags = await _tagModel.insertTagsInTxn(isarAnime.tags ?? []);
+      final isarProducers = await _producerModel.insertProducersInTxn(
+          isarAnime.producers?.map((e) => ProducerIntern.from(e)).toList() ??
+              []);
+      final isarGenres = await _genreModel.insertGenresInTxn(
+          isarAnime.genres?.map((e) => GenreIntern.from(e)).toList() ?? []);
+
+      // Then store the anime object
       await db.isarAnimes.put(isarAnime);
+
+      // Update the links
       await isarAnime.isarTags.reset();
       isarAnime.isarTags.addAll(isarTags);
       await isarAnime.isarTags.save();
 
+      await isarAnime.isarProducers.reset();
+      isarAnime.isarProducers.addAll(isarProducers);
+      await isarAnime.isarProducers.save();
+
+      await isarAnime.isarGenres.reset();
+      isarAnime.isarGenres.addAll(isarGenres);
+      await isarAnime.isarGenres.save();
+
+      // Done
       isarAnimes.add(isarAnime);
     }
     return isarAnimes;
