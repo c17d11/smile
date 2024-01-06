@@ -25,12 +25,12 @@ class ScheduleSearchApi implements Api<ScheduleQuery, AnimeResponse> {
   String buildQuery(ScheduleQuery arg) {
     String query = builder.build(arg);
     query = query.isEmpty ? "" : "?$query";
-    return query;
+    return "schedules$query";
   }
 
   @override
   Future<AnimeResponse> call(ScheduleQuery arg) async {
-    String query = "schedules${buildQuery(arg)}";
+    String query = buildQuery(arg);
     HttpResult res = await client.get(query);
     if (res.error != null) {
       JikanApiException error = errorParser.parse(res.error!);
