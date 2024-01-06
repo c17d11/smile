@@ -21,7 +21,6 @@ Tasks to be done at some point.
 - [ ] Genre page like producer page
 
 #### From real device testing
-- [ ] Fewer step to add tag
 - [ ] Producer and genres not stored in anime in favorites
 - [ ] Favorites not working in browse
 - [ ] Producer popup overflowing
@@ -37,8 +36,6 @@ Tasks to be done at some point.
 - [ ] Share favorites between users
 	In favorites toggle between me and other users...
 - [ ] Toggle between light and dark mode
-
-
 
 ### Completed
 - [x] Implement save score in notes
@@ -71,7 +68,9 @@ Tasks to be done at some point.
 	- [x] Add sliver headline for each day
 
 ### Scrapped
-- [ ] News page
+<del>- [ ] Fewer step to add tag
+
+<del>- [ ] News page
 	- [ ] Section for api news
 		- [ ] Select which anime to watch for news updates
 		- [ ] Just display news title
