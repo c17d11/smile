@@ -8,6 +8,17 @@ import 'package:jikan_api/jikan_api.dart';
 class IsarGenreModel extends IsarModel implements GenreModel {
   IsarGenreModel(super.db, {required super.expirationHours});
 
+  Future<List<IsarGenre>> insertGenresInTxn(List<GenreIntern> genres) async {
+    List<IsarGenre> isarGenres = [];
+    for (var genre in genres) {
+      IsarGenre isarGenre = IsarGenre.from(genre);
+      await db.isarGenres.put(isarGenre);
+
+      isarGenres.add(isarGenre);
+    }
+    return isarGenres;
+  }
+
   @override
   Future<void> insertGenre(GenreIntern genre) async {
     IsarGenre isarGenre = genre as IsarGenre;
