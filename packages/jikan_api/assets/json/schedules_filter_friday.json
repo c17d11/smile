@@ -1,0 +1,927 @@
+{
+  "pagination": {
+    "last_visible_page": 1,
+    "has_next_page": false,
+    "current_page": 1,
+    "items": {
+      "count": 6,
+      "total": 6,
+      "per_page": 25
+    }
+  },
+  "data": [
+    {
+      "mal_id": 50250,
+      "url": "https://myanimelist.net/anime/50250/Chiikawa",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1783/121944.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1783/121944t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1783/121944l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1783/121944.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1783/121944t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1783/121944l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "m4yfCS_YBUU",
+        "url": "https://www.youtube.com/watch?v=m4yfCS_YBUU",
+        "embed_url": "https://www.youtube.com/embed/m4yfCS_YBUU?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/m4yfCS_YBUU/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/m4yfCS_YBUU/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/m4yfCS_YBUU/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/m4yfCS_YBUU/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/m4yfCS_YBUU/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Chiikawa"
+        },
+        {
+          "type": "Japanese",
+          "title": "ちいかわ"
+        }
+      ],
+      "title": "Chiikawa",
+      "title_english": null,
+      "title_japanese": "ちいかわ",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Web manga",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2022-04-04T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 4,
+            "month": 4,
+            "year": 2022
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Apr 4, 2022 to ?"
+      },
+      "duration": "1 min",
+      "rating": "G - All Ages",
+      "score": 6.6,
+      "scored_by": 657,
+      "rank": 6047,
+      "popularity": 9888,
+      "members": 2883,
+      "favorites": 34,
+      "synopsis": "What's a Chiikawa? No one really knows, but everyone can see they're small, they're cute, and they're always having a fun time! Join them as they explore their surreal world with the sharp humor and clever antics that make the Chiikawa irresistible.\n\n(Source: HIDIVE, edited)",
+      "background": null,
+      "season": "spring",
+      "year": 2022,
+      "broadcast": {
+        "day": "Fridays",
+        "time": "07:40",
+        "timezone": "Asia/Tokyo",
+        "string": "Fridays at 07:40 (JST)"
+      },
+      "producers": [],
+      "licensors": [
+        {
+          "mal_id": 376,
+          "type": "anime",
+          "name": "Sentai Filmworks",
+          "url": "https://myanimelist.net/anime/producer/376/Sentai_Filmworks"
+        }
+      ],
+      "studios": [
+        {
+          "mal_id": 95,
+          "type": "anime",
+          "name": "Doga Kobo",
+          "url": "https://myanimelist.net/anime/producer/95/Doga_Kobo"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": [
+        {
+          "mal_id": 42,
+          "type": "anime",
+          "name": "Seinen",
+          "url": "https://myanimelist.net/anime/genre/42/Seinen"
+        }
+      ]
+    },
+    {
+      "mal_id": 54197,
+      "url": "https://myanimelist.net/anime/54197/Chou_Futsuu_Ken_Chiba_Densetsu",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1374/132638.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1374/132638t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1374/132638l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1374/132638.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1374/132638t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1374/132638l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Chou Futsuu Ken Chiba Densetsu"
+        },
+        {
+          "type": "Synonym",
+          "title": "The Legend of Super normal Pref. CHIBA"
+        },
+        {
+          "type": "Japanese",
+          "title": "超普通県チバ伝説"
+        }
+      ],
+      "title": "Chou Futsuu Ken Chiba Densetsu",
+      "title_english": null,
+      "title_japanese": "超普通県チバ伝説",
+      "title_synonyms": [
+        "The Legend of Super normal Pref. CHIBA"
+      ],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2024-01-05T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 5,
+            "month": 1,
+            "year": 2024
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Jan 5, 2024 to ?"
+      },
+      "duration": "Unknown",
+      "rating": null,
+      "score": null,
+      "scored_by": null,
+      "rank": 18692,
+      "popularity": 9151,
+      "members": 3713,
+      "favorites": 5,
+      "synopsis": null,
+      "background": null,
+      "season": "winter",
+      "year": 2024,
+      "broadcast": {
+        "day": "Fridays",
+        "time": "21:54",
+        "timezone": "Asia/Tokyo",
+        "string": "Fridays at 21:54 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 1696,
+          "type": "anime",
+          "name": "Kadokawa",
+          "url": "https://myanimelist.net/anime/producer/1696/Kadokawa"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 2080,
+          "type": "anime",
+          "name": "Super Normal Studio",
+          "url": "https://myanimelist.net/anime/producer/2080/Super_Normal_Studio"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        },
+        {
+          "mal_id": 10,
+          "type": "anime",
+          "name": "Fantasy",
+          "url": "https://myanimelist.net/anime/genre/10/Fantasy"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 52482,
+      "url": "https://myanimelist.net/anime/52482/Sasaki_to_Pii-chan",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1624/139672.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1624/139672t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1624/139672l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1624/139672.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1624/139672t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1624/139672l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "zMw-VTsoW1c",
+        "url": "https://www.youtube.com/watch?v=zMw-VTsoW1c",
+        "embed_url": "https://www.youtube.com/embed/zMw-VTsoW1c?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/zMw-VTsoW1c/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/zMw-VTsoW1c/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/zMw-VTsoW1c/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/zMw-VTsoW1c/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/zMw-VTsoW1c/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Sasaki to Pii-chan"
+        },
+        {
+          "type": "Japanese",
+          "title": "佐々木とピーちゃん"
+        },
+        {
+          "type": "English",
+          "title": "Sasaki and Peeps"
+        }
+      ],
+      "title": "Sasaki to Pii-chan",
+      "title_english": "Sasaki and Peeps",
+      "title_japanese": "佐々木とピーちゃん",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Light novel",
+      "episodes": 12,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2024-01-05T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 5,
+            "month": 1,
+            "year": 2024
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Jan 5, 2024 to ?"
+      },
+      "duration": "Unknown",
+      "rating": "PG-13 - Teens 13 or older",
+      "score": 7.57,
+      "scored_by": 926,
+      "rank": 1570,
+      "popularity": 5150,
+      "members": 16356,
+      "favorites": 29,
+      "synopsis": "Even though Sasaki's droll corporate life is constantly filled with work, it leaves him tired and unfulfilled at the end of every day. In search of some companionship to fill the emptiness in his life, he visits a pet shop on a whim, not realizing he's about to change his life forever. After settling on an adorable bird and bringing it home...his new roommate reveals that it's actually an incredible sage from another world who promptly bestows Sasaki with supernatural powers as well as the ability to cross between worlds. All Sasaki wants to do is use these newfound powers to live in peace and comfort, but there are more than a few colorful characters who might get in the way of that...\n\n(Source: Yen Press)",
+      "background": null,
+      "season": "winter",
+      "year": 2024,
+      "broadcast": {
+        "day": "Fridays",
+        "time": "21:00",
+        "timezone": "Asia/Tokyo",
+        "string": "Fridays at 21:00 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 238,
+          "type": "anime",
+          "name": "AT-X",
+          "url": "https://myanimelist.net/anime/producer/238/AT-X"
+        },
+        {
+          "mal_id": 323,
+          "type": "anime",
+          "name": "Nippon Columbia",
+          "url": "https://myanimelist.net/anime/producer/323/Nippon_Columbia"
+        },
+        {
+          "mal_id": 1345,
+          "type": "anime",
+          "name": "Sammy",
+          "url": "https://myanimelist.net/anime/producer/1345/Sammy"
+        },
+        {
+          "mal_id": 1468,
+          "type": "anime",
+          "name": "Crunchyroll",
+          "url": "https://myanimelist.net/anime/producer/1468/Crunchyroll"
+        },
+        {
+          "mal_id": 1696,
+          "type": "anime",
+          "name": "Kadokawa",
+          "url": "https://myanimelist.net/anime/producer/1696/Kadokawa"
+        },
+        {
+          "mal_id": 2074,
+          "type": "anime",
+          "name": "Bit grooove promotion",
+          "url": "https://myanimelist.net/anime/producer/2074/Bit_grooove_promotion"
+        },
+        {
+          "mal_id": 2289,
+          "type": "anime",
+          "name": "GREE Entertainment",
+          "url": "https://myanimelist.net/anime/producer/2289/GREE_Entertainment"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 300,
+          "type": "anime",
+          "name": "SILVER LINK.",
+          "url": "https://myanimelist.net/anime/producer/300/SILVER_LINK"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 2,
+          "type": "anime",
+          "name": "Adventure",
+          "url": "https://myanimelist.net/anime/genre/2/Adventure"
+        },
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        },
+        {
+          "mal_id": 10,
+          "type": "anime",
+          "name": "Fantasy",
+          "url": "https://myanimelist.net/anime/genre/10/Fantasy"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 62,
+          "type": "anime",
+          "name": "Isekai",
+          "url": "https://myanimelist.net/anime/genre/62/Isekai"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 53730,
+      "url": "https://myanimelist.net/anime/53730/Sokushi_Cheat_ga_Saikyou_sugite_Isekai_no_Yatsura_ga_Marude_Aite_ni_Naranai_n_desu_ga",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1734/139673.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1734/139673t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1734/139673l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1734/139673.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1734/139673t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1734/139673l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "gdi9dEqhpQY",
+        "url": "https://www.youtube.com/watch?v=gdi9dEqhpQY",
+        "embed_url": "https://www.youtube.com/embed/gdi9dEqhpQY?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/gdi9dEqhpQY/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/gdi9dEqhpQY/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/gdi9dEqhpQY/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/gdi9dEqhpQY/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/gdi9dEqhpQY/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Sokushi Cheat ga Saikyou sugite, Isekai no Yatsura ga Marude Aite ni Naranai n desu ga."
+        },
+        {
+          "type": "Synonym",
+          "title": "The other world doesn't stand a chance against the power of instant death"
+        },
+        {
+          "type": "Japanese",
+          "title": "即死チートが最強すぎて、異世界のやつらがまるで相手にならないんですが。"
+        },
+        {
+          "type": "English",
+          "title": "My Instant Death Ability is So Overpowered, No One in This Other World Stands a Chance Against Me!"
+        }
+      ],
+      "title": "Sokushi Cheat ga Saikyou sugite, Isekai no Yatsura ga Marude Aite ni Naranai n desu ga.",
+      "title_english": "My Instant Death Ability is So Overpowered, No One in This Other World Stands a Chance Against Me!",
+      "title_japanese": "即死チートが最強すぎて、異世界のやつらがまるで相手にならないんですが。",
+      "title_synonyms": [
+        "The other world doesn't stand a chance against the power of instant death"
+      ],
+      "type": "TV",
+      "source": "Light novel",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2024-01-05T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 5,
+            "month": 1,
+            "year": 2024
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Jan 5, 2024 to ?"
+      },
+      "duration": "23 min",
+      "rating": "PG-13 - Teens 13 or older",
+      "score": 6.62,
+      "scored_by": 2706,
+      "rank": 5929,
+      "popularity": 3367,
+      "members": 41441,
+      "favorites": 280,
+      "synopsis": "Awaking to absolute chaos and carnage while on a school trip, Yogiri Takatou discovers that everyone in his class has been transported to another world! He had somehow managed to sleep through the entire ordeal himself, missing out on the Gift—powers bestowed upon the others by a mysterious Sage who appeared to transport them. Even worse, he and another classmate were ruthlessly abandoned by their friends, left as bait to distract a nearby dragon. Although not terribly bothered by the thought of dying, he reluctantly decides to protect his lone companion. After all, a lowly Level 1000 monster doesn't stand a chance against his secret power to invoke Instant Death with a single thought! If he can stay awake long enough to bother using it, that is...\n\n(Source: J-Novel Club)",
+      "background": null,
+      "season": "winter",
+      "year": 2024,
+      "broadcast": {
+        "day": "Fridays",
+        "time": "00:30",
+        "timezone": "Asia/Tokyo",
+        "string": "Fridays at 00:30 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 143,
+          "type": "anime",
+          "name": "Mainichi Broadcasting System",
+          "url": "https://myanimelist.net/anime/producer/143/Mainichi_Broadcasting_System"
+        },
+        {
+          "mal_id": 460,
+          "type": "anime",
+          "name": "KlockWorx",
+          "url": "https://myanimelist.net/anime/producer/460/KlockWorx"
+        },
+        {
+          "mal_id": 925,
+          "type": "anime",
+          "name": "Earth Star Entertainment",
+          "url": "https://myanimelist.net/anime/producer/925/Earth_Star_Entertainment"
+        },
+        {
+          "mal_id": 1211,
+          "type": "anime",
+          "name": "Tokyo MX",
+          "url": "https://myanimelist.net/anime/producer/1211/Tokyo_MX"
+        },
+        {
+          "mal_id": 1416,
+          "type": "anime",
+          "name": "BS11",
+          "url": "https://myanimelist.net/anime/producer/1416/BS11"
+        },
+        {
+          "mal_id": 1501,
+          "type": "anime",
+          "name": "JR East Marketing & Communications",
+          "url": "https://myanimelist.net/anime/producer/1501/JR_East_Marketing___Communications"
+        },
+        {
+          "mal_id": 1996,
+          "type": "anime",
+          "name": "MAGNET",
+          "url": "https://myanimelist.net/anime/producer/1996/MAGNET"
+        },
+        {
+          "mal_id": 2071,
+          "type": "anime",
+          "name": "AQUA ARIS",
+          "url": "https://myanimelist.net/anime/producer/2071/AQUA_ARIS"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 2037,
+          "type": "anime",
+          "name": "Okuruto Noboru",
+          "url": "https://myanimelist.net/anime/producer/2037/Okuruto_Noboru"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 1,
+          "type": "anime",
+          "name": "Action",
+          "url": "https://myanimelist.net/anime/genre/1/Action"
+        },
+        {
+          "mal_id": 2,
+          "type": "anime",
+          "name": "Adventure",
+          "url": "https://myanimelist.net/anime/genre/2/Adventure"
+        },
+        {
+          "mal_id": 10,
+          "type": "anime",
+          "name": "Fantasy",
+          "url": "https://myanimelist.net/anime/genre/10/Fantasy"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 62,
+          "type": "anime",
+          "name": "Isekai",
+          "url": "https://myanimelist.net/anime/genre/62/Isekai"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 966,
+      "url": "https://myanimelist.net/anime/966/Crayon_Shin-chan",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/10/59897.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/10/59897t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/10/59897l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/10/59897.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/10/59897t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/10/59897l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Crayon Shin-chan"
+        },
+        {
+          "type": "Japanese",
+          "title": "クレヨンしんちゃん"
+        },
+        {
+          "type": "English",
+          "title": "Shin Chan"
+        },
+        {
+          "type": "German",
+          "title": "Shin Chan"
+        },
+        {
+          "type": "Spanish",
+          "title": "Shin Chan"
+        }
+      ],
+      "title": "Crayon Shin-chan",
+      "title_english": "Shin Chan",
+      "title_japanese": "クレヨンしんちゃん",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Manga",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "1992-04-13T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 13,
+            "month": 4,
+            "year": 1992
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Apr 13, 1992 to ?"
+      },
+      "duration": "21 min",
+      "rating": "G - All Ages",
+      "score": 7.78,
+      "scored_by": 39880,
+      "rank": 988,
+      "popularity": 2291,
+      "members": 82211,
+      "favorites": 1230,
+      "synopsis": "There is no such thing as an uneventful day in the life of kindergartener Shinnosuke \"Shin-chan\" Nohara. The five-year-old is a cut above the most troublesome, perverted, and shameless kid one can imagine. Shin-chan is almost always engaged in questionable activities such as forgetting about a friend during hide and seek, sumo wrestling for love, performing various gags including the notorious \"elephant\" in public, and flirting with college girls. The exemplary troublemaker has done it all and has no plans to stop anytime soon.\n\nCrayon Shin-chan follows the daily shenanigans of Shin-chan with his group of friends, parading around as the self-proclaimed \"Kasukabe Defense Force.\" The adults witnessing these shenanigans unfold can't help but adore Shin-chan, as he keeps them entertained while unintentionally solving their daily troubles through his mindless antics—leaving himself as the only problem they do not know what to do with.\n\n[Written by MAL Rewrite]",
+      "background": "The first English dubbed version was produced with many famous voice actors through 2001–2002 by Vitello Productions. In 2004, Phuuz Entertainment produced a continuation of the Vitello dub with different Los Angeles-based voice actors. The Phuuz and Vitello dub aired in the United Kingdom, Australia, and Republic of Ireland, and translations of these dubs aired in Europe and Latin America. The dubs were close to the original but had seen some censorship. The English dubbed version by Funimation was produced in 2005, featuring a Texas-based cast of voice actors, and was altered in comparison to the original—sexual references, dark humor, and references to popular American culture were added later on. Additionally, many non-existent backstories and different personalities were created. Crayon Shin-chan has also been adapted into video games, mobile games and tons of anime movies.",
+      "season": "spring",
+      "year": 1992,
+      "broadcast": {
+        "day": "Fridays",
+        "time": "19:30",
+        "timezone": "Asia/Tokyo",
+        "string": "Fridays at 19:30 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 55,
+          "type": "anime",
+          "name": "TV Asahi",
+          "url": "https://myanimelist.net/anime/producer/55/TV_Asahi"
+        }
+      ],
+      "licensors": [
+        {
+          "mal_id": 102,
+          "type": "anime",
+          "name": "Funimation",
+          "url": "https://myanimelist.net/anime/producer/102/Funimation"
+        }
+      ],
+      "studios": [
+        {
+          "mal_id": 247,
+          "type": "anime",
+          "name": "Shin-Ei Animation",
+          "url": "https://myanimelist.net/anime/producer/247/Shin-Ei_Animation"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        },
+        {
+          "mal_id": 9,
+          "type": "anime",
+          "name": "Ecchi",
+          "url": "https://myanimelist.net/anime/genre/9/Ecchi"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 23,
+          "type": "anime",
+          "name": "School",
+          "url": "https://myanimelist.net/anime/genre/23/School"
+        }
+      ],
+      "demographics": [
+        {
+          "mal_id": 42,
+          "type": "anime",
+          "name": "Seinen",
+          "url": "https://myanimelist.net/anime/genre/42/Seinen"
+        }
+      ]
+    },
+    {
+      "mal_id": 52991,
+      "url": "https://myanimelist.net/anime/52991/Sousou_no_Frieren",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1015/138006.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1015/138006t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1015/138006l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1015/138006.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1015/138006t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1015/138006l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "aEOyEtArBI8",
+        "url": "https://www.youtube.com/watch?v=aEOyEtArBI8",
+        "embed_url": "https://www.youtube.com/embed/aEOyEtArBI8?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/aEOyEtArBI8/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/aEOyEtArBI8/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/aEOyEtArBI8/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/aEOyEtArBI8/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/aEOyEtArBI8/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Sousou no Frieren"
+        },
+        {
+          "type": "Synonym",
+          "title": "Frieren at the Funeral"
+        },
+        {
+          "type": "Japanese",
+          "title": "葬送のフリーレン"
+        },
+        {
+          "type": "English",
+          "title": "Frieren: Beyond Journey's End"
+        }
+      ],
+      "title": "Sousou no Frieren",
+      "title_english": "Frieren: Beyond Journey's End",
+      "title_japanese": "葬送のフリーレン",
+      "title_synonyms": [
+        "Frieren at the Funeral"
+      ],
+      "type": "TV",
+      "source": "Manga",
+      "episodes": 28,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-09-29T00:00:00+00:00",
+        "to": "2024-03-01T00:00:00+00:00",
+        "prop": {
+          "from": {
+            "day": 29,
+            "month": 9,
+            "year": 2023
+          },
+          "to": {
+            "day": 1,
+            "month": 3,
+            "year": 2024
+          }
+        },
+        "string": "Sep 29, 2023 to Mar 2024"
+      },
+      "duration": "24 min per ep",
+      "rating": "PG-13 - Teens 13 or older",
+      "score": 9.14,
+      "scored_by": 129031,
+      "rank": 1,
+      "popularity": 505,
+      "members": 432502,
+      "favorites": 12584,
+      "synopsis": "During their decade-long quest to defeat the Demon King, the members of the hero's party—Himmel himself, the priest Heiter, the dwarf warrior Eisen, and the elven mage Frieren—forge bonds through adventures and battles, creating unforgettable precious memories for most of them.\n\nHowever, the time that Frieren spends with her comrades is equivalent to merely a fraction of her life, which has lasted over a thousand years. When the party disbands after their victory, Frieren casually returns to her \"usual\" routine of collecting spells across the continent. Due to her different sense of time, she seemingly holds no strong feelings toward the experiences she went through.\n\nAs the years pass, Frieren gradually realizes how her days in the hero's party truly impacted her. Witnessing the deaths of two of her former companions, Frieren begins to regret having taken their presence for granted; she vows to better understand humans and create real personal connections. Although the story of that once memorable journey has long ended, a new tale is about to begin.\n\n[Written by MAL Rewrite]",
+      "background": "Sousou no Frieren was released on Blu-ray and DVD in seven volumes from January 24, 2024, to July 17, 2024.",
+      "season": "fall",
+      "year": 2023,
+      "broadcast": {
+        "day": "Fridays",
+        "time": "23:00",
+        "timezone": "Asia/Tokyo",
+        "string": "Fridays at 23:00 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 17,
+          "type": "anime",
+          "name": "Aniplex",
+          "url": "https://myanimelist.net/anime/producer/17/Aniplex"
+        },
+        {
+          "mal_id": 53,
+          "type": "anime",
+          "name": "Dentsu",
+          "url": "https://myanimelist.net/anime/producer/53/Dentsu"
+        },
+        {
+          "mal_id": 62,
+          "type": "anime",
+          "name": "Shogakukan-Shueisha Productions",
+          "url": "https://myanimelist.net/anime/producer/62/Shogakukan-Shueisha_Productions"
+        },
+        {
+          "mal_id": 1003,
+          "type": "anime",
+          "name": "Nippon Television Network",
+          "url": "https://myanimelist.net/anime/producer/1003/Nippon_Television_Network"
+        },
+        {
+          "mal_id": 1143,
+          "type": "anime",
+          "name": "TOHO animation",
+          "url": "https://myanimelist.net/anime/producer/1143/TOHO_animation"
+        },
+        {
+          "mal_id": 1430,
+          "type": "anime",
+          "name": "Shogakukan",
+          "url": "https://myanimelist.net/anime/producer/1430/Shogakukan"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 11,
+          "type": "anime",
+          "name": "Madhouse",
+          "url": "https://myanimelist.net/anime/producer/11/Madhouse"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 2,
+          "type": "anime",
+          "name": "Adventure",
+          "url": "https://myanimelist.net/anime/genre/2/Adventure"
+        },
+        {
+          "mal_id": 8,
+          "type": "anime",
+          "name": "Drama",
+          "url": "https://myanimelist.net/anime/genre/8/Drama"
+        },
+        {
+          "mal_id": 10,
+          "type": "anime",
+          "name": "Fantasy",
+          "url": "https://myanimelist.net/anime/genre/10/Fantasy"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": [
+        {
+          "mal_id": 27,
+          "type": "anime",
+          "name": "Shounen",
+          "url": "https://myanimelist.net/anime/genre/27/Shounen"
+        }
+      ]
+    }
+  ]
+}

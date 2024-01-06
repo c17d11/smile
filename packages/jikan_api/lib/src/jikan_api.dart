@@ -38,6 +38,7 @@ class MockInterceptor implements Interceptor {
     String pathUnderscope = options.path.replaceAll('/', '_');
     pathUnderscope = pathUnderscope.replaceAll('?', '_');
     pathUnderscope = pathUnderscope.replaceAll('=', '_');
+    pathUnderscope = pathUnderscope.replaceAll('&', '_');
     final resourcePath = _jsonDir + pathUnderscope + _jsonExtension;
     ByteData data;
     try {
