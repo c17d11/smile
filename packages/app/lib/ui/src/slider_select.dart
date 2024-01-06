@@ -26,7 +26,7 @@ class RangeFormatter extends TextInputFormatter {
 
 class SliderSelect extends ConsumerStatefulWidget {
   final String title;
-  final String description;
+  final String? description;
   final double value;
   final double min;
   final double max;
@@ -96,11 +96,12 @@ class _SliderSelectState extends ConsumerState<SliderSelect> {
             mainAxisSize: MainAxisSize.max,
             children: [
               TextHeadline(widget.title.toUpperCase()),
-              InfoIcon(
-                onPressed: () => setState(() {
-                  showDescription = !showDescription;
-                }),
-              ),
+              if (widget.description != null)
+                InfoIcon(
+                  onPressed: () => setState(() {
+                    showDescription = !showDescription;
+                  }),
+                ),
             ],
           ),
         ));
@@ -110,7 +111,7 @@ class _SliderSelectState extends ConsumerState<SliderSelect> {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Center(
-        child: TextSubtitle(widget.description),
+        child: TextSubtitle(widget.description ?? ""),
       ),
     );
   }
@@ -165,7 +166,7 @@ class _SliderSelectState extends ConsumerState<SliderSelect> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         buildMenuRow(),
-        if (showDescription) buildDescription(),
+        if (widget.description != null && showDescription) buildDescription(),
         buildContentRow(),
       ],
     );
