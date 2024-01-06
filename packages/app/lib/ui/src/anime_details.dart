@@ -252,12 +252,16 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                 SliderSelect(
                   "Personal score",
                   null,
-                  5,
+                  localAnime?.personalScore ?? 0,
                   stepSize: 0.5,
                   showInts: false,
                   min: 0,
                   max: 10,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    if (value != null && localAnime != null) {
+                      localAnime!.personalScore = value;
+                    }
+                  },
                 ),
                 MultiSelect<Tag>(
                   title: 'Tags',
