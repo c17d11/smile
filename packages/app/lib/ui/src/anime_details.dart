@@ -7,6 +7,7 @@ import 'package:app/ui/src/like_select.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/slider_select.dart';
 import 'package:app/ui/src/sliver_app_bar_delegate.dart';
+import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -125,6 +126,23 @@ class AnimeDetails extends ConsumerStatefulWidget {
 class _AnimeDetailsState extends ConsumerState<AnimeDetails>
     with SingleTickerProviderStateMixin {
   AnimeIntern? localAnime;
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      if (_controller.text.isNotEmpty && localAnime != null) {
+        localAnime!.personalNotes = _controller.text;
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   Future<List<Tag>> loadTags() async {
     await ref.read(tagPod.notifier).get();
@@ -162,7 +180,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Text(
+                const Text(
                   'SYNPOSIS',
                   style: TextStyle(
                     fontSize: 14,
@@ -189,7 +207,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Text(
+                const Text(
                   'BACKGROUND',
                   style: TextStyle(
                     fontSize: 14,
@@ -213,7 +231,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
     );
   }
 
-  Widget buildCustomContent() {
+  Widget buildCustomContent(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 2.5),
       child: Column(
@@ -249,9 +267,45 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                     localAnime!.tags = items.map((e) => e as Tag).toList();
                   },
                 ),
-                const TextField(
-                  maxLines: null,
-                  keyboardType: TextInputType.multiline,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 20, 10, 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      TextHeadline("Notes".toUpperCase()),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  child: TextField(
+                    controller: _controller,
+                    maxLines: null,
+                    keyboardType: TextInputType.multiline,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.onBackground,
+                            width: 2),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.primary,
+                            width: 2),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.onBackground,
+                            width: 2),
+                      ),
+                      hintText: "...",
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -266,11 +320,14 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
     final animeArgs =
         ModalRoute.of(context)?.settings.arguments as AnimeDetailsArgs;
     localAnime = animeArgs.anime;
+    if (localAnime!.personalNotes != null) {
+      _controller.text = localAnime!.personalNotes!;
+    }
     const expandedBarHeight = 500.0;
 
     List<Tuple2<String, Widget>> tabs = [
       Tuple2("info", buildApiContent()),
-      Tuple2("notes", buildCustomContent()),
+      Tuple2("notes", buildCustomContent(context)),
     ];
 
     return Scaffold(
