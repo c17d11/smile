@@ -7,7 +7,7 @@ class AnimeQueryIntern extends AnimeQuery {
   bool? isFavorite;
   Tag? tag;
 
-  void override(AnimeQuery q) {
+  void update(AnimeQuery q) {
     searchTerm = q.searchTerm;
     type = q.type;
     rating = q.rating;
@@ -46,6 +46,43 @@ class AnimeQueryIntern extends AnimeQuery {
       ..tag = q.tag;
     return animeQueryIntern;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      other is AnimeQueryIntern &&
+      other.searchTerm == searchTerm &&
+      other.type == type &&
+      other.rating == rating &&
+      other.status == status &&
+      other.minScore == minScore &&
+      other.maxScore == maxScore &&
+      other.minYear == minYear &&
+      other.maxYear == maxYear &&
+      other.sfw == sfw &&
+      other.producers == producers &&
+      other.genresInclude == genresInclude &&
+      other.genresExclude == genresExclude &&
+      other.page == page &&
+      other.orderBy == orderBy &&
+      other.sort == sort;
+
+  @override
+  int get hashCode =>
+      searchTerm.hashCode ^
+      type.hashCode ^
+      rating.hashCode ^
+      status.hashCode ^
+      minScore.hashCode ^
+      maxScore.hashCode ^
+      minYear.hashCode ^
+      maxYear.hashCode ^
+      sfw.hashCode ^
+      producers.hashCode ^
+      genresInclude.hashCode ^
+      genresExclude.hashCode ^
+      page.hashCode ^
+      orderBy.hashCode ^
+      sort.hashCode;
 
   static AnimeQueryIntern nextPage(AnimeQueryIntern q) {
     AnimeQueryIntern query = AnimeQueryIntern.from(q);
