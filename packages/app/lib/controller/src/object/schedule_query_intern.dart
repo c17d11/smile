@@ -25,33 +25,35 @@ class ScheduleQueryIntern extends ScheduleQuery {
       case ScheduleMonday:
         return query
           ..day = ScheduleTuesday()
-          ..page = 1;
+          ..page = null;
       case ScheduleTuesday:
         return query
           ..day = ScheduleWednesDay()
-          ..page = 1;
+          ..page = null;
       case ScheduleWednesDay:
         return query
           ..day = ScheduleThursday()
-          ..page = 1;
+          ..page = null;
       case ScheduleThursday:
         return query
           ..day = ScheduleFriday()
-          ..page = 1;
+          ..page = null;
       case ScheduleFriday:
         return query
           ..day = ScheduleSaturday()
-          ..page = 1;
+          ..page = null;
       case ScheduleSaturday:
-        return query..day = ScheduleSunday();
+        return query
+          ..day = ScheduleSunday()
+          ..page = null;
       case ScheduleSunday:
         return query
           ..day = ScheduleOther()
-          ..page = 1;
+          ..page = null;
       case ScheduleOther:
         return query
           ..day = ScheduleUnknown()
-          ..page = 1;
+          ..page = null;
       case ScheduleUnknown:
         return null;
       default:

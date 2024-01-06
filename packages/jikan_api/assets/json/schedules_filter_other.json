@@ -1,0 +1,345 @@
+{
+  "pagination": {
+    "last_visible_page": 1,
+    "has_next_page": false,
+    "current_page": 1,
+    "items": {
+      "count": 3,
+      "total": 3,
+      "per_page": 25
+    }
+  },
+  "data": [
+    {
+      "mal_id": 57357,
+      "url": "https://myanimelist.net/anime/57357/Shuwawan",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1129/140004.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1129/140004t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1129/140004l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1129/140004.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1129/140004t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1129/140004l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Shuwawan!"
+        },
+        {
+          "type": "Japanese",
+          "title": "しゅわわん!"
+        }
+      ],
+      "title": "Shuwawan!",
+      "title_english": null,
+      "title_japanese": "しゅわわん!",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-03-22T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 22,
+            "month": 3,
+            "year": 2023
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Mar 22, 2023 to ?"
+      },
+      "duration": "5 min",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 13123,
+      "popularity": 22462,
+      "members": 85,
+      "favorites": 0,
+      "synopsis": "Shuwawan! chronicles the family life of real-life photographer and essayist Harumichi Saitou. Saitou and his wife are both deaf, his children are both hearing, and the family communicates in sign language. The anime draws on Saitou's own Ikuji Manga Nikki (Child-rearing Manga Diary) work.\n\n(Source: ANN)",
+      "background": null,
+      "season": "spring",
+      "year": 2023,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Not scheduled once per week"
+      },
+      "producers": [
+        {
+          "mal_id": 111,
+          "type": "anime",
+          "name": "NHK",
+          "url": "https://myanimelist.net/anime/producer/111/NHK"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 1291,
+          "type": "anime",
+          "name": "KOO-KI",
+          "url": "https://myanimelist.net/anime/producer/1291/KOO-KI"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 53,
+          "type": "anime",
+          "name": "Childcare",
+          "url": "https://myanimelist.net/anime/genre/53/Childcare"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 10506,
+      "url": "https://myanimelist.net/anime/10506/Shiawase_Haitatsu_Taneko",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/2/28900.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/2/28900t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/2/28900l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/2/28900.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/2/28900t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/2/28900l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Shiawase Haitatsu Taneko"
+        },
+        {
+          "type": "Japanese",
+          "title": "しあわせ配達おみくじタネコ"
+        }
+      ],
+      "title": "Shiawase Haitatsu Taneko",
+      "title_english": null,
+      "title_japanese": "しあわせ配達おみくじタネコ",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2011-03-26T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 26,
+            "month": 3,
+            "year": 2011
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Mar 26, 2011 to ?"
+      },
+      "duration": "Unknown",
+      "rating": null,
+      "score": null,
+      "scored_by": null,
+      "rank": 17677,
+      "popularity": 13635,
+      "members": 867,
+      "favorites": 2,
+      "synopsis": "The story centers around a cat who answers people's wishes and delivers happiness. (\"Tane\" and \"neko\" are the Japanese words for \"seed\" and \"cat,\" respectively.)\n\n(Source: ANN)",
+      "background": null,
+      "season": "spring",
+      "year": 2011,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Not scheduled once per week"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 432,
+          "type": "anime",
+          "name": "Kachidoki Studio",
+          "url": "https://myanimelist.net/anime/producer/432/Kachidoki_Studio"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 30151,
+      "url": "https://myanimelist.net/anime/30151/Kamiusagi_Rope__Warau_Asa_ni_wa_Fukuraitaru_tte_Maji_ssuka",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/6/72182.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/6/72182t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/6/72182l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/6/72182.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/6/72182t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/6/72182l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "L19vL_TJKYk",
+        "url": "https://www.youtube.com/watch?v=L19vL_TJKYk",
+        "embed_url": "https://www.youtube.com/embed/L19vL_TJKYk?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/L19vL_TJKYk/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/L19vL_TJKYk/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/L19vL_TJKYk/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/L19vL_TJKYk/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/L19vL_TJKYk/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Kamiusagi Rope: Warau Asa ni wa Fukuraitaru tte Maji ssuka!?"
+        },
+        {
+          "type": "Synonym",
+          "title": "Kamiusagi Rope 4"
+        },
+        {
+          "type": "Japanese",
+          "title": "紙兎ロペ 〜笑う朝には福来たるってマジっすか!?"
+        }
+      ],
+      "title": "Kamiusagi Rope: Warau Asa ni wa Fukuraitaru tte Maji ssuka!?",
+      "title_english": null,
+      "title_japanese": "紙兎ロペ 〜笑う朝には福来たるってマジっすか!?",
+      "title_synonyms": [
+        "Kamiusagi Rope 4"
+      ],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2012-11-16T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 16,
+            "month": 11,
+            "year": 2012
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Nov 16, 2012 to ?"
+      },
+      "duration": "2 min",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 15147,
+      "popularity": 12646,
+      "members": 1154,
+      "favorites": 0,
+      "synopsis": "Fourth season of Kamiusagi Rope, events occur after the feature film. Airs on Mezamashi TV instead of the theaters.",
+      "background": null,
+      "season": "fall",
+      "year": 2012,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Not scheduled once per week"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        },
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    }
+  ]
+}

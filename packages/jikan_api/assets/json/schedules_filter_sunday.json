@@ -1,0 +1,2949 @@
+{
+  "pagination": {
+    "last_visible_page": 2,
+    "has_next_page": true,
+    "current_page": 1,
+    "items": {
+      "count": 25,
+      "total": 50,
+      "per_page": 25
+    }
+  },
+  "data": [
+    {
+      "mal_id": 54873,
+      "url": "https://myanimelist.net/anime/54873/Takoru_TV",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1603/134813.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1603/134813t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1603/134813l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1603/134813.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1603/134813t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1603/134813l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Takoru TV"
+        },
+        {
+          "type": "Japanese",
+          "title": "たこるTV"
+        }
+      ],
+      "title": "Takoru TV",
+      "title_english": null,
+      "title_japanese": "たこるTV",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2002-01-01T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 1,
+            "month": 1,
+            "year": 2002
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "2002 to ?"
+      },
+      "duration": "2 min",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 13420,
+      "popularity": 22878,
+      "members": 78,
+      "favorites": 0,
+      "synopsis": "A series of shorts featuring TV Osaka's mascot character Takoru-kun which are broadcast at various times throughout the week.",
+      "background": null,
+      "season": null,
+      "year": null,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Unknown"
+      },
+      "producers": [
+        {
+          "mal_id": 100,
+          "type": "anime",
+          "name": "TV Osaka",
+          "url": "https://myanimelist.net/anime/producer/100/TV_Osaka"
+        }
+      ],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 57357,
+      "url": "https://myanimelist.net/anime/57357/Shuwawan",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1129/140004.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1129/140004t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1129/140004l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1129/140004.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1129/140004t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1129/140004l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Shuwawan!"
+        },
+        {
+          "type": "Japanese",
+          "title": "しゅわわん!"
+        }
+      ],
+      "title": "Shuwawan!",
+      "title_english": null,
+      "title_japanese": "しゅわわん!",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-03-22T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 22,
+            "month": 3,
+            "year": 2023
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Mar 22, 2023 to ?"
+      },
+      "duration": "5 min",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 13123,
+      "popularity": 22462,
+      "members": 85,
+      "favorites": 0,
+      "synopsis": "Shuwawan! chronicles the family life of real-life photographer and essayist Harumichi Saitou. Saitou and his wife are both deaf, his children are both hearing, and the family communicates in sign language. The anime draws on Saitou's own Ikuji Manga Nikki (Child-rearing Manga Diary) work.\n\n(Source: ANN)",
+      "background": null,
+      "season": "spring",
+      "year": 2023,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Not scheduled once per week"
+      },
+      "producers": [
+        {
+          "mal_id": 111,
+          "type": "anime",
+          "name": "NHK",
+          "url": "https://myanimelist.net/anime/producer/111/NHK"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 1291,
+          "type": "anime",
+          "name": "KOO-KI",
+          "url": "https://myanimelist.net/anime/producer/1291/KOO-KI"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 53,
+          "type": "anime",
+          "name": "Childcare",
+          "url": "https://myanimelist.net/anime/genre/53/Childcare"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 57132,
+      "url": "https://myanimelist.net/anime/57132/Hero_Inside",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1668/139595.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1668/139595t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1668/139595l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1668/139595.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1668/139595t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1668/139595l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Hero Inside"
+        },
+        {
+          "type": "Japanese",
+          "title": "히어로 인사이드"
+        }
+      ],
+      "title": "Hero Inside",
+      "title_english": null,
+      "title_japanese": "히어로 인사이드",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-11-08T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 8,
+            "month": 11,
+            "year": 2023
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Nov 8, 2023 to ?"
+      },
+      "duration": "13 min",
+      "rating": "PG-13 - Teens 13 or older",
+      "score": null,
+      "scored_by": null,
+      "rank": 19839,
+      "popularity": 21094,
+      "members": 129,
+      "favorites": 0,
+      "synopsis": null,
+      "background": null,
+      "season": "fall",
+      "year": 2023,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Unknown"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 1,
+          "type": "anime",
+          "name": "Action",
+          "url": "https://myanimelist.net/anime/genre/1/Action"
+        },
+        {
+          "mal_id": 2,
+          "type": "anime",
+          "name": "Adventure",
+          "url": "https://myanimelist.net/anime/genre/2/Adventure"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 31,
+          "type": "anime",
+          "name": "Super Power",
+          "url": "https://myanimelist.net/anime/genre/31/Super_Power"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 57077,
+      "url": "https://myanimelist.net/anime/57077/Totonoe_Sakuma-kun_by__sauna",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1778/139497.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1778/139497t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1778/139497l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1778/139497.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1778/139497t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1778/139497l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Totonoe! Sakuma-kun by &sauna"
+        },
+        {
+          "type": "Japanese",
+          "title": "ととのえ！サクマくん by &sauna"
+        }
+      ],
+      "title": "Totonoe! Sakuma-kun by &sauna",
+      "title_english": null,
+      "title_japanese": "ととのえ！サクマくん by &sauna",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-11-12T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 12,
+            "month": 11,
+            "year": 2023
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Nov 12, 2023 to ?"
+      },
+      "duration": "5 min",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 13692,
+      "popularity": 20966,
+      "members": 136,
+      "favorites": 0,
+      "synopsis": null,
+      "background": null,
+      "season": "fall",
+      "year": 2023,
+      "broadcast": {
+        "day": "Sundays",
+        "time": "11:45",
+        "timezone": "Asia/Tokyo",
+        "string": "Sundays at 11:45 (JST)"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 432,
+          "type": "anime",
+          "name": "Kachidoki Studio",
+          "url": "https://myanimelist.net/anime/producer/432/Kachidoki_Studio"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 51,
+          "type": "anime",
+          "name": "Anthropomorphic",
+          "url": "https://myanimelist.net/anime/genre/51/Anthropomorphic"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 56986,
+      "url": "https://myanimelist.net/anime/56986/Riseman",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1974/139295.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1974/139295t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1974/139295l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1974/139295.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1974/139295t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1974/139295l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Riseman"
+        },
+        {
+          "type": "Japanese",
+          "title": "라이즈맨"
+        }
+      ],
+      "title": "Riseman",
+      "title_english": null,
+      "title_japanese": "라이즈맨",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": 26,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-10-18T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 18,
+            "month": 10,
+            "year": 2023
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Oct 18, 2023 to ?"
+      },
+      "duration": "Unknown",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 17206,
+      "popularity": 20420,
+      "members": 165,
+      "favorites": 0,
+      "synopsis": null,
+      "background": null,
+      "season": "fall",
+      "year": 2023,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Unknown"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 1,
+          "type": "anime",
+          "name": "Action",
+          "url": "https://myanimelist.net/anime/genre/1/Action"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 31,
+          "type": "anime",
+          "name": "Super Power",
+          "url": "https://myanimelist.net/anime/genre/31/Super_Power"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 54871,
+      "url": "https://myanimelist.net/anime/54871/Shin_Nippon_History",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1433/134811.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1433/134811t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1433/134811l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1433/134811.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1433/134811t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1433/134811l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Shin Nippon History"
+        },
+        {
+          "type": "Synonym",
+          "title": "Shin Nippon History: Minna ga Shiranai"
+        },
+        {
+          "type": "Synonym",
+          "title": "Atarashii Nihon no Rekishi."
+        },
+        {
+          "type": "Japanese",
+          "title": "新ニッポンヒストリー"
+        }
+      ],
+      "title": "Shin Nippon History",
+      "title_english": null,
+      "title_japanese": "新ニッポンヒストリー",
+      "title_synonyms": [
+        "Shin Nippon History: Minna ga Shiranai",
+        "Atarashii Nihon no Rekishi."
+      ],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2020-01-06T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 6,
+            "month": 1,
+            "year": 2020
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Jan 6, 2020 to ?"
+      },
+      "duration": "23 min",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 17736,
+      "popularity": 19547,
+      "members": 215,
+      "favorites": 0,
+      "synopsis": null,
+      "background": null,
+      "season": "winter",
+      "year": 2020,
+      "broadcast": {
+        "day": "Mondays",
+        "time": "01:00",
+        "timezone": "Asia/Tokyo",
+        "string": "Mondays at 01:00 (JST)"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 13,
+          "type": "anime",
+          "name": "Historical",
+          "url": "https://myanimelist.net/anime/genre/13/Historical"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 57012,
+      "url": "https://myanimelist.net/anime/57012/Harimaware_Koinu",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1666/139342.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1666/139342t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1666/139342l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1666/139342.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1666/139342t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1666/139342l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Harimaware! Koinu"
+        },
+        {
+          "type": "Synonym",
+          "title": "Hari Maware! Koinu"
+        },
+        {
+          "type": "Japanese",
+          "title": "貼りまわれ! こいぬ"
+        },
+        {
+          "type": "English",
+          "title": "Stick It on Around! Koinu"
+        }
+      ],
+      "title": "Harimaware! Koinu",
+      "title_english": "Stick It on Around! Koinu",
+      "title_japanese": "貼りまわれ! こいぬ",
+      "title_synonyms": [
+        "Hari Maware! Koinu"
+      ],
+      "type": "TV",
+      "source": "Manga",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2024-01-06T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 6,
+            "month": 1,
+            "year": 2024
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Jan 6, 2024 to ?"
+      },
+      "duration": "Unknown",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 19738,
+      "popularity": 18856,
+      "members": 254,
+      "favorites": 2,
+      "synopsis": "The story of the series follows Koinu, a serious-minded dog who goes to work one day only to find that his company has gone bankrupt. At a loss, Koinu takes a job from a mysterious recruitment agent and is hired to paste dog stickers all over the city. Even though he doesn't understand the purpose of this strange assignment, Koinu works hard every day at his new employment.\n\n(Source: Crunchyroll)",
+      "background": null,
+      "season": "winter",
+      "year": 2024,
+      "broadcast": {
+        "day": "Saturdays",
+        "time": "07:00",
+        "timezone": "Asia/Tokyo",
+        "string": "Saturdays at 07:00 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 1,
+          "type": "anime",
+          "name": "Pierrot",
+          "url": "https://myanimelist.net/anime/producer/1/Pierrot"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 1013,
+          "type": "anime",
+          "name": "Opera House",
+          "url": "https://myanimelist.net/anime/producer/1013/Opera_House"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 51,
+          "type": "anime",
+          "name": "Anthropomorphic",
+          "url": "https://myanimelist.net/anime/genre/51/Anthropomorphic"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 56677,
+      "url": "https://myanimelist.net/anime/56677/Saekomdalkom_Catch_Tiniping",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1824/138553.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1824/138553t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1824/138553l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1824/138553.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1824/138553t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1824/138553l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "9F0j75zX70o",
+        "url": "https://www.youtube.com/watch?v=9F0j75zX70o",
+        "embed_url": "https://www.youtube.com/embed/9F0j75zX70o?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/9F0j75zX70o/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/9F0j75zX70o/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/9F0j75zX70o/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/9F0j75zX70o/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/9F0j75zX70o/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Saekomdalkom Catch! Tiniping"
+        },
+        {
+          "type": "Synonym",
+          "title": "Dessert Catch! Teenieping"
+        },
+        {
+          "type": "Synonym",
+          "title": "Catch! Teenieping 4th Season"
+        },
+        {
+          "type": "Japanese",
+          "title": "새콤달콤 캐치! 티니핑"
+        }
+      ],
+      "title": "Saekomdalkom Catch! Tiniping",
+      "title_english": null,
+      "title_japanese": "새콤달콤 캐치! 티니핑",
+      "title_synonyms": [
+        "Dessert Catch! Teenieping",
+        "Catch! Teenieping 4th Season"
+      ],
+      "type": "TV",
+      "source": "Original",
+      "episodes": 26,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-09-22T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 22,
+            "month": 9,
+            "year": 2023
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Sep 22, 2023 to ?"
+      },
+      "duration": "Unknown",
+      "rating": "PG - Children",
+      "score": null,
+      "scored_by": null,
+      "rank": 17307,
+      "popularity": 18439,
+      "members": 278,
+      "favorites": 0,
+      "synopsis": "Puffping stole the Magic Sugar Ball! This has created a strange magical phenomenon where all the Dessert Teeniepings get sucked into a mirror which releases them on Earth for Romi to catch! Along with the Royal Dessert Teeniepings, Jellyping, Shashaping, and Fluffyping, Romi will have to accomplish her mission as fast as possible, otherwise, the Cake Castle will inevitably collapse!\n\n(Source: Catch Teenieping Wiki)",
+      "background": null,
+      "season": "fall",
+      "year": 2023,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Wednesdays at Unknown"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 10,
+          "type": "anime",
+          "name": "Fantasy",
+          "url": "https://myanimelist.net/anime/genre/10/Fantasy"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 66,
+          "type": "anime",
+          "name": "Mahou Shoujo",
+          "url": "https://myanimelist.net/anime/genre/66/Mahou_Shoujo"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 56504,
+      "url": "https://myanimelist.net/anime/56504/Chickip_Dancers_3rd_Season",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1833/138170.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1833/138170t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1833/138170l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1833/138170.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1833/138170t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1833/138170l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "pfQFIgpfyvg",
+        "url": "https://www.youtube.com/watch?v=pfQFIgpfyvg",
+        "embed_url": "https://www.youtube.com/embed/pfQFIgpfyvg?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/pfQFIgpfyvg/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/pfQFIgpfyvg/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/pfQFIgpfyvg/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/pfQFIgpfyvg/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/pfQFIgpfyvg/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Chickip Dancers 3rd Season"
+        },
+        {
+          "type": "Japanese",
+          "title": "チキップダンサーズ"
+        }
+      ],
+      "title": "Chickip Dancers 3rd Season",
+      "title_english": null,
+      "title_japanese": "チキップダンサーズ",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-09-25T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 25,
+            "month": 9,
+            "year": 2023
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Sep 25, 2023 to ?"
+      },
+      "duration": "5 min",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 18634,
+      "popularity": 18425,
+      "members": 279,
+      "favorites": 1,
+      "synopsis": "The third season of Chickip Dancers.",
+      "background": null,
+      "season": "fall",
+      "year": 2023,
+      "broadcast": {
+        "day": "Mondays",
+        "time": "08:45",
+        "timezone": "Asia/Tokyo",
+        "string": "Mondays at 08:45 (JST)"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 866,
+          "type": "anime",
+          "name": "Fanworks",
+          "url": "https://myanimelist.net/anime/producer/866/Fanworks"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 38776,
+      "url": "https://myanimelist.net/anime/38776/Manul_no_Yuube",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1980/96936.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1980/96936t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1980/96936l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1980/96936.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1980/96936t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1980/96936l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Manul no Yuube"
+        },
+        {
+          "type": "Japanese",
+          "title": "マヌ～ルのゆうべ"
+        }
+      ],
+      "title": "Manul no Yuube",
+      "title_english": null,
+      "title_japanese": "マヌ～ルのゆうべ",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Web manga",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2018-11-11T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 11,
+            "month": 11,
+            "year": 2018
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Nov 11, 2018 to ?"
+      },
+      "duration": "1 min",
+      "rating": "PG-13 - Teens 13 or older",
+      "score": null,
+      "scored_by": null,
+      "rank": 15887,
+      "popularity": 15100,
+      "members": 568,
+      "favorites": 1,
+      "synopsis": "Within the nature \"Darwin Kita! Kikimono Shin Densetsu\" program on NHK1.5 airs the short Manul no Yuube, based on a web manga/comic of the same name. It following animal characters who visit the bar Manul no Yuube. The bar is run by the Mama who is a Pallas's cat (Otocolobus manul) and serviced by the hostess Tsunomin who is a Brazilian treehopper (Bocydium globulare).",
+      "background": null,
+      "season": "fall",
+      "year": 2018,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Sundays at Unknown"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 56588,
+      "url": "https://myanimelist.net/anime/56588/Ochibi-san",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1476/138339.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1476/138339t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1476/138339l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1476/138339.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1476/138339t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1476/138339l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "D4Xi_jLCykg",
+        "url": "https://www.youtube.com/watch?v=D4Xi_jLCykg",
+        "embed_url": "https://www.youtube.com/embed/D4Xi_jLCykg?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/D4Xi_jLCykg/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/D4Xi_jLCykg/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/D4Xi_jLCykg/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/D4Xi_jLCykg/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/D4Xi_jLCykg/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Ochibi-san"
+        },
+        {
+          "type": "Japanese",
+          "title": "オチビサン"
+        }
+      ],
+      "title": "Ochibi-san",
+      "title_english": null,
+      "title_japanese": "オチビサン",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Manga",
+      "episodes": 24,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-10-08T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 8,
+            "month": 10,
+            "year": 2023
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Oct 8, 2023 to ?"
+      },
+      "duration": "5 min per ep",
+      "rating": "G - All Ages",
+      "score": 6.19,
+      "scored_by": 115,
+      "rank": 8285,
+      "popularity": 14388,
+      "members": 692,
+      "favorites": 2,
+      "synopsis": "\"I can help you laugh, but I can't take away the tears you've shed.\" In Mametsubu-cho, a town somewhere in the ancient Japanese city of Kamakura, Ochibi-san lives a relaxed, easy life. With his friend Nazeni the dog, Jack the naughty kitten, and Pankui the hungry dog, Ochibi-san's year in Mametsubu-cho is filled with encounters and new discoveries! Flower-viewing in spring, swimming in summer, collecting leaves in fall, and eating yummy food in winter.\n\n(Source: Crunchyroll)",
+      "background": null,
+      "season": "fall",
+      "year": 2023,
+      "broadcast": {
+        "day": "Sundays",
+        "time": "00:00",
+        "timezone": "Asia/Tokyo",
+        "string": "Sundays at 00:00 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 111,
+          "type": "anime",
+          "name": "NHK",
+          "url": "https://myanimelist.net/anime/producer/111/NHK"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 47,
+          "type": "anime",
+          "name": "Khara",
+          "url": "https://myanimelist.net/anime/producer/47/Khara"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 35694,
+      "url": "https://myanimelist.net/anime/35694/Kirin_the_Noop",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/13/86110.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/13/86110t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/13/86110l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/13/86110.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/13/86110t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/13/86110l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Kirin the Noop"
+        },
+        {
+          "type": "Japanese",
+          "title": "キリン・ザ・ヌープ"
+        },
+        {
+          "type": "English",
+          "title": "Kirin the Noop"
+        }
+      ],
+      "title": "Kirin the Noop",
+      "title_english": "Kirin the Noop",
+      "title_japanese": "キリン・ザ・ヌープ",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2014-02-06T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 6,
+            "month": 2,
+            "year": 2014
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Feb 6, 2014 to ?"
+      },
+      "duration": "5 min",
+      "rating": "G - All Ages",
+      "score": 5.14,
+      "scored_by": 126,
+      "rank": 12137,
+      "popularity": 14227,
+      "members": 732,
+      "favorites": 1,
+      "synopsis": "A shadow painting anime about a timid giraffe named Noop and his hedgehog companion named Harry as they travel their distant star world helping each other.",
+      "background": null,
+      "season": "winter",
+      "year": 2014,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Unknown"
+      },
+      "producers": [
+        {
+          "mal_id": 111,
+          "type": "anime",
+          "name": "NHK",
+          "url": "https://myanimelist.net/anime/producer/111/NHK"
+        }
+      ],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 2,
+          "type": "anime",
+          "name": "Adventure",
+          "url": "https://myanimelist.net/anime/genre/2/Adventure"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 10506,
+      "url": "https://myanimelist.net/anime/10506/Shiawase_Haitatsu_Taneko",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/2/28900.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/2/28900t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/2/28900l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/2/28900.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/2/28900t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/2/28900l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Shiawase Haitatsu Taneko"
+        },
+        {
+          "type": "Japanese",
+          "title": "しあわせ配達おみくじタネコ"
+        }
+      ],
+      "title": "Shiawase Haitatsu Taneko",
+      "title_english": null,
+      "title_japanese": "しあわせ配達おみくじタネコ",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2011-03-26T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 26,
+            "month": 3,
+            "year": 2011
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Mar 26, 2011 to ?"
+      },
+      "duration": "Unknown",
+      "rating": null,
+      "score": null,
+      "scored_by": null,
+      "rank": 17677,
+      "popularity": 13635,
+      "members": 867,
+      "favorites": 2,
+      "synopsis": "The story centers around a cat who answers people's wishes and delivers happiness. (\"Tane\" and \"neko\" are the Japanese words for \"seed\" and \"cat,\" respectively.)\n\n(Source: ANN)",
+      "background": null,
+      "season": "spring",
+      "year": 2011,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Not scheduled once per week"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 432,
+          "type": "anime",
+          "name": "Kachidoki Studio",
+          "url": "https://myanimelist.net/anime/producer/432/Kachidoki_Studio"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 50522,
+      "url": "https://myanimelist.net/anime/50522/Teikou_Penguin",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1018/119890.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1018/119890t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1018/119890l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1018/119890.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1018/119890t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1018/119890l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Teikou Penguin"
+        },
+        {
+          "type": "Japanese",
+          "title": "テイコウペンギン"
+        }
+      ],
+      "title": "Teikou Penguin",
+      "title_english": null,
+      "title_japanese": "テイコウペンギン",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Manga",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2022-01-05T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 5,
+            "month": 1,
+            "year": 2022
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Jan 5, 2022 to ?"
+      },
+      "duration": "5 min",
+      "rating": null,
+      "score": null,
+      "scored_by": null,
+      "rank": 13501,
+      "popularity": 13567,
+      "members": 884,
+      "favorites": 7,
+      "synopsis": "Centers on a penguin who works in an abusive company and gripes about the difficulties of workplace life. The title is a play on the \"koutei penguin,\" the Japanese name for the emperor penguin.\n\n(Source: ANN)",
+      "background": null,
+      "season": "winter",
+      "year": 2022,
+      "broadcast": {
+        "day": "Wednesdays",
+        "time": "07:30",
+        "timezone": "Asia/Tokyo",
+        "string": "Wednesdays at 07:30 (JST)"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [],
+      "genres": [],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 48,
+          "type": "anime",
+          "name": "Workplace",
+          "url": "https://myanimelist.net/anime/genre/48/Workplace"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 30151,
+      "url": "https://myanimelist.net/anime/30151/Kamiusagi_Rope__Warau_Asa_ni_wa_Fukuraitaru_tte_Maji_ssuka",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/6/72182.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/6/72182t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/6/72182l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/6/72182.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/6/72182t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/6/72182l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "L19vL_TJKYk",
+        "url": "https://www.youtube.com/watch?v=L19vL_TJKYk",
+        "embed_url": "https://www.youtube.com/embed/L19vL_TJKYk?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/L19vL_TJKYk/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/L19vL_TJKYk/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/L19vL_TJKYk/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/L19vL_TJKYk/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/L19vL_TJKYk/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Kamiusagi Rope: Warau Asa ni wa Fukuraitaru tte Maji ssuka!?"
+        },
+        {
+          "type": "Synonym",
+          "title": "Kamiusagi Rope 4"
+        },
+        {
+          "type": "Japanese",
+          "title": "紙兎ロペ 〜笑う朝には福来たるってマジっすか!?"
+        }
+      ],
+      "title": "Kamiusagi Rope: Warau Asa ni wa Fukuraitaru tte Maji ssuka!?",
+      "title_english": null,
+      "title_japanese": "紙兎ロペ 〜笑う朝には福来たるってマジっすか!?",
+      "title_synonyms": [
+        "Kamiusagi Rope 4"
+      ],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2012-11-16T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 16,
+            "month": 11,
+            "year": 2012
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Nov 16, 2012 to ?"
+      },
+      "duration": "2 min",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 15147,
+      "popularity": 12646,
+      "members": 1154,
+      "favorites": 0,
+      "synopsis": "Fourth season of Kamiusagi Rope, events occur after the feature film. Airs on Mezamashi TV instead of the theaters.",
+      "background": null,
+      "season": "fall",
+      "year": 2012,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Not scheduled once per week"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        },
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 48442,
+      "url": "https://myanimelist.net/anime/48442/Shikaru_Neko",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1008/113384.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1008/113384t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1008/113384l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1008/113384.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1008/113384t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1008/113384l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Shikaru Neko"
+        },
+        {
+          "type": "Japanese",
+          "title": "しかるねこ"
+        }
+      ],
+      "title": "Shikaru Neko",
+      "title_english": null,
+      "title_japanese": "しかるねこ",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Manga",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2021-03-22T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 22,
+            "month": 3,
+            "year": 2021
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Mar 22, 2021 to ?"
+      },
+      "duration": "30 sec",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 17689,
+      "popularity": 10933,
+      "members": 2074,
+      "favorites": 15,
+      "synopsis": null,
+      "background": null,
+      "season": "spring",
+      "year": 2021,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Unknown"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 50418,
+      "url": "https://myanimelist.net/anime/50418/Ninjala_TV",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1552/119871.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1552/119871t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1552/119871l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1552/119871.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1552/119871t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1552/119871l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Ninjala (TV)"
+        },
+        {
+          "type": "Japanese",
+          "title": "ニンジャラ"
+        }
+      ],
+      "title": "Ninjala (TV)",
+      "title_english": null,
+      "title_japanese": "ニンジャラ",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Game",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2022-01-08T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 8,
+            "month": 1,
+            "year": 2022
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Jan 8, 2022 to ?"
+      },
+      "duration": "23 min",
+      "rating": "PG - Children",
+      "score": 5.48,
+      "scored_by": 374,
+      "rank": 11283,
+      "popularity": 10256,
+      "members": 2563,
+      "favorites": 18,
+      "synopsis": "The year is 20XX. The ninja, who once forged the history of Japan, were scattered across the country during the Meiji Restoration. As these ninja mingled with the other clans, their bloodline thinned, and they gradually faded from sight. The descendants of these ninja clans, seeking to preserve their heritage, formed the WNA (World Ninja Association) in the hope of carrying on their legacy.\n\nAnd so it was that the WNA succeeded in developing Ninja-Gum, an art which could summon forth the strength of the Shinobi. And yet creating the most powerful Ninja-Gum requires the strongest of ninja DNA. So it was that the Ninjala Tournament was held, that the mightiest of all ninjas could be found... \n\n(Source: Official Game website)",
+      "background": "The airing time was Saturdays 10:30 between January 8, 2022 and October 22, 2022 and Saturdays 10:00 beginning October 29, 2022 to September 30, 2023. The airing time is Saturday 7:00 beginning October 7, 2023",
+      "season": "winter",
+      "year": 2022,
+      "broadcast": {
+        "day": "Saturdays",
+        "time": "07:00",
+        "timezone": "Asia/Tokyo",
+        "string": "Saturdays at 07:00 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 16,
+          "type": "anime",
+          "name": "TV Tokyo",
+          "url": "https://myanimelist.net/anime/producer/16/TV_Tokyo"
+        }
+      ],
+      "licensors": [
+        {
+          "mal_id": 376,
+          "type": "anime",
+          "name": "Sentai Filmworks",
+          "url": "https://myanimelist.net/anime/producer/376/Sentai_Filmworks"
+        }
+      ],
+      "studios": [
+        {
+          "mal_id": 28,
+          "type": "anime",
+          "name": "OLM",
+          "url": "https://myanimelist.net/anime/producer/28/OLM"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 1,
+          "type": "anime",
+          "name": "Action",
+          "url": "https://myanimelist.net/anime/genre/1/Action"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 50250,
+      "url": "https://myanimelist.net/anime/50250/Chiikawa",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1783/121944.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1783/121944t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1783/121944l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1783/121944.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1783/121944t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1783/121944l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "m4yfCS_YBUU",
+        "url": "https://www.youtube.com/watch?v=m4yfCS_YBUU",
+        "embed_url": "https://www.youtube.com/embed/m4yfCS_YBUU?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/m4yfCS_YBUU/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/m4yfCS_YBUU/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/m4yfCS_YBUU/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/m4yfCS_YBUU/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/m4yfCS_YBUU/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Chiikawa"
+        },
+        {
+          "type": "Japanese",
+          "title": "ちいかわ"
+        }
+      ],
+      "title": "Chiikawa",
+      "title_english": null,
+      "title_japanese": "ちいかわ",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Web manga",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2022-04-04T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 4,
+            "month": 4,
+            "year": 2022
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Apr 4, 2022 to ?"
+      },
+      "duration": "1 min",
+      "rating": "G - All Ages",
+      "score": 6.6,
+      "scored_by": 657,
+      "rank": 6047,
+      "popularity": 9888,
+      "members": 2883,
+      "favorites": 34,
+      "synopsis": "What's a Chiikawa? No one really knows, but everyone can see they're small, they're cute, and they're always having a fun time! Join them as they explore their surreal world with the sharp humor and clever antics that make the Chiikawa irresistible.\n\n(Source: HIDIVE, edited)",
+      "background": null,
+      "season": "spring",
+      "year": 2022,
+      "broadcast": {
+        "day": "Fridays",
+        "time": "07:40",
+        "timezone": "Asia/Tokyo",
+        "string": "Fridays at 07:40 (JST)"
+      },
+      "producers": [],
+      "licensors": [
+        {
+          "mal_id": 376,
+          "type": "anime",
+          "name": "Sentai Filmworks",
+          "url": "https://myanimelist.net/anime/producer/376/Sentai_Filmworks"
+        }
+      ],
+      "studios": [
+        {
+          "mal_id": 95,
+          "type": "anime",
+          "name": "Doga Kobo",
+          "url": "https://myanimelist.net/anime/producer/95/Doga_Kobo"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": [
+        {
+          "mal_id": 42,
+          "type": "anime",
+          "name": "Seinen",
+          "url": "https://myanimelist.net/anime/genre/42/Seinen"
+        }
+      ]
+    },
+    {
+      "mal_id": 32353,
+      "url": "https://myanimelist.net/anime/32353/Bonobono_TV_2016",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/13/77617.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/13/77617t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/13/77617l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/13/77617.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/13/77617t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/13/77617l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "seYMK1m4wsY",
+        "url": "https://www.youtube.com/watch?v=seYMK1m4wsY",
+        "embed_url": "https://www.youtube.com/embed/seYMK1m4wsY?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/seYMK1m4wsY/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/seYMK1m4wsY/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/seYMK1m4wsY/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/seYMK1m4wsY/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/seYMK1m4wsY/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Bonobono (TV 2016)"
+        },
+        {
+          "type": "Japanese",
+          "title": "ぼのぼの"
+        },
+        {
+          "type": "English",
+          "title": "Bono Bono"
+        },
+        {
+          "type": "German",
+          "title": "Bono Bono"
+        },
+        {
+          "type": "Spanish",
+          "title": "Bono Bono"
+        },
+        {
+          "type": "French",
+          "title": "Bono Bono"
+        }
+      ],
+      "title": "Bonobono (TV 2016)",
+      "title_english": "Bono Bono",
+      "title_japanese": "ぼのぼの",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "4-koma manga",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2016-04-02T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 2,
+            "month": 4,
+            "year": 2016
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Apr 2, 2016 to ?"
+      },
+      "duration": "5 min",
+      "rating": "G - All Ages",
+      "score": 6.38,
+      "scored_by": 732,
+      "rank": 7275,
+      "popularity": 9696,
+      "members": 3079,
+      "favorites": 19,
+      "synopsis": "Based on the original comic BONO BONO by Mikio Igarashi that has seen over 9,000,000 total copies printed, this is the definitive animated version of the emotionally soothing character-driven series that will make you ask yourself the philosophical question, \"What are living things?\" while laughing at heartwarming gags and being entertained by the interactions of amusing forest friends Bonobono the young sea otter, Chipmunk, Fishing Cat, and more.\n\nEnjoy the easygoing days and minor misadventures of Bonobono and his friends!\n\n(Source: Fuji Creative)",
+      "background": null,
+      "season": "spring",
+      "year": 2016,
+      "broadcast": {
+        "day": "Saturdays",
+        "time": "04:52",
+        "timezone": "Asia/Tokyo",
+        "string": "Saturdays at 04:52 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 169,
+          "type": "anime",
+          "name": "Fuji TV",
+          "url": "https://myanimelist.net/anime/producer/169/Fuji_TV"
+        },
+        {
+          "mal_id": 1255,
+          "type": "anime",
+          "name": "Glovision",
+          "url": "https://myanimelist.net/anime/producer/1255/Glovision"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 191,
+          "type": "anime",
+          "name": "Eiken",
+          "url": "https://myanimelist.net/anime/producer/191/Eiken"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        },
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 51,
+          "type": "anime",
+          "name": "Anthropomorphic",
+          "url": "https://myanimelist.net/anime/genre/51/Anthropomorphic"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 54197,
+      "url": "https://myanimelist.net/anime/54197/Chou_Futsuu_Ken_Chiba_Densetsu",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1374/132638.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1374/132638t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1374/132638l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1374/132638.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1374/132638t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1374/132638l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Chou Futsuu Ken Chiba Densetsu"
+        },
+        {
+          "type": "Synonym",
+          "title": "The Legend of Super normal Pref. CHIBA"
+        },
+        {
+          "type": "Japanese",
+          "title": "超普通県チバ伝説"
+        }
+      ],
+      "title": "Chou Futsuu Ken Chiba Densetsu",
+      "title_english": null,
+      "title_japanese": "超普通県チバ伝説",
+      "title_synonyms": [
+        "The Legend of Super normal Pref. CHIBA"
+      ],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2024-01-05T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 5,
+            "month": 1,
+            "year": 2024
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Jan 5, 2024 to ?"
+      },
+      "duration": "Unknown",
+      "rating": null,
+      "score": null,
+      "scored_by": null,
+      "rank": 18692,
+      "popularity": 9151,
+      "members": 3713,
+      "favorites": 5,
+      "synopsis": null,
+      "background": null,
+      "season": "winter",
+      "year": 2024,
+      "broadcast": {
+        "day": "Fridays",
+        "time": "21:54",
+        "timezone": "Asia/Tokyo",
+        "string": "Fridays at 21:54 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 1696,
+          "type": "anime",
+          "name": "Kadokawa",
+          "url": "https://myanimelist.net/anime/producer/1696/Kadokawa"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 2080,
+          "type": "anime",
+          "name": "Super Normal Studio",
+          "url": "https://myanimelist.net/anime/producer/2080/Super_Normal_Studio"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        },
+        {
+          "mal_id": 10,
+          "type": "anime",
+          "name": "Fantasy",
+          "url": "https://myanimelist.net/anime/genre/10/Fantasy"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 54040,
+      "url": "https://myanimelist.net/anime/54040/Tousouchuu__Great_Mission",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1895/133256.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1895/133256t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1895/133256l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1895/133256.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1895/133256t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1895/133256l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "EbeWqNcpaBQ",
+        "url": "https://www.youtube.com/watch?v=EbeWqNcpaBQ",
+        "embed_url": "https://www.youtube.com/embed/EbeWqNcpaBQ?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/EbeWqNcpaBQ/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/EbeWqNcpaBQ/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/EbeWqNcpaBQ/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/EbeWqNcpaBQ/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/EbeWqNcpaBQ/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Tousouchuu: Great Mission"
+        },
+        {
+          "type": "Japanese",
+          "title": "逃走中 グレートミッション"
+        },
+        {
+          "type": "English",
+          "title": "Run For Money : The Great Mission"
+        }
+      ],
+      "title": "Tousouchuu: Great Mission",
+      "title_english": "Run For Money : The Great Mission",
+      "title_japanese": "逃走中 グレートミッション",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Other",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-04-02T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 2,
+            "month": 4,
+            "year": 2023
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Apr 2, 2023 to ?"
+      },
+      "duration": "23 min",
+      "rating": "PG-13 - Teens 13 or older",
+      "score": 5.63,
+      "scored_by": 622,
+      "rank": 10771,
+      "popularity": 8585,
+      "members": 4555,
+      "favorites": 20,
+      "synopsis": "The anime series is set in the future when humanity migrated to the Moon due to Earth's climate change. It will incorporate original elements unique to the anime, such as human drama about survival, and will feature a diverse field that blurs countries and eras such as Shibuya, the Edo-period era, and London.\n\n(Source: MAL News, edited)",
+      "background": null,
+      "season": "spring",
+      "year": 2023,
+      "broadcast": {
+        "day": "Sundays",
+        "time": "09:00",
+        "timezone": "Asia/Tokyo",
+        "string": "Sundays at 09:00 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 169,
+          "type": "anime",
+          "name": "Fuji TV",
+          "url": "https://myanimelist.net/anime/producer/169/Fuji_TV"
+        },
+        {
+          "mal_id": 675,
+          "type": "anime",
+          "name": "Yomiuri Advertising",
+          "url": "https://myanimelist.net/anime/producer/675/Yomiuri_Advertising"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 18,
+          "type": "anime",
+          "name": "Toei Animation",
+          "url": "https://myanimelist.net/anime/producer/18/Toei_Animation"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 24,
+          "type": "anime",
+          "name": "Sci-Fi",
+          "url": "https://myanimelist.net/anime/genre/24/Sci-Fi"
+        },
+        {
+          "mal_id": 41,
+          "type": "anime",
+          "name": "Suspense",
+          "url": "https://myanimelist.net/anime/genre/41/Suspense"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 59,
+          "type": "anime",
+          "name": "High Stakes Game",
+          "url": "https://myanimelist.net/anime/genre/59/High_Stakes_Game"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 54294,
+      "url": "https://myanimelist.net/anime/54294/Dog_Signal",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1507/139161.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1507/139161t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1507/139161l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1507/139161.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1507/139161t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1507/139161l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Dog Signal"
+        },
+        {
+          "type": "Japanese",
+          "title": "ドッグシグナル"
+        }
+      ],
+      "title": "Dog Signal",
+      "title_english": null,
+      "title_japanese": "ドッグシグナル",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Manga",
+      "episodes": 20,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-10-22T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 22,
+            "month": 10,
+            "year": 2023
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Oct 22, 2023 to ?"
+      },
+      "duration": "25 min per ep",
+      "rating": "PG-13 - Teens 13 or older",
+      "score": 6.23,
+      "scored_by": 466,
+      "rank": 8074,
+      "popularity": 8288,
+      "members": 5015,
+      "favorites": 14,
+      "synopsis": "After his girlfriend Yuuko breaks up with him, Miyu Samura's luck is at an all-time low. But one day several months later, she reappears and gives Miyu a toy poodle she supposedly cannot take care of. Miyu's knowledge of dogs is nonexistent, and the puppy's rowdiness leaves him in danger of being evicted from his own home. \n\nWhen Miyu decides to take the puppy on a walk, he has a chance encounter with professional dog trainer Shinichirou Niwa and Niwa's well-behaved standard poodle Ourson. In just a matter of minutes, Niwa not only corrects the attitude of Miyu's dog, but also gives Miyu himself stern advice on how to treat his pet properly. Amazed by Niwa's techniques, Miyu decides to quit his job in order to become the trainer's assistant; however, Niwa is not as skillful in dealing with humans as he is with their canine companions. Even so, Miyu refuses to give up on Niwa and his failing business.\n\n[Written by MAL Rewrite]",
+      "background": null,
+      "season": "fall",
+      "year": 2023,
+      "broadcast": {
+        "day": "Sundays",
+        "time": "17:00",
+        "timezone": "Asia/Tokyo",
+        "string": "Sundays at 17:00 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 111,
+          "type": "anime",
+          "name": "NHK",
+          "url": "https://myanimelist.net/anime/producer/111/NHK"
+        },
+        {
+          "mal_id": 1797,
+          "type": "anime",
+          "name": "NHK Enterprises",
+          "url": "https://myanimelist.net/anime/producer/1797/NHK_Enterprises"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 2821,
+          "type": "anime",
+          "name": "Fugaku",
+          "url": "https://myanimelist.net/anime/producer/2821/Fugaku"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 50,
+          "type": "anime",
+          "name": "Adult Cast",
+          "url": "https://myanimelist.net/anime/genre/50/Adult_Cast"
+        },
+        {
+          "mal_id": 71,
+          "type": "anime",
+          "name": "Pets",
+          "url": "https://myanimelist.net/anime/genre/71/Pets"
+        },
+        {
+          "mal_id": 48,
+          "type": "anime",
+          "name": "Workplace",
+          "url": "https://myanimelist.net/anime/genre/48/Workplace"
+        }
+      ],
+      "demographics": [
+        {
+          "mal_id": 43,
+          "type": "anime",
+          "name": "Josei",
+          "url": "https://myanimelist.net/anime/genre/43/Josei"
+        }
+      ]
+    },
+    {
+      "mal_id": 50607,
+      "url": "https://myanimelist.net/anime/50607/Yu☆Gi☆Oh_Go_Rush",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1690/140394.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1690/140394t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1690/140394l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1690/140394.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1690/140394t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1690/140394l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Yu☆Gi☆Oh! Go Rush!!"
+        },
+        {
+          "type": "Synonym",
+          "title": "Yuu Gi Ou: Go Rush!!"
+        },
+        {
+          "type": "Japanese",
+          "title": "遊☆戯☆王ゴーラッシュ!!"
+        }
+      ],
+      "title": "Yu☆Gi☆Oh! Go Rush!!",
+      "title_english": null,
+      "title_japanese": "遊☆戯☆王ゴーラッシュ!!",
+      "title_synonyms": [
+        "Yuu Gi Ou: Go Rush!!"
+      ],
+      "type": "TV",
+      "source": "Card game",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2022-04-03T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 3,
+            "month": 4,
+            "year": 2022
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Apr 3, 2022 to ?"
+      },
+      "duration": "24 min",
+      "rating": "PG-13 - Teens 13 or older",
+      "score": 5.73,
+      "scored_by": 934,
+      "rank": 10394,
+      "popularity": 7992,
+      "members": 5507,
+      "favorites": 46,
+      "synopsis": "After inheriting the company from their parents, siblings Yuuhi and Yuamu Oudou have started to work at Ultraterrestrial Trouble Solutions, an organization that hunts aliens. Although they have never encountered aliens before, Yuuhi is desperate to meet one as he believes that an alien has stolen his important item called the \"Earthdamar.\"\n\nOne day, while searching for extraterrestrial creatures, Yuuhi and Yuamu find a strange spot in the forest where many trees have fallen, forming a scenery similar to a crop circle. As they venture further, they discover a mysterious spaceship and enter it out of curiosity. To their surprise, they come across Yudias Velgear, an alien from the Velgear Star Cluster. As it turns out, Yudias is seeking to learn about Rush Duel—a card game popular among elementary school students—as he believes that it will save his home from a long war.\n\nWith the siblings agreeing to teach Yudias about Rush Duel, they eventually realize that their first contact with an alien may not be a random coincidence.\n\n[Written by MAL Rewrite]",
+      "background": null,
+      "season": "spring",
+      "year": 2022,
+      "broadcast": {
+        "day": "Sundays",
+        "time": "07:30",
+        "timezone": "Asia/Tokyo",
+        "string": "Sundays at 07:30 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 16,
+          "type": "anime",
+          "name": "TV Tokyo",
+          "url": "https://myanimelist.net/anime/producer/16/TV_Tokyo"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 397,
+          "type": "anime",
+          "name": "Bridge",
+          "url": "https://myanimelist.net/anime/producer/397/Bridge"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 1,
+          "type": "anime",
+          "name": "Action",
+          "url": "https://myanimelist.net/anime/genre/1/Action"
+        },
+        {
+          "mal_id": 10,
+          "type": "anime",
+          "name": "Fantasy",
+          "url": "https://myanimelist.net/anime/genre/10/Fantasy"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 11,
+          "type": "anime",
+          "name": "Strategy Game",
+          "url": "https://myanimelist.net/anime/genre/11/Strategy_Game"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 54638,
+      "url": "https://myanimelist.net/anime/54638/Kawagoe_Boys_Sing",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1921/138501.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1921/138501t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1921/138501l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1921/138501.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1921/138501t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1921/138501l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "uvaAF0C02hM",
+        "url": "https://www.youtube.com/watch?v=uvaAF0C02hM",
+        "embed_url": "https://www.youtube.com/embed/uvaAF0C02hM?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/uvaAF0C02hM/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/uvaAF0C02hM/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/uvaAF0C02hM/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/uvaAF0C02hM/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/uvaAF0C02hM/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Kawagoe Boys Sing"
+        },
+        {
+          "type": "Japanese",
+          "title": "川越ボーイズ・シング"
+        },
+        {
+          "type": "English",
+          "title": "Kawagoe Boys Sing -Now or Never-"
+        }
+      ],
+      "title": "Kawagoe Boys Sing",
+      "title_english": "Kawagoe Boys Sing -Now or Never-",
+      "title_japanese": "川越ボーイズ・シング",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": 12,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-10-09T00:00:00+00:00",
+        "to": "2024-02-05T00:00:00+00:00",
+        "prop": {
+          "from": {
+            "day": 9,
+            "month": 10,
+            "year": 2023
+          },
+          "to": {
+            "day": 5,
+            "month": 2,
+            "year": 2024
+          }
+        },
+        "string": "Oct 9, 2023 to Feb 5, 2024"
+      },
+      "duration": "23 min per ep",
+      "rating": "PG-13 - Teens 13 or older",
+      "score": 5.46,
+      "scored_by": 816,
+      "rank": 11337,
+      "popularity": 7856,
+      "members": 5707,
+      "favorites": 17,
+      "synopsis": "Haruo Hibiki, a former orchestra conductor, suddenly appears in front of Tenshi whose peaceful daily life suddenly turns into chaos after meeting Haruo. Although Haruo is an up-and-comer, his troublesome personality causes him to be kicked out of the orchestra. In exchange for being allowed to return, Haruo must meet certain conditions. The conditioning being to establish a new boy's choir club with only male voices at Kawagoe Academy and win the National Boys' Choir Competition. Tenshi and his friends are forced to join the 'Boys Choir Club'. The new choir members are fed up with Haruo, who has a personality that is immature, cannot read the atmosphere, and can't help but use abusive language. However, as they continue to sing and are swayed by Haruo's mysterious guidance, they eventually become absorbed in the choir. As high-level rival teams appear one after another, will the Kawagoe Gakuen Boys Choir Club be able to accomplish its reckless goal of winning the competition? A hot-blooded youth comedy filled with soulful choir songs!\n\n(Source: Official site, translated)",
+      "background": null,
+      "season": "fall",
+      "year": 2023,
+      "broadcast": {
+        "day": "Mondays",
+        "time": "23:00",
+        "timezone": "Asia/Tokyo",
+        "string": "Mondays at 23:00 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 94,
+          "type": "anime",
+          "name": "Telecom Animation Film",
+          "url": "https://myanimelist.net/anime/producer/94/Telecom_Animation_Film"
+        },
+        {
+          "mal_id": 1113,
+          "type": "anime",
+          "name": "NBCUniversal Entertainment Japan",
+          "url": "https://myanimelist.net/anime/producer/1113/NBCUniversal_Entertainment_Japan"
+        },
+        {
+          "mal_id": 1856,
+          "type": "anime",
+          "name": "dugout",
+          "url": "https://myanimelist.net/anime/producer/1856/dugout"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 2714,
+          "type": "anime",
+          "name": "evg",
+          "url": "https://myanimelist.net/anime/producer/2714/evg"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 19,
+          "type": "anime",
+          "name": "Music",
+          "url": "https://myanimelist.net/anime/genre/19/Music"
+        },
+        {
+          "mal_id": 23,
+          "type": "anime",
+          "name": "School",
+          "url": "https://myanimelist.net/anime/genre/23/School"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 6149,
+      "url": "https://myanimelist.net/anime/6149/Chibi_Maruko-chan_1995",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1108/100604.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1108/100604t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1108/100604l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1108/100604.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1108/100604t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1108/100604l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Chibi Maruko-chan (1995)"
+        },
+        {
+          "type": "Synonym",
+          "title": "Maruko-chan"
+        },
+        {
+          "type": "Japanese",
+          "title": "ちびまる子ちゃん"
+        },
+        {
+          "type": "English",
+          "title": "Little Miss Maruko"
+        },
+        {
+          "type": "Spanish",
+          "title": "Chibi Maruko-chan"
+        }
+      ],
+      "title": "Chibi Maruko-chan (1995)",
+      "title_english": "Little Miss Maruko",
+      "title_japanese": "ちびまる子ちゃん",
+      "title_synonyms": [
+        "Maruko-chan"
+      ],
+      "type": "TV",
+      "source": "Manga",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "1995-01-08T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 8,
+            "month": 1,
+            "year": 1995
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Jan 8, 1995 to ?"
+      },
+      "duration": "23 min",
+      "rating": "G - All Ages",
+      "score": 7.3,
+      "scored_by": 1817,
+      "rank": 2609,
+      "popularity": 7846,
+      "members": 5722,
+      "favorites": 50,
+      "synopsis": "Momoko Sakura is an elementary school student who likes popular idol Momoe Yamaguchi and mangas. She is often called \"Chibi Maruko-chan\" due to her young age and small size. She lives together with her parents, her grandparents and her elder sister in a little town. In school, she has many friends with whom she studies and plays together everyday, including her close pal, Tama-chan; the student committee members, Maruo-kun and Migiwa-san; and the B-class trio: 'little master' Hanawa-kun, Hamaji-Bu Taro and Sekiguchi-kun. This is a fun-loving and enjoyable anime that portrays the simple things in life.\n\n(Source: ANN)",
+      "background": null,
+      "season": "winter",
+      "year": 1995,
+      "broadcast": {
+        "day": "Sundays",
+        "time": "18:00",
+        "timezone": "Asia/Tokyo",
+        "string": "Sundays at 18:00 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 30,
+          "type": "anime",
+          "name": "Ajia-do",
+          "url": "https://myanimelist.net/anime/producer/30/Ajia-do"
+        },
+        {
+          "mal_id": 611,
+          "type": "anime",
+          "name": "Sakura Production",
+          "url": "https://myanimelist.net/anime/producer/611/Sakura_Production"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 22,
+          "type": "anime",
+          "name": "Nippon Animation",
+          "url": "https://myanimelist.net/anime/producer/22/Nippon_Animation"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        },
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 23,
+          "type": "anime",
+          "name": "School",
+          "url": "https://myanimelist.net/anime/genre/23/School"
+        }
+      ],
+      "demographics": [
+        {
+          "mal_id": 25,
+          "type": "anime",
+          "name": "Shoujo",
+          "url": "https://myanimelist.net/anime/genre/25/Shoujo"
+        }
+      ]
+    }
+  ]
+}

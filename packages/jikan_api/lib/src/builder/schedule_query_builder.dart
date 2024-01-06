@@ -33,11 +33,11 @@ class ScheduleQueryBuilder extends Builder<ScheduleQuery, String> {
   @override
   String build(ScheduleQuery arg) {
     List<String> queries = [
-      buildPageQuery(arg.page),
       buildDayQuery(arg.day),
       buildKidsQuery(arg.isForKids),
       buildSfwQuery(arg.sfw),
       buildIsApprovedQuery(arg.isApproved),
+      buildPageQuery(arg.page),
     ];
     return queries.where((e) => e.isNotEmpty).join("&");
   }

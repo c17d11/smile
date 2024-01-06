@@ -1,0 +1,373 @@
+{
+  "pagination": {
+    "last_visible_page": 1,
+    "has_next_page": false,
+    "current_page": 1,
+    "items": {
+      "count": 3,
+      "total": 3,
+      "per_page": 25
+    }
+  },
+  "data": [
+    {
+      "mal_id": 54871,
+      "url": "https://myanimelist.net/anime/54871/Shin_Nippon_History",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1433/134811.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1433/134811t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1433/134811l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1433/134811.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1433/134811t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1433/134811l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Shin Nippon History"
+        },
+        {
+          "type": "Synonym",
+          "title": "Shin Nippon History: Minna ga Shiranai"
+        },
+        {
+          "type": "Synonym",
+          "title": "Atarashii Nihon no Rekishi."
+        },
+        {
+          "type": "Japanese",
+          "title": "新ニッポンヒストリー"
+        }
+      ],
+      "title": "Shin Nippon History",
+      "title_english": null,
+      "title_japanese": "新ニッポンヒストリー",
+      "title_synonyms": [
+        "Shin Nippon History: Minna ga Shiranai",
+        "Atarashii Nihon no Rekishi."
+      ],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2020-01-06T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 6,
+            "month": 1,
+            "year": 2020
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Jan 6, 2020 to ?"
+      },
+      "duration": "23 min",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 17736,
+      "popularity": 19547,
+      "members": 215,
+      "favorites": 0,
+      "synopsis": null,
+      "background": null,
+      "season": "winter",
+      "year": 2020,
+      "broadcast": {
+        "day": "Mondays",
+        "time": "01:00",
+        "timezone": "Asia/Tokyo",
+        "string": "Mondays at 01:00 (JST)"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 4,
+          "type": "anime",
+          "name": "Comedy",
+          "url": "https://myanimelist.net/anime/genre/4/Comedy"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 13,
+          "type": "anime",
+          "name": "Historical",
+          "url": "https://myanimelist.net/anime/genre/13/Historical"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 56504,
+      "url": "https://myanimelist.net/anime/56504/Chickip_Dancers_3rd_Season",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1833/138170.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1833/138170t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1833/138170l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1833/138170.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1833/138170t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1833/138170l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "pfQFIgpfyvg",
+        "url": "https://www.youtube.com/watch?v=pfQFIgpfyvg",
+        "embed_url": "https://www.youtube.com/embed/pfQFIgpfyvg?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/pfQFIgpfyvg/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/pfQFIgpfyvg/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/pfQFIgpfyvg/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/pfQFIgpfyvg/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/pfQFIgpfyvg/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Chickip Dancers 3rd Season"
+        },
+        {
+          "type": "Japanese",
+          "title": "チキップダンサーズ"
+        }
+      ],
+      "title": "Chickip Dancers 3rd Season",
+      "title_english": null,
+      "title_japanese": "チキップダンサーズ",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-09-25T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 25,
+            "month": 9,
+            "year": 2023
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Sep 25, 2023 to ?"
+      },
+      "duration": "5 min",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 18634,
+      "popularity": 18425,
+      "members": 279,
+      "favorites": 1,
+      "synopsis": "The third season of Chickip Dancers.",
+      "background": null,
+      "season": "fall",
+      "year": 2023,
+      "broadcast": {
+        "day": "Mondays",
+        "time": "08:45",
+        "timezone": "Asia/Tokyo",
+        "string": "Mondays at 08:45 (JST)"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 866,
+          "type": "anime",
+          "name": "Fanworks",
+          "url": "https://myanimelist.net/anime/producer/866/Fanworks"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 54638,
+      "url": "https://myanimelist.net/anime/54638/Kawagoe_Boys_Sing",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1921/138501.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1921/138501t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1921/138501l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1921/138501.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1921/138501t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1921/138501l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": "uvaAF0C02hM",
+        "url": "https://www.youtube.com/watch?v=uvaAF0C02hM",
+        "embed_url": "https://www.youtube.com/embed/uvaAF0C02hM?enablejsapi=1&wmode=opaque&autoplay=1",
+        "images": {
+          "image_url": "https://img.youtube.com/vi/uvaAF0C02hM/default.jpg",
+          "small_image_url": "https://img.youtube.com/vi/uvaAF0C02hM/sddefault.jpg",
+          "medium_image_url": "https://img.youtube.com/vi/uvaAF0C02hM/mqdefault.jpg",
+          "large_image_url": "https://img.youtube.com/vi/uvaAF0C02hM/hqdefault.jpg",
+          "maximum_image_url": "https://img.youtube.com/vi/uvaAF0C02hM/maxresdefault.jpg"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Kawagoe Boys Sing"
+        },
+        {
+          "type": "Japanese",
+          "title": "川越ボーイズ・シング"
+        },
+        {
+          "type": "English",
+          "title": "Kawagoe Boys Sing -Now or Never-"
+        }
+      ],
+      "title": "Kawagoe Boys Sing",
+      "title_english": "Kawagoe Boys Sing -Now or Never-",
+      "title_japanese": "川越ボーイズ・シング",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": 12,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-10-09T00:00:00+00:00",
+        "to": "2024-02-05T00:00:00+00:00",
+        "prop": {
+          "from": {
+            "day": 9,
+            "month": 10,
+            "year": 2023
+          },
+          "to": {
+            "day": 5,
+            "month": 2,
+            "year": 2024
+          }
+        },
+        "string": "Oct 9, 2023 to Feb 5, 2024"
+      },
+      "duration": "23 min per ep",
+      "rating": "PG-13 - Teens 13 or older",
+      "score": 5.46,
+      "scored_by": 816,
+      "rank": 11337,
+      "popularity": 7856,
+      "members": 5707,
+      "favorites": 17,
+      "synopsis": "Haruo Hibiki, a former orchestra conductor, suddenly appears in front of Tenshi whose peaceful daily life suddenly turns into chaos after meeting Haruo. Although Haruo is an up-and-comer, his troublesome personality causes him to be kicked out of the orchestra. In exchange for being allowed to return, Haruo must meet certain conditions. The conditioning being to establish a new boy's choir club with only male voices at Kawagoe Academy and win the National Boys' Choir Competition. Tenshi and his friends are forced to join the 'Boys Choir Club'. The new choir members are fed up with Haruo, who has a personality that is immature, cannot read the atmosphere, and can't help but use abusive language. However, as they continue to sing and are swayed by Haruo's mysterious guidance, they eventually become absorbed in the choir. As high-level rival teams appear one after another, will the Kawagoe Gakuen Boys Choir Club be able to accomplish its reckless goal of winning the competition? A hot-blooded youth comedy filled with soulful choir songs!\n\n(Source: Official site, translated)",
+      "background": null,
+      "season": "fall",
+      "year": 2023,
+      "broadcast": {
+        "day": "Mondays",
+        "time": "23:00",
+        "timezone": "Asia/Tokyo",
+        "string": "Mondays at 23:00 (JST)"
+      },
+      "producers": [
+        {
+          "mal_id": 94,
+          "type": "anime",
+          "name": "Telecom Animation Film",
+          "url": "https://myanimelist.net/anime/producer/94/Telecom_Animation_Film"
+        },
+        {
+          "mal_id": 1113,
+          "type": "anime",
+          "name": "NBCUniversal Entertainment Japan",
+          "url": "https://myanimelist.net/anime/producer/1113/NBCUniversal_Entertainment_Japan"
+        },
+        {
+          "mal_id": 1856,
+          "type": "anime",
+          "name": "dugout",
+          "url": "https://myanimelist.net/anime/producer/1856/dugout"
+        }
+      ],
+      "licensors": [],
+      "studios": [
+        {
+          "mal_id": 2714,
+          "type": "anime",
+          "name": "evg",
+          "url": "https://myanimelist.net/anime/producer/2714/evg"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 19,
+          "type": "anime",
+          "name": "Music",
+          "url": "https://myanimelist.net/anime/genre/19/Music"
+        },
+        {
+          "mal_id": 23,
+          "type": "anime",
+          "name": "School",
+          "url": "https://myanimelist.net/anime/genre/23/School"
+        }
+      ],
+      "demographics": []
+    }
+  ]
+}

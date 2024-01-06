@@ -1,0 +1,537 @@
+{
+  "pagination": {
+    "last_visible_page": 1,
+    "has_next_page": false,
+    "current_page": 1,
+    "items": {
+      "count": 5,
+      "total": 5,
+      "per_page": 25
+    }
+  },
+  "data": [
+    {
+      "mal_id": 54873,
+      "url": "https://myanimelist.net/anime/54873/Takoru_TV",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1603/134813.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1603/134813t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1603/134813l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1603/134813.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1603/134813t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1603/134813l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Takoru TV"
+        },
+        {
+          "type": "Japanese",
+          "title": "たこるTV"
+        }
+      ],
+      "title": "Takoru TV",
+      "title_english": null,
+      "title_japanese": "たこるTV",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2002-01-01T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 1,
+            "month": 1,
+            "year": 2002
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "2002 to ?"
+      },
+      "duration": "2 min",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 13420,
+      "popularity": 22878,
+      "members": 78,
+      "favorites": 0,
+      "synopsis": "A series of shorts featuring TV Osaka's mascot character Takoru-kun which are broadcast at various times throughout the week.",
+      "background": null,
+      "season": null,
+      "year": null,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Unknown"
+      },
+      "producers": [
+        {
+          "mal_id": 100,
+          "type": "anime",
+          "name": "TV Osaka",
+          "url": "https://myanimelist.net/anime/producer/100/TV_Osaka"
+        }
+      ],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 57132,
+      "url": "https://myanimelist.net/anime/57132/Hero_Inside",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1668/139595.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1668/139595t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1668/139595l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1668/139595.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1668/139595t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1668/139595l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Hero Inside"
+        },
+        {
+          "type": "Japanese",
+          "title": "히어로 인사이드"
+        }
+      ],
+      "title": "Hero Inside",
+      "title_english": null,
+      "title_japanese": "히어로 인사이드",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-11-08T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 8,
+            "month": 11,
+            "year": 2023
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Nov 8, 2023 to ?"
+      },
+      "duration": "13 min",
+      "rating": "PG-13 - Teens 13 or older",
+      "score": null,
+      "scored_by": null,
+      "rank": 19839,
+      "popularity": 21094,
+      "members": 129,
+      "favorites": 0,
+      "synopsis": null,
+      "background": null,
+      "season": "fall",
+      "year": 2023,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Unknown"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 1,
+          "type": "anime",
+          "name": "Action",
+          "url": "https://myanimelist.net/anime/genre/1/Action"
+        },
+        {
+          "mal_id": 2,
+          "type": "anime",
+          "name": "Adventure",
+          "url": "https://myanimelist.net/anime/genre/2/Adventure"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 31,
+          "type": "anime",
+          "name": "Super Power",
+          "url": "https://myanimelist.net/anime/genre/31/Super_Power"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 56986,
+      "url": "https://myanimelist.net/anime/56986/Riseman",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1974/139295.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1974/139295t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1974/139295l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1974/139295.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1974/139295t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1974/139295l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Riseman"
+        },
+        {
+          "type": "Japanese",
+          "title": "라이즈맨"
+        }
+      ],
+      "title": "Riseman",
+      "title_english": null,
+      "title_japanese": "라이즈맨",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": 26,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2023-10-18T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 18,
+            "month": 10,
+            "year": 2023
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Oct 18, 2023 to ?"
+      },
+      "duration": "Unknown",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 17206,
+      "popularity": 20420,
+      "members": 165,
+      "favorites": 0,
+      "synopsis": null,
+      "background": null,
+      "season": "fall",
+      "year": 2023,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Unknown"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 1,
+          "type": "anime",
+          "name": "Action",
+          "url": "https://myanimelist.net/anime/genre/1/Action"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [
+        {
+          "mal_id": 31,
+          "type": "anime",
+          "name": "Super Power",
+          "url": "https://myanimelist.net/anime/genre/31/Super_Power"
+        }
+      ],
+      "demographics": []
+    },
+    {
+      "mal_id": 35694,
+      "url": "https://myanimelist.net/anime/35694/Kirin_the_Noop",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/13/86110.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/13/86110t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/13/86110l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/13/86110.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/13/86110t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/13/86110l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Kirin the Noop"
+        },
+        {
+          "type": "Japanese",
+          "title": "キリン・ザ・ヌープ"
+        },
+        {
+          "type": "English",
+          "title": "Kirin the Noop"
+        }
+      ],
+      "title": "Kirin the Noop",
+      "title_english": "Kirin the Noop",
+      "title_japanese": "キリン・ザ・ヌープ",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Original",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2014-02-06T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 6,
+            "month": 2,
+            "year": 2014
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Feb 6, 2014 to ?"
+      },
+      "duration": "5 min",
+      "rating": "G - All Ages",
+      "score": 5.14,
+      "scored_by": 126,
+      "rank": 12137,
+      "popularity": 14227,
+      "members": 732,
+      "favorites": 1,
+      "synopsis": "A shadow painting anime about a timid giraffe named Noop and his hedgehog companion named Harry as they travel their distant star world helping each other.",
+      "background": null,
+      "season": "winter",
+      "year": 2014,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Unknown"
+      },
+      "producers": [
+        {
+          "mal_id": 111,
+          "type": "anime",
+          "name": "NHK",
+          "url": "https://myanimelist.net/anime/producer/111/NHK"
+        }
+      ],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 2,
+          "type": "anime",
+          "name": "Adventure",
+          "url": "https://myanimelist.net/anime/genre/2/Adventure"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    },
+    {
+      "mal_id": 48442,
+      "url": "https://myanimelist.net/anime/48442/Shikaru_Neko",
+      "images": {
+        "jpg": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1008/113384.jpg",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1008/113384t.jpg",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1008/113384l.jpg"
+        },
+        "webp": {
+          "image_url": "https://cdn.myanimelist.net/images/anime/1008/113384.webp",
+          "small_image_url": "https://cdn.myanimelist.net/images/anime/1008/113384t.webp",
+          "large_image_url": "https://cdn.myanimelist.net/images/anime/1008/113384l.webp"
+        }
+      },
+      "trailer": {
+        "youtube_id": null,
+        "url": null,
+        "embed_url": null,
+        "images": {
+          "image_url": null,
+          "small_image_url": null,
+          "medium_image_url": null,
+          "large_image_url": null,
+          "maximum_image_url": null
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "Default",
+          "title": "Shikaru Neko"
+        },
+        {
+          "type": "Japanese",
+          "title": "しかるねこ"
+        }
+      ],
+      "title": "Shikaru Neko",
+      "title_english": null,
+      "title_japanese": "しかるねこ",
+      "title_synonyms": [],
+      "type": "TV",
+      "source": "Manga",
+      "episodes": null,
+      "status": "Currently Airing",
+      "airing": true,
+      "aired": {
+        "from": "2021-03-22T00:00:00+00:00",
+        "to": null,
+        "prop": {
+          "from": {
+            "day": 22,
+            "month": 3,
+            "year": 2021
+          },
+          "to": {
+            "day": null,
+            "month": null,
+            "year": null
+          }
+        },
+        "string": "Mar 22, 2021 to ?"
+      },
+      "duration": "30 sec",
+      "rating": "G - All Ages",
+      "score": null,
+      "scored_by": null,
+      "rank": 17689,
+      "popularity": 10933,
+      "members": 2074,
+      "favorites": 15,
+      "synopsis": null,
+      "background": null,
+      "season": "spring",
+      "year": 2021,
+      "broadcast": {
+        "day": null,
+        "time": null,
+        "timezone": null,
+        "string": "Unknown"
+      },
+      "producers": [],
+      "licensors": [],
+      "studios": [],
+      "genres": [
+        {
+          "mal_id": 36,
+          "type": "anime",
+          "name": "Slice of Life",
+          "url": "https://myanimelist.net/anime/genre/36/Slice_of_Life"
+        }
+      ],
+      "explicit_genres": [],
+      "themes": [],
+      "demographics": []
+    }
+  ]
+}
