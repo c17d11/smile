@@ -21,7 +21,6 @@ Tasks to be done at some point.
 - [ ] Genre page like producer page
 
 #### From real device testing
-- [ ] Implement save score in notes
 - [ ] Fewer step to add tag
 - [ ] Producer and genres not stored in anime in favorites
 - [ ] Favorites not working in browse
@@ -42,6 +41,7 @@ Tasks to be done at some point.
 
 
 ### Completed
+- [x] Implement save score in notes
 - [x] Implement textfield in notes
 - [x] Remove question mark in notes
 - [x] Liking anime in schedule page does not work
