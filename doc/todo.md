@@ -21,7 +21,6 @@ Tasks to be done at some point.
 - [ ] Genre page like producer page
 
 #### From real device testing
-- [ ] Liking anime in schedule page does not work
 - [ ] Remove question mark in notes
 - [ ] Implement textfield in notes
 - [ ] Implement save score in notes
@@ -45,6 +44,7 @@ Tasks to be done at some point.
 
 
 ### Completed
+- [x] Liking anime in schedule page does not work
 - [x] Add expiration to responses
 - [x] Settings. Create settings page
 	- [x] Set jikan api rate limit
