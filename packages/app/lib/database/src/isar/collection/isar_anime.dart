@@ -60,6 +60,8 @@ class IsarAnime extends AnimeIntern with IsarExpiration {
     if (t is AnimeIntern) {
       anime.isFavorite = t.isFavorite;
       anime.tags = t.tags;
+      anime.personalScore = t.personalScore;
+      anime.personalNotes = t.personalNotes;
     }
     return anime;
   }
