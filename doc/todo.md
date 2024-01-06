@@ -21,7 +21,6 @@ Tasks to be done at some point.
 - [ ] Genre page like producer page
 
 #### From real device testing
-- [ ] Remove question mark in notes
 - [ ] Implement textfield in notes
 - [ ] Implement save score in notes
 - [ ] Fewer step to add tag
@@ -44,6 +43,7 @@ Tasks to be done at some point.
 
 
 ### Completed
+- [x] Remove question mark in notes
 - [x] Liking anime in schedule page does not work
 - [x] Add expiration to responses
 - [x] Settings. Create settings page
