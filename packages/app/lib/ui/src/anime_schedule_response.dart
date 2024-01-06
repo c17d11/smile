@@ -65,8 +65,6 @@ class AnimeScheduleResponseView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // AsyncValue<AnimeResponseIntern> res =
-    //     ref.watch(animeScheduleSearchControllerPod(query));
     AsyncValue<AnimeResponseIntern> res = ref.watch(animeSchedule(query));
 
     ref.listen<AsyncValue<AnimeResponseIntern>>(

@@ -233,7 +233,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                 ),
                 SliderSelect(
                   "Personal score",
-                  """How about it?""",
+                  null,
                   5,
                   stepSize: 0.5,
                   showInts: false,
