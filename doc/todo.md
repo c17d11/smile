@@ -21,7 +21,7 @@ Tasks to be done at some point.
 - [ ] Genre page like producer page
 
 #### From real device testing
-- [ ] Favorites not working in browse
+- [ ] Ref disposed when in detail view for too long
 - [ ] Producer popup overflowing
 - [ ] Tags removed from animes
 
