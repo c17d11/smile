@@ -52,7 +52,7 @@ class AnimeScheduleResponseView extends ConsumerWidget {
         childCount: animes.length,
         (context, index) => AnimePortrait(
           animes[index],
-          responseId: page.toString(),
+          responseId: (query.day?.text ?? '') + page.toString(),
           onTap: onChanged,
         ),
       ),
