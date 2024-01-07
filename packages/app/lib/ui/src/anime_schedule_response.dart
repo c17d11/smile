@@ -54,6 +54,7 @@ class AnimeScheduleResponseView extends ConsumerWidget {
           animes[index],
           responseId: (query.day?.text ?? '') + page.toString(),
           onTap: onChanged,
+          trashArgs: AnimePortraitTrashArgs()..scheduleQuery = query,
         ),
       ),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

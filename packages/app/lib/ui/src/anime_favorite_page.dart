@@ -132,8 +132,12 @@ mixin AnimeResponseViewUtils {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         childCount: animes.length,
-        (context, index) => AnimePortrait(animes[index],
-            responseId: page.toString(), onTap: saveAnime),
+        (context, index) => AnimePortrait(
+          animes[index],
+          responseId: page.toString(),
+          onTap: saveAnime,
+          trashArgs: AnimePortraitTrashArgs()..favoritePage = page,
+        ),
       ),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 150,

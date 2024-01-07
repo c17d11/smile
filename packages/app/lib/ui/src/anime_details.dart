@@ -1,8 +1,13 @@
 import 'dart:ui';
 
+import 'package:app/controller/src/controller/anime_collection_state_controller.dart';
+import 'package:app/controller/src/controller/anime_favorite_state_controller.dart';
+import 'package:app/controller/src/controller/anime_schedule_state_controller.dart';
+import 'package:app/controller/src/controller/anime_search_state_controller.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/selection_widget/src/multiple_select.dart';
+import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/like_select.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/slider_select.dart';
@@ -323,6 +328,20 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
   Widget build(BuildContext context) {
     final animeArgs =
         ModalRoute.of(context)?.settings.arguments as AnimeDetailsArgs;
+
+    if (animeArgs.trashArgs?.animeQuery != null) {
+      ref.watch(animeSearch(animeArgs.trashArgs!.animeQuery!));
+    }
+    if (animeArgs.trashArgs?.scheduleQuery != null) {
+      ref.watch(animeSchedule(animeArgs.trashArgs!.scheduleQuery!));
+    }
+    if (animeArgs.trashArgs?.favoritePage != null) {
+      ref.watch(animeFavorite(animeArgs.trashArgs!.favoritePage!));
+    }
+    if (animeArgs.trashArgs?.collectionQuery != null) {
+      ref.watch(animeCollection(animeArgs.trashArgs!.collectionQuery!));
+    }
+
     localAnime = animeArgs.anime;
     if (localAnime!.personalNotes != null) {
       _controller.text = localAnime!.personalNotes!;
@@ -531,5 +550,6 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
 class AnimeDetailsArgs {
   final AnimeIntern anime;
   final String heroTag;
-  const AnimeDetailsArgs(this.anime, this.heroTag);
+  final AnimePortraitTrashArgs? trashArgs;
+  const AnimeDetailsArgs(this.anime, this.heroTag, this.trashArgs);
 }
