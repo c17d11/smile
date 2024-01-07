@@ -44,8 +44,12 @@ class AnimeResponseView extends ConsumerWidget {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         childCount: animes.length,
-        (context, index) => AnimePortrait(animes[index],
-            responseId: page.toString(), onTap: onChanged),
+        (context, index) => AnimePortrait(
+          animes[index],
+          responseId: page.toString(),
+          onTap: onChanged,
+          trashArgs: AnimePortraitTrashArgs()..animeQuery = query,
+        ),
       ),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 150,
@@ -90,40 +94,3 @@ class AnimeResponseView extends ConsumerWidget {
     );
   }
 }
-
-// class AnimeResponseSliver extends ConsumerWidget {
-//   final AnimeResponseIntern response;
-//   const AnimeResponseSliver({required this.response, super.key});
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     String currentPage = response.pagination?.currentPage.toString() ?? "";
-//     String lastPage = response.pagination?.lastVisiblePage.toString() ?? "";
-//     List<AnimeIntern> animes = response.data ?? [];
-
-//     return MultiSliver(
-//       pushPinnedChildren: true,
-//       children: <Widget>[
-//         SliverPinnedHeader(
-//           child: Container(
-//             color: Theme.of(context).colorScheme.background,
-//             child: TextDivider("Page $currentPage of $lastPage"),
-//           ),
-//         ),
-//         SliverGrid(
-//           delegate: SliverChildBuilderDelegate(
-//             childCount: animes.length,
-//             (context, index) => AnimePortrait(animes[index],
-//                 responseId: currentPage.toString(), onChange: (value) => null
-//                 // ref.read(animeSearchControllerPod(query).notifier).update(value),
-//                 ),
-//           ),
-//           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-//             maxCrossAxisExtent: 150,
-//             childAspectRatio: 7 / 10,
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
