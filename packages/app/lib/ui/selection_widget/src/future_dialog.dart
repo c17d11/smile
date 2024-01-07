@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:app/ui/selection_widget/src/selection_wrapper.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
@@ -34,15 +36,12 @@ class FutureDialog {
 
   Widget wrapInBoxConstraints(Widget w) {
     return ConstrainedBox(
-        constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height * 0.8,
-          maxWidth: MediaQuery.of(context).size.width * 0.5,
-        ),
-        child: SizedBox(
-          height: 600,
-          width: 400,
-          child: w,
-        ));
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * 0.8,
+        maxWidth: MediaQuery.of(context).size.width * 0.5,
+      ),
+      child: w,
+    );
   }
 
   Widget buildTextSearch(StateSetter setState) {
@@ -85,31 +84,40 @@ class FutureDialog {
     }
 
     return options.isNotEmpty
-        ? ListView.builder(
-            itemCount: optionsFiltered.length,
-            itemBuilder: (BuildContext context, int index) {
-              SelectionWrapper item = optionsFiltered[index];
-              return ListTile(
-                dense: true,
-                selected: optionsSelected.contains(item) ||
-                    optionsUnselected.contains(item),
-                selectedColor: optionsSelected.contains(item)
-                    ? Colors.green[400]
-                    : Colors.red[800],
-                trailing: optionsSelected.contains(item)
-                    ? const Icon(Icons.check)
-                    : optionsUnselected.contains(item)
-                        ? const Icon(Icons.close)
-                        : null,
-                title: Text(
-                  item.item.displayName,
-                  style: AppStyle.textfield,
-                ),
-                onTap: () => onTap(item),
-              );
-            },
+        ? SizedBox(
+            height: min(options.length * 50, 600),
+            width: 400,
+            child: ListView.builder(
+              itemCount: optionsFiltered.length,
+              itemBuilder: (BuildContext context, int index) {
+                SelectionWrapper item = optionsFiltered[index];
+                return ListTile(
+                  dense: true,
+                  selected: optionsSelected.contains(item) ||
+                      optionsUnselected.contains(item),
+                  selectedColor: optionsSelected.contains(item)
+                      ? Colors.green[400]
+                      : Colors.red[800],
+                  trailing: optionsSelected.contains(item)
+                      ? const Icon(Icons.check)
+                      : optionsUnselected.contains(item)
+                          ? const Icon(Icons.close)
+                          : null,
+                  title: Text(
+                    item.item.displayName,
+                    style: AppStyle.textfield,
+                  ),
+                  onTap: () => onTap(item),
+                );
+              },
+            ),
           )
-        : const Center(child: Text("No items"));
+        : const Padding(
+            padding: const EdgeInsets.all(10),
+            child: Center(
+              child: Text("No items"),
+            ),
+          );
   }
 
   Widget buildData() {
@@ -117,10 +125,11 @@ class FutureDialog {
         builder: (BuildContext context, StateSetter setState) {
       return wrapInBoxConstraints(
         Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             buildTextSearch(setState),
             const SizedBox(height: 10),
-            Expanded(child: buildOptionsList(setState)),
+            buildOptionsList(setState)
           ],
         ),
       );
