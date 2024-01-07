@@ -85,7 +85,7 @@ class FutureDialog {
 
     return options.isNotEmpty
         ? SizedBox(
-            height: min(options.length * 50, 600),
+            height: min(options.length * 50, 400),
             width: 400,
             child: ListView.builder(
               itemCount: optionsFiltered.length,
