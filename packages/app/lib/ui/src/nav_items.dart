@@ -124,8 +124,8 @@ class CollectionsNavItem extends IconItem {
                           maxWidth: MediaQuery.of(context).size.width * 0.5,
                         ),
                         child: SizedBox(
-                            height: 150,
-                            width: 200,
+                            height: 50,
+                            width: 300,
                             child: TextField(controller: controller)),
                       );
                     }),
