@@ -354,12 +354,15 @@ class ProducerPortrait extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    Text(
-                      "${producer?.title}",
-                      style: TextStyle(
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.w400,
-                        color: _foreground,
+                    Flexible(
+                      child: Text(
+                        "${producer?.title}",
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.w400,
+                          color: _foreground,
+                        ),
                       ),
                     ),
                   ],
@@ -368,67 +371,69 @@ class ProducerPortrait extends ConsumerWidget {
                     borderRadius: BorderRadius.all(Radius.circular(8.0))),
                 content: ConstrainedBox(
                   constraints: BoxConstraints(
-                    maxHeight: MediaQuery.of(context).size.height * 0.8,
-                    maxWidth: MediaQuery.of(context).size.width * 0.5,
+                    maxHeight: 600,
+                    maxWidth: 300,
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const SizedBox(height: 10),
-                      Text(
-                        "ESTABLISHED",
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w800,
-                          color: _foregroundSecondary,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const SizedBox(height: 10),
+                        Text(
+                          "ESTABLISHED",
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.w800,
+                            color: _foregroundSecondary,
+                          ),
                         ),
-                      ),
-                      Text(
-                        s.isNotEmpty ? s : '-',
-                        style: TextStyle(
-                          fontSize: 10.0,
-                          fontWeight: FontWeight.w800,
-                          color: _foregroundThird,
+                        Text(
+                          s.isNotEmpty ? s : '-',
+                          style: TextStyle(
+                            fontSize: 10.0,
+                            fontWeight: FontWeight.w800,
+                            color: _foregroundThird,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        "ANIMES",
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w800,
-                          color: _foregroundSecondary,
+                        const SizedBox(height: 10),
+                        Text(
+                          "ANIMES",
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.w800,
+                            color: _foregroundSecondary,
+                          ),
                         ),
-                      ),
-                      Text(
-                        producer?.count != null
-                            ? "${producer!.count} animes"
-                            : '-',
-                        style: TextStyle(
-                          fontSize: 10.0,
-                          fontWeight: FontWeight.w800,
-                          color: _foregroundThird,
+                        Text(
+                          producer?.count != null
+                              ? "${producer!.count} animes"
+                              : '-',
+                          style: TextStyle(
+                            fontSize: 10.0,
+                            fontWeight: FontWeight.w800,
+                            color: _foregroundThird,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        "ABOUT",
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w800,
-                          color: _foregroundSecondary,
+                        const SizedBox(height: 10),
+                        Text(
+                          "ABOUT",
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.w800,
+                            color: _foregroundSecondary,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "${producer!.about ?? '-'}",
-                        style: TextStyle(
-                          fontSize: 10.0,
-                          fontWeight: FontWeight.w800,
-                          color: _foregroundThird,
+                        Text(
+                          "${producer!.about ?? '-'}",
+                          style: TextStyle(
+                            fontSize: 10.0,
+                            fontWeight: FontWeight.w800,
+                            color: _foregroundThird,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 actions: <Widget>[
