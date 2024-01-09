@@ -5,22 +5,23 @@ UI for the Jikan api.
 Tasks to be done at some point.
 
 ### Before 1.0.0
-- [ ] Producer popup details from click on chip
 - [ ] Style app
 	- [ ] Use dark mode throughout the whole app
 	- [ ] Hero animation between list and details
 	- [ ] Check if other image from api response should be used
-- [ ] Refactor pod.dart
-- [ ] Verifiy that adjusting rate limit works.
+
+### Future
+- [ ] Check if other image from api response should be used
 - [ ] Producer page
 	- [ ] Navigate from anime details to producer details page
 	- [ ] Prodcer details page
 		- [ ] Should contain summary
 		- [ ] Should contain related animes
 		- [ ] Navigate to anime details form producer details
+- [ ] Verifiy that adjusting rate limit works.
+- [ ] Refactor pod.dart
 - [ ] Genre page like producer page
-
-### Future
+- [ ] Producer popup details from click on chip
 - [ ] Blacklist. Like favorite but opposite. The blacklisted should be hidden in the results
 	- [ ] Store in database
 	- [ ] View blacklisted and edit page
