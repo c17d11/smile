@@ -7,7 +7,6 @@ Tasks to be done at some point.
 ### Before 1.0.0
 - [ ] Style app
 	- [ ] Use dark mode throughout the whole app
-	- [ ] Hero animation between list and details
 	- [ ] Check if other image from api response should be used
 
 ### Future
@@ -33,6 +32,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] Hero animation between list and details
 - [x] Producer popup overflowing 
 - [x] Ref disposed when in detail view for too long
 - [x] Producer and genres not stored in anime in favorites
