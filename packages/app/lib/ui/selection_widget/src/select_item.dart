@@ -84,12 +84,15 @@ class SelectChip extends StatelessWidget {
               ),
             ),
             onPressed: onPressed,
-            child: Text(
-              text.toUpperCase(),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: fontSize,
+            child: Container(
+              constraints: const BoxConstraints(maxWidth: 150),
+              child: Text(
+                text.toUpperCase(),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: fontSize,
+                ),
               ),
             ),
           ),
