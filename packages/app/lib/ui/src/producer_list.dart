@@ -268,12 +268,12 @@ class ProducerResponseView extends ConsumerWidget {
         (_, state) => state.showSnackBarOnError(context));
 
     ProducerResponseIntern? resIntern = res.value;
-    List<ProducerIntern>? animes = resIntern?.data;
+    List<ProducerIntern>? producers = resIntern?.data;
 
     if (res.isLoading) {
       return buildLoading();
     }
-    if (animes == null) {
+    if (producers == null || producers.isEmpty) {
       return buildNoData();
     }
     return MultiSliver(
@@ -282,7 +282,7 @@ class ProducerResponseView extends ConsumerWidget {
         buildHeader(resIntern, context),
         buildProducerList(
           resIntern?.pagination?.currentPage,
-          animes,
+          producers,
           (_) {},
         ),
       ],
