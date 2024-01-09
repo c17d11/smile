@@ -7,7 +7,6 @@ Tasks to be done at some point.
 ### Before 1.0.0
 - [ ] Style app
 	- [ ] Use dark mode throughout the whole app
-	- [ ] Check if other image from api response should be used
 
 ### Future
 - [ ] Check if other image from api response should be used
