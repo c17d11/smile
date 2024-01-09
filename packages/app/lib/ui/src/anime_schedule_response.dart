@@ -8,6 +8,7 @@ import 'package:app/ui/src/text_divider.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:isar/isar.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class AnimeScheduleResponseView extends ConsumerWidget {
@@ -47,21 +48,26 @@ class AnimeScheduleResponseView extends ConsumerWidget {
 
   Widget buildAnimeList(int? page, List<AnimeIntern> animes,
       void Function(AnimeIntern) onChanged) {
-    return SliverGrid(
-      delegate: SliverChildBuilderDelegate(
-        childCount: animes.length,
-        (context, index) => AnimePortrait(
-          animes[index],
-          responseId: (query.day?.text ?? '') + page.toString(),
-          onTap: onChanged,
-          trashArgs: AnimePortraitTrashArgs()..scheduleQuery = query,
-        ),
-      ),
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 150,
-        childAspectRatio: 7 / 10,
-      ),
-    );
+    return animes.isEmpty
+        ? Center(
+            child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextHeadline("No data")))
+        : SliverGrid(
+            delegate: SliverChildBuilderDelegate(
+              childCount: animes.length,
+              (context, index) => AnimePortrait(
+                animes[index],
+                responseId: (query.day?.text ?? '') + page.toString(),
+                onTap: onChanged,
+                trashArgs: AnimePortraitTrashArgs()..scheduleQuery = query,
+              ),
+            ),
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 150,
+              childAspectRatio: 7 / 10,
+            ),
+          );
   }
 
   @override
@@ -75,7 +81,12 @@ class AnimeScheduleResponseView extends ConsumerWidget {
       AnimeResponseIntern newRes = res.value!;
       newRes.data =
           newRes.data?.map((e) => e.malId == anime.malId ? anime : e).toList();
-      ref.read(animeSchedule(query).notifier).update(newRes);
+      try {
+        ref.read(animeSchedule(query).notifier).update(newRes);
+      } on Exception catch (e, _) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Unable to save anime.")));
+      }
     }
 
     AnimeResponseIntern? resIntern = res.value;

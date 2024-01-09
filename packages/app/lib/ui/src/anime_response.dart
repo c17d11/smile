@@ -41,21 +41,26 @@ class AnimeResponseView extends ConsumerWidget {
 
   Widget buildAnimeList(int? page, List<AnimeIntern> animes,
       void Function(AnimeIntern) onChanged) {
-    return SliverGrid(
-      delegate: SliverChildBuilderDelegate(
-        childCount: animes.length,
-        (context, index) => AnimePortrait(
-          animes[index],
-          responseId: page.toString(),
-          onTap: onChanged,
-          trashArgs: AnimePortraitTrashArgs()..animeQuery = query,
-        ),
-      ),
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 150,
-        childAspectRatio: 7 / 10,
-      ),
-    );
+    return animes.isEmpty
+        ? Center(
+            child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextHeadline("No data")))
+        : SliverGrid(
+            delegate: SliverChildBuilderDelegate(
+              childCount: animes.length,
+              (context, index) => AnimePortrait(
+                animes[index],
+                responseId: page.toString(),
+                onTap: onChanged,
+                trashArgs: AnimePortraitTrashArgs()..animeQuery = query,
+              ),
+            ),
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 150,
+              childAspectRatio: 7 / 10,
+            ),
+          );
   }
 
   @override
@@ -69,7 +74,13 @@ class AnimeResponseView extends ConsumerWidget {
       AnimeResponseIntern newRes = res.value!;
       newRes.data =
           newRes.data?.map((e) => e.malId == anime.malId ? anime : e).toList();
-      ref.read(animeSearch(query).notifier).update(newRes);
+
+      try {
+        ref.read(animeSearch(query).notifier).update(newRes);
+      } on Exception catch (e, _) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Unable to save anime.")));
+      }
     }
 
     AnimeResponseIntern? resIntern = res.value;

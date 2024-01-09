@@ -224,7 +224,13 @@ class CollectionResponseView extends ConsumerWidget
       AnimeResponseIntern newRes = res.value!;
       newRes.data =
           newRes.data?.map((e) => e.malId == anime.malId ? anime : e).toList();
-      ref.read(animeCollection(Tuple2(page, tag)).notifier).update(newRes);
+
+      try {
+        ref.read(animeCollection(Tuple2(page, tag)).notifier).update(newRes);
+      } on Exception catch (e, _) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Unable to save anime.")));
+      }
     }
 
     if (res.hasValue) {

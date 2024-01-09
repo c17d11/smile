@@ -93,7 +93,13 @@ class FavoriteResponseView extends ConsumerWidget with AnimeResponseViewUtils {
       AnimeResponseIntern newRes = res.value!;
       newRes.data =
           newRes.data?.map((e) => e.malId == anime.malId ? anime : e).toList();
-      ref.read(animeFavorite(page).notifier).update(newRes);
+
+      try {
+        ref.read(animeFavorite(page).notifier).update(newRes);
+      } on Exception catch (e, _) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Unable to save anime.")));
+      }
     }
 
     if (res.hasValue) {
