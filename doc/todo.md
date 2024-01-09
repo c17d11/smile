@@ -20,9 +20,6 @@ Tasks to be done at some point.
 		- [ ] Navigate to anime details form producer details
 - [ ] Genre page like producer page
 
-#### From real device testing
-- [ ] Tags removed from animes
-
 ### Future
 - [ ] Blacklist. Like favorite but opposite. The blacklisted should be hidden in the results
 	- [ ] Store in database
@@ -68,6 +65,8 @@ Tasks to be done at some point.
 	- [x] Add sliver headline for each day
 
 ### Scrapped
+<del>- [ ] Tags removed from animes
+
 <del>- [ ] Fewer step to add tag
 
 <del>- [ ] News page
