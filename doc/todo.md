@@ -21,7 +21,6 @@ Tasks to be done at some point.
 - [ ] Genre page like producer page
 
 #### From real device testing
-- [ ] Producer popup overflowing
 - [ ] Tags removed from animes
 
 ### Future
@@ -36,6 +35,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] Producer popup overflowing 
 - [x] Ref disposed when in detail view for too long
 - [x] Producer and genres not stored in anime in favorites
 - [x] Implement save score in notes
