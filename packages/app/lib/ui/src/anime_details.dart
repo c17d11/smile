@@ -25,22 +25,16 @@ class CustomChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
-        border: Border.all(
-            color: Theme.of(context).colorScheme.onBackground, width: 2),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-        child: child,
-      ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+      child: child,
     );
   }
 }
 
 class CustomTextChip extends CustomChip {
-  CustomTextChip({super.key, required text})
+  BuildContext context;
+  CustomTextChip({super.key, required text, required this.context})
       : super(
           child: Text(
             text,
@@ -49,13 +43,16 @@ class CustomTextChip extends CustomChip {
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
         );
 }
 
 class CustomIconTextChip extends CustomChip {
-  CustomIconTextChip({super.key, required text, required IconData icon})
+  BuildContext context;
+  CustomIconTextChip(
+      {super.key, required text, required IconData icon, required this.context})
       : super(
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -63,12 +60,14 @@ class CustomIconTextChip extends CustomChip {
               Icon(
                 icon,
                 size: 16,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
               Text(
                 text,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
             ],
@@ -89,7 +88,8 @@ class CustomDisplayRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> prods = items.map((e) => CustomTextChip(text: e)).toList();
+    List<Widget> prods =
+        items.map((e) => CustomTextChip(text: e, context: context)).toList();
 
     return SizedBox(
       width: width,
@@ -472,31 +472,40 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                               padding: const EdgeInsets.all(8),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       CustomTextChip(
+                                          context: context,
                                           text: "${localAnime!.type}"),
                                       const SizedBox(width: 10),
                                       CustomTextChip(
+                                          context: context,
                                           text: "${localAnime!.year}"),
                                       const SizedBox(width: 10),
                                       CustomIconTextChip(
+                                          context: context,
                                           text: "${localAnime!.score}",
                                           icon: Icons.star),
                                       const SizedBox(width: 10),
                                       CustomTextChip(
+                                          context: context,
                                           text:
-                                              "${localAnime!.episodes} episodes")
+                                              "${localAnime!.episodes ?? '-'} episodes")
                                     ],
                                   ),
                                   const SizedBox(height: 10),
                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       CustomTextChip(
+                                          context: context,
                                           text: "${localAnime!.status}"),
                                       const SizedBox(width: 10),
                                       CustomTextChip(
+                                          context: context,
                                           text: "${localAnime!.rating}"),
                                     ],
                                   )
