@@ -18,63 +18,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import 'package:tuple/tuple.dart';
 
-class CustomChip extends StatelessWidget {
-  final Widget child;
-
-  const CustomChip({super.key, required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      child: child,
-    );
-  }
-}
-
-class CustomTextChip extends CustomChip {
-  BuildContext context;
-  CustomTextChip({super.key, required text, required this.context})
-      : super(
-          child: Text(
-            text,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
-          ),
-        );
-}
-
-class CustomIconTextChip extends CustomChip {
-  BuildContext context;
-  CustomIconTextChip(
-      {super.key, required text, required IconData icon, required this.context})
-      : super(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                icon,
-                size: 16,
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
-              Text(
-                text,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
-              ),
-            ],
-          ),
-        );
-}
-
 class CustomDisplayRow extends StatelessWidget {
   final List<String> items;
   final String title;
@@ -88,8 +31,20 @@ class CustomDisplayRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> prods =
-        items.map((e) => CustomTextChip(text: e, context: context)).toList();
+    List<Widget> prods = items
+        .map(
+          (e) => Text(
+            e,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ),
+        )
+        .toList();
 
     return SizedBox(
       width: width,
@@ -109,7 +64,7 @@ class CustomDisplayRow extends StatelessWidget {
             if (prods.isNotEmpty) ...[
               const SizedBox(height: 5),
               Wrap(
-                spacing: 5,
+                spacing: 15,
                 runSpacing: 5,
                 children: prods,
               ),
@@ -160,6 +115,181 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                runSpacing: 10,
+                spacing: 10,
+                children: [
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "TYPE",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                          child: Text(
+                            "${localAnime!.type ?? '-'}",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                      ]),
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "YEAR",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                          child: Text(
+                            "${localAnime!.year ?? '-'}",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                      ]),
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "RATING",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                          child: Text(
+                            "${localAnime!.score ?? '-'}",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                      ]),
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "EPOSODES",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                          child: Text(
+                            "${localAnime!.episodes ?? '-'}",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                      ]),
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "STATUS",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                          child: Text(
+                            "${localAnime!.status ?? '-'}",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                      ]),
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "RATING",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                          child: Text(
+                            "${localAnime!.rating ?? '-'}",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                      ]),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
           CustomDisplayRow(
               width: MediaQuery.of(context).size.width,
               title: "PRODUCERS",
@@ -167,7 +297,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                       ?.map<String>((e) => e.title ?? "")
                       .where((e) => e != "")
                       .toList() ??
-                  []),
+                  ['-']),
           const SizedBox(height: 10),
           CustomDisplayRow(
               width: MediaQuery.of(context).size.width,
@@ -176,7 +306,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                       ?.map<String>((e) => e.name ?? "")
                       .where((e) => e != "")
                       .toList() ??
-                  []),
+                  ['-']),
           const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.all(10),
@@ -194,7 +324,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  '${localAnime!.synopsis}',
+                  '${localAnime!.synopsis ?? '-'}',
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
@@ -221,7 +351,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  '${localAnime!.background}',
+                  '${localAnime!.background ?? '-'}',
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
@@ -461,57 +591,6 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                         ),
                       );
                     }),
-                  ),
-                  SliverPersistentHeader(
-                    pinned: false,
-                    delegate: SliverAppBarDelegate(
-                        minHeight: 90,
-                        maxHeight: 90,
-                        child: Container(
-                          child: Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      CustomTextChip(
-                                          context: context,
-                                          text: "${localAnime!.type}"),
-                                      const SizedBox(width: 10),
-                                      CustomTextChip(
-                                          context: context,
-                                          text: "${localAnime!.year}"),
-                                      const SizedBox(width: 10),
-                                      CustomIconTextChip(
-                                          context: context,
-                                          text: "${localAnime!.score}",
-                                          icon: Icons.star),
-                                      const SizedBox(width: 10),
-                                      CustomTextChip(
-                                          context: context,
-                                          text:
-                                              "${localAnime!.episodes ?? '-'} episodes")
-                                    ],
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      CustomTextChip(
-                                          context: context,
-                                          text: "${localAnime!.status}"),
-                                      const SizedBox(width: 10),
-                                      CustomTextChip(
-                                          context: context,
-                                          text: "${localAnime!.rating}"),
-                                    ],
-                                  )
-                                ],
-                              )),
-                        )),
                   ),
                   SliverPersistentHeader(
                     pinned: true,
