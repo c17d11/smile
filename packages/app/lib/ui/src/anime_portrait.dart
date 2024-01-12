@@ -96,136 +96,109 @@ class AnimePortrait extends ConsumerWidget {
               clipBehavior: Clip.antiAlias,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
-              color: Theme.of(context).colorScheme.background,
-              child: (anime == null)
-                  ? Container(
-                      color: Colors.green[200],
-                    )
-                  : Stack(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Expanded(
-                              child: Stack(
-                                children: [
-                                  Hero(
-                                    tag: heroTag,
-                                    child: FadeInImage.assetNetwork(
-                                      placeholder: 'assets/coffee.webp',
-                                      image: anime!.imageUrl ?? '',
-                                      fit: BoxFit.cover,
-                                      width: double.infinity,
-                                      height: double.infinity,
-                                      imageErrorBuilder:
-                                          (context, error, stackTrace) =>
-                                              Text(anime!.imageUrl ?? ""),
-                                      placeholderErrorBuilder:
-                                          (context, error, stackTrace) =>
-                                              Text(anime!.imageUrl ?? ""),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 50,
-                                    decoration: const BoxDecoration(
-                                      gradient: LinearGradient(
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: [
-                                          Color(0x90000000),
-                                          Color(0x70000000),
-                                          Color(0x00000000),
-                                        ],
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(4),
-                                      child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            GestureDetector(
-                                              onTap: () => onTap(
-                                                anime!
-                                                  ..isFavorite =
-                                                      !(anime!.isFavorite ??
-                                                          false),
-                                              ),
-                                              child: Icon(
-                                                (anime?.isFavorite ?? false)
-                                                    ? Icons.favorite
-                                                    : Icons.favorite_outline,
-                                                size: 24,
-                                                color: Colors.red[900],
-                                              ),
-                                            ),
-                                          ]),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    anime!.title ?? "",
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.w600,
-                                      color: _foregroundSecondary,
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Icon(
-                                            Icons.star,
-                                            size: 14,
-                                            color: _foregroundThird,
-                                          ),
-                                          Text(
-                                            anime!.score?.toStringAsFixed(1) ??
-                                                "",
-                                            style: TextStyle(
-                                              fontSize: 10.0,
-                                              fontWeight: FontWeight.w800,
-                                              color: _foregroundThird,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Text(
-                                        "${anime!.episodes} episodes",
-                                        style: TextStyle(
-                                          fontSize: 10.0,
-                                          fontWeight: FontWeight.w800,
-                                          color: _foregroundThird,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        )
-                      ],
+              child: GridTile(
+                footer: GridTileBar(
+                  backgroundColor:
+                      Theme.of(context).colorScheme.background.withAlpha(190),
+                  title: Text(
+                    anime!.title ?? "",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w600,
+                      color: _foreground,
                     ),
+                  ),
+                  subtitle: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Icon(
+                            Icons.star,
+                            size: 14,
+                            color: _foregroundSecondary,
+                          ),
+                          Text(
+                            anime!.score?.toStringAsFixed(1) ?? "",
+                            style: TextStyle(
+                              fontSize: 10.0,
+                              fontWeight: FontWeight.w800,
+                              color: _foregroundSecondary,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        "${anime!.episodes} episodes",
+                        style: TextStyle(
+                          fontSize: 10.0,
+                          fontWeight: FontWeight.w800,
+                          color: _foregroundSecondary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                child: Stack(
+                  children: [
+                    Hero(
+                      tag: heroTag,
+                      child: FadeInImage.assetNetwork(
+                        placeholder: 'assets/coffee.webp',
+                        image: anime!.imageUrl ?? '',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                        imageErrorBuilder: (context, error, stackTrace) =>
+                            Text(anime!.imageUrl ?? ""),
+                        placeholderErrorBuilder: (context, error, stackTrace) =>
+                            Text(anime!.imageUrl ?? ""),
+                      ),
+                    ),
+                    Container(
+                      height: 50,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Color(0x90000000),
+                            Color(0x70000000),
+                            Color(0x00000000),
+                          ],
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                onTap: () => onTap(
+                                  anime!
+                                    ..isFavorite =
+                                        !(anime!.isFavorite ?? false),
+                                ),
+                                child: Icon(
+                                  (anime?.isFavorite ?? false)
+                                      ? Icons.favorite
+                                      : Icons.favorite_outline,
+                                  size: 24,
+                                  color: Colors.red[900],
+                                ),
+                              ),
+                            ]),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           );
   }
