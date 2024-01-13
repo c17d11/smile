@@ -62,14 +62,17 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
   }
 
   @override
-  Future<void> insertAnime(AnimeIntern anime) async {
+  Future<IsarAnime> insertAnime(AnimeIntern anime) async {
+    late IsarAnime isarAnime;
     await write(() async {
-      await insertAnimesInTxn([anime]);
+      List<IsarAnime> animes = await insertAnimesInTxn([anime]);
+      isarAnime = animes[0];
     });
+    return isarAnime;
   }
 
   @override
-  Future<AnimeIntern?> getAnime(int malId) async {
+  Future<IsarAnime?> getAnime(int malId) async {
     IsarAnime? anime;
     await read(() async {
       anime = await db.isarAnimes.get(malId);
@@ -79,7 +82,7 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
   }
 
   @override
-  Future<List<AnimeIntern>> getAllAnimes() async {
+  Future<List<IsarAnime>> getAllAnimes() async {
     late List<IsarAnime> animes;
     await read(() async {
       animes = await db.isarAnimes.where().findAll();
@@ -88,7 +91,7 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
   }
 
   @override
-  Future<List<AnimeIntern>> getFavoriteAnimes(int page) async {
+  Future<List<IsarAnime>> getFavoriteAnimes(int page) async {
     late List<IsarAnime> isarAnimes;
     await read(() async {
       isarAnimes = await db.isarAnimes
@@ -98,12 +101,11 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
           .limit(10)
           .findAll();
     });
-    List<AnimeIntern> animes = getAnimesFromIsar(isarAnimes);
-    return animes;
+    return isarAnimes;
   }
 
   @override
-  Future<List<AnimeIntern>> getCollection(Tag tag, int page) async {
+  Future<List<IsarAnime>> getCollection(Tag tag, int page) async {
     late List<IsarAnime> isarAnimes;
     await read(() async {
       isarAnimes = await db.isarAnimes
@@ -113,8 +115,7 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
           .limit(10)
           .findAll();
     });
-    List<AnimeIntern> animes = getAnimesFromIsar(isarAnimes);
-    return animes;
+    return isarAnimes;
   }
 
   @override

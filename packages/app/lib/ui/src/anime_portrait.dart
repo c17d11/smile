@@ -6,6 +6,7 @@ import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
+import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/ui/src/anime_details.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:flutter/material.dart';
@@ -54,15 +55,13 @@ class AnimePortraitTrashArgs {
 }
 
 class AnimePortrait extends ConsumerWidget {
-  final AnimeIntern? anime;
+  final IsarAnime? anime;
   final String responseId;
-  final Function(AnimeIntern) onTap;
-  final AnimePortraitTrashArgs? trashArgs;
+  final Function(IsarAnime) onTap;
   const AnimePortrait(
     this.anime, {
     required this.responseId,
     required this.onTap,
-    this.trashArgs,
     super.key,
   });
 
@@ -86,9 +85,9 @@ class AnimePortrait extends ConsumerWidget {
               Navigator.pushNamed(
                 context,
                 'anime-details',
-                arguments: AnimeDetailsArgs(anime!, heroTag, trashArgs),
+                arguments: AnimeDetailsArgs(anime!, heroTag),
               ).then((value) async {
-                onTap(value as AnimeIntern);
+                onTap(value as IsarAnime);
               });
             },
             child: Card(

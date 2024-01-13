@@ -5,14 +5,16 @@ import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/src/object/settings_intern.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
+import 'package:app/database/src/isar/collection/isar_anime.dart';
+import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 abstract interface class AnimeModel {
-  Future<void> insertAnime(AnimeIntern anime);
-  Future<AnimeIntern?> getAnime(int malId);
-  Future<List<AnimeIntern>> getAllAnimes();
-  Future<List<AnimeIntern>> getFavoriteAnimes(int page);
-  Future<List<AnimeIntern>> getCollection(Tag tag, int page);
+  Future<IsarAnime> insertAnime(AnimeIntern anime);
+  Future<IsarAnime?> getAnime(int malId);
+  Future<List<IsarAnime>> getAllAnimes();
+  Future<List<IsarAnime>> getFavoriteAnimes(int page);
+  Future<List<IsarAnime>> getCollection(Tag tag, int page);
   Future<int> countFavoriteAnimes();
   Future<int> countCollectionAnimes(Tag tag);
   int countFavoriteAnimePages(int favoriteAnimeCount);
@@ -21,8 +23,8 @@ abstract interface class AnimeModel {
 }
 
 abstract interface class AnimeResponseModel {
-  Future<void> insertAnimeResponse(AnimeResponseIntern res);
-  Future<AnimeResponseIntern?> getAnimeResponse(String query);
+  Future<IsarAnimeResponse> insertAnimeResponse(AnimeResponseIntern res);
+  Future<IsarAnimeResponse?> getAnimeResponse(String query);
   Future<bool> deleteAnimeResponse(String query);
   AnimeResponseIntern createAnimeResponseIntern(AnimeResponse res);
 }

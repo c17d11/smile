@@ -1,23 +1,19 @@
-import 'package:app/controller/src/object/anime_query_intern.dart';
-import 'package:app/controller/src/object/schedule_query_intern.dart';
-import 'package:app/controller/src/object/tag.dart';
-import 'package:app/controller/state.dart';
-import 'package:app/database/src/database_base.dart';
-import 'package:app/database/src/isar/collection/isar_anime_response.dart';
-import 'package:app/ui/src/pod.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jikan_api/jikan_api.dart';
+// import 'package:app/controller/state.dart';
+// import 'package:app/database/src/database_base.dart';
+// import 'package:app/ui/src/pod.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:jikan_api/jikan_api.dart';
 
-class AnimeSearchController
-    extends StateNotifier<AsyncValue<AnimeResponseIntern>> {
-  late final Database _database;
-  late final JikanApi _api;
-  final StateNotifierProviderRef ref;
+// class AnimeSearchController
+//     extends StateNotifier<AsyncValue<AnimeResponseIntern>> {
+//   late final Database _database;
+//   late final JikanApi _api;
+//   final StateNotifierProviderRef ref;
 
-  AnimeSearchController(this.ref) : super(const AsyncLoading()) {
-    _database = ref.watch(databaseUpdatePod);
-    _api = ref.watch(apiPod);
-  }
+//   AnimeSearchController(this.ref) : super(const AsyncLoading()) {
+//     _database = ref.watch(databaseUpdatePod);
+//     _api = ref.watch(apiPod);
+//   }
 
   // Future<AnimeResponseIntern?> _getDatabaseResponse(String query) async {
   //   AnimeResponseIntern? res = await _database.getAnimeResponse(query);
@@ -152,7 +148,7 @@ class AnimeSearchController
   //     // TODO: Database error
   //   }
   // }
-}
+// }
 
 // class AnimeSearchStateController
 //     extends StateNotifier<AsyncValue<AnimeResponseIntern>> {

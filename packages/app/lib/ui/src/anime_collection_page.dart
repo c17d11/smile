@@ -3,7 +3,6 @@ import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/anime_page_template.dart';
-import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +44,6 @@ class CollectionResponseView extends ResponseView {
     return buildResponse(
       res,
       saveAnime,
-      AnimePortraitTrashArgs()..collectionQuery = Tuple2(page ?? 1, tag),
     );
   }
 

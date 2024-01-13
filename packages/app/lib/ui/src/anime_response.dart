@@ -1,6 +1,8 @@
 import 'package:app/controller/src/controller/anime_search_state_controller.dart';
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/state.dart';
+import 'package:app/database/src/isar/collection/isar_anime.dart';
+import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/text_divider.dart';
@@ -39,8 +41,8 @@ class AnimeResponseView extends ConsumerWidget {
     );
   }
 
-  Widget buildAnimeList(int? page, List<AnimeIntern> animes,
-      void Function(AnimeIntern) onChanged) {
+  Widget buildAnimeList(
+      int? page, List<IsarAnime> animes, void Function(IsarAnime) onChanged) {
     return animes.isEmpty
         ? Center(
             child: Padding(
@@ -53,7 +55,6 @@ class AnimeResponseView extends ConsumerWidget {
                 animes[index],
                 responseId: page.toString(),
                 onTap: onChanged,
-                trashArgs: AnimePortraitTrashArgs()..animeQuery = query,
               ),
             ),
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -65,7 +66,7 @@ class AnimeResponseView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<AnimeResponseIntern> res = ref.watch(animeSearch(query));
+    AsyncValue<IsarAnimeResponse> res = ref.watch(animeSearch(query));
 
     ref.listen<AsyncValue<AnimeResponseIntern>>(
         animeSearch(query), (_, state) => state.showSnackBarOnError(context));
@@ -83,8 +84,7 @@ class AnimeResponseView extends ConsumerWidget {
       }
     }
 
-    AnimeResponseIntern? resIntern = res.value;
-    List<AnimeIntern>? animes = resIntern?.data;
+    List<IsarAnime>? animes = res.value?.isarAnimes.toList();
 
     if (res.isLoading) {
       return buildLoading();
@@ -95,9 +95,9 @@ class AnimeResponseView extends ConsumerWidget {
     return MultiSliver(
       pushPinnedChildren: true,
       children: <Widget>[
-        buildHeader(resIntern, context),
+        buildHeader(res.value, context),
         buildAnimeList(
-          resIntern?.pagination?.currentPage,
+          res.value?.pagination?.currentPage,
           animes,
           saveAnime,
         ),

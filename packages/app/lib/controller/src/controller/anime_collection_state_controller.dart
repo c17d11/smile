@@ -1,10 +1,10 @@
 import 'package:app/controller/src/controller/anime_favorite_state_controller.dart';
 import 'package:app/controller/src/controller/anime_schedule_state_controller.dart';
 import 'package:app/controller/src/controller/anime_search_state_controller.dart';
-import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
+import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,7 +12,7 @@ import 'package:jikan_api/jikan_api.dart';
 import 'package:tuple/tuple.dart';
 
 class AnimeCollectionStateController
-    extends StateNotifier<AsyncValue<AnimeResponseIntern>> {
+    extends StateNotifier<AsyncValue<IsarAnimeResponse>> {
   late final Database _database;
   final StateNotifierProviderRef ref;
 
@@ -20,12 +20,12 @@ class AnimeCollectionStateController
     _database = ref.watch(databaseUpdatePod);
   }
 
-  Future<AnimeResponseIntern> _getCollection(int page, Tag tag) async {
-    List<AnimeIntern> animes = await _database.getCollection(tag, page);
+  Future<IsarAnimeResponse> _getCollection(int page, Tag tag) async {
+    List<IsarAnime> animes = await _database.getCollection(tag, page);
     int collectionCount = await _database.countCollectionAnimes(tag);
     int pageCount = _database.countFavoriteAnimePages(collectionCount);
 
-    AnimeResponseIntern res = IsarAnimeResponse(q: "tag${tag.name}");
+    IsarAnimeResponse res = IsarAnimeResponse(q: "tag${tag.name}");
     res.data = animes;
     res.pagination = Pagination()
       ..currentPage = page
@@ -40,7 +40,7 @@ class AnimeCollectionStateController
   Future<void> get(int page, Tag tag) async {
     try {
       state = const AsyncLoading();
-      AnimeResponseIntern res = await _getCollection(page, tag);
+      IsarAnimeResponse res = await _getCollection(page, tag);
       if (!mounted) return;
 
       state = AsyncValue.data(res);
@@ -52,10 +52,10 @@ class AnimeCollectionStateController
 
   Future<void> update(AnimeResponseIntern res) async {
     try {
-      await _database.insertAnimeResponse(res);
+      IsarAnimeResponse updated = await _database.insertAnimeResponse(res);
       if (!mounted) return;
 
-      state = AsyncValue.data(res);
+      state = AsyncValue.data(updated);
       ref.read(collectionChangePod.notifier).state =
           (ref.read(collectionChangePod.notifier).state + 1) % 10;
     } on JikanApiException catch (e, stacktrace) {
@@ -70,7 +70,7 @@ final collectionChangePod = StateProvider((ref) => 1);
 
 final animeCollection = StateNotifierProvider.family.autoDispose<
     AnimeCollectionStateController,
-    AsyncValue<AnimeResponseIntern>,
+    AsyncValue<IsarAnimeResponse>,
     Tuple2<int, Tag>>((ref, arg) {
   ref.watch(searchChangePod);
   ref.watch(scheduleChangePod);

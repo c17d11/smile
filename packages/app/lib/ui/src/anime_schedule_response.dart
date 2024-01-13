@@ -1,14 +1,14 @@
 import 'package:app/controller/src/controller/anime_schedule_state_controller.dart';
-import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/state.dart';
+import 'package:app/database/src/isar/collection/isar_anime.dart';
+import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/text_divider.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:isar/isar.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class AnimeScheduleResponseView extends ConsumerWidget {
@@ -46,13 +46,12 @@ class AnimeScheduleResponseView extends ConsumerWidget {
     );
   }
 
-  Widget buildAnimeList(int? page, List<AnimeIntern> animes,
-      void Function(AnimeIntern) onChanged) {
+  Widget buildAnimeList(
+      int? page, List<IsarAnime> animes, void Function(IsarAnime) onChanged) {
     return animes.isEmpty
-        ? Center(
+        ? const Center(
             child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: TextHeadline("No data")))
+                padding: EdgeInsets.all(10), child: TextHeadline("No data")))
         : SliverGrid(
             delegate: SliverChildBuilderDelegate(
               childCount: animes.length,
@@ -60,7 +59,6 @@ class AnimeScheduleResponseView extends ConsumerWidget {
                 animes[index],
                 responseId: (query.day?.text ?? '') + page.toString(),
                 onTap: onChanged,
-                trashArgs: AnimePortraitTrashArgs()..scheduleQuery = query,
               ),
             ),
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -72,7 +70,7 @@ class AnimeScheduleResponseView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<AnimeResponseIntern> res = ref.watch(animeSchedule(query));
+    AsyncValue<IsarAnimeResponse> res = ref.watch(animeSchedule(query));
 
     ref.listen<AsyncValue<AnimeResponseIntern>>(
         animeSchedule(query), (_, state) => state.showSnackBarOnError(context));
@@ -89,8 +87,7 @@ class AnimeScheduleResponseView extends ConsumerWidget {
       }
     }
 
-    AnimeResponseIntern? resIntern = res.value;
-    List<AnimeIntern>? animes = resIntern?.data;
+    List<IsarAnime>? animes = res.value?.isarAnimes.toList();
 
     return res.isLoading
         ? buildLoading()
@@ -99,9 +96,9 @@ class AnimeScheduleResponseView extends ConsumerWidget {
             : MultiSliver(
                 pushPinnedChildren: true,
                 children: [
-                  buildHeader(resIntern, context),
+                  buildHeader(res.value, context),
                   buildAnimeList(
-                    resIntern?.pagination?.currentPage,
+                    res.value?.pagination?.currentPage,
                     animes,
                     saveAnime,
                   ),

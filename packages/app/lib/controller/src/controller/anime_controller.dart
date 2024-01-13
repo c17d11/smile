@@ -1,5 +1,6 @@
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
+import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
@@ -9,8 +10,8 @@ class AnimeController extends StateNotifier<AsyncValue<AnimeIntern?>> {
 
   AnimeController(this._database, this._api) : super(const AsyncLoading());
 
-  Future<AnimeIntern?> _getDatabaseAnime(int malId) async {
-    AnimeIntern? anime = await _database.getAnime(malId);
+  Future<IsarAnime?> _getDatabaseAnime(int malId) async {
+    IsarAnime? anime = await _database.getAnime(malId);
     return anime;
   }
 
@@ -22,15 +23,15 @@ class AnimeController extends StateNotifier<AsyncValue<AnimeIntern?>> {
     return animeIntern;
   }
 
-  Future<void> _storeResponse(AnimeIntern anime) async {
-    await _database.insertAnime(anime);
+  Future<IsarAnime> _storeResponse(AnimeIntern anime) async {
+    return await _database.insertAnime(anime);
   }
 
-  Future<AnimeIntern> _getAnime(int malId) async {
-    AnimeIntern? anime = await _getDatabaseAnime(malId);
+  Future<IsarAnime> _getAnime(int malId) async {
+    IsarAnime? anime = await _getDatabaseAnime(malId);
     if (anime == null) {
-      anime = await _getApiAnime(malId);
-      await _storeResponse(anime);
+      AnimeIntern animeIntern = await _getApiAnime(malId);
+      anime = await _storeResponse(animeIntern);
     }
     return anime;
   }
