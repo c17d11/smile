@@ -3,22 +3,23 @@ import 'package:app/controller/src/controller/anime_schedule_state_controller.da
 import 'package:app/controller/src/controller/anime_search_state_controller.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
+import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
-class AnimeFavoriteStateController
+class FavoriteStateNotifier
     extends StateNotifier<AsyncValue<IsarAnimeResponse>> {
   late final Database _database;
   final StateNotifierProviderRef ref;
 
-  AnimeFavoriteStateController(this.ref) : super(const AsyncLoading()) {
+  FavoriteStateNotifier(this.ref) : super(const AsyncLoading()) {
     _database = ref.watch(databaseUpdatePod);
   }
 
   Future<IsarAnimeResponse> _getFavorites(int page) async {
-    List<AnimeIntern> favorites = await _database.getFavoriteAnimes(page);
+    List<IsarAnime> favorites = await _database.getFavoriteAnimes(page);
     int favoriteCount = await _database.countFavoriteAnimes();
     int pageCount = _database.countFavoriteAnimePages(favoriteCount);
 
@@ -31,6 +32,7 @@ class AnimeFavoriteStateController
       ..itemPerPage = favorites.length
       ..itemTotal = favoriteCount
       ..lastVisiblePage = pageCount;
+    res = await _database.insertAnimeResponse(res);
     return res;
   }
 
@@ -47,33 +49,17 @@ class AnimeFavoriteStateController
     }
   }
 
-  Future<void> update(AnimeResponseIntern res) async {
-    try {
-      IsarAnimeResponse updated = await _database.insertAnimeResponse(res);
-      if (!mounted) return;
-
-      state = AsyncValue.data(updated);
-      ref.read(favoriteChangePod.notifier).state =
-          (ref.read(favoriteChangePod.notifier).state + 1) % 10;
-    } on JikanApiException catch (e, stacktrace) {
-      state = AsyncError(e, stacktrace);
-
-      // TODO: Database error
-    }
+  Future<void> refresh() async {
+    state = AsyncValue.data(state.value!);
   }
 }
 
 final favoriteChangePod = StateProvider((ref) => 1);
 
-final animeFavorite = StateNotifierProvider.family.autoDispose<
-    AnimeFavoriteStateController,
-    AsyncValue<IsarAnimeResponse>,
-    int>((ref, arg) {
-  ref.watch(searchChangePod);
-  ref.watch(scheduleChangePod);
-  ref.watch(collectionChangePod);
-
-  AnimeFavoriteStateController controller = AnimeFavoriteStateController(ref);
+final animeFavorite = StateNotifierProvider.family
+    .autoDispose<FavoriteStateNotifier, AsyncValue<IsarAnimeResponse>, int>(
+        (ref, arg) {
+  FavoriteStateNotifier controller = FavoriteStateNotifier(ref);
   controller.get(arg);
   return controller;
 });

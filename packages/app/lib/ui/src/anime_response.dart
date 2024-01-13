@@ -54,7 +54,7 @@ class AnimeResponseView extends ConsumerWidget {
               (context, index) => AnimePortrait(
                 animes[index],
                 responseId: page.toString(),
-                onTap: onChanged,
+                onAnimeUpdate: () {},
               ),
             ),
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

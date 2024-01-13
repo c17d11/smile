@@ -1,6 +1,6 @@
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
-import 'package:app/ui/src/anime_favorite_page.dart';
+import 'package:app/ui/src/favorite/favorite_page.dart';
 import 'package:app/ui/src/genre_list.dart';
 import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/anime_list.dart';

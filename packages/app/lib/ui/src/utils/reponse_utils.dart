@@ -24,7 +24,10 @@ mixin AnimeResponseViewUtils {
     String lastPage = res?.pagination?.lastVisiblePage.toString() ?? "";
 
     return SliverPinnedHeader(
-      child: TextDivider("Page $currentPage of $lastPage"),
+      child: Container(
+        // color: Theme.of(context).colorScheme.background,
+        child: TextDivider("Page $currentPage of $lastPage"),
+      ),
     );
   }
 

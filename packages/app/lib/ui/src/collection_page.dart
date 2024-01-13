@@ -3,7 +3,8 @@ import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
-import 'package:app/ui/src/anime_favorite_page.dart';
+import 'package:app/ui/src/anime_response_utils.dart';
+import 'package:app/ui/src/favorite/favorite_page.dart';
 import 'package:app/ui/src/anime_list.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/style/style.dart';
@@ -237,6 +238,6 @@ class CollectionResponseView extends ConsumerWidget
       updateLastPage(res.value!.pagination?.lastVisiblePage ?? 1);
     }
 
-    return buildResponse(res, saveAnime);
+    return buildResponse(res, () {});
   }
 }
