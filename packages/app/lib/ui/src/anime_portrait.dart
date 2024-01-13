@@ -1,4 +1,4 @@
-import 'package:app/controller/src/controller/anime_favorite_state_controller.dart';
+import 'package:app/ui/src/favorite/favorite_state.dart';
 import 'package:app/controller/src/controller/anime_schedule_state_controller.dart';
 import 'package:app/controller/src/controller/anime_search_state_controller.dart';
 import 'package:app/controller/src/object/anime_query_intern.dart';
@@ -9,6 +9,7 @@ import 'package:app/database/src/database_base.dart';
 import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/ui/src/anime_details.dart';
 import 'package:app/ui/src/pod.dart';
+import 'package:app/ui/src/test_page/test_pod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tuple/tuple.dart';
@@ -57,11 +58,11 @@ class AnimePortraitTrashArgs {
 class AnimePortrait extends ConsumerWidget {
   final IsarAnime? anime;
   final String responseId;
-  final Function(IsarAnime) onTap;
+  final Function() onAnimeUpdate;
   const AnimePortrait(
     this.anime, {
     required this.responseId,
-    required this.onTap,
+    required this.onAnimeUpdate,
     super.key,
   });
 
@@ -87,7 +88,10 @@ class AnimePortrait extends ConsumerWidget {
                 'anime-details',
                 arguments: AnimeDetailsArgs(anime!, heroTag),
               ).then((value) async {
-                onTap(value as IsarAnime);
+                await ref
+                    .read(testAnimeUpdatePod.notifier)
+                    .update(value as IsarAnime);
+                onAnimeUpdate();
               });
             },
             child: Card(
@@ -176,23 +180,27 @@ class AnimePortrait extends ConsumerWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(4),
                         child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              GestureDetector(
-                                onTap: () => onTap(
-                                  anime!
-                                    ..isFavorite =
-                                        !(anime!.isFavorite ?? false),
-                                ),
-                                child: Icon(
-                                  (anime?.isFavorite ?? false)
-                                      ? Icons.favorite
-                                      : Icons.favorite_outline,
-                                  size: 24,
-                                  color: Colors.red[900],
-                                ),
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+                              onTap: () async {
+                                ref.read(testAnimeUpdatePod.notifier).update(
+                                    anime!
+                                      ..isFavorite =
+                                          !(anime!.isFavorite ?? false));
+
+                                onAnimeUpdate();
+                              },
+                              child: Icon(
+                                (anime?.isFavorite ?? false)
+                                    ? Icons.favorite
+                                    : Icons.favorite_outline,
+                                size: 24,
+                                color: Colors.red[900],
                               ),
-                            ]),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

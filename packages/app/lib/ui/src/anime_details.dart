@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:app/controller/src/controller/anime_collection_state_controller.dart';
-import 'package:app/controller/src/controller/anime_favorite_state_controller.dart';
+import 'package:app/ui/src/favorite/favorite_state.dart';
 import 'package:app/controller/src/controller/anime_schedule_state_controller.dart';
 import 'package:app/controller/src/controller/anime_search_state_controller.dart';
 import 'package:app/controller/src/object/tag.dart';

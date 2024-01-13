@@ -1,5 +1,5 @@
 import 'package:app/controller/src/controller/anime_collection_state_controller.dart';
-import 'package:app/controller/src/controller/anime_favorite_state_controller.dart';
+import 'package:app/ui/src/favorite/favorite_state.dart';
 import 'package:app/controller/src/controller/anime_schedule_state_controller.dart';
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/state.dart';
