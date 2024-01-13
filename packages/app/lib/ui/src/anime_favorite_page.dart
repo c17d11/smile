@@ -1,5 +1,7 @@
 import 'package:app/controller/src/controller/anime_favorite_state_controller.dart';
 import 'package:app/controller/state.dart';
+import 'package:app/database/src/isar/collection/isar_anime.dart';
+import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/text_divider.dart';
@@ -133,8 +135,8 @@ mixin AnimeResponseViewUtils {
     );
   }
 
-  Widget buildAnimeList(int? page, List<AnimeIntern> animes,
-      void Function(AnimeIntern) saveAnime) {
+  Widget buildAnimeList(
+      int? page, List<IsarAnime> animes, void Function(IsarAnime) saveAnime) {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         childCount: animes.length,
@@ -142,7 +144,6 @@ mixin AnimeResponseViewUtils {
           animes[index],
           responseId: page.toString(),
           onTap: saveAnime,
-          trashArgs: AnimePortraitTrashArgs()..favoritePage = page,
         ),
       ),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -152,9 +153,9 @@ mixin AnimeResponseViewUtils {
     );
   }
 
-  Widget buildResponse(AsyncValue<AnimeResponseIntern> res,
-      void Function(AnimeIntern) saveAnime) {
-    List<AnimeIntern>? animes = res.value?.data;
+  Widget buildResponse(
+      AsyncValue<IsarAnimeResponse> res, void Function(IsarAnime) saveAnime) {
+    List<IsarAnime>? animes = res.value?.isarAnimes.toList();
     // lastPage = res.value?.pagination?.lastVisiblePage ?? 1;
 
     if (res.isLoading) {

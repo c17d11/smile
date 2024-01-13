@@ -127,9 +127,8 @@ class IsarDatabase implements Database {
         }
         return "$sizeBytes B";
       }
-    } catch (e) {
-      print(e.toString());
-    }
+      // ignore: empty_catches
+    } catch (e) {}
     return "Empty";
   }
 
@@ -159,17 +158,17 @@ class IsarDatabase implements Database {
   }
 
   @override
-  Future<List<AnimeIntern>> getAllAnimes() async {
+  Future<List<IsarAnime>> getAllAnimes() async {
     return await animeModel.getAllAnimes();
   }
 
   @override
-  Future<List<AnimeIntern>> getFavoriteAnimes(int page) async {
+  Future<List<IsarAnime>> getFavoriteAnimes(int page) async {
     return await animeModel.getFavoriteAnimes(page);
   }
 
   @override
-  Future<List<AnimeIntern>> getCollection(Tag tag, int page) async {
+  Future<List<IsarAnime>> getCollection(Tag tag, int page) async {
     return await animeModel.getCollection(tag, page);
   }
 
@@ -194,12 +193,12 @@ class IsarDatabase implements Database {
   }
 
   @override
-  Future<AnimeIntern?> getAnime(int malId) async {
+  Future<IsarAnime?> getAnime(int malId) async {
     return await animeModel.getAnime(malId);
   }
 
   @override
-  Future<AnimeResponseIntern?> getAnimeResponse(String query) async {
+  Future<IsarAnimeResponse?> getAnimeResponse(String query) async {
     return await animeResponseModel.getAnimeResponse(query);
   }
 
@@ -209,12 +208,12 @@ class IsarDatabase implements Database {
   }
 
   @override
-  Future<void> insertAnime(AnimeIntern anime) async {
+  Future<IsarAnime> insertAnime(AnimeIntern anime) async {
     return await animeModel.insertAnime(anime);
   }
 
   @override
-  Future<void> insertAnimeResponse(AnimeResponseIntern res) async {
+  Future<IsarAnimeResponse> insertAnimeResponse(AnimeResponseIntern res) async {
     return animeResponseModel.insertAnimeResponse(res);
   }
 

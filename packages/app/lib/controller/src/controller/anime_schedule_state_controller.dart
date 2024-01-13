@@ -4,12 +4,13 @@ import 'package:app/controller/src/controller/anime_search_state_controller.dart
 import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
+import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class AnimeScheduleStateController
-    extends StateNotifier<AsyncValue<AnimeResponseIntern>> {
+    extends StateNotifier<AsyncValue<IsarAnimeResponse>> {
   late final Database _database;
   late final JikanApi _api;
   final StateNotifierProviderRef ref;
@@ -26,12 +27,12 @@ class AnimeScheduleStateController
     return resIntern;
   }
 
-  Future<AnimeResponseIntern> _getScheduleResponse(ScheduleQuery query) async {
+  Future<IsarAnimeResponse> _getScheduleResponse(ScheduleQuery query) async {
     String queryString = _api.buildScheduleSearchQuery(query);
-    AnimeResponseIntern? res = await _database.getAnimeResponse(queryString);
+    IsarAnimeResponse? res = await _database.getAnimeResponse(queryString);
     if (res == null) {
-      res = await _getApiScheduleResponse(query);
-      await _database.insertAnimeResponse(res);
+      final resIntern = await _getApiScheduleResponse(query);
+      res = await _database.insertAnimeResponse(resIntern);
     }
     return res;
   }
@@ -39,7 +40,7 @@ class AnimeScheduleStateController
   Future<void> get(ScheduleQueryIntern query) async {
     try {
       state = const AsyncLoading();
-      AnimeResponseIntern res = await _getScheduleResponse(query);
+      IsarAnimeResponse res = await _getScheduleResponse(query);
       if (!mounted) return;
 
       state = AsyncValue.data(res);
@@ -51,10 +52,10 @@ class AnimeScheduleStateController
 
   Future<void> update(AnimeResponseIntern res) async {
     try {
-      await _database.insertAnimeResponse(res);
+      final updated = await _database.insertAnimeResponse(res);
       if (!mounted) return;
 
-      state = AsyncValue.data(res);
+      state = AsyncValue.data(updated);
       ref.read(scheduleChangePod.notifier).state =
           (ref.read(scheduleChangePod.notifier).state + 1) % 10;
     } on JikanApiException catch (e, stacktrace) {
@@ -69,7 +70,7 @@ final scheduleChangePod = StateProvider((ref) => 1);
 
 final animeSchedule = StateNotifierProvider.family.autoDispose<
     AnimeScheduleStateController,
-    AsyncValue<AnimeResponseIntern>,
+    AsyncValue<IsarAnimeResponse>,
     ScheduleQueryIntern>((ref, arg) {
   ref.watch(searchChangePod);
   ref.watch(favoriteChangePod);

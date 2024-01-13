@@ -12,7 +12,7 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
       : _animeModel = IsarAnimeModel(db, expirationHours: expirationHours);
 
   @override
-  Future<void> insertAnimeResponse(AnimeResponseIntern arg) async {
+  Future<IsarAnimeResponse> insertAnimeResponse(AnimeResponseIntern arg) async {
     IsarAnimeResponse res = arg as IsarAnimeResponse;
     res.isarPagination = IsarPagination.from(res.pagination);
 
@@ -23,10 +23,11 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
       await db.isarAnimeResponses.put(res);
       await res.isarAnimes.save();
     });
+    return res;
   }
 
   @override
-  Future<AnimeResponseIntern?> getAnimeResponse(String query) async {
+  Future<IsarAnimeResponse?> getAnimeResponse(String query) async {
     // TODO: check query string and prevent possible injection.
     IsarAnimeResponse? res;
     await read(() async {

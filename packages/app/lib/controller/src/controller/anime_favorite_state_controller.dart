@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class AnimeFavoriteStateController
-    extends StateNotifier<AsyncValue<AnimeResponseIntern>> {
+    extends StateNotifier<AsyncValue<IsarAnimeResponse>> {
   late final Database _database;
   final StateNotifierProviderRef ref;
 
@@ -17,12 +17,12 @@ class AnimeFavoriteStateController
     _database = ref.watch(databaseUpdatePod);
   }
 
-  Future<AnimeResponseIntern> _getFavorites(int page) async {
+  Future<IsarAnimeResponse> _getFavorites(int page) async {
     List<AnimeIntern> favorites = await _database.getFavoriteAnimes(page);
     int favoriteCount = await _database.countFavoriteAnimes();
     int pageCount = _database.countFavoriteAnimePages(favoriteCount);
 
-    AnimeResponseIntern res = IsarAnimeResponse(q: "favorites");
+    IsarAnimeResponse res = IsarAnimeResponse(q: "favorites");
     res.data = favorites;
     res.pagination = Pagination()
       ..currentPage = page
@@ -37,7 +37,7 @@ class AnimeFavoriteStateController
   Future<void> get(int page) async {
     try {
       state = const AsyncLoading();
-      AnimeResponseIntern res = await _getFavorites(page);
+      IsarAnimeResponse res = await _getFavorites(page);
       if (!mounted) return;
 
       state = AsyncValue.data(res);
@@ -49,10 +49,10 @@ class AnimeFavoriteStateController
 
   Future<void> update(AnimeResponseIntern res) async {
     try {
-      await _database.insertAnimeResponse(res);
+      IsarAnimeResponse updated = await _database.insertAnimeResponse(res);
       if (!mounted) return;
 
-      state = AsyncValue.data(res);
+      state = AsyncValue.data(updated);
       ref.read(favoriteChangePod.notifier).state =
           (ref.read(favoriteChangePod.notifier).state + 1) % 10;
     } on JikanApiException catch (e, stacktrace) {
@@ -67,7 +67,7 @@ final favoriteChangePod = StateProvider((ref) => 1);
 
 final animeFavorite = StateNotifierProvider.family.autoDispose<
     AnimeFavoriteStateController,
-    AsyncValue<AnimeResponseIntern>,
+    AsyncValue<IsarAnimeResponse>,
     int>((ref, arg) {
   ref.watch(searchChangePod);
   ref.watch(scheduleChangePod);

@@ -2,6 +2,7 @@ import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
+import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
@@ -23,7 +24,7 @@ class AnimeCollectionController
       int page = query.page!;
 
       state = const AsyncLoading();
-      List<AnimeIntern> animes = await _database.getCollection(tag, page);
+      List<IsarAnime> animes = await _database.getCollection(tag, page);
       int collectionCount = await _database.countCollectionAnimes(tag);
       int pageCount = _database.countFavoriteAnimePages(collectionCount);
 
