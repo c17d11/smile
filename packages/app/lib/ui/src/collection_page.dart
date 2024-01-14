@@ -221,19 +221,6 @@ class CollectionResponseView extends ConsumerWidget
         animeCollection(Tuple2(page, tag)),
         (_, state) => state.showSnackBarOnError(context));
 
-    void saveAnime(AnimeIntern anime) {
-      AnimeResponseIntern newRes = res.value!;
-      newRes.data =
-          newRes.data?.map((e) => e.malId == anime.malId ? anime : e).toList();
-
-      try {
-        ref.read(animeCollection(Tuple2(page, tag)).notifier).update(newRes);
-      } on Exception catch (e, _) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text("Unable to save anime.")));
-      }
-    }
-
     if (res.hasValue) {
       updateLastPage(res.value!.pagination?.lastVisiblePage ?? 1);
     }

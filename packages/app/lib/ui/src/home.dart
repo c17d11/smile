@@ -1,6 +1,7 @@
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/favorite/favorite_nav_item.dart';
 import 'package:app/ui/src/nav_items.dart';
+import 'package:app/ui/src/schedule/nav_item.dart';
 import 'package:app/ui/src/test_page/test_nav_item.dart';
 import 'package:app/ui/src/text_divider.dart';
 import 'package:flutter/material.dart';

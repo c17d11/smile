@@ -71,19 +71,6 @@ class AnimeResponseView extends ConsumerWidget {
     ref.listen<AsyncValue<AnimeResponseIntern>>(
         animeSearch(query), (_, state) => state.showSnackBarOnError(context));
 
-    void saveAnime(AnimeIntern anime) {
-      AnimeResponseIntern newRes = res.value!;
-      newRes.data =
-          newRes.data?.map((e) => e.malId == anime.malId ? anime : e).toList();
-
-      try {
-        ref.read(animeSearch(query).notifier).update(newRes);
-      } on Exception catch (e, _) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text("Unable to save anime.")));
-      }
-    }
-
     List<IsarAnime>? animes = res.value?.isarAnimes.toList();
 
     if (res.isLoading) {
@@ -99,7 +86,7 @@ class AnimeResponseView extends ConsumerWidget {
         buildAnimeList(
           res.value?.pagination?.currentPage,
           animes,
-          saveAnime,
+          (_) {},
         ),
       ],
     );

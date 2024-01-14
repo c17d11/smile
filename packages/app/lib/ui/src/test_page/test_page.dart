@@ -50,7 +50,9 @@ class _TestPageState extends ConsumerState<TestPage> {
       body: NotificationListener<ScrollMetricsNotification>(
         onNotification: (notification) {
           if (notification.metrics.extentTotal <
-              MediaQuery.of(context).size.height) loadNextPage();
+              MediaQuery.of(context).size.height) {
+            loadNextPage();
+          }
           return false;
         },
         child: CustomScrollView(

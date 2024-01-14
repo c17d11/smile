@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:app/controller/src/controller/anime_collection_state_controller.dart';
 import 'package:app/ui/src/favorite/favorite_state.dart';
-import 'package:app/controller/src/controller/anime_schedule_state_controller.dart';
+import 'package:app/ui/src/schedule/schedule_state.dart';
 import 'package:app/controller/src/controller/anime_search_state_controller.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/database/src/isar/collection/isar_anime.dart';
