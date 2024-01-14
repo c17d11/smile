@@ -1,35 +1,39 @@
-import 'package:app/controller/src/object/schedule_query_intern.dart';
+import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
+import 'package:app/ui/src/browse/response.dart';
 import 'package:app/ui/src/pod.dart';
-import 'package:app/ui/src/schedule/response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jikan_api/jikan_api.dart';
 
-class SchedulePage extends ConsumerWidget {
+class BrowsePage extends ConsumerWidget {
   final IconItem page;
 
-  const SchedulePage({required this.page, super.key});
+  const BrowsePage({required this.page, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ScheduleQueryIntern query = ref.watch(scheduleQueryPod);
+    AnimeQueryIntern query = ref.watch(animeQueryPod(page));
 
-    return ScheduleList(
-      initQuery: query..day = ScheduleMonday(),
-      onNextPageQuery: (query) => ScheduleQueryIntern.nextPage(query),
-      onLastQuery: (query) => ScheduleQueryIntern.nextDay(query),
-      key: UniqueKey(),
+    return Scaffold(
+      body: BrowseList(
+        page: page,
+        initQuery: query,
+        onNextPageQuery: (query) => AnimeQueryIntern.nextPage(query),
+        onLastQuery: (query) => null,
+        key: UniqueKey(),
+      ),
     );
   }
 }
 
-class ScheduleList extends StatefulWidget {
-  final ScheduleQueryIntern initQuery;
-  final Function(ScheduleQueryIntern) onNextPageQuery;
-  final Function(ScheduleQueryIntern) onLastQuery;
+class BrowseList extends StatefulWidget {
+  final IconItem page;
+  final AnimeQueryIntern initQuery;
+  final Function(AnimeQueryIntern) onNextPageQuery;
+  final Function(AnimeQueryIntern) onLastQuery;
 
-  const ScheduleList({
+  const BrowseList({
+    required this.page,
     required this.initQuery,
     required this.onNextPageQuery,
     required this.onLastQuery,
@@ -37,13 +41,14 @@ class ScheduleList extends StatefulWidget {
   });
 
   @override
-  State<ScheduleList> createState() => _ScheduleListState();
+  State<BrowseList> createState() => _BrowseListState();
 }
 
-class _ScheduleListState extends State<ScheduleList> {
+class _BrowseListState extends State<BrowseList> {
   final _scroll = ScrollController();
   int lastPage = 1;
-  List<ScheduleResponse> pages = [];
+  // int currentPage = 1;
+  List<BrowseResponse> pages = [];
 
   @override
   void initState() {
@@ -57,18 +62,18 @@ class _ScheduleListState extends State<ScheduleList> {
   }
 
   void loadNextPage() {
-    ScheduleQueryIntern newQuery = pages.isEmpty
+    AnimeQueryIntern newQuery = pages.isEmpty
         ? widget.initQuery
         : widget.onNextPageQuery(pages.last.query);
-    ScheduleQueryIntern? nextQuery =
+    AnimeQueryIntern? nextQuery =
         pages.isEmpty ? widget.initQuery : widget.onLastQuery(pages.last.query);
 
-    ScheduleResponse? res;
+    BrowseResponse? res;
     if ((newQuery.page ?? 1) <= lastPage) {
-      res = ScheduleResponse(
+      res = BrowseResponse(
           heroId: pages.length, updateLastPage: onLastPage, query: newQuery);
     } else if (nextQuery != null) {
-      res = ScheduleResponse(
+      res = BrowseResponse(
           heroId: pages.length, updateLastPage: onLastPage, query: nextQuery);
     }
 
@@ -102,11 +107,10 @@ class _ScheduleListState extends State<ScheduleList> {
         return false;
       },
       child: CustomScrollView(
-        controller: _scroll,
-        shrinkWrap: true,
-        physics: const AlwaysScrollableScrollPhysics(),
-        slivers: pages,
-      ),
+          controller: _scroll,
+          shrinkWrap: true,
+          physics: const AlwaysScrollableScrollPhysics(),
+          slivers: pages),
     );
   }
 }

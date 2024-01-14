@@ -2,6 +2,7 @@ import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/src/object/producer_response_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
+import 'package:app/ui/src/browse/nav_item.dart';
 import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/nav_items.dart';
 import 'package:app/ui/src/pod.dart';
@@ -394,8 +395,8 @@ class ProducerPortrait extends ConsumerWidget {
                               GestureDetector(
                                 onTap: () async {
                                   await ref
-                                      .read(
-                                          animeQueryPod(HomeNavItem()).notifier)
+                                      .read(animeQueryPod(BrowseNavItem())
+                                          .notifier)
                                       .set(AnimeQueryIntern()
                                         ..producers = [
                                           ProducerIntern.to(producer!)

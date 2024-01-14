@@ -1,8 +1,8 @@
 import 'package:app/controller/src/controller/anime_collection_controller.dart';
 import 'package:app/controller/src/controller/anime_collection_state_controller.dart';
-import 'package:app/ui/src/favorite/favorite_state.dart';
-import 'package:app/ui/src/schedule/schedule_state.dart';
-import 'package:app/controller/src/controller/anime_search_state_controller.dart';
+import 'package:app/ui/src/favorite/state.dart';
+import 'package:app/ui/src/schedule/state.dart';
+import 'package:app/ui/src/browse/state.dart';
 import 'package:app/controller/src/controller/genre_controller.dart';
 import 'package:app/controller/src/controller/producer_controller.dart';
 import 'package:app/controller/src/controller/producer_search_controller.dart';

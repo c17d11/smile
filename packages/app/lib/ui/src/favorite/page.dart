@@ -12,13 +12,13 @@ class FavoritePage extends ConsumerStatefulWidget {
 class _FavoritePageState extends ConsumerState<FavoritePage> {
   final _scroll = ScrollController();
   int lastPage = 1;
-  List<FavoriteResponse> responses = [];
+  List<FavoriteResponse> pages = [];
 
   void loadNextResponse() {
-    FavoriteResponse nextRes = responses.last.next();
+    FavoriteResponse nextRes = pages.last.next();
     if (lastPage > nextRes.page) {
       setState(() {
-        responses.add(nextRes);
+        pages.add(nextRes);
       });
     }
   }
@@ -27,8 +27,10 @@ class _FavoritePageState extends ConsumerState<FavoritePage> {
   void initState() {
     super.initState();
 
-    responses.add(FavoriteResponse(
-        page: 1, updateLastPage: (int page) => lastPage = page));
+    pages.add(FavoriteResponse(
+        heroId: pages.length,
+        page: 1,
+        updateLastPage: (int page) => lastPage = page));
 
     _scroll.addListener(() {
       if (_scroll.offset >= _scroll.position.maxScrollExtent) {
@@ -58,7 +60,7 @@ class _FavoritePageState extends ConsumerState<FavoritePage> {
           controller: _scroll,
           shrinkWrap: true,
           physics: const AlwaysScrollableScrollPhysics(),
-          slivers: <Widget>[...responses],
+          slivers: <Widget>[...pages],
         ),
       ),
     );

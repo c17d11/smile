@@ -38,7 +38,7 @@ mixin AnimeResponseViewUtils {
         childCount: animes.length,
         (context, index) => AnimePortrait(
           animes[index],
-          responseId: page.toString(),
+          heroId: page.toString(),
           onAnimeUpdate: saveAnime,
         ),
       ),

@@ -1,5 +1,5 @@
 import 'package:app/ui/src/anime_portrait.dart';
-import 'package:app/ui/src/favorite/favorite_state.dart';
+import 'package:app/ui/src/favorite/state.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/text_divider.dart';
@@ -10,14 +10,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class FavoriteResponse extends ConsumerWidget with AnimeResponseViewUtils {
+  final int heroId;
   final int page;
   final void Function(int) updateLastPage;
 
   FavoriteResponse(
-      {required this.page, required this.updateLastPage, super.key});
+      {required this.heroId,
+      required this.page,
+      required this.updateLastPage,
+      super.key});
 
-  FavoriteResponse next() =>
-      FavoriteResponse(page: page + 1, updateLastPage: updateLastPage);
+  FavoriteResponse next() => FavoriteResponse(
+      heroId: heroId + 1, page: page + 1, updateLastPage: updateLastPage);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -51,14 +55,14 @@ class FavoriteResponse extends ConsumerWidget with AnimeResponseViewUtils {
             res.data?.isEmpty ?? true
                 ? Center(
                     child: Padding(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         child: Text("No data", style: AppTextStyle.small)))
                 : SliverGrid(
                     delegate: SliverChildBuilderDelegate(
                       childCount: res.data!.length,
                       (context, index) => AnimePortrait(
                         res.isarAnimes.elementAt(index),
-                        responseId: "${res.isarPagination?.currentPage ?? ''}",
+                        heroId: "$heroId-$index",
                         onAnimeUpdate: () =>
                             ref.read(animeFavorite(page).notifier).refresh(),
                       ),

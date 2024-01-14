@@ -1,5 +1,5 @@
-import 'package:app/ui/src/schedule/state.dart';
-import 'package:app/controller/src/object/schedule_query_intern.dart';
+import 'package:app/ui/src/browse/state.dart';
+import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/ui/src/anime_portrait.dart';
@@ -10,11 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-class ScheduleResponse extends ConsumerWidget {
+class BrowseResponse extends ConsumerWidget {
   final int heroId;
-  final ScheduleQueryIntern query;
+  final AnimeQueryIntern query;
   final void Function(int?) updateLastPage;
-  const ScheduleResponse(
+  const BrowseResponse(
       {required this.heroId,
       required this.updateLastPage,
       required this.query,
@@ -22,10 +22,10 @@ class ScheduleResponse extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<IsarAnimeResponse> ret = ref.watch(animeSchedule(query));
+    AsyncValue<IsarAnimeResponse> ret = ref.watch(animeBrowse(query));
 
     ref.listen<AsyncValue<AnimeResponseIntern>>(
-        animeSchedule(query), (_, state) => state.showSnackBarOnError(context));
+        animeBrowse(query), (_, state) => state.showSnackBarOnError(context));
 
     if (ret.hasValue) {
       updateLastPage(ret.value!.pagination?.lastVisiblePage ?? 1);
@@ -45,10 +45,8 @@ class ScheduleResponse extends ConsumerWidget {
           children: <Widget>[
             SliverPinnedHeader(
               child: Container(
-                color: Theme.of(context).colorScheme.background,
-                child: TextDivider(
-                    "${query.day?.text ?? '-'} page $currentPage of $lastPage"),
-              ),
+                  color: Theme.of(context).colorScheme.background,
+                  child: TextDivider("Page $currentPage of $lastPage")),
             ),
             res.data?.isEmpty ?? true
                 ? Center(
@@ -62,7 +60,7 @@ class ScheduleResponse extends ConsumerWidget {
                         res.isarAnimes.elementAt(index),
                         heroId: "$heroId-$index",
                         onAnimeUpdate: () =>
-                            ref.read(animeSchedule(query).notifier).refresh(),
+                            ref.read(animeBrowse(query).notifier).refresh(),
                       ),
                     ),
                     gridDelegate:

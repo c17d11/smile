@@ -13,6 +13,9 @@ class ScheduleQueryIntern extends ScheduleQuery {
     return queryIntern;
   }
 
+  @override
+  String toString() => "$page-${day?.code}-$isForKids-$sfw-$isApproved";
+
   static ScheduleQueryIntern nextPage(ScheduleQuery q) {
     ScheduleQueryIntern query = ScheduleQueryIntern.from(q);
     query.page = (query.page ?? 1) + 1;
