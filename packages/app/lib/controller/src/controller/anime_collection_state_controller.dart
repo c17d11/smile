@@ -1,6 +1,6 @@
-import 'package:app/ui/src/favorite/favorite_state.dart';
-import 'package:app/ui/src/schedule/schedule_state.dart';
-import 'package:app/controller/src/controller/anime_search_state_controller.dart';
+import 'package:app/ui/src/favorite/state.dart';
+import 'package:app/ui/src/schedule/state.dart';
+import 'package:app/ui/src/browse/state.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';

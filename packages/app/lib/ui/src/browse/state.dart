@@ -1,6 +1,3 @@
-import 'package:app/controller/src/controller/anime_collection_state_controller.dart';
-import 'package:app/ui/src/favorite/favorite_state.dart';
-import 'package:app/ui/src/schedule/schedule_state.dart';
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
@@ -9,13 +6,12 @@ import 'package:app/ui/src/pod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
-class AnimeSearchStateController
-    extends StateNotifier<AsyncValue<IsarAnimeResponse>> {
+class BrowseStateNotifier extends StateNotifier<AsyncValue<IsarAnimeResponse>> {
   late final Database _database;
   late final JikanApi _api;
   final StateNotifierProviderRef ref;
 
-  AnimeSearchStateController(this.ref) : super(const AsyncLoading()) {
+  BrowseStateNotifier(this.ref) : super(const AsyncLoading()) {
     _database = ref.watch(databaseUpdatePod);
     _api = ref.watch(apiPod);
   }
@@ -28,7 +24,6 @@ class AnimeSearchStateController
 
   Future<IsarAnimeResponse> _getSearchResponse(AnimeQueryIntern query) async {
     String queryString = _api.buildAnimeSearchQuery(query);
-
     IsarAnimeResponse? res = await _database.getAnimeResponse(queryString);
     if (res == null) {
       final resIntern = await _getApiResponse(query);
@@ -49,13 +44,17 @@ class AnimeSearchStateController
       // TODO: Database error
     }
   }
+
+  Future<void> refresh() async {
+    state = AsyncValue.data(state.value!);
+  }
 }
 
-final animeSearch = StateNotifierProvider.family.autoDispose<
-    AnimeSearchStateController,
+final animeBrowse = StateNotifierProvider.family.autoDispose<
+    BrowseStateNotifier,
     AsyncValue<IsarAnimeResponse>,
     AnimeQueryIntern>((ref, arg) {
-  AnimeSearchStateController controller = AnimeSearchStateController(ref);
+  BrowseStateNotifier controller = BrowseStateNotifier(ref);
   controller.get(arg);
   return controller;
 });
