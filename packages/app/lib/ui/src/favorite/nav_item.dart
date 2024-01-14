@@ -1,5 +1,5 @@
 import 'package:app/ui/navigation_container/navigation_container.dart';
-import 'package:app/ui/src/favorite/favorite_page.dart';
+import 'package:app/ui/src/favorite/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,7 +15,7 @@ class FavoriteNavItem extends IconItem {
 
   @override
   Widget buildContent() {
-    return const AnimeFavoritePage();
+    return const FavoritePage();
   }
 
   @override
