@@ -1,25 +1,15 @@
-import 'package:app/ui/src/favorite/favorite_state.dart';
-import 'package:app/controller/state.dart';
-import 'package:app/database/src/isar/collection/isar_anime.dart';
-import 'package:app/database/src/isar/collection/isar_anime_response.dart';
-import 'package:app/ui/src/anime_portrait.dart';
-import 'package:app/ui/src/favorite/favorite_reponse.dart';
-import 'package:app/ui/src/pod.dart';
-import 'package:app/ui/src/text_divider.dart';
-import 'package:app/ui/style/style.dart';
+import 'package:app/ui/src/favorite/reponse.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sliver_tools/sliver_tools.dart';
 
-class AnimeFavoritePage extends ConsumerStatefulWidget {
-  const AnimeFavoritePage({super.key});
+class FavoritePage extends ConsumerStatefulWidget {
+  const FavoritePage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _AnimeFavoritePageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _FavoritePageState();
 }
 
-class _AnimeFavoritePageState extends ConsumerState<AnimeFavoritePage> {
+class _FavoritePageState extends ConsumerState<FavoritePage> {
   final _scroll = ScrollController();
   int lastPage = 1;
   List<FavoriteResponse> responses = [];
