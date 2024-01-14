@@ -1,7 +1,3 @@
-import 'package:app/controller/src/controller/anime_collection_state_controller.dart';
-import 'package:app/controller/src/controller/anime_schedule_state_controller.dart';
-import 'package:app/controller/src/controller/anime_search_state_controller.dart';
-import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
 import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/database/src/isar/collection/isar_anime_response.dart';
@@ -53,8 +49,6 @@ class FavoriteStateNotifier
     state = AsyncValue.data(state.value!);
   }
 }
-
-final favoriteChangePod = StateProvider((ref) => 1);
 
 final animeFavorite = StateNotifierProvider.family
     .autoDispose<FavoriteStateNotifier, AsyncValue<IsarAnimeResponse>, int>(

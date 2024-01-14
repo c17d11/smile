@@ -4,7 +4,7 @@ import 'package:app/ui/src/favorite/favorite_page.dart';
 import 'package:app/ui/src/genre_list.dart';
 import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/anime_list.dart';
-import 'package:app/ui/src/anime_schedule_page.dart';
+import 'package:app/ui/src/schedule/page.dart';
 import 'package:app/ui/src/collection_page.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/producer_list.dart';
@@ -33,53 +33,6 @@ class HomeNavItem extends IconItem {
     return IconButton(
       onPressed: () {
         Navigator.pushNamed(context, 'anime-query', arguments: this);
-      },
-      icon: const Icon(Icons.sort),
-    );
-  }
-}
-
-class FavoriteNavItem extends IconItem {
-  @override
-  String get label => "Favorite";
-
-  @override
-  Icon get icon => const Icon(Icons.favorite_outline);
-
-  @override
-  Icon get selectedIcon => const Icon(Icons.favorite);
-
-  @override
-  Widget buildContent() {
-    return const AnimeFavoritePage();
-  }
-
-  @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return Container();
-  }
-}
-
-class ScheduleNavItem extends IconItem {
-  @override
-  String get label => "Schedule";
-
-  @override
-  Icon get icon => const Icon(Icons.calendar_month_outlined);
-
-  @override
-  Icon get selectedIcon => const Icon(Icons.calendar_month);
-
-  @override
-  Widget buildContent() {
-    return AnimeSchedulePage(page: this);
-  }
-
-  @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return IconButton(
-      onPressed: () {
-        Navigator.pushNamed(context, 'schedule-query');
       },
       icon: const Icon(Icons.sort),
     );

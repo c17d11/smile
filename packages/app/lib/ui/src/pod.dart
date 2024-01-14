@@ -1,7 +1,7 @@
 import 'package:app/controller/src/controller/anime_collection_controller.dart';
 import 'package:app/controller/src/controller/anime_collection_state_controller.dart';
 import 'package:app/ui/src/favorite/favorite_state.dart';
-import 'package:app/controller/src/controller/anime_schedule_state_controller.dart';
+import 'package:app/ui/src/schedule/schedule_state.dart';
 import 'package:app/controller/src/controller/anime_search_state_controller.dart';
 import 'package:app/controller/src/controller/genre_controller.dart';
 import 'package:app/controller/src/controller/producer_controller.dart';
@@ -111,10 +111,6 @@ final genrePod =
 final tagPod =
     StateNotifierProvider<TagController, AsyncValue<List<Tag>>>((ref) {
   Database db = ref.watch(databaseUpdatePod);
-  ref.watch(searchChangePod);
-  ref.watch(scheduleChangePod);
-  ref.watch(favoriteChangePod);
-  ref.watch(collectionChangePod);
   TagController controller = TagController(db);
   controller.get();
   return controller;

@@ -1,6 +1,6 @@
 import 'package:app/controller/src/controller/anime_collection_state_controller.dart';
 import 'package:app/ui/src/favorite/favorite_state.dart';
-import 'package:app/controller/src/controller/anime_schedule_state_controller.dart';
+import 'package:app/ui/src/schedule/schedule_state.dart';
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
@@ -49,32 +49,12 @@ class AnimeSearchStateController
       // TODO: Database error
     }
   }
-
-  Future<void> update(AnimeResponseIntern res) async {
-    try {
-      IsarAnimeResponse updated = await _database.insertAnimeResponse(res);
-      if (!mounted) return;
-
-      state = AsyncValue.data(updated);
-      ref.read(searchChangePod.notifier).state =
-          (ref.read(searchChangePod.notifier).state + 1) % 10;
-    } on JikanApiException catch (e, stacktrace) {
-      state = AsyncError(e, stacktrace);
-
-      // TODO: Database error
-    }
-  }
 }
-
-final searchChangePod = StateProvider((ref) => 1);
 
 final animeSearch = StateNotifierProvider.family.autoDispose<
     AnimeSearchStateController,
     AsyncValue<IsarAnimeResponse>,
     AnimeQueryIntern>((ref, arg) {
-  ref.watch(scheduleChangePod);
-  ref.watch(favoriteChangePod);
-  ref.watch(collectionChangePod);
   AnimeSearchStateController controller = AnimeSearchStateController(ref);
   controller.get(arg);
   return controller;
