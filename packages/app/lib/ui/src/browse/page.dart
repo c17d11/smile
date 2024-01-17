@@ -1,5 +1,6 @@
 import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/ui/src/browse/response.dart';
+import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,6 +11,7 @@ class BrowsePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     AnimeQueryIntern query = ref.watch(animeQueryPod);
+    ref.watch(pageIndexPod);
 
     return Scaffold(
       body: BrowseList(

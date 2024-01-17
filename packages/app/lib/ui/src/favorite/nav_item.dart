@@ -15,7 +15,7 @@ class FavoriteNavItem extends IconItem {
 
   @override
   Widget buildContent(WidgetRef ref) {
-    return const FavoritePage();
+    return const FavoriteList();
   }
 
   @override

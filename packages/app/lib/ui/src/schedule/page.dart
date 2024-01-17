@@ -1,4 +1,5 @@
 import 'package:app/controller/src/object/schedule_query_intern.dart';
+import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/schedule/response.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class SchedulePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ScheduleQueryIntern query = ref.watch(scheduleQueryPod);
+    ref.watch(pageIndexPod);
 
     return ScheduleList(
       initQuery: query..day = ScheduleMonday(),

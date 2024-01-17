@@ -1,6 +1,7 @@
 import 'package:app/controller/src/object/collection_query_intern.dart';
 import 'package:app/ui/src/collections/response.dart';
 import 'package:app/ui/src/collections/state.dart';
+import 'package:app/ui/src/home.dart';
 import 'package:app/ui/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,6 +12,7 @@ class CollectionPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ret = ref.watch(collectionNames);
+    ref.watch(pageIndexPod);
 
     return ret.when(
         loading: () => const Center(child: CircularProgressIndicator()),
