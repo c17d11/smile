@@ -72,9 +72,6 @@ class CollectionsNavItem extends IconItem {
               if (value != null) {
                 await ref.read(tagPod.notifier).insertTags([Tag(value, 0)]);
                 ref.invalidate(pagePod);
-                ref.invalidate(pageIndexPod);
-                // ref.invalidate(collectionNames);
-                // setState(() {});
               }
             }),
         child: Text("New collection"));
