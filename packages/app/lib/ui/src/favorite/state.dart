@@ -20,7 +20,9 @@ class FavoriteStateNotifier
     int pageCount = _database.countFavoriteAnimePages(favoriteCount);
 
     IsarAnimeResponse res = IsarAnimeResponse(q: "favorites");
-    res.data = favorites;
+    res.data = favorites
+        .map((e) => e..tags = e.isarTags.map((e) => e.toTag()).toList())
+        .toList();
     res.pagination = Pagination()
       ..currentPage = page
       ..hasNextPage = false
