@@ -39,9 +39,6 @@ class CollectionResponse extends ConsumerWidget {
       error: (error, stackTrace) => SliverFillRemaining(
           child: Center(child: Text("Error", style: AppTextStyle.small))),
       data: (res) {
-        String currentPage = res.pagination?.currentPage.toString() ?? "";
-        String lastPage = res.pagination?.lastVisiblePage.toString() ?? "";
-
         onDone();
 
         return MultiSliver(
