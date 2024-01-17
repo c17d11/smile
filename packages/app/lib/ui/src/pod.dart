@@ -1,8 +1,3 @@
-import 'package:app/controller/src/controller/anime_collection_controller.dart';
-import 'package:app/controller/src/controller/anime_collection_state_controller.dart';
-import 'package:app/ui/src/favorite/state.dart';
-import 'package:app/ui/src/schedule/state.dart';
-import 'package:app/ui/src/browse/state.dart';
 import 'package:app/controller/src/controller/genre_controller.dart';
 import 'package:app/controller/src/controller/producer_controller.dart';
 import 'package:app/controller/src/controller/producer_search_controller.dart';
@@ -15,15 +10,13 @@ import 'package:app/controller/src/object/settings_intern.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
-import 'package:app/database/src/isar/collection/isar_anime_response.dart';
-import 'package:app/database/src/populate_database.dart';
+import 'package:app/database/src/isar/collection/isar_tag.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:tuple/tuple.dart';
 
 final depencyInjectorPod = Provider((ref) => Injector()..setup());
 
@@ -123,10 +116,10 @@ final animeControllerPod =
   return AnimeController(db, api);
 });
 
-final animeQueryPod = StateNotifierProvider.family<AnimeQueryNotifier,
-    AnimeQueryIntern, IconItem>((ref, arg) {
+final animeQueryPod =
+    StateNotifierProvider<AnimeQueryNotifier, AnimeQueryIntern>((ref) {
   Database db = ref.watch(databasePod);
-  final notifier = AnimeQueryNotifier(arg.label, db);
+  final notifier = AnimeQueryNotifier(db);
   notifier.load();
   return notifier;
 });

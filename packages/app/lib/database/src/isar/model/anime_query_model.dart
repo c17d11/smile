@@ -11,10 +11,10 @@ class IsarAnimeQueryModel extends IsarModel implements AnimeQueryModel {
   IsarAnimeQueryModel(super.db, {required super.expirationHours});
 
   @override
-  Future<AnimeQueryIntern?> getAnimeQuery(String page) async {
+  Future<AnimeQueryIntern?> getAnimeQuery() async {
     IsarAnimeQuery? query;
     await read(() async {
-      query = await db.isarAnimeQuerys.filter().pageUiEqualTo(page).findFirst();
+      query = await db.isarAnimeQuerys.where().findFirst();
     });
     query?.type = query?.isarType;
     query?.rating = query?.isarRating;
@@ -29,8 +29,8 @@ class IsarAnimeQueryModel extends IsarModel implements AnimeQueryModel {
   }
 
   @override
-  Future<void> updateAnimeQuery(String page, AnimeQueryIntern query) async {
-    IsarAnimeQuery isarQuery = IsarAnimeQuery.from(page, query);
+  Future<void> updateAnimeQuery(AnimeQueryIntern query) async {
+    IsarAnimeQuery isarQuery = IsarAnimeQuery.from(query);
 
     List<IsarProducer> producers =
         isarQuery.producers?.map((e) => IsarProducer.from(e)).toList() ?? [];

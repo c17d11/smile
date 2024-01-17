@@ -60,7 +60,7 @@ class _FavoritePageState extends ConsumerState<FavoritePage> {
           controller: _scroll,
           shrinkWrap: true,
           physics: const AlwaysScrollableScrollPhysics(),
-          slivers: <Widget>[...pages],
+          slivers: pages,
         ),
       ),
     );

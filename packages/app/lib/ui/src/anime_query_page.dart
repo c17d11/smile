@@ -186,7 +186,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
   Widget build(BuildContext context) {
     final page = ModalRoute.of(context)?.settings.arguments as IconItem;
 
-    final query = ref.read(animeQueryPod(page));
+    final query = ref.read(animeQueryPod);
     AnimeQueryIntern localQuery = AnimeQueryIntern.from(query);
 
     return Scaffold(
@@ -241,7 +241,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
                   ),
                 ),
                 onPressed: () {
-                  ref.read(animeQueryPod(page).notifier).set(localQuery);
+                  ref.read(animeQueryPod.notifier).set(localQuery);
                   Navigator.pop(context);
                 },
                 child: Text("APPLY",

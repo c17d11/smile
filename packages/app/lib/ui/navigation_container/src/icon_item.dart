@@ -8,7 +8,7 @@ abstract class IconItem extends NavItem {
   Icon get icon;
   Icon get selectedIcon;
 
-  Widget buildContent();
+  Widget buildContent(WidgetRef ref);
 
   Widget buildAppBarWidget(BuildContext context, WidgetRef ref);
 

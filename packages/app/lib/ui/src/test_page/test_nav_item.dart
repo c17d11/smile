@@ -14,7 +14,7 @@ class TestNavItem extends IconItem {
   Icon get selectedIcon => const Icon(Icons.collections_bookmark);
 
   @override
-  Widget buildContent() {
+  Widget buildContent(WidgetRef ref) {
     return const TestPage();
   }
 

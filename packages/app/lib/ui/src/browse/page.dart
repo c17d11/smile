@@ -1,22 +1,18 @@
 import 'package:app/controller/src/object/anime_query_intern.dart';
-import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/browse/response.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BrowsePage extends ConsumerWidget {
-  final IconItem page;
-
-  const BrowsePage({required this.page, super.key});
+  const BrowsePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AnimeQueryIntern query = ref.watch(animeQueryPod(page));
+    AnimeQueryIntern query = ref.watch(animeQueryPod);
 
     return Scaffold(
       body: BrowseList(
-        page: page,
         initQuery: query,
         onNextPageQuery: (query) => AnimeQueryIntern.nextPage(query),
         onLastQuery: (query) => null,
@@ -27,13 +23,11 @@ class BrowsePage extends ConsumerWidget {
 }
 
 class BrowseList extends StatefulWidget {
-  final IconItem page;
   final AnimeQueryIntern initQuery;
   final Function(AnimeQueryIntern) onNextPageQuery;
   final Function(AnimeQueryIntern) onLastQuery;
 
   const BrowseList({
-    required this.page,
     required this.initQuery,
     required this.onNextPageQuery,
     required this.onLastQuery,

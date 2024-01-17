@@ -1,5 +1,6 @@
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/browse/nav_item.dart';
+import 'package:app/ui/src/collections/nav_item.dart';
 import 'package:app/ui/src/favorite/nav_item.dart';
 import 'package:app/ui/src/nav_items.dart';
 import 'package:app/ui/src/schedule/nav_item.dart';
@@ -136,7 +137,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           ],
         ),
       ),
-      body: page != null ? page.buildContent() : null,
+      body: page != null ? page.buildContent(ref) : null,
       bottomNavigationBar: (group?.pages.length ?? 0) > 1
           ? NavigationBar(
               backgroundColor: Theme.of(context).colorScheme.background,

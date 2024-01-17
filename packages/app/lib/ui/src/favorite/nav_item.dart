@@ -14,7 +14,7 @@ class FavoriteNavItem extends IconItem {
   Icon get selectedIcon => const Icon(Icons.favorite);
 
   @override
-  Widget buildContent() {
+  Widget buildContent(WidgetRef ref) {
     return const FavoritePage();
   }
 

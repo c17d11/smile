@@ -14,8 +14,8 @@ class ScheduleNavItem extends IconItem {
   Icon get selectedIcon => const Icon(Icons.calendar_month);
 
   @override
-  Widget buildContent() {
-    return SchedulePage(page: this);
+  Widget buildContent(WidgetRef ref) {
+    return const SchedulePage();
   }
 
   @override

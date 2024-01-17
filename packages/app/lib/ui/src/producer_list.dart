@@ -394,10 +394,8 @@ class ProducerPortrait extends ConsumerWidget {
                             children: [
                               GestureDetector(
                                 onTap: () async {
-                                  await ref
-                                      .read(animeQueryPod(BrowseNavItem())
-                                          .notifier)
-                                      .set(AnimeQueryIntern()
+                                  await ref.read(animeQueryPod.notifier).set(
+                                      AnimeQueryIntern()
                                         ..producers = [
                                           ProducerIntern.to(producer!)
                                         ]);

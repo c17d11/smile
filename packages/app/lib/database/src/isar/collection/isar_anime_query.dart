@@ -22,7 +22,7 @@ class IsarAnimeQuery extends AnimeQueryIntern {
   Id? id;
 
   @Index(unique: true, replace: true)
-  late String pageUi;
+  String pageUi = "unique";
 
   @Enumerated(EnumType.name)
   AnimeType? isarType;
@@ -45,7 +45,7 @@ class IsarAnimeQuery extends AnimeQueryIntern {
 
   final isarTag = IsarLink<IsarTag>();
 
-  static IsarAnimeQuery from(String pageUi, AnimeQueryIntern q) {
+  static IsarAnimeQuery from(AnimeQueryIntern q) {
     IsarAnimeQuery query = IsarAnimeQuery()
       ..searchTerm = q.searchTerm
       ..isarType = q.type
@@ -63,8 +63,7 @@ class IsarAnimeQuery extends AnimeQueryIntern {
       ..isarOrder = q.orderBy
       ..isarSort = q.sort
       ..isFavorite = q.isFavorite
-      ..tag = q.tag
-      ..pageUi = pageUi;
+      ..tag = q.tag;
     return query;
   }
 }

@@ -1,7 +1,7 @@
 import 'package:app/ui/src/anime_details.dart';
 import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/anime_query_page.dart';
-import 'package:app/ui/src/collection_page.dart';
+import 'package:app/ui/src/collections/page.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/schedule_query_page.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +61,7 @@ class _AppState extends ConsumerState<App> {
           'anime-details': (context) => const AnimeDetails(),
           'anime-query': (context) => const AnimeQueryPage(),
           'schedule-query': (context) => const ScheduleQueryPage(),
-          'collection': (context) => const AnimeCollectionPage(),
+          'collection': (context) => const CollectionPage(),
         },
       ),
       error: (err, stack) => Text('Error: $err'),

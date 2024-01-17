@@ -1,4 +1,5 @@
 import 'package:app/controller/src/object/anime_query_intern.dart';
+import 'package:app/controller/src/object/collection_query_intern.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/src/object/producer_response_intern.dart';
 import 'package:app/controller/src/object/schedule_query_intern.dart';
@@ -7,6 +8,7 @@ import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/database/src/isar/collection/isar_anime_response.dart';
+import 'package:app/database/src/isar/collection/isar_tag.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 abstract interface class AnimeModel {
@@ -14,9 +16,7 @@ abstract interface class AnimeModel {
   Future<IsarAnime?> getAnime(int malId);
   Future<List<IsarAnime>> getAllAnimes();
   Future<List<IsarAnime>> getFavoriteAnimes(int page);
-  Future<List<IsarAnime>> getCollection(Tag tag, int page);
   Future<int> countFavoriteAnimes();
-  Future<int> countCollectionAnimes(Tag tag);
   int countFavoriteAnimePages(int favoriteAnimeCount);
   Future<bool> deleteAnime(int malId);
   AnimeIntern createAnimeIntern(Anime anime);
@@ -52,8 +52,8 @@ abstract interface class GenreModel {
 }
 
 abstract interface class AnimeQueryModel {
-  Future<void> updateAnimeQuery(String page, AnimeQueryIntern query);
-  Future<AnimeQueryIntern?> getAnimeQuery(String page);
+  Future<void> updateAnimeQuery(AnimeQueryIntern query);
+  Future<AnimeQueryIntern?> getAnimeQuery();
 }
 
 abstract interface class ProducerQueryModel {
@@ -73,7 +73,8 @@ abstract interface class SettingsModel {
 
 abstract interface class TagModel {
   Future<void> insertTags(List<Tag> tags);
-  Future<List<Tag>> getAllTags();
+  Future<List<IsarTag>> getAllTags();
+  Future<IsarTag?> getTag(String tagName);
   Future<bool> deleteTag(Tag tag);
 }
 

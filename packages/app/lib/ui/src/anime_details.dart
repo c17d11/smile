@@ -1,6 +1,7 @@
 import 'dart:ui';
 
-import 'package:app/controller/src/controller/anime_collection_state_controller.dart';
+import 'package:app/database/src/isar/collection/isar_tag.dart';
+import 'package:app/ui/src/collections/state.dart';
 import 'package:app/ui/src/favorite/state.dart';
 import 'package:app/ui/src/schedule/state.dart';
 import 'package:app/ui/src/browse/state.dart';
