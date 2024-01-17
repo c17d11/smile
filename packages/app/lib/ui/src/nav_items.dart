@@ -5,84 +5,13 @@ import 'package:app/ui/src/genre_list.dart';
 import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/browse/page.dart';
 import 'package:app/ui/src/schedule/page.dart';
-import 'package:app/ui/src/collection_page.dart';
+import 'package:app/ui/src/collections/page.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/producer_list.dart';
 import 'package:app/ui/src/settings_page.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-class CollectionsNavItem extends IconItem {
-  @override
-  String get label => "Collections";
-
-  @override
-  Icon get icon => const Icon(Icons.collections_bookmark_outlined);
-
-  @override
-  Icon get selectedIcon => const Icon(Icons.collections_bookmark);
-
-  @override
-  Widget buildContent() {
-    return CollectionPage(page: this);
-  }
-
-  @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return TextButton(
-        onPressed: () => showDialog(
-              context: context,
-              builder: (context) {
-                TextEditingController controller = TextEditingController();
-                return WillPopScope(
-                  onWillPop: () async {
-                    return true;
-                  },
-                  child: AlertDialog(
-                    title: TextWindow("Enter tag name"),
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                    content: StatefulBuilder(
-                        builder: (BuildContext context, StateSetter setState) {
-                      return ConstrainedBox(
-                        constraints: BoxConstraints(
-                          maxHeight: MediaQuery.of(context).size.height * 0.8,
-                          maxWidth: MediaQuery.of(context).size.width * 0.5,
-                        ),
-                        child: SizedBox(
-                            height: 50,
-                            width: 300,
-                            child: TextField(controller: controller)),
-                      );
-                    }),
-                    actions: <Widget>[
-                      TextButton(
-                        child: const Text('Cancel'),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      TextButton(
-                        child: const Text('Apply'),
-                        onPressed: () {
-                          Navigator.pop(context, controller.text);
-                        },
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ).then((value) async {
-              if (value != null) {
-                await ref.read(tagPod.notifier).insertTags([Tag(value, 0)]);
-                ref.invalidate(pagePod);
-                // setState(() {});
-              }
-            }),
-        child: Text("New collection"));
-  }
-}
 
 class SettingsNavItem extends IconItem {
   @override
@@ -95,7 +24,7 @@ class SettingsNavItem extends IconItem {
   Icon get selectedIcon => const Icon(Icons.settings);
 
   @override
-  Widget buildContent() {
+  Widget buildContent(WidgetRef ref) {
     return const SettingsPage();
   }
 
@@ -116,7 +45,7 @@ class ProducersNavItem extends IconItem {
   Icon get selectedIcon => const Icon(Icons.business);
 
   @override
-  Widget buildContent() {
+  Widget buildContent(WidgetRef ref) {
     return ProducerListPage(page: this);
   }
 
@@ -137,7 +66,7 @@ class GenresNavItem extends IconItem {
   Icon get selectedIcon => const Icon(Icons.label);
 
   @override
-  Widget buildContent() {
+  Widget buildContent(WidgetRef ref) {
     return GenreListPage();
   }
 

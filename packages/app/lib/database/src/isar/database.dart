@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:app/controller/src/object/anime_query_intern.dart';
+import 'package:app/controller/src/object/collection_query_intern.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/src/object/producer_response_intern.dart';
 import 'package:app/controller/src/object/schedule_query_intern.dart';
@@ -25,6 +26,7 @@ import 'package:app/database/src/isar/model/producer_response_model.dart';
 import 'package:app/database/src/isar/model/schedule_query_model.dart';
 import 'package:app/database/src/isar/model/settings_model.dart';
 import 'package:app/database/src/isar/model/tag_model.dart';
+import 'package:app/ui/src/collections/state.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'package:path/path.dart';
@@ -168,18 +170,13 @@ class IsarDatabase implements Database {
   }
 
   @override
-  Future<List<IsarAnime>> getCollection(Tag tag, int page) async {
-    return await animeModel.getCollection(tag, page);
+  Future<List<IsarAnime>> getCollection(CollectionQueryIntern query) async {
+    return await animeModel.getCollection(query);
   }
 
   @override
   Future<int> countFavoriteAnimes() async {
     return await animeModel.countFavoriteAnimes();
-  }
-
-  @override
-  Future<int> countCollectionAnimes(Tag tag) async {
-    return await animeModel.countCollectionAnimes(tag);
   }
 
   @override
@@ -268,13 +265,13 @@ class IsarDatabase implements Database {
   }
 
   @override
-  Future<AnimeQueryIntern?> getAnimeQuery(String page) async {
-    return await animeQueryModel.getAnimeQuery(page);
+  Future<AnimeQueryIntern?> getAnimeQuery() async {
+    return await animeQueryModel.getAnimeQuery();
   }
 
   @override
-  Future<void> updateAnimeQuery(String page, AnimeQueryIntern query) async {
-    await animeQueryModel.updateAnimeQuery(page, query);
+  Future<void> updateAnimeQuery(AnimeQueryIntern query) async {
+    await animeQueryModel.updateAnimeQuery(query);
   }
 
   @override
@@ -315,8 +312,13 @@ class IsarDatabase implements Database {
   }
 
   @override
-  Future<List<Tag>> getAllTags() async {
+  Future<List<IsarTag>> getAllTags() async {
     return await tagModel.getAllTags();
+  }
+
+  @override
+  Future<IsarTag?> getTag(String tagName) async {
+    return await tagModel.getTag(tagName);
   }
 
   @override

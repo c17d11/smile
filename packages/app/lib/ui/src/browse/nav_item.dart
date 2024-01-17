@@ -14,8 +14,8 @@ class BrowseNavItem extends IconItem {
   Icon get selectedIcon => const Icon(Icons.home);
 
   @override
-  Widget buildContent() {
-    return BrowsePage(page: this);
+  Widget buildContent(WidgetRef ref) {
+    return const BrowsePage();
   }
 
   @override

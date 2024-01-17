@@ -36,7 +36,7 @@ class GenreListPage extends ConsumerWidget {
                 tileColor: Theme.of(context).primaryColor,
                 onTap: () async {
                   await ref
-                      .read(animeQueryPod(BrowseNavItem()).notifier)
+                      .read(animeQueryPod.notifier)
                       .set(AnimeQueryIntern()..genresInclude = [genres[index]]);
                   ref.read(pageGroupPod.notifier).state = AnimeGroup();
                   ref.read(pageIndexPod.notifier).state = 0;

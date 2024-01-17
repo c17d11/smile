@@ -24,12 +24,21 @@ class IsarTagModel extends IsarModel implements TagModel {
   }
 
   @override
-  Future<List<Tag>> getAllTags() async {
+  Future<List<IsarTag>> getAllTags() async {
     late List<IsarTag> tags;
     await read(() async {
       tags = await db.isarTags.where().findAll();
     });
-    return tags.map((e) => e.toTag()).toList();
+    return tags;
+  }
+
+  @override
+  Future<IsarTag?> getTag(String tagName) async {
+    late IsarTag? tag;
+    await read(() async {
+      tag = await db.isarTags.filter().nameEqualTo(tagName).findFirst();
+    });
+    return tag;
   }
 
   @override

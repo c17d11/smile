@@ -1,5 +1,4 @@
 import 'package:app/controller/src/object/schedule_query_intern.dart';
-import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/schedule/response.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class SchedulePage extends ConsumerWidget {
-  final IconItem page;
-
-  const SchedulePage({required this.page, super.key});
+  const SchedulePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

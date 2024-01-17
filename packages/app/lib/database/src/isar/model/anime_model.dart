@@ -1,3 +1,4 @@
+import 'package:app/controller/src/object/collection_query_intern.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
@@ -105,18 +106,32 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
   }
 
   @override
-  Future<List<IsarAnime>> getCollection(Tag tag, int page) async {
+  Future<List<IsarAnime>> getCollection(CollectionQueryIntern query) async {
     late List<IsarAnime> isarAnimes;
     await read(() async {
       isarAnimes = await db.isarAnimes
           .filter()
-          .isarTags((q) => q.nameEqualTo(tag.name))
-          .offset(10 * (page - 1))
+          .isarTags((q) => q.nameEqualTo(query.collectionName ?? ''))
+          .offset(10 * ((query.page ?? 1) - 1))
           .limit(10)
           .findAll();
     });
     return isarAnimes;
   }
+
+  // @override
+  // Future<List<String>> getCollectionNames() async {
+  //   late List<IsarAnime> isarAnimes;
+
+  //   await read(() async {
+  //     isarAnimes = await db.isarAnimes.filter().isarTagsIsNotEmpty().findAll();
+  //   });
+  //   return isarAnimes
+  //       .map((e) => e.tags!.map((e) => e.toString()))
+  //       .expand((element) => element)
+  //       .toSet()
+  //       .toList();
+  // }
 
   @override
   Future<int> countFavoriteAnimes() async {
@@ -126,18 +141,6 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
           await db.isarAnimes.filter().isFavoriteEqualTo(true).count();
     });
     return favoriteCount;
-  }
-
-  @override
-  Future<int> countCollectionAnimes(Tag tag) async {
-    late int animeCount;
-    await read(() async {
-      animeCount = await db.isarAnimes
-          .filter()
-          .isarTags((q) => q.nameEqualTo(tag.name))
-          .count();
-    });
-    return animeCount;
   }
 
   @override
