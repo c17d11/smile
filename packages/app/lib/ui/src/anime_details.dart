@@ -1,12 +1,8 @@
 import 'dart:ui';
 
-import 'package:app/database/src/isar/collection/isar_tag.dart';
-import 'package:app/ui/src/collections/state.dart';
-import 'package:app/ui/src/favorite/state.dart';
-import 'package:app/ui/src/schedule/state.dart';
-import 'package:app/ui/src/browse/state.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/database/src/isar/collection/isar_anime.dart';
+import 'package:app/database/src/isar/collection/isar_tag.dart';
 import 'package:app/ui/selection_widget/src/multiple_select.dart';
 import 'package:app/ui/src/like_select.dart';
 import 'package:app/ui/src/pod.dart';
@@ -56,7 +52,7 @@ class CustomDisplayRow extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w800,
               ),
@@ -85,24 +81,12 @@ class AnimeDetails extends ConsumerStatefulWidget {
 
 class _AnimeDetailsState extends ConsumerState<AnimeDetails>
     with SingleTickerProviderStateMixin {
-  IsarAnime? localAnime;
-  final TextEditingController _controller = TextEditingController();
+  IsarAnime? anime;
 
-  @override
-  void initState() {
-    super.initState();
-    _controller.addListener(() {
-      if (_controller.text.isNotEmpty && localAnime != null) {
-        localAnime!.personalNotes = _controller.text;
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  bool? isFavorite;
+  double? personalScore;
+  List<Tag>? tags;
+  String? personalNotes;
 
   Future<List<Tag>> loadTags() async {
     await ref.read(tagPod.notifier).get();
@@ -127,7 +111,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "TYPE",
                           style: TextStyle(
                             fontSize: 14,
@@ -137,7 +121,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                           child: Text(
-                            "${localAnime!.type ?? '-'}",
+                            anime!.type ?? '-',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -154,7 +138,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "YEAR",
                           style: TextStyle(
                             fontSize: 14,
@@ -164,7 +148,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                           child: Text(
-                            "${localAnime!.year ?? '-'}",
+                            "${anime!.year ?? '-'}",
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -181,7 +165,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "RATING",
                           style: TextStyle(
                             fontSize: 14,
@@ -191,7 +175,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                           child: Text(
-                            "${localAnime!.score ?? '-'}",
+                            "${anime!.score ?? '-'}",
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -208,7 +192,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "EPOSODES",
                           style: TextStyle(
                             fontSize: 14,
@@ -218,7 +202,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                           child: Text(
-                            "${localAnime!.episodes ?? '-'}",
+                            "${anime!.episodes ?? '-'}",
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -235,7 +219,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "STATUS",
                           style: TextStyle(
                             fontSize: 14,
@@ -245,7 +229,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                           child: Text(
-                            "${localAnime!.status ?? '-'}",
+                            anime!.status ?? '-',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -262,7 +246,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "RATING",
                           style: TextStyle(
                             fontSize: 14,
@@ -272,7 +256,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                           child: Text(
-                            "${localAnime!.rating ?? '-'}",
+                            anime!.rating ?? '-',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -293,7 +277,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
           CustomDisplayRow(
               width: MediaQuery.of(context).size.width,
               title: "PRODUCERS",
-              items: localAnime!.producers
+              items: anime!.producers
                       ?.map<String>((e) => e.title ?? "")
                       .where((e) => e != "")
                       .toList() ??
@@ -302,7 +286,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
           CustomDisplayRow(
               width: MediaQuery.of(context).size.width,
               title: "GENRES",
-              items: localAnime!.genres
+              items: anime!.genres
                       ?.map<String>((e) => e.name ?? "")
                       .where((e) => e != "")
                       .toList() ??
@@ -324,7 +308,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  '${localAnime!.synopsis ?? '-'}',
+                  anime!.synopsis ?? '-',
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
@@ -351,7 +335,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  '${localAnime!.background ?? '-'}',
+                  anime!.background ?? '-',
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
@@ -379,32 +363,30 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
               children: [
                 LikeSelect(
                   "Favorite",
-                  localAnime!.isFavorite ?? false,
+                  isFavorite ?? false,
                   onChanged: (bool b) => setState(() {
-                    localAnime!.isFavorite = b;
+                    isFavorite = b;
                   }),
                 ),
                 SliderSelect(
                   "Personal score",
                   null,
-                  localAnime?.personalScore ?? 0,
+                  personalScore ?? 0,
                   stepSize: 0.5,
                   showInts: false,
                   min: 0,
                   max: 10,
-                  onChanged: (value) {
-                    if (value != null && localAnime != null) {
-                      localAnime!.personalScore = value;
-                    }
-                  },
+                  onChanged: (value) => setState(() {
+                    personalScore = value;
+                  }),
                 ),
                 MultiSelect<Tag>(
                   title: 'Tags',
                   loadOptions: loadTags,
-                  initialSelected: localAnime!.tags,
-                  onChangedInclude: (items) {
-                    localAnime!.tags = items.map((e) => e as Tag).toList();
-                  },
+                  initialSelected: tags,
+                  onChangedInclude: (items) => setState(() {
+                    tags = items.map((e) => e as Tag).toList();
+                  }),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 20, 10, 10),
@@ -418,32 +400,18 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                  child: TextField(
-                    controller: _controller,
+                  child: CustomTextField(
+                    hint: "Write your notes here...",
                     maxLines: null,
                     keyboardType: TextInputType.multiline,
-                    decoration: InputDecoration(
-                      isDense: true,
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).colorScheme.onBackground,
-                            width: 2),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).colorScheme.primary,
-                            width: 2),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(
-                            color: Theme.of(context).colorScheme.onBackground,
-                            width: 2),
-                      ),
-                      hintText: "...",
-                    ),
+                    initialValue: personalNotes,
+                    onChanged: (value) {
+                      if (value != personalNotes) {
+                        setState(() {
+                          personalNotes = value;
+                        });
+                      }
+                    },
                   ),
                 ),
               ],
@@ -459,10 +427,12 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
     final animeArgs =
         ModalRoute.of(context)?.settings.arguments as AnimeDetailsArgs;
 
-    localAnime = animeArgs.anime;
-    if (localAnime!.personalNotes != null) {
-      _controller.text = localAnime!.personalNotes!;
-    }
+    anime = animeArgs.anime;
+    isFavorite ??= anime?.isFavorite;
+    personalScore ??= anime?.personalScore;
+    tags ??= anime?.tags;
+    personalNotes ??= anime?.personalNotes;
+
     const expandedBarHeight = 500.0;
 
     List<Tuple2<String, Widget>> tabs = [
@@ -483,7 +453,13 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                   SliverAppBar(
                     leading: BackButton(
                       onPressed: () {
-                        Navigator.pop(context, localAnime);
+                        Navigator.pop(
+                            context,
+                            anime!
+                              ..isFavorite = isFavorite
+                              ..personalScore = personalScore
+                              ..tags = tags
+                              ..personalNotes = personalNotes);
                       },
                     ),
                     pinned: true,
@@ -514,7 +490,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                                         (30 - 16),
                               ),
                               child: Text(
-                                "${localAnime!.title}",
+                                "${anime!.title}",
                                 maxLines: 1 +
                                     ((top - kToolbarHeight) /
                                                 (expandedBarHeight -
@@ -522,7 +498,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                                             .round() *
                                         (3 - 1),
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -542,7 +518,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                   image: NetworkImage(
-                                    localAnime!.imageUrl ?? '',
+                                    anime!.imageUrl ?? '',
                                   ),
                                   fit: BoxFit.cover,
                                 )),
@@ -566,7 +542,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                                       tag: animeArgs.heroTag,
                                       child: FadeInImage.assetNetwork(
                                         placeholder: 'assets/coffee.webp',
-                                        image: localAnime!.imageUrl ?? '',
+                                        image: anime!.imageUrl ?? '',
                                         alignment: Alignment.center,
                                       ),
                                     ),
