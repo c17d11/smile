@@ -8,7 +8,32 @@ Tasks to be done at some point.
 - [ ] Style app
 	- [ ] Use dark mode throughout the whole app
 
+
+### Device testing 2024-01-17
+- [ ] Anime portrait too small. Image overflow and subtitle too short
+- [ ] Reload collection page when new created
+- [ ] Anime detail title text somtimes overlaps with image. Make height dependent on image height
+- [ ] Clear notes in anime detail with 'x' at end of textfield
+- [ ] Geners says null animes
+- [ ] Make it clearer that clickling on genres will navigate
+- [ ] About/info page
+- [ ] Chipitem not clear if selected or not
+- [ ] Nicer apply button for query and settings
+- [ ] Make tabbar in anime details opaque
+- [ ] Anime not save when navigating back from details with device button
+- [ ] End of schedule other page 2 of 1. Should not be possible
+- [ ] Instance if jikan exception when searching for "map" in producers
+- [ ] Producer details larger text
+- [ ] Producer anime query search overflowing. When keyboard is up
+- [ ] Delete collections
+- [ ] Splash screen
+- [ ] Database resets after restarting app
+
+
 ### Future
+- [ ] Custom sort order of collections
+- [ ] Custom anime portrait size
+- [ ] Error log page
 - [ ] Check if other image from api response should be used
 - [ ] Producer page
 	- [ ] Navigate from anime details to producer details page
