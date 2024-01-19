@@ -13,7 +13,6 @@ Tasks to be done at some point.
 - [ ] Anime portrait too small. Image overflow and subtitle too short
 - [ ] Reload collection page when new created
 - [ ] Anime detail title text somtimes overlaps with image. Make height dependent on image height
-- [ ] Clear notes in anime detail with 'x' at end of textfield
 - [ ] Geners says null animes
 - [ ] Make it clearer that clickling on genres will navigate
 - [ ] About/info page
@@ -56,6 +55,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] Clear notes in anime detail with 'x' at end of textfield
 - [x] Hero animation between list and details
 - [x] Producer popup overflowing 
 - [x] Ref disposed when in detail view for too long
