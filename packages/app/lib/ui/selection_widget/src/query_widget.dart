@@ -28,6 +28,7 @@ class QueryWidget extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
               child: CustomTextField(
+                hint: "Search anime title...",
                 initialValue: initialValue,
                 onChanged: onChanged,
               )),

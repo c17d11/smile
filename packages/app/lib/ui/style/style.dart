@@ -169,16 +169,22 @@ abstract class ActionIcon extends StatelessWidget {
 }
 
 class CustomTextField extends StatefulWidget {
+  final String? hint;
   final String? initialValue;
   final Function? onChanged;
   final String? customSuffixText;
   final Function(String)? onCustomSuffixPress;
+  final int? maxLines;
+  final TextInputType? keyboardType;
 
   const CustomTextField(
-      {this.initialValue,
+      {this.hint,
+      this.initialValue,
       this.onChanged,
       this.customSuffixText,
       this.onCustomSuffixPress,
+      this.maxLines = 1,
+      this.keyboardType,
       super.key});
 
   @override
@@ -215,9 +221,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: _controller,
+      maxLines: widget.maxLines,
+      keyboardType: widget.keyboardType,
       style: const TextStyle(fontSize: 12.0, fontStyle: FontStyle.italic),
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
+        hintText: widget.hint,
         suffixIcon: showReset
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -255,7 +264,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderSide: BorderSide(
               color: Theme.of(context).colorScheme.onBackground, width: 2),
         ),
-        hintText: "Enter title",
       ),
     );
   }

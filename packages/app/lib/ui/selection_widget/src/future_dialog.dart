@@ -46,6 +46,7 @@ class FutureDialog {
 
   Widget buildTextSearch(StateSetter setState) {
     return CustomTextField(
+      hint: "Search...",
       onChanged: (s) {
         setState(
           () {
