@@ -125,13 +125,15 @@ class FutureDialog {
     return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
       return wrapInBoxConstraints(
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            buildTextSearch(setState),
-            const SizedBox(height: 10),
-            buildOptionsList(setState)
-          ],
+        SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              buildTextSearch(setState),
+              const SizedBox(height: 10),
+              buildOptionsList(setState)
+            ],
+          ),
         ),
       );
     });

@@ -10,7 +10,6 @@ import 'package:app/controller/src/object/settings_intern.dart';
 import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/database_base.dart';
-import 'package:app/database/src/isar/collection/isar_tag.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/injector.dart';
 import 'package:flutter/material.dart';
