@@ -475,7 +475,7 @@ Future showProducerDetailsPopUp(
               Text(
                 "ESTABLISHED",
                 style: TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.w800,
                   color: _foregroundSecondary,
                 ),
@@ -483,7 +483,7 @@ Future showProducerDetailsPopUp(
               Text(
                 s.isNotEmpty ? s : '-',
                 style: TextStyle(
-                  fontSize: 10.0,
+                  fontSize: 14.0,
                   fontWeight: FontWeight.w800,
                   color: _foregroundThird,
                 ),
@@ -492,7 +492,7 @@ Future showProducerDetailsPopUp(
               Text(
                 "ANIMES",
                 style: TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.w800,
                   color: _foregroundSecondary,
                 ),
@@ -500,7 +500,7 @@ Future showProducerDetailsPopUp(
               Text(
                 producer.count != null ? "${producer.count} animes" : '-',
                 style: TextStyle(
-                  fontSize: 10.0,
+                  fontSize: 14.0,
                   fontWeight: FontWeight.w800,
                   color: _foregroundThird,
                 ),
@@ -509,7 +509,7 @@ Future showProducerDetailsPopUp(
               Text(
                 "ABOUT",
                 style: TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.w800,
                   color: _foregroundSecondary,
                 ),
@@ -517,7 +517,7 @@ Future showProducerDetailsPopUp(
               Text(
                 producer.about ?? '-',
                 style: TextStyle(
-                  fontSize: 10.0,
+                  fontSize: 14.0,
                   fontWeight: FontWeight.w800,
                   color: _foregroundThird,
                 ),

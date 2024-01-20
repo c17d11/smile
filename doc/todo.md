@@ -22,7 +22,6 @@ Tasks to be done at some point.
 - [ ] Anime not save when navigating back from details with device button
 - [ ] End of schedule other page 2 of 1. Should not be possible
 - [ ] Instance if jikan exception when searching for "map" in producers
-- [ ] Producer details larger text
 - [ ] Producer anime query search overflowing. When keyboard is up
 - [ ] Delete collections
 - [ ] Splash screen
@@ -55,6 +54,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] Producer details larger text
 - [x] Clear notes in anime detail with 'x' at end of textfield
 - [x] Hero animation between list and details
 - [x] Producer popup overflowing 
