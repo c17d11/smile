@@ -233,6 +233,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
                     buildOrderWidget(localQuery),
                     const SizedBox(height: 10),
                     buildSortWidget(localQuery),
+                    const SizedBox(height: 100),
                   ],
                 ),
               ),

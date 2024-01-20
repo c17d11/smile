@@ -189,6 +189,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     const TextDivider("Database"),
                     buildDatabaseCacheLimitWidget(localSettings),
                     buildStatistics(),
+                    const SizedBox(height: 100),
                   ],
                 ),
               ),

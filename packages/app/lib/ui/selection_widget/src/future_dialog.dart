@@ -114,7 +114,7 @@ class FutureDialog {
             ),
           )
         : const Padding(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
             child: Center(
               child: Text("No items"),
             ),
