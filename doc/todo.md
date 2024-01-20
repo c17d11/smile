@@ -10,7 +10,6 @@ Tasks to be done at some point.
 - [ ] testAnimeUpdatePod disposed sometimes after navigating back from anime details page
 
 ### Device testing 2024-01-17
-- [ ] Make it clearer that clickling on genres will navigate
 - [ ] About/info page
 - [ ] Chipitem not clear if selected or not
 - [ ] Nicer apply button for query and settings
@@ -49,6 +48,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] Make it clearer that clickling on genres will navigate
 - [x] Geners says null animes
 - [x] Anime detail title text somtimes overlaps with image. Make height dependent on image height
 - [x] Reload collection page when new created
