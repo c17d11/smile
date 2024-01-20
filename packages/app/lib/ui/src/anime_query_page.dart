@@ -190,70 +190,55 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     AnimeQueryIntern localQuery = AnimeQueryIntern.from(query);
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          ref.read(animeQueryPod.notifier).set(localQuery);
+          Navigator.pop(context);
+        },
+        label: const Text('Search'),
+        icon: const Icon(Icons.search),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
         title: const Text("Filter"),
       ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      buildSearchTermWidget(localQuery),
-                      const SizedBox(height: 10),
-                      buildProducerWidget(localQuery),
-                      const SizedBox(height: 10),
-                      buildGenreWidget(localQuery),
-                      const SizedBox(height: 10),
-                      buildAnimeStatusWidget(localQuery),
-                      const SizedBox(height: 10),
-                      buildAnimeRatingWidget(localQuery),
-                      const SizedBox(height: 10),
-                      buildAnimeTypeWidget(localQuery),
-                      const SizedBox(height: 10),
-                      buildScoreWidget(localQuery),
-                      const SizedBox(height: 10),
-                      buildYearWidget(localQuery),
-                      const SizedBox(height: 10),
-                      buildSfwWidget(localQuery),
-                      const SizedBox(height: 10),
-                      buildOrderWidget(localQuery),
-                      const SizedBox(height: 10),
-                      buildSortWidget(localQuery),
-                    ],
-                  ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    buildSearchTermWidget(localQuery),
+                    const SizedBox(height: 10),
+                    buildProducerWidget(localQuery),
+                    const SizedBox(height: 10),
+                    buildGenreWidget(localQuery),
+                    const SizedBox(height: 10),
+                    buildAnimeStatusWidget(localQuery),
+                    const SizedBox(height: 10),
+                    buildAnimeRatingWidget(localQuery),
+                    const SizedBox(height: 10),
+                    buildAnimeTypeWidget(localQuery),
+                    const SizedBox(height: 10),
+                    buildScoreWidget(localQuery),
+                    const SizedBox(height: 10),
+                    buildYearWidget(localQuery),
+                    const SizedBox(height: 10),
+                    buildSfwWidget(localQuery),
+                    const SizedBox(height: 10),
+                    buildOrderWidget(localQuery),
+                    const SizedBox(height: 10),
+                    buildSortWidget(localQuery),
+                  ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  minimumSize: const Size.fromHeight(50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                onPressed: () {
-                  ref.read(animeQueryPod.notifier).set(localQuery);
-                  Navigator.pop(context);
-                },
-                child: Text("APPLY",
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.background,
-                    )),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
