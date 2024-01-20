@@ -8,7 +8,6 @@ Tasks to be done at some point.
 - [ ] Style app
 	- [ ] Use dark mode throughout the whole app
 - [ ] testAnimeUpdatePod disposed sometimes after navigating back from anime details page
-- [ ] Move favorite button to GridTile header
 
 ### Device testing 2024-01-17
 - [ ] Reload collection page when new created
@@ -53,6 +52,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] Move favorite button to GridTile header
 - [x] Anime portrait too small. Subtitle too short
 - [x] Make tabbar in anime details opaque
 - [x] Producer details larger text
