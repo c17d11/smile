@@ -17,7 +17,6 @@ Tasks to be done at some point.
 - [ ] Producer anime query search overflowing. When keyboard is up
 - [ ] Delete collections
 - [ ] Splash screen
-- [ ] Database resets after restarting app
 
 
 ### Future
@@ -46,6 +45,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] Database resets after restarting app
 - [x] Nicer apply button for query and settings
 - [x] Anime not save when navigating back from details with device button
 - [x] Make it clearer that clickling on genres will navigate
