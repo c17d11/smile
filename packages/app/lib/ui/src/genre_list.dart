@@ -30,17 +30,18 @@ class GenreListPage extends ConsumerWidget {
               itemBuilder: (context, index) => ListTile(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
-                leading: Icon(Icons.label),
+                leading: IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () async {
+                    await ref.read(animeQueryPod.notifier).set(
+                        AnimeQueryIntern()..genresInclude = [genres[index]]);
+                    ref.read(pageGroupPod.notifier).state = AnimeGroup();
+                    ref.read(pageIndexPod.notifier).state = 0;
+                  },
+                ),
                 title: Text('${genres[index].name}'),
                 subtitle: Text("${genres[index].count} animes"),
                 tileColor: Theme.of(context).primaryColor,
-                onTap: () async {
-                  await ref
-                      .read(animeQueryPod.notifier)
-                      .set(AnimeQueryIntern()..genresInclude = [genres[index]]);
-                  ref.read(pageGroupPod.notifier).state = AnimeGroup();
-                  ref.read(pageIndexPod.notifier).state = 0;
-                },
               ),
               separatorBuilder: (context, index) => const SizedBox(height: 10),
             ),
