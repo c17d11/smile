@@ -86,6 +86,7 @@ class _ScheduleQueryPageState extends ConsumerState<ScheduleQueryPage> {
                       buildIsForKidsWidget(localQuery),
                       const SizedBox(height: 10),
                       buildIsApprovedWidget(localQuery),
+                      const SizedBox(height: 100),
                     ],
                   ),
                 ),
