@@ -155,8 +155,6 @@ class AnimePortrait extends ConsumerWidget {
                     placeholder: 'assets/coffee.webp',
                     image: anime!.imageUrl ?? '',
                     fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
                     imageErrorBuilder: (context, error, stackTrace) =>
                         Text(anime!.imageUrl ?? ""),
                     placeholderErrorBuilder: (context, error, stackTrace) =>
