@@ -7,10 +7,10 @@ Tasks to be done at some point.
 ### Before 1.0.0
 - [ ] Style app
 	- [ ] Use dark mode throughout the whole app
-
+- [ ] testAnimeUpdatePod disposed sometimes after navigating back from anime details page
+- [ ] Move favorite button to GridTile header
 
 ### Device testing 2024-01-17
-- [ ] Anime portrait too small. Image overflow and subtitle too short
 - [ ] Reload collection page when new created
 - [ ] Anime detail title text somtimes overlaps with image. Make height dependent on image height
 - [ ] Geners says null animes
@@ -53,6 +53,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] Anime portrait too small. Subtitle too short
 - [x] Make tabbar in anime details opaque
 - [x] Producer details larger text
 - [x] Clear notes in anime detail with 'x' at end of textfield

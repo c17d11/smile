@@ -70,34 +70,44 @@ class AnimePortrait extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Icon(
-                            Icons.star,
-                            size: 14,
-                            color: _foregroundSecondary,
-                          ),
-                          Text(
-                            anime!.score?.toStringAsFixed(1) ?? "",
-                            style: TextStyle(
-                              fontSize: 10.0,
-                              fontWeight: FontWeight.w800,
+                      if (anime!.score != null) ...[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Icon(
+                              Icons.star,
+                              size: 14,
                               color: _foregroundSecondary,
                             ),
+                            Text(
+                              anime!.score?.toStringAsFixed(1) ?? "",
+                              style: TextStyle(
+                                fontSize: 10.0,
+                                overflow: TextOverflow.ellipsis,
+                                fontWeight: FontWeight.w800,
+                                color: _foregroundSecondary,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                      if (anime!.episodes != null) ...[
+                        Flexible(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text(
+                              "${anime!.episodes} episodes",
+                              style: TextStyle(
+                                fontSize: 10.0,
+                                fontWeight: FontWeight.w800,
+                                color: _foregroundSecondary,
+                              ),
+                            ),
                           ),
-                        ],
-                      ),
-                      Text(
-                        "${anime!.episodes} episodes",
-                        style: TextStyle(
-                          fontSize: 10.0,
-                          fontWeight: FontWeight.w800,
-                          color: _foregroundSecondary,
                         ),
-                      ),
+                      ]
                     ],
                   ),
                 ),
