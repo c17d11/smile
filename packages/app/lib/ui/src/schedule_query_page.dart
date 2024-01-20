@@ -59,7 +59,7 @@ class _ScheduleQueryPageState extends ConsumerState<ScheduleQueryPage> {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () async {
+        onPressed: () {
           ref.read(scheduleQueryPod.notifier).set(localQuery);
           Navigator.pop(context);
         },

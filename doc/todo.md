@@ -14,7 +14,6 @@ Tasks to be done at some point.
 - [ ] Chipitem not clear if selected or not
 - [ ] End of schedule other page 2 of 1. Should not be possible
 - [ ] Instance if jikan exception when searching for "map" in producers
-- [ ] Producer anime query search overflowing. When keyboard is up
 - [ ] Delete collections
 - [ ] Splash screen
 
@@ -45,6 +44,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] Producer anime query search overflowing. When keyboard is up
 - [x] Database resets after restarting app
 - [x] Nicer apply button for query and settings
 - [x] Anime not save when navigating back from details with device button
