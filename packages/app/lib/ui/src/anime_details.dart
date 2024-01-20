@@ -560,10 +560,14 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                     delegate: SliverAppBarDelegate(
                       minHeight: 40,
                       maxHeight: 40,
-                      child: TabBar(
-                        tabs: tabs
-                            .map((e) => Tab(child: Text(e.item1.toUpperCase())))
-                            .toList(),
+                      child: Container(
+                        color: Theme.of(context).colorScheme.background,
+                        child: TabBar(
+                          tabs: tabs
+                              .map((e) =>
+                                  Tab(child: Text(e.item1.toUpperCase())))
+                              .toList(),
+                        ),
                       ),
                     ),
                   ),
