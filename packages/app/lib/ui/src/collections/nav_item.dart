@@ -71,7 +71,7 @@ class CollectionsNavItem extends IconItem {
             ).then((value) async {
               if (value != null) {
                 await ref.read(tagPod.notifier).insertTags([Tag(value, 0)]);
-                ref.invalidate(pagePod);
+                ref.invalidate(collectionNames);
               }
             }),
         child: Text("New collection"));
