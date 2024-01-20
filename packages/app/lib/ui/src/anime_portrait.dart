@@ -53,6 +53,44 @@ class AnimePortrait extends ConsumerWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
               child: GridTile(
+                header: Container(
+                  height: 50,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color(0x90000000),
+                        Color(0x70000000),
+                        Color(0x00000000),
+                      ],
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        GestureDetector(
+                          onTap: () async {
+                            ref.read(testAnimeUpdatePod.notifier).update(anime!
+                              ..isFavorite = !(anime!.isFavorite ?? false));
+
+                            onAnimeUpdate();
+                          },
+                          child: Icon(
+                            (anime?.isFavorite ?? false)
+                                ? Icons.favorite
+                                : Icons.favorite_outline,
+                            size: 24,
+                            color: Colors.red[900],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 footer: GridTileBar(
                   backgroundColor:
                       Theme.of(context).colorScheme.background.withAlpha(190),
@@ -111,62 +149,19 @@ class AnimePortrait extends ConsumerWidget {
                     ],
                   ),
                 ),
-                child: Stack(
-                  children: [
-                    Hero(
-                      tag: heroId,
-                      child: FadeInImage.assetNetwork(
-                        placeholder: 'assets/coffee.webp',
-                        image: anime!.imageUrl ?? '',
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        height: double.infinity,
-                        imageErrorBuilder: (context, error, stackTrace) =>
-                            Text(anime!.imageUrl ?? ""),
-                        placeholderErrorBuilder: (context, error, stackTrace) =>
-                            Text(anime!.imageUrl ?? ""),
-                      ),
-                    ),
-                    Container(
-                      height: 50,
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Color(0x90000000),
-                            Color(0x70000000),
-                            Color(0x00000000),
-                          ],
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(4),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            GestureDetector(
-                              onTap: () async {
-                                ref.read(testAnimeUpdatePod.notifier).update(
-                                    anime!
-                                      ..isFavorite =
-                                          !(anime!.isFavorite ?? false));
-
-                                onAnimeUpdate();
-                              },
-                              child: Icon(
-                                (anime?.isFavorite ?? false)
-                                    ? Icons.favorite
-                                    : Icons.favorite_outline,
-                                size: 24,
-                                color: Colors.red[900],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                child: Hero(
+                  tag: heroId,
+                  child: FadeInImage.assetNetwork(
+                    placeholder: 'assets/coffee.webp',
+                    image: anime!.imageUrl ?? '',
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                    imageErrorBuilder: (context, error, stackTrace) =>
+                        Text(anime!.imageUrl ?? ""),
+                    placeholderErrorBuilder: (context, error, stackTrace) =>
+                        Text(anime!.imageUrl ?? ""),
+                  ),
                 ),
               ),
             ),
