@@ -1,4 +1,5 @@
 import 'package:app/controller/src/object/collection_query_intern.dart';
+import 'package:app/controller/src/object/tag.dart';
 import 'package:app/database/src/database_base.dart';
 import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/database/src/isar/collection/isar_tag.dart';
@@ -97,3 +98,10 @@ final collectionNames = StateNotifierProvider<CollectionNameStateNotifier,
   controller.get();
   return controller;
 });
+
+Future<void> deleteCollection(WidgetRef ref, String tagName) async {
+  try {
+    Database db = ref.read(databaseUpdatePod);
+    await db.deleteTag(Tag(tagName, 0));
+  } on Exception catch (e, _) {}
+}

@@ -8,7 +8,7 @@ final Color _foreground = Colors.grey[300]!;
 final Color _foregroundSecondary = Colors.grey[400]!;
 final Color _foregroundThird = Colors.grey[600]!;
 
-void _confirm(
+void confirm(
   String title,
   String description,
   BuildContext context,
@@ -76,7 +76,7 @@ class ConfirmButton extends StatelessWidget {
       text: title,
       background: _backgroundSecondary,
       foreground: Colors.white,
-      onPressed: () => _confirm(
+      onPressed: () => confirm(
         title,
         description,
         context,

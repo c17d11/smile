@@ -1,5 +1,6 @@
 import 'package:app/controller/src/object/collection_query_intern.dart';
 import 'package:app/controller/state.dart';
+import 'package:app/ui/selection_widget/src/confirm_button.dart';
 import 'package:app/ui/src/collections/state.dart';
 import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/ui/src/anime_portrait.dart';
@@ -47,7 +48,19 @@ class CollectionResponse extends ConsumerWidget {
             SliverPinnedHeader(
               child: Container(
                 color: Theme.of(context).colorScheme.background,
-                child: TextDivider("${query.collectionName}"),
+                child: TextActionDivider(
+                  "${query.collectionName}",
+                  tailing: const Icon(Icons.delete_forever),
+                  onPressed: () => confirm(
+                    "Remove collection?",
+                    "The collection can not be restored later.",
+                    context,
+                    () async {
+                      await deleteCollection(ref, query.collectionName!);
+                      ref.invalidate(collectionNames);
+                    },
+                  ),
+                ),
               ),
             ),
             res.data?.isEmpty ?? true
