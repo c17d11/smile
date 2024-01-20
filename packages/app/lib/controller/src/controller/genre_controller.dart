@@ -19,9 +19,15 @@ class GenreController extends StateNotifier<AsyncValue<List<GenreIntern>>> {
     return genres;
   }
 
+  bool isCountMissing(List<Genre> genres) {
+    // If count is missing then the geners have not been fetch from the genre
+    // API and have been created by fetching from the anime API
+    return genres.where((element) => element.count == null).toList().isNotEmpty;
+  }
+
   Future<List<GenreIntern>> _getGenres() async {
     List<GenreIntern> genres = await _getDatabaseGenres();
-    if (genres.isEmpty) {
+    if (genres.isEmpty || isCountMissing(genres)) {
       List<Genre> apiGenres = await _getApiGenres();
       await _database.insertGenres(apiGenres);
     }
