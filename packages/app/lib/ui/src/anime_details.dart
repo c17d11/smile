@@ -492,7 +492,6 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
             )
           : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
             <Widget>[

@@ -128,15 +128,14 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     }
 
     Widget buildStatistics() {
-      return Container(
-          child: Column(
+      return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           buildStatisticsMenuRow(),
           buildStatisticsContentRow(),
           const SizedBox(height: 10),
         ],
-      ));
+      );
     }
 
     Widget buildAboutWidget() {
@@ -158,53 +157,44 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     }
 
     return Scaffold(
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    children: [
-                      const TextDivider("About"),
-                      buildAboutWidget(),
-                      const TextDivider("Api"),
-                      buildRateLimitSecondsWidget(localSettings),
-                      buildRateLimitMinuteWidget(localSettings),
-                      const TextDivider("Database"),
-                      buildDatabaseCacheLimitWidget(localSettings),
-                      buildStatistics(),
-                    ],
-                  ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          ref.read(settingsPod.notifier).set(localSettings);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: const Text("Saved"),
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            duration: const Duration(milliseconds: 250),
+            behavior: SnackBarBehavior.floating,
+          ));
+        },
+        label: const Text('Save'),
+        icon: const Icon(Icons.save),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: [
+                    const TextDivider("About"),
+                    buildAboutWidget(),
+                    const TextDivider("Api"),
+                    buildRateLimitSecondsWidget(localSettings),
+                    buildRateLimitMinuteWidget(localSettings),
+                    const TextDivider("Database"),
+                    buildDatabaseCacheLimitWidget(localSettings),
+                    buildStatistics(),
+                  ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  minimumSize: const Size.fromHeight(50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                onPressed: () {
-                  ref.read(settingsPod.notifier).set(localSettings);
-                },
-                child: Text("APPLY",
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.background,
-                    )),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

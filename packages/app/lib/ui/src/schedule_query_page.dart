@@ -58,6 +58,15 @@ class _ScheduleQueryPageState extends ConsumerState<ScheduleQueryPage> {
     ScheduleQueryIntern localQuery = ScheduleQueryIntern.from(query);
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          ref.read(scheduleQueryPod.notifier).set(localQuery);
+          Navigator.pop(context);
+        },
+        label: const Text('Search'),
+        icon: const Icon(Icons.search),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
         title: const Text("Filter"),
       ),
@@ -80,28 +89,6 @@ class _ScheduleQueryPageState extends ConsumerState<ScheduleQueryPage> {
                     ],
                   ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  minimumSize: const Size.fromHeight(50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                onPressed: () {
-                  ref.read(scheduleQueryPod.notifier).set(localQuery);
-                  Navigator.pop(context);
-                },
-                child: Text("APPLY",
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.background,
-                    )),
               ),
             ),
           ],

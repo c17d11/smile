@@ -12,7 +12,6 @@ Tasks to be done at some point.
 ### Device testing 2024-01-17
 - [ ] About/info page
 - [ ] Chipitem not clear if selected or not
-- [ ] Nicer apply button for query and settings
 - [ ] End of schedule other page 2 of 1. Should not be possible
 - [ ] Instance if jikan exception when searching for "map" in producers
 - [ ] Producer anime query search overflowing. When keyboard is up
@@ -47,6 +46,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] Nicer apply button for query and settings
 - [x] Anime not save when navigating back from details with device button
 - [x] Make it clearer that clickling on genres will navigate
 - [x] Geners says null animes
