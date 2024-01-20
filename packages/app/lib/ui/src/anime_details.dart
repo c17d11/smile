@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:app/controller/src/object/tag.dart';
@@ -469,6 +470,10 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                     flexibleSpace: LayoutBuilder(builder:
                         (BuildContext context, BoxConstraints constraints) {
                       var top = constraints.biggest.height;
+
+                      var expandedProgress = (top - kToolbarHeight) /
+                          (expandedBarHeight - kToolbarHeight);
+
                       return SafeArea(
                         child: FlexibleSpaceBar(
                           titlePadding: EdgeInsets.zero,
@@ -476,27 +481,14 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                             width: double.infinity,
                             child: Padding(
                               padding: EdgeInsetsDirectional.only(
-                                start: 72 +
-                                    (top - kToolbarHeight) /
-                                        (expandedBarHeight - kToolbarHeight) *
-                                        (10 - 72),
-                                bottom: 16 +
-                                    (top - kToolbarHeight) /
-                                        (expandedBarHeight - kToolbarHeight) *
-                                        (10 - 16),
-                                top: 16 +
-                                    (top - kToolbarHeight) /
-                                        (expandedBarHeight - kToolbarHeight) *
-                                        (30 - 16),
+                                start: 72 + expandedProgress * (10 - 72),
+                                bottom: 16 + expandedProgress * (10 - 16),
+                                top: 16 + expandedProgress * (30 - 16),
                               ),
                               child: Text(
                                 "${anime!.title}",
-                                maxLines: 1 +
-                                    ((top - kToolbarHeight) /
-                                                (expandedBarHeight -
-                                                    kToolbarHeight))
-                                            .round() *
-                                        (3 - 1),
+                                maxLines:
+                                    1 + expandedProgress.round() * (3 - 1),
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   fontSize: 20,
@@ -524,6 +516,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                                 )),
                                 height: MediaQuery.of(context).size.height,
                                 child: BackdropFilter(
+                                  // blendMode: BlendMode.,
                                   filter: ImageFilter.blur(
                                       sigmaX: 8.0, sigmaY: 8.0),
                                   child: Container(
@@ -533,20 +526,24 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Hero(
+                              Opacity(
+                                opacity: max(1 - 2 * (1 - expandedProgress), 0),
+                                child: Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        50, 50, 50, 150),
+                                    child: Hero(
                                       tag: animeArgs.heroTag,
                                       child: FadeInImage.assetNetwork(
                                         placeholder: 'assets/coffee.webp',
                                         image: anime!.imageUrl ?? '',
-                                        alignment: Alignment.center,
+                                        height: 400,
+                                        fit: BoxFit.contain,
+                                        // alignment: Alignment.topCenter,
                                       ),
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ],
