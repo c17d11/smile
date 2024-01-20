@@ -26,7 +26,7 @@ class AnimeGroup extends PageGroup {
         ScheduleNavItem(),
         FavoriteNavItem(),
         CollectionsNavItem(),
-        TestNavItem(),
+        // TestNavItem(),
       ];
 
   @override

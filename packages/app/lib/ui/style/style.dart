@@ -10,7 +10,7 @@ class AppStyle {
   static TextStyle get windowtitle => TextStyle(
         fontSize: 24.0,
         fontWeight: FontWeight.w400,
-        color: Colors.grey[800],
+        color: _foregroundSecondary,
       );
 
   static TextStyle get textfield => TextStyle(
