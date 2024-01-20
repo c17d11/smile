@@ -80,7 +80,7 @@ class IsarDatabase implements Database {
         inspector: true,
         name: name,
       );
-      instance.writeTxnSync(() => instance.clearSync());
+      // instance.writeTxnSync(() => instance.clearSync());
     }
   }
 
