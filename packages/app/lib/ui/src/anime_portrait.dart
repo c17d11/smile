@@ -40,12 +40,7 @@ class AnimePortrait extends ConsumerWidget {
                 context,
                 'anime-details',
                 arguments: AnimeDetailsArgs(anime!, heroId),
-              ).then((value) async {
-                await ref
-                    .read(testAnimeUpdatePod.notifier)
-                    .update(value as IsarAnime);
-                onAnimeUpdate();
-              });
+              ).then((value) => onAnimeUpdate());
             },
             child: Card(
               elevation: 0,

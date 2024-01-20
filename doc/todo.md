@@ -13,7 +13,6 @@ Tasks to be done at some point.
 - [ ] About/info page
 - [ ] Chipitem not clear if selected or not
 - [ ] Nicer apply button for query and settings
-- [ ] Anime not save when navigating back from details with device button
 - [ ] End of schedule other page 2 of 1. Should not be possible
 - [ ] Instance if jikan exception when searching for "map" in producers
 - [ ] Producer anime query search overflowing. When keyboard is up
@@ -48,6 +47,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] Anime not save when navigating back from details with device button
 - [x] Make it clearer that clickling on genres will navigate
 - [x] Geners says null animes
 - [x] Anime detail title text somtimes overlaps with image. Make height dependent on image height
