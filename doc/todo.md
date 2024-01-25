@@ -14,10 +14,10 @@ Tasks to be done at some point.
 - [ ] Chipitem not clear if selected or not
 - [ ] End of schedule other page 2 of 1. Should not be possible
 - [ ] Instance if jikan exception when searching for "map" in producers
-- [ ] Splash screen
 
 
 ### Future
+- [ ] Splash screen
 - [ ] Custom sort order of collections
 - [ ] Custom anime portrait size
 - [ ] Error log page
