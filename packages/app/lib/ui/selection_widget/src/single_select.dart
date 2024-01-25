@@ -22,8 +22,13 @@ class SingleSelect<T extends SelectionItem> extends StatefulWidget {
 
 class _SingleSelectState extends State<SingleSelect> {
   SelectionWrapper? _selected;
-  SelectChip selectedTemplate = SelectChip(isPadded: true);
-  SelectChip unselectedTemplate = SelectChip();
+  SelectChip selectedTemplate = const SelectChip(
+    isPadded: true,
+    foreground: Color.fromARGB(255, 161, 202, 200),
+  );
+  SelectChip unselectedTemplate = const SelectChip(
+    foreground: Colors.blueGrey,
+  );
 
   void callWidgetOnChanged(SelectionWrapper? e) {
     if (widget.onChanged != null) {

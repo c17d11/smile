@@ -115,11 +115,15 @@ class _RangeSelectState extends ConsumerState<RangeSelect> {
   Widget buildSlider() {
     return SliderTheme(
       data: SliderTheme.of(context).copyWith(
-        activeTrackColor: Theme.of(context).colorScheme.primary,
+        activeTrackColor: isDefault()
+            ? Colors.blueGrey
+            : Theme.of(context).colorScheme.primary,
         inactiveTrackColor: Theme.of(context).colorScheme.onBackground,
         trackShape: const RectangularSliderTrackShape(),
         trackHeight: 1.0,
-        thumbColor: Theme.of(context).colorScheme.primary,
+        thumbColor: isDefault()
+            ? Colors.blueGrey
+            : Theme.of(context).colorScheme.primary,
         rangeThumbShape: widget.showInts
             ? CustomRangeSliderThumpShape<int>(
                 values.start.toInt(), values.end.toInt(), 32, context)

@@ -40,11 +40,11 @@ void _pickValue(
                     Center(
                       child: Container(
                         decoration: ShapeDecoration(
-                          color: Colors.green[100],
+                          color: Colors.blueGrey,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(100),
                             side: BorderSide(
-                              color: Colors.green[200]!,
+                              color: Theme.of(context).colorScheme.primary,
                             ),
                           ),
                         ),
@@ -127,8 +127,9 @@ class ScrollSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectChip(
       text: "$value",
-      background: isSet ? Colors.green[400]! : _backgroundSecondary,
-      foreground: Colors.white,
+      foregroundSecondary: Colors.blueGrey,
+      foreground:
+          isSet ? const Color.fromARGB(255, 161, 202, 200) : Colors.blueGrey,
       onPressed: () => _pickValue(
         title,
         context,

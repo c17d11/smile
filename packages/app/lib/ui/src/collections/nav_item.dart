@@ -74,6 +74,6 @@ class CollectionsNavItem extends IconItem {
                 ref.invalidate(collectionNames);
               }
             }),
-        child: Text("New collection"));
+        child: const Text("New collection"));
   }
 }

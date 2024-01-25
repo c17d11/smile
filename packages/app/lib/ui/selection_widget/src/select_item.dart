@@ -1,30 +1,23 @@
 import 'package:flutter/material.dart';
 
-// const Color _background = Colors.black;
-// final Color _backgroundSecondary = Colors.grey[900]!;
-// final Color _foreground = Colors.grey[300]!;
-// final Color _foregroundSecondary = Colors.grey[400]!;
-// final Color _primary = Colors.teal.shade200;
-// final Color _primarySecondary = Colors.teal.shade400;
-
 class SelectedChip extends SelectChip {
   SelectedChip({super.text, super.onPressed, super.key})
       : super(
-          background: Colors.green[400]!,
-          // background: _backgroundSecondary,
+          foreground: const Color.fromARGB(255, 161, 202, 200),
+          foregroundSecondary: Colors.blueGrey,
         );
 }
 
 class UnselectedChip extends SelectChip {
   UnselectedChip({super.text, super.onPressed, super.key})
       : super(
-          background: Colors.red[600]!,
-          // background: _backgroundSecondary,
+          foreground: const Color.fromARGB(255, 199, 100, 146),
+          foregroundSecondary: const Color.fromARGB(255, 122, 79, 115),
         );
 }
 
 class SelectChip extends StatelessWidget {
-  final Color background;
+  final Color foregroundSecondary;
   final Color foreground;
   final String text;
   final Function()? onPressed;
@@ -34,7 +27,7 @@ class SelectChip extends StatelessWidget {
 
   const SelectChip({
     this.text = "",
-    this.background = Colors.white,
+    this.foregroundSecondary = Colors.white,
     this.foreground = Colors.black,
     this.isPadded = false,
     this.onPressed,
@@ -45,7 +38,7 @@ class SelectChip extends StatelessWidget {
 
   SelectChip copyWith({
     String? text,
-    Color? background,
+    Color? foregroundSecondary,
     Color? foreground,
     Function()? onPressed,
     Function()? onClear,
@@ -53,7 +46,7 @@ class SelectChip extends StatelessWidget {
   }) {
     return SelectChip(
       text: text ?? this.text,
-      background: background ?? this.background,
+      foregroundSecondary: foregroundSecondary ?? this.foregroundSecondary,
       foreground: foreground ?? this.foreground,
       onPressed: onPressed ?? this.onPressed,
       onClear: onClear ?? this.onClear,
@@ -77,8 +70,10 @@ class SelectChip extends StatelessWidget {
         children: [
           TextButton(
             style: TextButton.styleFrom(
+              foregroundColor: foreground,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-              disabledForegroundColor: Theme.of(context).colorScheme.primary,
+              disabledForegroundColor:
+                  foreground, // Theme.of(context).colorScheme.primary,
               shape: RoundedRectangleBorder(
                 borderRadius: getTextBorder(),
               ),
@@ -100,7 +95,7 @@ class SelectChip extends StatelessWidget {
             SizedBox(
               height: 20,
               child: VerticalDivider(
-                // color: _backgroundSecondary,
+                color: foregroundSecondary,
                 width: 1,
                 thickness: 1,
                 indent: 2,
@@ -109,9 +104,12 @@ class SelectChip extends StatelessWidget {
             ),
             IconButton(
               onPressed: onClear,
+              hoverColor: foregroundSecondary,
               icon: FittedBox(
-                child: Icon(Icons.clear,
-                    color: Theme.of(context).colorScheme.error),
+                child: Icon(
+                  Icons.close,
+                  color: Theme.of(context).colorScheme.error,
+                ),
               ),
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
               style: IconButton.styleFrom(
@@ -130,12 +128,15 @@ class SelectChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: background),
-        borderRadius: BorderRadius.circular(100),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: isPadded ? 10 : 0),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: foreground),
+          borderRadius: BorderRadius.circular(100),
+        ),
+        child: buildText(context),
       ),
-      child: buildText(context),
     );
   }
 }
