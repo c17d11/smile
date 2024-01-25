@@ -6,7 +6,7 @@ class ProducerQueryBuilder extends Builder<ProducerQuery, String> {
     if (searchTerm == null || searchTerm.isEmpty) {
       return "";
     }
-    return "q=$searchTerm";
+    return "letter=${searchTerm[0]}";
   }
 
   String buildPageQuery(int? page) {
