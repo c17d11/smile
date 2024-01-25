@@ -40,7 +40,7 @@ class ProducerListPage extends ConsumerWidget {
           onPressed: () => showDialog(
                 context: context,
                 builder: (context) {
-                  TextEditingController controller = TextEditingController();
+                  String? text;
                   return AlertDialog(
                     title: Text(
                       "Search producer",
@@ -53,38 +53,15 @@ class ProducerListPage extends ConsumerWidget {
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8.0))),
                     content: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxHeight: MediaQuery.of(context).size.height * 0.8,
-                        maxWidth: MediaQuery.of(context).size.width * 0.5,
-                      ),
-                      child: TextField(
-                        controller: controller,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                    Theme.of(context).colorScheme.onBackground,
-                                width: 2),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Theme.of(context).colorScheme.primary,
-                                width: 2),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
-                                color:
-                                    Theme.of(context).colorScheme.onBackground,
-                                width: 2),
-                          ),
-                          hintText: "...",
+                        constraints: BoxConstraints(
+                          maxHeight: MediaQuery.of(context).size.height * 0.8,
+                          maxWidth: MediaQuery.of(context).size.width * 0.5,
                         ),
-                      ),
-                    ),
+                        child: CustomTextField(
+                          hint: "Search producer title...",
+                          initialValue: null,
+                          onChanged: (value) => text = value,
+                        )),
                     actions: <Widget>[
                       TextButton(
                         child: const Text('Cancel'),
@@ -95,7 +72,7 @@ class ProducerListPage extends ConsumerWidget {
                       TextButton(
                         child: const Text('Apply'),
                         onPressed: () {
-                          Navigator.pop(context, controller.text);
+                          Navigator.pop(context, text);
                         },
                       ),
                     ],
@@ -203,8 +180,18 @@ class _ProducerListState extends State<ProducerList> {
         shrinkWrap: true,
         physics: const AlwaysScrollableScrollPhysics(),
         slivers: <Widget>[
-          SliverAppBar(
-              title: Text(pages.last.query.searchTerm ?? ''), pinned: true),
+          if (pages.last.query.searchTerm != null) ...[
+            SliverAppBar(
+                title: Text(
+                  "Searching for:    '${pages.last.query.searchTerm?[0] ?? ''}'",
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w500,
+                    color: _foregroundSecondary,
+                  ),
+                ),
+                pinned: true),
+          ],
           ...pages,
         ],
       ),
