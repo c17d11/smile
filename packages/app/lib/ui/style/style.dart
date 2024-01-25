@@ -28,7 +28,7 @@ class AppStyle {
   static TextStyle get subtitle => TextStyle(
         fontSize: 9.0,
         fontWeight: FontWeight.w500,
-        color: Colors.grey[800],
+        color: Colors.grey[400],
       );
 
   static TextStyle get menu => TextStyle(
@@ -128,7 +128,7 @@ class ResetIcon extends ActionIcon {
       : super(
           icon: const Icon(Icons.clear),
           color: Colors.red[600],
-          disabledColor: Colors.grey[400]!,
+          disabledColor: Colors.blueGrey,
         );
 }
 

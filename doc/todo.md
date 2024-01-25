@@ -8,15 +8,16 @@ Tasks to be done at some point.
 - [ ] Style app
 	- [ ] Use dark mode throughout the whole app
 - [ ] testAnimeUpdatePod disposed sometimes after navigating back from anime details page
+- [ ] year select current year should be max
 
 ### Device testing 2024-01-17
 - [ ] About/info page
-- [ ] Chipitem not clear if selected or not
 - [ ] End of schedule other page 2 of 1. Should not be possible
 - [ ] Instance if jikan exception when searching for "map" in producers
 
 
 ### Future
+- [ ] Hover/Focus color for select chips
 - [ ] Splash screen
 - [ ] Custom sort order of collections
 - [ ] Custom anime portrait size
@@ -43,6 +44,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] Chipitem not clear if selected or not
 - [x] Delete collections
 - [x] Producer anime query search overflowing. When keyboard is up
 - [x] Database resets after restarting app

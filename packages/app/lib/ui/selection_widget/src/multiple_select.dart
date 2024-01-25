@@ -116,6 +116,10 @@ class _MultiSelectState extends State<MultiSelect> {
                   ),
                   const SizedBox(height: 5),
                 ],
+                if (_selectedItems.isNotEmpty &&
+                    _unselectedItems.isNotEmpty) ...[
+                  const SizedBox(height: 20),
+                ],
                 if (_unselectedItems.isNotEmpty) ...[
                   buildSelectedItems(
                     "",
@@ -155,24 +159,16 @@ class _MultiSelectState extends State<MultiSelect> {
       }
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        TextSubtitle(title),
-        const SizedBox(height: 5),
-        Wrap(
-          direction: Axis.horizontal,
-          runSpacing: 5,
-          spacing: 5,
-          children: items
-              .map((e) => template.copyWith(
-                    text: e.item.displayName,
-                    onClear: () => onPressed(e),
-                  ))
-              .toList(),
-        ),
-      ],
+    return Wrap(
+      direction: Axis.horizontal,
+      runSpacing: 5,
+      spacing: 5,
+      children: items
+          .map((e) => template.copyWith(
+                text: e.item.displayName,
+                onClear: () => onPressed(e),
+              ))
+          .toList(),
     );
   }
 
