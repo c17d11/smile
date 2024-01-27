@@ -566,7 +566,8 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                               ),
                             ),
                             Opacity(
-                              opacity: max(1 - 2 * (1 - expandedProgress), 0),
+                              opacity: min(
+                                  max(1 - 2 * (1 - expandedProgress), 0), 1),
                               child: Align(
                                 alignment: Alignment.topCenter,
                                 child: Padding(
