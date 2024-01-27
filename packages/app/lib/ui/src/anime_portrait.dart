@@ -1,5 +1,4 @@
 import 'package:app/controller/state.dart';
-import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/ui/src/anime_details.dart';
 import 'package:app/ui/src/test_page/test_pod.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,7 @@ final Color _foregroundSecondary = Colors.grey[400]!;
 final Color _foregroundThird = Colors.grey[600]!;
 
 class AnimePortrait extends ConsumerWidget {
-  final IsarAnime? anime;
+  final AnimeIntern? anime;
   final String heroId;
   final Function() onAnimeUpdate;
   const AnimePortrait(
@@ -31,7 +30,7 @@ class AnimePortrait extends ConsumerWidget {
     );
   }
 
-  bool hasAnimePersonalInfo(IsarAnime anime) {
+  bool hasAnimePersonalInfo(AnimeIntern anime) {
     return anime.isFavorite != null ||
         (anime.tags?.isNotEmpty ?? true) ||
         anime.personalNotes != null ||

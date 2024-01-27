@@ -61,7 +61,7 @@ class FavoriteResponse extends ConsumerWidget with AnimeResponseViewUtils {
                     delegate: SliverChildBuilderDelegate(
                       childCount: res.data!.length,
                       (context, index) => AnimePortrait(
-                        res.isarAnimes.elementAt(index),
+                        res.data!.elementAt(index),
                         heroId: "$heroId-$index",
                         onAnimeUpdate: () =>
                             ref.read(animeFavorite(page).notifier).refresh(),

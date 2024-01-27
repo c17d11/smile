@@ -57,7 +57,7 @@ class BrowseResponse extends ConsumerWidget {
                     delegate: SliverChildBuilderDelegate(
                       childCount: res.data!.length,
                       (context, index) => AnimePortrait(
-                        res.isarAnimes.elementAt(index),
+                        res.data!.elementAt(index),
                         heroId: "$heroId-$index",
                         onAnimeUpdate: () =>
                             ref.read(animeBrowse(query).notifier).refresh(),
