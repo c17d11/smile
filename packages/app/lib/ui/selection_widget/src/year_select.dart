@@ -1,6 +1,7 @@
 import 'package:app/ui/selection_widget/src/scroll_select.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class YearSelect extends StatefulWidget {
   final String title;
@@ -61,66 +62,80 @@ class _YearSelectState extends State<YearSelect> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  alignment: WrapAlignment.spaceBetween,
-                  spacing: 20,
-                  runSpacing: 5,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const TextSubtitle("FROM:"),
-                        const SizedBox(width: 10),
-                        ScrollSelect(
-                          title: "Min Year",
-                          value: minYear ?? maxYear ?? 2023,
-                          isSet: minYear != null,
-                          minValue: 0,
-                          maxValue: maxYear ?? 2023,
-                          onSelect: (min) {
-                            setState(() => minYear = min);
-                            widget.onMinChanged(min);
-                          },
-                        ),
-                      ],
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const TextSubtitle("TO:"),
-                        const SizedBox(width: 10),
-                        ScrollSelect(
-                          title: "Max Year",
-                          value: maxYear ?? 2023,
-                          isSet: maxYear != null,
-                          minValue: minYear ?? 0,
-                          maxValue: 2023,
-                          onSelect: (max) {
-                            setState(() => maxYear = max);
-                            widget.onMaxChanged(max);
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
+          Table(
+            columnWidths: const {
+              0: IntrinsicColumnWidth(),
+              1: FixedColumnWidth(125),
+            },
+            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+            children: [
+              TableRow(children: [
+                const TextSubtitle("FROM:"),
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: ScrollSelect(
+                    title: "Min Year",
+                    value: minYear ?? maxYear ?? DateTime.now().year,
+                    isSet: minYear != null,
+                    minValue: 0,
+                    maxValue: maxYear ?? DateTime.now().year,
+                    onSelect: (min) {
+                      setState(() => minYear = min);
+                      widget.onMinChanged(min);
+                    },
+                  ),
                 ),
-                const SizedBox(height: 10),
-              ],
-            ),
+              ]),
+              TableRow(
+                children: [
+                  const TextSubtitle("TO:"),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: ScrollSelect(
+                        title: "Max Year",
+                        value: maxYear ?? DateTime.now().year,
+                        isSet: maxYear != null,
+                        minValue: minYear ?? 0,
+                        maxValue: DateTime.now().year,
+                        onSelect: (max) {
+                          setState(() => maxYear = max);
+                          widget.onMaxChanged(max);
+                        },
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ],
           ),
+
+          // const Column(
+          //   mainAxisAlignment: MainAxisAlignment.start,
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //   ],
+          // ),
+          // Flexible(
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       const SizedBox(width: 20),
+          //     ],
+          //   ),
+          // ),
+          // const Spacer(),
+
+          // Row(
+          //   crossAxisAlignment: CrossAxisAlignment.center,
+          //   mainAxisAlignment: MainAxisAlignment.start,
+          //   children: [
+          //     const SizedBox(width: 5),
+          //   ],
+          // ),
           ResetIcon(onPressed: isValueSet() ? clearSelection : null),
         ],
       ),
@@ -129,14 +144,12 @@ class _YearSelectState extends State<YearSelect> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          buildMenuRow(),
-          buildContentRow(),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        buildMenuRow(),
+        buildContentRow(),
+      ],
     );
   }
 }
