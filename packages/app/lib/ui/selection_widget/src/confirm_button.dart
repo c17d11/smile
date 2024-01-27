@@ -74,8 +74,7 @@ class ConfirmButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectChip(
       text: title,
-      foregroundSecondary: _backgroundSecondary,
-      foreground: Colors.white,
+      foreground: Colors.blueGrey,
       onPressed: () => confirm(
         title,
         description,
