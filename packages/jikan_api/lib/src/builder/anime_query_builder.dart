@@ -47,12 +47,12 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
 
   String buildMinYearQuery(int? minYear) {
     String s = minYear?.toString() ?? "";
-    return s.isNotEmpty ? "start_date=$s" : "";
+    return s.isNotEmpty ? "start_date=$s-01-01" : "";
   }
 
   String buildMaxYearQuery(int? maxYear) {
     String s = maxYear?.toString() ?? "";
-    return s.isNotEmpty ? "end_date=$s" : "";
+    return s.isNotEmpty ? "end_date=$s-12-31" : "";
   }
 
   String buildPageQuery(int? page) {
