@@ -138,24 +138,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       );
     }
 
-    Widget buildAboutWidget() {
-      AsyncValue<PackageInfo> info = ref.watch(packageInfoPod);
-
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          switch (info) {
-            AsyncData(:final value) => value.buildNumber == ""
-                ? TextHeadline("Version: ${value.version}")
-                : TextHeadline(
-                    "Version: ${value.version}+${value.buildNumber}"),
-            AsyncError(:final error) => TextHeadline("$error"),
-            _ => const CircularProgressIndicator(),
-          }
-        ],
-      );
-    }
-
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
@@ -181,8 +163,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   children: [
-                    const TextDivider("About"),
-                    buildAboutWidget(),
                     const TextDivider("Api"),
                     buildRateLimitSecondsWidget(localSettings),
                     buildRateLimitMinuteWidget(localSettings),

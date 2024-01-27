@@ -10,7 +10,6 @@ Tasks to be done at some point.
 - [ ] animeSchedule pod disposed when in anime details
 
 ### Device testing 2024-01-17
-- [ ] About/info page
 - [ ] End of schedule other page 2 of 1. Should not be possible
 
 
@@ -42,6 +41,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] About/info page
 - [x] Style app
 	- [x] Use dark mode throughout the whole app
 - [x] year select current year should be max
