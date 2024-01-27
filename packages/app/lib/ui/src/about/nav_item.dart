@@ -1,31 +1,31 @@
 import 'package:app/ui/navigation_container/navigation_container.dart';
-import 'package:app/ui/src/test_page/test_page.dart';
+import 'package:app/ui/src/about/page.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class TestNavItem extends IconItem {
+class AboutNavItem extends IconItem {
   @override
-  String get label => "Test";
+  String get label => "About";
 
   @override
-  Icon get icon => const Icon(Icons.try_sms_star);
+  Icon get icon => const Icon(Icons.info_outline);
 
   @override
-  Icon get selectedIcon => const Icon(Icons.collections_bookmark);
+  Icon get selectedIcon => const Icon(Icons.info);
 
   @override
   Widget buildContent(WidgetRef ref) {
-    return const TestPage();
+    return const AboutPage();
   }
 
   @override
   Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return Container(color: Colors.orange);
+    return Container();
   }
 
   @override
   Widget buildAppBarTitle() {
-    return const TextFields("Test");
+    return const TextFields("About");
   }
 }

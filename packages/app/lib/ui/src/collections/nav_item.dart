@@ -76,4 +76,9 @@ class CollectionsNavItem extends IconItem {
             }),
         child: const Text("New collection"));
   }
+
+  @override
+  Widget buildAppBarTitle() {
+    return const TextFields("Collections");
+  }
 }

@@ -10,6 +10,8 @@ abstract class IconItem extends NavItem {
 
   Widget buildContent(WidgetRef ref);
 
+  Widget buildAppBarTitle();
+
   Widget buildAppBarWidget(BuildContext context, WidgetRef ref);
 
   @override

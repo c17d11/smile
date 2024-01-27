@@ -148,11 +148,6 @@ final databaseSettingsPod = Provider<DatabaseSettings>((ref) {
   return settings.dbSettings;
 });
 
-final packageInfoPod = FutureProvider<PackageInfo>((ref) async {
-  final info = await PackageInfo.fromPlatform();
-  return info;
-});
-
 extension AsyncValueUi on AsyncValue<AnimeResponseIntern> {
   bool get isLoading => this is AsyncLoading<AnimeResponseIntern>;
   bool get isError => this is AsyncError<AnimeResponseIntern>;

@@ -1,4 +1,5 @@
 import 'package:app/ui/navigation_container/navigation_container.dart';
+import 'package:app/ui/src/about/nav_item.dart';
 import 'package:app/ui/src/browse/nav_item.dart';
 import 'package:app/ui/src/collections/nav_item.dart';
 import 'package:app/ui/src/favorite/nav_item.dart';
@@ -51,7 +52,7 @@ class SettingsGroup extends PageGroup {
       ref.read(pageGroupPod.notifier).state = this;
 
   @override
-  List<IconItem> get pages => [SettingsNavItem()];
+  List<IconItem> get pages => [AboutNavItem(), SettingsNavItem()];
 
   @override
   String get title => "";
@@ -103,41 +104,45 @@ class _HomePageState extends ConsumerState<HomePage> {
     return Scaffold(
       appBar: AppBar(
         actions: page != null ? [page.buildAppBarWidget(context, ref)] : [],
+        title: page?.buildAppBarTitle(),
       ),
       drawer: Drawer(
-        child: Column(
-          children: [
-            DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                child: null),
-            ...[
-              TextDivider(AnimeGroup().title),
-              ...AnimeGroup()
-                  .pages
-                  .asMap()
-                  .entries
-                  .map((e) => buildListTile(e.value, ref, AnimeGroup(), e.key))
-            ],
-            ...[
-              TextDivider(OtherGroup().title),
-              ...OtherGroup()
-                  .pages
-                  .asMap()
-                  .entries
-                  .map((e) => buildListTile(e.value, ref, OtherGroup(), e.key))
-            ],
-            const Spacer(),
-            ...[
-              TextDivider(SettingsGroup().title),
-              ...SettingsGroup().pages.asMap().entries.map(
-                  (e) => buildListTile(e.value, ref, SettingsGroup(), e.key))
-            ],
-          ],
+        child: SingleChildScrollView(
+          child: IntrinsicHeight(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: MediaQuery.of(context).size.height,
+              ),
+              child: Column(
+                children: [
+                  DrawerHeader(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      child: null),
+                  ...[
+                    TextDivider(AnimeGroup().title),
+                    ...AnimeGroup().pages.asMap().entries.map(
+                        (e) => buildListTile(e.value, ref, AnimeGroup(), e.key))
+                  ],
+                  ...[
+                    TextDivider(OtherGroup().title),
+                    ...OtherGroup().pages.asMap().entries.map(
+                        (e) => buildListTile(e.value, ref, OtherGroup(), e.key))
+                  ],
+                  const Spacer(),
+                  ...[
+                    TextDivider(SettingsGroup().title),
+                    ...SettingsGroup().pages.asMap().entries.map((e) =>
+                        buildListTile(e.value, ref, SettingsGroup(), e.key))
+                  ],
+                ],
+              ),
+            ),
+          ),
         ),
       ),
-      body: page != null ? page.buildContent(ref) : null,
+      body: page?.buildContent(ref),
       bottomNavigationBar: (group?.pages.length ?? 0) > 1
           ? NavigationBar(
               backgroundColor: Theme.of(context).colorScheme.background,
