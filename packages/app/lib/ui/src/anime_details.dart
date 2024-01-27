@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:app/controller/src/object/tag.dart';
+import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/ui/selection_widget/src/multiple_select.dart';
 import 'package:app/ui/src/like_select.dart';
@@ -84,7 +85,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _tabIndex = 0;
-  IsarAnime? anime;
+  AnimeIntern? anime;
 
   bool? isFavorite;
   double? personalScore;
@@ -638,7 +639,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
 }
 
 class AnimeDetailsArgs {
-  final IsarAnime anime;
+  final AnimeIntern anime;
   final String heroTag;
   const AnimeDetailsArgs(this.anime, this.heroTag);
 }
