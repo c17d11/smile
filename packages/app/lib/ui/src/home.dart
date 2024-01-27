@@ -117,8 +117,14 @@ class _HomePageState extends ConsumerState<HomePage> {
                 children: [
                   DrawerHeader(
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+                          color: Theme.of(context).colorScheme.primary,
+                          image: const DecorationImage(
+                            colorFilter: ColorFilter.mode(
+                                Colors.blueGrey, BlendMode.modulate),
+                            image: AssetImage('assets/luffy-no-background.png'),
+                            fit: BoxFit.fill,
+                            alignment: Alignment.bottomLeft,
+                          )),
                       child: null),
                   ...[
                     TextDivider(AnimeGroup().title),
