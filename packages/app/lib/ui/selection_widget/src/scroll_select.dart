@@ -48,13 +48,13 @@ void _pickValue(
                             ),
                           ),
                         ),
-                        height: 30,
+                        height: 40,
                       ),
                     ),
                     ListWheelScrollView.useDelegate(
-                      itemExtent: 30,
+                      itemExtent: 40,
                       renderChildrenOutsideViewport: false,
-                      diameterRatio: 1.5,
+                      diameterRatio: 2.0,
                       controller: scroll,
                       childDelegate: ListWheelChildBuilderDelegate(
                         childCount: max - min + 1,
@@ -64,6 +64,7 @@ void _pickValue(
                             child: Center(
                               child: Text(
                                 "${max - index}",
+                                style: TextStyle(fontSize: 16),
                               ),
                             ),
                           ),

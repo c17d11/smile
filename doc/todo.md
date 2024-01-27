@@ -8,8 +8,8 @@ Tasks to be done at some point.
 - [ ] Style app
 	- [ ] Use dark mode throughout the whole app
 - [ ] testAnimeUpdatePod disposed sometimes after navigating back from anime details page
-- [ ] year select current year should be max
 - [ ] sort animes in response like api
+- [ ] animeSchedule pod disposed when in anime details
 
 ### Device testing 2024-01-17
 - [ ] About/info page
@@ -44,6 +44,7 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] year select current year should be max
 - [x] Instance if jikan exception when searching for "map" in producers
 - [x] Chipitem not clear if selected or not
 - [x] Delete collections

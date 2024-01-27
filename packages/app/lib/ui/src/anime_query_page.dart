@@ -184,8 +184,6 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
 
   @override
   Widget build(BuildContext context) {
-    final page = ModalRoute.of(context)?.settings.arguments as IconItem;
-
     final query = ref.read(animeQueryPod);
     AnimeQueryIntern localQuery = AnimeQueryIntern.from(query);
 
