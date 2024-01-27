@@ -9,9 +9,6 @@ Tasks to be done at some point.
 - [ ] sort animes in response like api
 - [ ] animeSchedule pod disposed when in anime details
 
-### Device testing 2024-01-17
-- [ ] End of schedule other page 2 of 1. Should not be possible
-
 
 ### Future
 - [ ] Hover/Focus color for select chips
