@@ -9,6 +9,7 @@ Tasks to be done at some point.
 	- [ ] Use dark mode throughout the whole app
 - [ ] testAnimeUpdatePod disposed sometimes after navigating back from anime details page
 - [ ] year select current year should be max
+- [ ] sort animes in response like api
 
 ### Device testing 2024-01-17
 - [ ] About/info page
