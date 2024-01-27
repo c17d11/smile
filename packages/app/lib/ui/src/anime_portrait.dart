@@ -31,9 +31,9 @@ class AnimePortrait extends ConsumerWidget {
   }
 
   bool hasAnimePersonalInfo(AnimeIntern anime) {
-    return anime.isFavorite != null ||
-        (anime.tags?.isNotEmpty ?? true) ||
-        anime.personalNotes != null ||
+    return (anime.isFavorite ?? false) ||
+        (anime.tags?.isNotEmpty ?? false) ||
+        anime.personalScore != null ||
         anime.personalNotes != null;
   }
 
