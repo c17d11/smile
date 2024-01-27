@@ -1,3 +1,4 @@
+import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/ui/src/anime_details.dart';
 import 'package:app/ui/src/test_page/test_pod.dart';
@@ -30,6 +31,13 @@ class AnimePortrait extends ConsumerWidget {
     );
   }
 
+  bool hasAnimePersonalInfo(IsarAnime anime) {
+    return anime.isFavorite != null ||
+        (anime.tags?.isNotEmpty ?? true) ||
+        anime.personalNotes != null ||
+        anime.personalNotes != null;
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return anime == null
@@ -46,6 +54,9 @@ class AnimePortrait extends ConsumerWidget {
               elevation: 0,
               clipBehavior: Clip.antiAlias,
               shape: RoundedRectangleBorder(
+                  side: hasAnimePersonalInfo(anime!)
+                      ? const BorderSide(color: Colors.blueGrey)
+                      : BorderSide.none,
                   borderRadius: BorderRadius.circular(5)),
               child: GridTile(
                 header: Container(
