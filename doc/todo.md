@@ -5,8 +5,6 @@ UI for the Jikan api.
 Tasks to be done at some point.
 
 ### Before 1.0.0
-- [ ] Style app
-	- [ ] Use dark mode throughout the whole app
 - [ ] testAnimeUpdatePod disposed sometimes after navigating back from anime details page
 - [ ] sort animes in response like api
 - [ ] animeSchedule pod disposed when in anime details
@@ -44,6 +42,8 @@ Tasks to be done at some point.
 - [ ] Toggle between light and dark mode
 
 ### Completed
+- [x] Style app
+	- [x] Use dark mode throughout the whole app
 - [x] year select current year should be max
 - [x] Instance if jikan exception when searching for "map" in producers
 - [x] Chipitem not clear if selected or not
