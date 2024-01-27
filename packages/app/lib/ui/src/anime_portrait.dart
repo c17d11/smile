@@ -1,5 +1,6 @@
 import 'package:app/controller/state.dart';
 import 'package:app/ui/src/anime_details.dart';
+import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/test_page/test_pod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,6 +40,7 @@ class AnimePortrait extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final hide = ref.watch(hideTitles);
     return anime == null
         ? buildNull()
         : GestureDetector(
@@ -96,64 +98,68 @@ class AnimePortrait extends ConsumerWidget {
                     ),
                   ),
                 ),
-                footer: GridTileBar(
-                  backgroundColor:
-                      Theme.of(context).colorScheme.background.withAlpha(190),
-                  title: Text(
-                    anime!.title ?? "",
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.w600,
-                      color: _foreground,
-                    ),
-                  ),
-                  subtitle: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      if (anime!.score != null) ...[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Icon(
-                              Icons.star,
-                              size: 14,
-                              color: _foregroundSecondary,
-                            ),
-                            Text(
-                              anime!.score?.toStringAsFixed(1) ?? "",
-                              style: TextStyle(
-                                fontSize: 10.0,
-                                overflow: TextOverflow.ellipsis,
-                                fontWeight: FontWeight.w800,
-                                color: _foregroundSecondary,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                      if (anime!.episodes != null) ...[
-                        Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              "${anime!.episodes} episodes",
-                              style: TextStyle(
-                                fontSize: 10.0,
-                                fontWeight: FontWeight.w800,
-                                color: _foregroundSecondary,
-                              ),
-                            ),
+                footer: hide
+                    ? null
+                    : GridTileBar(
+                        backgroundColor: Theme.of(context)
+                            .colorScheme
+                            .background
+                            .withAlpha(190),
+                        title: Text(
+                          anime!.title ?? "",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.w600,
+                            color: _foreground,
                           ),
                         ),
-                      ]
-                    ],
-                  ),
-                ),
+                        subtitle: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            if (anime!.score != null) ...[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    size: 14,
+                                    color: _foregroundSecondary,
+                                  ),
+                                  Text(
+                                    anime!.score?.toStringAsFixed(1) ?? "",
+                                    style: TextStyle(
+                                      fontSize: 10.0,
+                                      overflow: TextOverflow.ellipsis,
+                                      fontWeight: FontWeight.w800,
+                                      color: _foregroundSecondary,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                            if (anime!.episodes != null) ...[
+                              Flexible(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    "${anime!.episodes} episodes",
+                                    style: TextStyle(
+                                      fontSize: 10.0,
+                                      fontWeight: FontWeight.w800,
+                                      color: _foregroundSecondary,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ]
+                          ],
+                        ),
+                      ),
                 child: Hero(
                   tag: heroId,
                   child: FadeInImage.assetNetwork(
