@@ -4,6 +4,7 @@ import 'package:app/ui/src/browse/nav_item.dart';
 import 'package:app/ui/src/collections/nav_item.dart';
 import 'package:app/ui/src/favorite/nav_item.dart';
 import 'package:app/ui/src/nav_items.dart';
+import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/schedule/nav_item.dart';
 import 'package:app/ui/src/test_page/test_nav_item.dart';
 import 'package:app/ui/src/text_divider.dart';
@@ -103,7 +104,15 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        actions: page != null ? [page.buildAppBarWidget(context, ref)] : [],
+        actions: [
+          IconButton(
+              onPressed: () {
+                ref.read(hideTitles.notifier).state =
+                    !ref.read(hideTitles.notifier).state;
+              },
+              icon: const Icon(Icons.text_fields)),
+          if (page != null) ...[page.buildAppBarWidget(context, ref)]
+        ],
         title: page?.buildAppBarTitle(),
       ),
       drawer: Drawer(

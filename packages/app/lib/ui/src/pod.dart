@@ -170,6 +170,8 @@ extension AsyncValueUiProducer on AsyncValue<ProducerResponseIntern> {
       });
 }
 
+final hideTitles = StateProvider((ref) => false);
+
 // final animeResponseGet =
 //     FutureProvider.family<AnimeResponseIntern, AnimeQueryIntern>(
 //         (ref, arg) async {
