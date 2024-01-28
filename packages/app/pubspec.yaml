@@ -29,6 +29,7 @@ dependencies:
   tuple: ^2.0.2
   extended_wrap: ^0.1.5
   intl: ^0.18.1
+  icons_launcher: ^2.1.7
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +44,12 @@ flutter:
   assets:
     - assets/coffee.webp
     - assets/luffy-no-background.png
+
+icons_launcher:
+  image_path: "assets/icon/smile.png"
+  platforms:
+    android:
+      enable: true
 
 
 
