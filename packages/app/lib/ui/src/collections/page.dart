@@ -27,16 +27,15 @@ class CollectionPage extends ConsumerWidget {
           return CollectionList(
             initQuery: CollectionQueryIntern()..collectionName = tags[0],
             onNextPageQuery: (query) =>
-                CollectionQueryIntern.copy(query..page = (query.page ?? 1) + 1),
+                query.copyWith(page: (query.page ?? 1) + 1),
             onLastQuery: (query) {
               int currentIndex =
                   tags.indexWhere((element) => element == query.collectionName);
               if (currentIndex + 1 == tags.length) {
                 return null;
               }
-              return CollectionQueryIntern.copy(query
-                ..collectionName = tags[currentIndex + 1]
-                ..page = null);
+              return query.copyWith(
+                  collectionName: tags[currentIndex + 1], page: null);
             },
             key: UniqueKey(),
           );
@@ -82,10 +81,10 @@ class _CollectionListState extends State<CollectionList> {
     readyForNextPage = false;
 
     CollectionQueryIntern newQuery = pages.isEmpty
-        ? CollectionQueryIntern.copy(widget.initQuery)
+        ? widget.initQuery.copyWith()
         : widget.onNextPageQuery(pages.last.query);
     CollectionQueryIntern? nextQuery = pages.isEmpty
-        ? CollectionQueryIntern.copy(widget.initQuery)
+        ? widget.initQuery.copyWith()
         : widget.onLastQuery(pages.last.query);
 
     CollectionResponse? res;

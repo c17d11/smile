@@ -69,20 +69,21 @@ class TextActionDivider extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-                flex: 1,
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Divider(),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: GestureDetector(onTap: onPressed, child: tailing),
-                    ),
-                  ],
-                )),
-          ]
+          ],
+          Expanded(
+            flex: 1,
+            child: Row(
+              children: [
+                const Expanded(
+                  child: Divider(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: GestureDetector(onTap: onPressed, child: tailing),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
