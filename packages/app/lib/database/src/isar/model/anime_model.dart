@@ -1,8 +1,5 @@
-import 'package:app/controller/src/object/collection_query_intern.dart';
 import 'package:app/controller/src/object/genre_intern.dart';
-import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
-import 'package:app/database/src/isar/collection/isar_tag.dart';
 import 'package:app/database/src/isar/model.dart';
 import 'package:app/database/src/isar/model/genre_model.dart';
 import 'package:app/database/src/isar/model/producer_model.dart';
@@ -29,7 +26,6 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
       IsarAnime isarAnime = IsarAnime.from(anime);
 
       // Store linked objects first
-      final isarTags = await _tagModel.insertTagsInTxn(isarAnime.tags ?? []);
       final isarProducers = await _producerModel.insertProducersInTxn(
           isarAnime.producers?.map((e) => ProducerIntern.from(e)).toList() ??
               []);
@@ -40,10 +36,6 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
       await db.isarAnimes.put(isarAnime);
 
       // Update the links
-      await isarAnime.isarTags.reset();
-      isarAnime.isarTags.addAll(isarTags);
-      await isarAnime.isarTags.save();
-
       await isarAnime.isarProducers.reset();
       isarAnime.isarProducers.addAll(isarProducers);
       await isarAnime.isarProducers.save();
@@ -58,6 +50,23 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
     return isarAnimes;
   }
 
+  Future<IsarAnime> updateInternalInfoInTxn(AnimeIntern anime) async {
+    IsarAnime isarAnime = IsarAnime.from(anime);
+
+    final isarTags = await _tagModel.insertTagsInTxn(isarAnime.tags ?? []);
+
+    // Then store the anime object
+    await db.isarAnimes.put(isarAnime);
+
+    // Update the links
+    await isarAnime.isarTags.reset();
+    isarAnime.isarTags.addAll(isarTags);
+    await isarAnime.isarTags.save();
+
+    // Done
+    return isarAnime;
+  }
+
   List<AnimeIntern> getAnimesFromIsar(List<IsarAnime> isarAnimes) {
     return isarAnimes.map((e) => e.toAnime()).toList();
   }
@@ -66,8 +75,7 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
   Future<IsarAnime> insertAnime(AnimeIntern anime) async {
     late IsarAnime isarAnime;
     await write(() async {
-      List<IsarAnime> animes = await insertAnimesInTxn([anime]);
-      isarAnime = animes[0];
+      isarAnime = await updateInternalInfoInTxn(anime);
     });
     return isarAnime;
   }
@@ -104,34 +112,6 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
     });
     return isarAnimes;
   }
-
-  @override
-  Future<List<IsarAnime>> getCollection(CollectionQueryIntern query) async {
-    late List<IsarAnime> isarAnimes;
-    await read(() async {
-      isarAnimes = await db.isarAnimes
-          .filter()
-          .isarTags((q) => q.nameEqualTo(query.collectionName ?? ''))
-          .offset(10 * ((query.page ?? 1) - 1))
-          .limit(10)
-          .findAll();
-    });
-    return isarAnimes;
-  }
-
-  // @override
-  // Future<List<String>> getCollectionNames() async {
-  //   late List<IsarAnime> isarAnimes;
-
-  //   await read(() async {
-  //     isarAnimes = await db.isarAnimes.filter().isarTagsIsNotEmpty().findAll();
-  //   });
-  //   return isarAnimes
-  //       .map((e) => e.tags!.map((e) => e.toString()))
-  //       .expand((element) => element)
-  //       .toSet()
-  //       .toList();
-  // }
 
   @override
   Future<int> countFavoriteAnimes() async {

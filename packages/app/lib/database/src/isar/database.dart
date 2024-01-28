@@ -170,11 +170,6 @@ class IsarDatabase implements Database {
   }
 
   @override
-  Future<List<IsarAnime>> getCollection(CollectionQueryIntern query) async {
-    return await animeModel.getCollection(query);
-  }
-
-  @override
   Future<int> countFavoriteAnimes() async {
     return await animeModel.countFavoriteAnimes();
   }
