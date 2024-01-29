@@ -30,7 +30,6 @@ class FavoriteStateNotifier
       ..itemPerPage = favorites.length
       ..itemTotal = favoriteCount
       ..lastVisiblePage = pageCount;
-    res = await _database.insertAnimeResponse(res);
     return res;
   }
 

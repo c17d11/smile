@@ -1,4 +1,3 @@
-import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/database/src/isar/model.dart';
@@ -21,11 +20,21 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
       final isarAnimes = await _animeModel.insertAnimesInTxn(res.data ?? []);
       res.isarAnimes.clear();
       res.isarAnimes.addAll(isarAnimes);
+      res.linkOrder = isarAnimes.map((e) => e.malId!).toList();
       await db.isarAnimeResponses.put(res);
       await res.isarAnimes.save();
     });
 
-    res.data = res.isarAnimes.toList().map((e) => e.toAnime()).toList();
+    res.data = _animeModel.getAnimesFromIsar(res.isarAnimes.toList());
+
+    if (res.linkOrder != null) {
+      // Solutions for Isar not being able to store links in determined order.
+      Map<int, AnimeIntern> animeById = {
+        for (var e in res.isarAnimes.toList()) e.malId!: e.toAnime()
+      };
+      res.data = res.linkOrder!.map((e) => animeById[e]!).toList();
+    }
+
     return res;
   }
 
@@ -39,6 +48,15 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
     if (isExpired(res)) return null;
 
     res?.data = _animeModel.getAnimesFromIsar(res?.isarAnimes.toList() ?? []);
+
+    if (res?.linkOrder != null) {
+      // Solutions for Isar not being able to store links in determined order.
+      Map<int, AnimeIntern> animeById = {
+        for (var e in res?.isarAnimes.toList() ?? []) e.malId!: e.toAnime()
+      };
+      res?.data = res?.linkOrder!.map((e) => animeById[e]!).toList();
+    }
+
     res?.pagination = res?.isarPagination;
     return res;
   }

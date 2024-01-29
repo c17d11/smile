@@ -13,6 +13,10 @@ class IsarAnimeResponse extends AnimeResponseIntern with IsarExpiration {
   @Index(unique: true, replace: true)
   String q;
 
+  // Defined order of objects in links are not guaranteed in Isar.
+  // This is an known issue.
+  late List<int>? linkOrder;
+
   final isarAnimes = IsarLinks<IsarAnime>();
   IsarPagination? isarPagination;
 
