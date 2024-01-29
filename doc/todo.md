@@ -5,11 +5,11 @@ UI for the Jikan api.
 Tasks to be done at some point.
 
 ### Before 1.0.0
-- [ ] testAnimeUpdatePod disposed sometimes after navigating back from anime details page
-- [ ] animeSchedule pod disposed when in anime details
-
+- [ ] sort responses like answer from api
 
 ### Future
+- [ ] Change database. Isar is not ready yet. IsarLinks will be removed in 4.0.0, use a more stable database.
+- [ ] Minimize heady Riverpod states. It is find for simple states like bools but avoid storing controller interfaces with it.
 - [ ] Hover/Focus color for select chips
 - [ ] Splash screen
 - [ ] Custom sort order of collections
