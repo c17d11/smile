@@ -21,8 +21,13 @@ class CollectionStateNotifier
     IsarTag? tag = await _database.getTag(query.collectionName ?? '');
 
     IsarAnimeResponse res = IsarAnimeResponse(q: "tag-${query.collectionName}");
+
+    // TODO: Move this mapping to a model class
     res.data = tag?.animes
-        .map((e) => e..tags = e.isarTags.map((e) => e.toTag()).toList())
+        .map((e) => e
+          ..tags = e.isarTags.map((e) => e.toTag()).toList()
+          ..producers = e.isarProducers.map((e) => e.toProducer()).toList()
+          ..genres = e.isarGenres.toList())
         .toList();
     res.pagination = Pagination()
       ..currentPage = query.page ?? 1
@@ -31,7 +36,6 @@ class CollectionStateNotifier
       ..itemPerPage = tag?.animes.toList().length
       ..itemTotal = tag?.animes.toList().length
       ..lastVisiblePage = 1;
-    res = await _database.insertAnimeResponse(res);
     return res;
   }
 
