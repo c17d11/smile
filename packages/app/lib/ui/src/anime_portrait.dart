@@ -60,44 +60,48 @@ class AnimePortrait extends ConsumerWidget {
                       : BorderSide.none,
                   borderRadius: BorderRadius.circular(5)),
               child: GridTile(
-                header: Container(
-                  height: 50,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0x90000000),
-                        Color(0x70000000),
-                        Color(0x00000000),
-                      ],
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        GestureDetector(
-                          onTap: () async {
-                            ref.read(testAnimeUpdatePod.notifier).update(anime!
-                              ..isFavorite = !(anime!.isFavorite ?? false));
-
-                            onAnimeUpdate();
-                          },
-                          child: Icon(
-                            (anime?.isFavorite ?? false)
-                                ? Icons.favorite
-                                : Icons.favorite_outline,
-                            size: 24,
-                            color: Colors.red[900],
+                header: hide
+                    ? null
+                    : Container(
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Color(0x90000000),
+                              Color(0x70000000),
+                              Color(0x00000000),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(4),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              GestureDetector(
+                                onTap: () async {
+                                  ref.read(testAnimeUpdatePod.notifier).update(
+                                      anime!
+                                        ..isFavorite =
+                                            !(anime!.isFavorite ?? false));
+
+                                  onAnimeUpdate();
+                                },
+                                child: Icon(
+                                  (anime?.isFavorite ?? false)
+                                      ? Icons.favorite
+                                      : Icons.favorite_outline,
+                                  size: 24,
+                                  color: Colors.red[900],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                 footer: hide
                     ? null
                     : GridTileBar(
