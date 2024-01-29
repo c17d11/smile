@@ -20,8 +20,8 @@ class AboutNavItem extends IconItem {
   }
 
   @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return Container();
+  List<Widget> buildAppBarWidgets(BuildContext context, WidgetRef ref) {
+    return [];
   }
 
   @override

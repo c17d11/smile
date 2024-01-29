@@ -1,5 +1,6 @@
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/favorite/page.dart';
+import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,8 +21,15 @@ class FavoriteNavItem extends IconItem {
   }
 
   @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return Container();
+  List<Widget> buildAppBarWidgets(BuildContext context, WidgetRef ref) {
+    return [
+      IconButton(
+          onPressed: () {
+            ref.read(hideTitles.notifier).state =
+                !ref.read(hideTitles.notifier).state;
+          },
+          icon: const Icon(Icons.text_fields)),
+    ];
   }
 
   @override

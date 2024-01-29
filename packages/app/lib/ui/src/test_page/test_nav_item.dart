@@ -20,8 +20,8 @@ class TestNavItem extends IconItem {
   }
 
   @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return Container(color: Colors.orange);
+  List<Widget> buildAppBarWidgets(BuildContext context, WidgetRef ref) {
+    return [];
   }
 
   @override

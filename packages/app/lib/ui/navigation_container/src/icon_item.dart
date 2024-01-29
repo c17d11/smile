@@ -12,7 +12,7 @@ abstract class IconItem extends NavItem {
 
   Widget buildAppBarTitle();
 
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref);
+  List<Widget> buildAppBarWidgets(BuildContext context, WidgetRef ref);
 
   @override
   Widget build(bool isSelected, void Function()? onPressed) => AnimatedNavItem(
