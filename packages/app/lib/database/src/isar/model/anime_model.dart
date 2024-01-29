@@ -1,6 +1,5 @@
 import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/state.dart';
-import 'package:app/database/src/isar/collection/isar_tag.dart';
 import 'package:app/database/src/isar/model.dart';
 import 'package:app/database/src/isar/model/genre_model.dart';
 import 'package:app/database/src/isar/model/producer_model.dart';
@@ -122,8 +121,8 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
       isarAnimes = await db.isarAnimes
           .filter()
           .isFavoriteEqualTo(true)
-          .offset(10 * (page - 1))
-          .limit(10)
+          // .offset(10 * (page - 1))
+          // .limit(10)
           .findAll();
     });
     return isarAnimes;

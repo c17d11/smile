@@ -1,4 +1,5 @@
 import 'package:app/controller/state.dart';
+import 'package:app/database/src/isar/collection/isar_anime.dart';
 import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/database/src/isar/model.dart';
 import 'package:app/database/src/isar/model/anime_model.dart';
@@ -12,9 +13,28 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
       : _animeModel = IsarAnimeModel(db, expirationHours: expirationHours);
 
   @override
+  // Should only be called with data from API
   Future<IsarAnimeResponse> insertAnimeResponse(AnimeResponseIntern arg) async {
     IsarAnimeResponse res = arg as IsarAnimeResponse;
     res.isarPagination = IsarPagination.from(res.pagination);
+
+    // Prevent new responses from overriing internal data
+    List<IsarAnime> storedAnimes = [];
+    for (var anime in res.data ?? []) {
+      IsarAnime? storedAnime = await _animeModel.getAnime(anime.malId);
+      if (storedAnime != null) {
+        storedAnimes.add(storedAnime);
+      }
+    }
+
+    Map<int, AnimeIntern> animeById = {for (var e in storedAnimes) e.malId!: e};
+
+    res.data = res.data
+        ?.map((e) => e
+          ..isFavorite = animeById[e.malId]?.isFavorite
+          ..personalScore = animeById[e.malId]?.personalScore
+          ..personalNotes = animeById[e.malId]?.personalNotes)
+        .toList();
 
     await write(() async {
       final isarAnimes = await _animeModel.insertAnimesInTxn(res.data ?? []);
