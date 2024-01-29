@@ -68,7 +68,7 @@ class _YearSelectState extends State<YearSelect> {
           Table(
             columnWidths: const {
               0: IntrinsicColumnWidth(),
-              1: FixedColumnWidth(125),
+              1: IntrinsicColumnWidth(),
             },
             defaultVerticalAlignment: TableCellVerticalAlignment.middle,
             children: [
@@ -92,50 +92,24 @@ class _YearSelectState extends State<YearSelect> {
               TableRow(
                 children: [
                   const TextSubtitle("TO:"),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: ScrollSelect(
-                        title: "Max Year",
-                        value: maxYear ?? DateTime.now().year,
-                        isSet: maxYear != null,
-                        minValue: minYear ?? 0,
-                        maxValue: DateTime.now().year,
-                        onSelect: (max) {
-                          setState(() => maxYear = max);
-                          widget.onMaxChanged(max);
-                        },
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: ScrollSelect(
+                      title: "Max Year",
+                      value: maxYear ?? DateTime.now().year,
+                      isSet: maxYear != null,
+                      minValue: minYear ?? 0,
+                      maxValue: DateTime.now().year,
+                      onSelect: (max) {
+                        setState(() => maxYear = max);
+                        widget.onMaxChanged(max);
+                      },
                     ),
                   )
                 ],
               ),
             ],
           ),
-
-          // const Column(
-          //   mainAxisAlignment: MainAxisAlignment.start,
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   children: [
-          //   ],
-          // ),
-          // Flexible(
-          //   child: Column(
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: [
-          //       const SizedBox(width: 20),
-          //     ],
-          //   ),
-          // ),
-          // const Spacer(),
-
-          // Row(
-          //   crossAxisAlignment: CrossAxisAlignment.center,
-          //   mainAxisAlignment: MainAxisAlignment.start,
-          //   children: [
-          //     const SizedBox(width: 5),
-          //   ],
-          // ),
           ResetIcon(onPressed: isValueSet() ? clearSelection : null),
         ],
       ),
