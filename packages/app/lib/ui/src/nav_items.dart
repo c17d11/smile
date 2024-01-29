@@ -29,8 +29,8 @@ class SettingsNavItem extends IconItem {
   }
 
   @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return Container();
+  List<Widget> buildAppBarWidgets(BuildContext context, WidgetRef ref) {
+    return [];
   }
 
   @override
@@ -55,8 +55,8 @@ class ProducersNavItem extends IconItem {
   }
 
   @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return Container();
+  List<Widget> buildAppBarWidgets(BuildContext context, WidgetRef ref) {
+    return [];
   }
 
   @override
@@ -81,12 +81,12 @@ class GenresNavItem extends IconItem {
   }
 
   @override
-  Widget buildAppBarWidget(BuildContext context, WidgetRef ref) {
-    return Container();
+  List<Widget> buildAppBarWidgets(BuildContext context, WidgetRef ref) {
+    return [];
   }
 
   @override
   Widget buildAppBarTitle() {
-    return TextFields("Genres");
+    return const TextFields("Genres");
   }
 }
