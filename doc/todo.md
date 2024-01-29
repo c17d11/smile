@@ -5,7 +5,6 @@ UI for the Jikan api.
 Tasks to be done at some point.
 
 ### Before 1.0.0
-- [ ] sort responses like answer from api
 
 ### Future
 - [ ] Change database. Isar is not ready yet. IsarLinks will be removed in 4.0.0, use a more stable database.
