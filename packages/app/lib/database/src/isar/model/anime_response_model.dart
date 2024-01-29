@@ -1,3 +1,4 @@
+import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/database/src/isar/model.dart';
@@ -23,6 +24,8 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
       await db.isarAnimeResponses.put(res);
       await res.isarAnimes.save();
     });
+
+    res.data = res.isarAnimes.toList().map((e) => e.toAnime()).toList();
     return res;
   }
 

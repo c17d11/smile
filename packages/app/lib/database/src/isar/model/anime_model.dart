@@ -1,5 +1,6 @@
 import 'package:app/controller/src/object/genre_intern.dart';
 import 'package:app/controller/state.dart';
+import 'package:app/database/src/isar/collection/isar_tag.dart';
 import 'package:app/database/src/isar/model.dart';
 import 'package:app/database/src/isar/model/genre_model.dart';
 import 'package:app/database/src/isar/model/producer_model.dart';
@@ -44,6 +45,9 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
       isarAnime.isarGenres.addAll(isarGenres);
       await isarAnime.isarGenres.save();
 
+      // Load tags
+      await isarAnime.isarTags.load();
+
       // Done
       isarAnimes.add(isarAnime);
     }
@@ -63,6 +67,12 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
     isarAnime.isarTags.addAll(isarTags);
     await isarAnime.isarTags.save();
 
+    // Load producers
+    await isarAnime.isarProducers.load();
+
+    // // Load genres
+    await isarAnime.isarGenres.load();
+
     // Done
     return isarAnime;
   }
@@ -77,6 +87,12 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
     await write(() async {
       isarAnime = await updateInternalInfoInTxn(anime);
     });
+
+    // TODO: remove duplicate mappings (also in IsarAnime)
+    isarAnime.producers =
+        isarAnime.isarProducers.map((e) => e.toProducer()).toList();
+    isarAnime.genres = isarAnime.isarGenres.toList();
+    isarAnime.tags = isarAnime.isarTags.map((e) => e.toTag()).toList();
     return isarAnime;
   }
 
