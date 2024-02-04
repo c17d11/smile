@@ -3,7 +3,7 @@ class JikanParseException implements Exception {}
 class JikanTimeoutException implements Exception {}
 
 class JikanApiException implements Exception {
-  int? status;
+  String? status;
   String? type;
   String? message;
   String? error;
