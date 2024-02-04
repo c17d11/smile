@@ -1,11 +1,11 @@
-enum AnimeSort { asc, desc }
+enum JikanAnimeSort { asc, desc }
 
-extension AnimeSortText on AnimeSort {
+extension AnimeSortText on JikanAnimeSort {
   String get queryName {
     switch (this) {
-      case AnimeSort.asc:
+      case JikanAnimeSort.asc:
         return "asc";
-      case AnimeSort.desc:
+      case JikanAnimeSort.desc:
         return "desc";
     }
   }

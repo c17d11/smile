@@ -62,41 +62,42 @@ class JikanApi {
     );
   }
 
-  Future<Anime> getAnime(int malId) async {
-    Anime anime = await _animeApi.call(malId);
+  Future<JikanAnime> getAnime(int malId) async {
+    JikanAnime anime = await _animeApi.call(malId);
     return anime;
   }
 
-  String buildAnimeSearchQuery(AnimeQuery query) {
+  String buildAnimeSearchQuery(JikanAnimeQuery query) {
     return _animeSearchApi.buildQuery(query);
   }
 
-  Future<AnimeResponse> searchAnimes(AnimeQuery query) async {
-    AnimeResponse res = await _animeSearchApi.call(query);
+  Future<JikanAnimeResponse> searchAnimes(JikanAnimeQuery query) async {
+    JikanAnimeResponse res = await _animeSearchApi.call(query);
     return res;
   }
 
-  Future<List<Genre>> searchGenres() async {
-    List<Genre> genres = await _genreSearchApi.call(null);
+  Future<List<JikanGenre>> searchGenres() async {
+    List<JikanGenre> genres = await _genreSearchApi.call(null);
     return genres;
   }
 
-  Future<Producer> getProducer(int malId) async {
-    Producer producer = await _producerApi.call(malId);
+  Future<JikanProducer> getProducer(int malId) async {
+    JikanProducer producer = await _producerApi.call(malId);
     return producer;
   }
 
-  Future<ProducerResponse> searchProducers(ProducerQuery query) async {
-    ProducerResponse res = await _producerSearchApi.call(query);
+  Future<JikanProducerResponse> searchProducers(
+      JikanProducerQuery query) async {
+    JikanProducerResponse res = await _producerSearchApi.call(query);
     return res;
   }
 
-  String buildScheduleSearchQuery(ScheduleQuery query) {
+  String buildScheduleSearchQuery(JikanScheduleQuery query) {
     return _scheduleSearchApi.buildQuery(query);
   }
 
-  Future<AnimeResponse> searchSchedule(ScheduleQuery query) async {
-    AnimeResponse res = await _scheduleSearchApi.call(query);
+  Future<JikanAnimeResponse> searchSchedule(JikanScheduleQuery query) async {
+    JikanAnimeResponse res = await _scheduleSearchApi.call(query);
     return res;
   }
 
@@ -107,7 +108,7 @@ class JikanApi {
     }
   }
 
-  List<Producer> getFetchAllProducerResult() {
+  List<JikanProducer> getFetchAllProducerResult() {
     return _fetchAllProducerTask.getResult();
   }
 
@@ -118,11 +119,11 @@ class JikanApi {
     }
   }
 
-  List<Anime> getFetchAllScheduleResult() {
+  List<JikanAnime> getFetchAllScheduleResult() {
     return _fetchAllScheduleTask.getResult();
   }
 
-  String buildProducerSearchQuery(ProducerQuery query) {
+  String buildProducerSearchQuery(JikanProducerQuery query) {
     return _producerSearchApi.buildQuery(query);
   }
 }

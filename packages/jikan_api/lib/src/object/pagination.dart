@@ -1,4 +1,4 @@
-class Pagination {
+class JikanPagination {
   int? lastVisiblePage;
   bool? hasNextPage;
   int? currentPage;

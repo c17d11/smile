@@ -1,13 +1,11 @@
-import 'package:app/controller/src/object/schedule_query_intern.dart';
 import 'package:app/controller/state.dart';
-import 'package:app/database/src/database_base.dart';
-import 'package:app/database/src/isar/collection/isar_anime_response.dart';
+import 'package:app/object/schedule_query.dart';
+import 'package:app/database/src/interface/database.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
-class ScheduleStateNotifier
-    extends StateNotifier<AsyncValue<IsarAnimeResponse>> {
+class ScheduleStateNotifier extends StateNotifier<AsyncValue<AnimeResponse>> {
   late final Database _database;
   late final JikanApi _api;
   final StateNotifierProviderRef ref;
@@ -17,27 +15,26 @@ class ScheduleStateNotifier
     _api = ref.watch(apiPod);
   }
 
-  Future<AnimeResponseIntern> _getApiScheduleResponse(
-      ScheduleQuery query) async {
-    AnimeResponse res = await _api.searchSchedule(query);
-    AnimeResponseIntern resIntern = _database.createAnimeResponseIntern(res);
-    return resIntern;
+  Future<AnimeResponse> _getApiScheduleResponse(ScheduleQuery query) async {
+    JikanAnimeResponse res = await _api.searchSchedule(query);
+    return AnimeResponse.from(res);
   }
 
-  Future<IsarAnimeResponse> _getScheduleResponse(ScheduleQuery query) async {
+  Future<AnimeResponse> _getScheduleResponse(ScheduleQuery query) async {
     String queryString = _api.buildScheduleSearchQuery(query);
-    IsarAnimeResponse? res = await _database.getAnimeResponse(queryString);
+    AnimeResponse? res = await _database.getAnimeResponse(queryString);
     if (res == null) {
-      final resIntern = await _getApiScheduleResponse(query);
-      res = await _database.insertAnimeResponse(resIntern);
+      res = await _getApiScheduleResponse(query);
+      await _database.insertAnimeResponse(res);
+      res = await _database.getAnimeResponse(queryString);
     }
-    return res;
+    return res!;
   }
 
-  Future<void> get(ScheduleQueryIntern query) async {
+  Future<void> get(ScheduleQuery query) async {
     try {
       state = const AsyncLoading();
-      IsarAnimeResponse res = await _getScheduleResponse(query);
+      AnimeResponse res = await _getScheduleResponse(query);
       if (!mounted) return;
 
       state = AsyncValue.data(res);
@@ -47,15 +44,20 @@ class ScheduleStateNotifier
     }
   }
 
-  Future<void> refresh() async {
-    state = AsyncValue.data(state.value!);
+  Future<void> refresh(int animeId) async {
+    Anime? anime = await _database.getAnime(animeId);
+    AnimeResponse res = state.value!;
+    res.animes =
+        res.animes?.map((e) => e.malId == animeId ? anime! : e).toList();
+
+    state = AsyncValue.data(res);
   }
 }
 
 final animeSchedule = StateNotifierProvider.family.autoDispose<
     ScheduleStateNotifier,
-    AsyncValue<IsarAnimeResponse>,
-    ScheduleQueryIntern>((ref, arg) {
+    AsyncValue<AnimeResponse>,
+    ScheduleQuery>((ref, arg) {
   ScheduleStateNotifier controller = ScheduleStateNotifier(ref);
   controller.get(arg);
   return controller;

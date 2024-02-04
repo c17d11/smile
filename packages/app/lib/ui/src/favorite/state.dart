@@ -1,12 +1,10 @@
-import 'package:app/database/src/database_base.dart';
-import 'package:app/database/src/isar/collection/isar_anime.dart';
-import 'package:app/database/src/isar/collection/isar_anime_response.dart';
+import 'package:app/controller/state.dart';
+import 'package:app/database/src/interface/database.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
-class FavoriteStateNotifier
-    extends StateNotifier<AsyncValue<IsarAnimeResponse>> {
+class FavoriteStateNotifier extends StateNotifier<AsyncValue<AnimeResponse>> {
   late final Database _database;
   final StateNotifierProviderRef ref;
 
@@ -14,29 +12,15 @@ class FavoriteStateNotifier
     _database = ref.watch(databaseUpdatePod);
   }
 
-  Future<IsarAnimeResponse> _getFavorites(int page) async {
-    List<IsarAnime> favorites = await _database.getFavoriteAnimes(page);
-    int favoriteCount = await _database.countFavoriteAnimes();
-    int pageCount = _database.countFavoriteAnimePages(favoriteCount);
-
-    IsarAnimeResponse res = IsarAnimeResponse(q: "favorites");
-    res.data = favorites
-        .map((e) => e..tags = e.isarTags.map((e) => e.toTag()).toList())
-        .toList();
-    res.pagination = Pagination()
-      ..currentPage = page
-      ..hasNextPage = false
-      ..itemCount = favorites.length
-      ..itemPerPage = favorites.length
-      ..itemTotal = favoriteCount
-      ..lastVisiblePage = pageCount;
+  Future<AnimeResponse> _getFavorites() async {
+    AnimeResponse res = await _database.getFavoriteAnimes();
     return res;
   }
 
-  Future<void> get(int page) async {
+  Future<void> get() async {
     try {
       state = const AsyncLoading();
-      IsarAnimeResponse res = await _getFavorites(page);
+      AnimeResponse res = await _getFavorites();
       if (!mounted) return;
 
       state = AsyncValue.data(res);
@@ -46,15 +30,19 @@ class FavoriteStateNotifier
     }
   }
 
-  Future<void> refresh() async {
-    state = AsyncValue.data(state.value!);
+  Future<void> refresh(int animeId) async {
+    Anime? anime = await _database.getAnime(animeId);
+    AnimeResponse res = state.value!;
+    res.animes =
+        res.animes?.map((e) => e.malId == animeId ? anime! : e).toList();
+
+    state = AsyncValue.data(res);
   }
 }
 
-final animeFavorite = StateNotifierProvider.family
-    .autoDispose<FavoriteStateNotifier, AsyncValue<IsarAnimeResponse>, int>(
-        (ref, arg) {
+final animeFavorite = StateNotifierProvider.autoDispose<FavoriteStateNotifier,
+    AsyncValue<AnimeResponse>>((ref) {
   FavoriteStateNotifier controller = FavoriteStateNotifier(ref);
-  controller.get(arg);
+  controller.get();
   return controller;
 });

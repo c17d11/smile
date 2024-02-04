@@ -1,6 +1,4 @@
 import 'package:app/controller/state.dart';
-import 'package:app/database/src/isar/collection/isar_anime.dart';
-import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/text_divider.dart';
 import 'package:app/ui/style/style.dart';
@@ -19,7 +17,7 @@ mixin AnimeResponseViewUtils {
         child: Center(child: TextHeadline("No data")));
   }
 
-  Widget buildHeader(AnimeResponseIntern? res) {
+  Widget buildHeader(AnimeResponse? res) {
     String currentPage = res?.pagination?.currentPage.toString() ?? "";
     String lastPage = res?.pagination?.lastVisiblePage.toString() ?? "";
 
@@ -29,7 +27,7 @@ mixin AnimeResponseViewUtils {
   }
 
   Widget buildAnimeList(
-      int? page, List<IsarAnime> animes, void Function() saveAnime) {
+      int? page, List<Anime> animes, void Function(int) saveAnime) {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         childCount: animes.length,
@@ -47,8 +45,8 @@ mixin AnimeResponseViewUtils {
   }
 
   Widget buildResponse(
-      AsyncValue<IsarAnimeResponse> res, void Function() saveAnime) {
-    List<IsarAnime>? animes = res.value?.isarAnimes.toList();
+      AsyncValue<AnimeResponse> res, void Function(int) saveAnime) {
+    List<Anime>? animes = res.value?.animes;
     // lastPage = res.value?.pagination?.lastVisiblePage ?? 1;
 
     if (res.isLoading) {

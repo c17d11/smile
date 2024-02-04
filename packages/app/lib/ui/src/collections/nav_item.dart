@@ -1,8 +1,7 @@
-import 'package:app/controller/src/object/tag.dart';
+import 'package:app/object/tag.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/collections/page.dart';
 import 'package:app/ui/src/collections/state.dart';
-import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +41,7 @@ class CollectionsNavItem extends IconItem {
                       return true;
                     },
                     child: AlertDialog(
-                      title: TextWindow("Enter tag name"),
+                      title: const TextWindow("Enter tag name"),
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8.0))),
                       content: StatefulBuilder(builder:
@@ -77,7 +76,11 @@ class CollectionsNavItem extends IconItem {
                 },
               ).then((value) async {
                 if (value != null) {
-                  await ref.read(tagPod.notifier).insertTags([Tag(value, 0)]);
+                  await ref.read(tagPod.notifier).insertTags([
+                    Tag()
+                      ..name = value
+                      ..animeCount = 0
+                  ]);
                   ref.invalidate(collectionNames);
                 }
               }),

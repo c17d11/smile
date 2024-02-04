@@ -1,7 +1,7 @@
 import 'package:app/controller/state.dart';
+import 'package:app/object/anime_notes.dart';
 import 'package:app/ui/src/anime_details.dart';
 import 'package:app/ui/src/pod.dart';
-import 'package:app/ui/src/test_page/test_pod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,9 +12,9 @@ final Color _foregroundSecondary = Colors.grey[400]!;
 final Color _foregroundThird = Colors.grey[600]!;
 
 class AnimePortrait extends ConsumerWidget {
-  final AnimeIntern? anime;
+  final Anime? anime;
   final String heroId;
-  final Function() onAnimeUpdate;
+  final Function(int animeId) onAnimeUpdate;
   const AnimePortrait(
     this.anime, {
     required this.heroId,
@@ -31,11 +31,11 @@ class AnimePortrait extends ConsumerWidget {
     );
   }
 
-  bool hasAnimePersonalInfo(AnimeIntern anime) {
-    return (anime.isFavorite ?? false) ||
-        (anime.tags?.isNotEmpty ?? false) ||
-        anime.personalScore != null ||
-        anime.personalNotes != null;
+  bool hasAnimePersonalInfo(Anime anime) {
+    return (anime.notes?.favorite ?? false) ||
+        (anime.notes?.tags?.isNotEmpty ?? false) ||
+        anime.notes?.score != null ||
+        anime.notes?.notes != null;
   }
 
   @override
@@ -49,7 +49,7 @@ class AnimePortrait extends ConsumerWidget {
                 context,
                 'anime-details',
                 arguments: AnimeDetailsArgs(anime!, heroId),
-              ).then((value) => onAnimeUpdate());
+              ).then((value) => onAnimeUpdate(anime!.malId!));
             },
             child: Card(
               elevation: 0,
@@ -83,15 +83,20 @@ class AnimePortrait extends ConsumerWidget {
                             children: [
                               GestureDetector(
                                 onTap: () async {
-                                  ref.read(testAnimeUpdatePod.notifier).update(
-                                      anime!
-                                        ..isFavorite =
-                                            !(anime!.isFavorite ?? false));
+                                  await ref
+                                      .read(databaseUpdatePod)
+                                      .updateAnimeNotes(AnimeNotes()
+                                        ..malId = anime!.malId
+                                        ..favorite =
+                                            !(anime!.notes?.favorite ?? false)
+                                        ..score = anime!.notes?.score
+                                        ..notes = anime!.notes?.notes
+                                        ..tags = anime!.notes?.tags);
 
-                                  onAnimeUpdate();
+                                  onAnimeUpdate(anime!.malId!);
                                 },
                                 child: Icon(
-                                  (anime?.isFavorite ?? false)
+                                  (anime?.notes?.favorite ?? false)
                                       ? Icons.favorite
                                       : Icons.favorite_outline,
                                   size: 24,

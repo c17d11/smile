@@ -12,17 +12,17 @@ class AnimeApiParser implements AnimeParser {
   GenreParser genreParser = GenreParserImp();
 
   double? parseAsDouble(value) => value is int ? value.toDouble() : value;
-  List<Producer>? parseProducers(List? producers) {
+  List<JikanProducer>? parseProducers(List? producers) {
     return producers?.map((e) => producerParser.parseProducer(e)).toList();
   }
 
-  List<Genre>? parseGenres(List? genres) {
+  List<JikanGenre>? parseGenres(List? genres) {
     return genres?.map((e) => genreParser.parseGenre(e)).toList();
   }
 
   @override
-  Anime parseAnime(Map<String, dynamic> data) {
-    Anime anime = Anime()
+  JikanAnime parseAnime(Map<String, dynamic> data) {
+    JikanAnime anime = JikanAnime()
       ..malId = data['mal_id']
       ..title = data['title']
       // TODO titles
@@ -50,9 +50,9 @@ class AnimeApiParser implements AnimeParser {
   }
 
   @override
-  Anime parse(Map<String, dynamic> value) {
+  JikanAnime parse(Map<String, dynamic> value) {
     Map<String, dynamic> data = dataParser.parse(value);
-    Anime anime = parseAnime(data);
+    JikanAnime anime = parseAnime(data);
     return anime;
   }
 }

@@ -2,20 +2,20 @@ import 'package:app/controller/src/controller/genre_controller.dart';
 import 'package:app/controller/src/controller/producer_controller.dart';
 import 'package:app/controller/src/controller/producer_search_controller.dart';
 import 'package:app/controller/src/controller/tag_controller.dart';
-import 'package:app/controller/src/object/anime_query_intern.dart';
-import 'package:app/controller/src/object/genre_intern.dart';
-import 'package:app/controller/src/object/producer_response_intern.dart';
-import 'package:app/controller/src/object/schedule_query_intern.dart';
-import 'package:app/controller/src/object/settings_intern.dart';
-import 'package:app/controller/src/object/tag.dart';
+import 'package:app/object/anime_query.dart';
+import 'package:app/object/genre.dart';
+import 'package:app/object/producer_query.dart';
+import 'package:app/object/producer_response.dart';
+import 'package:app/object/schedule_query.dart';
+import 'package:app/object/settings.dart';
+import 'package:app/object/tag.dart';
 import 'package:app/controller/state.dart';
-import 'package:app/database/src/database_base.dart';
+import 'package:app/database/src/interface/database.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 final depencyInjectorPod = Provider((ref) => Injector()..setup());
 
@@ -67,14 +67,14 @@ final initPod = FutureProvider<bool>((ref) async {
 // });
 
 final producerPod =
-    StateNotifierProvider<ProducerController, AsyncValue<List<ProducerIntern>>>(
+    StateNotifierProvider<ProducerController, AsyncValue<List<Producer>>>(
         (ref) {
   Database db = ref.watch(databaseUpdatePod);
   return ProducerController(db);
 });
 
 final producerSearchPod = StateNotifierProvider.family<ProducerSearchController,
-    AsyncValue<ProducerResponseIntern>, ProducerQueryIntern>((ref, arg) {
+    AsyncValue<ProducerResponse>, ProducerQuery>((ref, arg) {
   Database db = ref.watch(databaseUpdatePod);
   JikanApi api = ref.watch(apiPod);
   ProducerSearchController controller = ProducerSearchController(db, api);
@@ -83,7 +83,7 @@ final producerSearchPod = StateNotifierProvider.family<ProducerSearchController,
 });
 
 final producerQueryPod = StateNotifierProvider.family<ProducerQueryNotifier,
-    ProducerQueryIntern, IconItem>((ref, arg) {
+    ProducerQuery, IconItem>((ref, arg) {
   Database db = ref.watch(databasePod);
   final notifier = ProducerQueryNotifier(arg.label, db);
   notifier.load();
@@ -91,8 +91,7 @@ final producerQueryPod = StateNotifierProvider.family<ProducerQueryNotifier,
 });
 
 final genrePod =
-    StateNotifierProvider<GenreController, AsyncValue<List<GenreIntern>>>(
-        (ref) {
+    StateNotifierProvider<GenreController, AsyncValue<List<Genre>>>((ref) {
   Database db = ref.watch(databaseUpdatePod);
   JikanApi api = ref.watch(apiPod);
   GenreController genres = GenreController(db, api);
@@ -108,15 +107,8 @@ final tagPod =
   return controller;
 });
 
-final animeControllerPod =
-    StateNotifierProvider<AnimeController, AsyncValue<AnimeIntern?>>((ref) {
-  Database db = ref.watch(databaseUpdatePod);
-  JikanApi api = ref.watch(apiPod);
-  return AnimeController(db, api);
-});
-
 final animeQueryPod =
-    StateNotifierProvider<AnimeQueryNotifier, AnimeQueryIntern>((ref) {
+    StateNotifierProvider<AnimeQueryNotifier, AnimeQuery>((ref) {
   Database db = ref.watch(databasePod);
   final notifier = AnimeQueryNotifier(db);
   notifier.load();
@@ -124,7 +116,7 @@ final animeQueryPod =
 });
 
 final scheduleQueryPod =
-    StateNotifierProvider<ScheduleQueryNotifier, ScheduleQueryIntern>((ref) {
+    StateNotifierProvider<ScheduleQueryNotifier, ScheduleQuery>((ref) {
   Database db = ref.watch(databasePod);
   final notifier = ScheduleQueryNotifier(db);
   notifier.load();
@@ -148,9 +140,9 @@ final databaseSettingsPod = Provider<DatabaseSettings>((ref) {
   return settings.dbSettings;
 });
 
-extension AsyncValueUi on AsyncValue<AnimeResponseIntern> {
-  bool get isLoading => this is AsyncLoading<AnimeResponseIntern>;
-  bool get isError => this is AsyncError<AnimeResponseIntern>;
+extension AsyncValueUiAnime on AsyncValue<AnimeResponse> {
+  bool get isLoading => this is AsyncLoading<AnimeResponse>;
+  bool get isError => this is AsyncError<AnimeResponse>;
 
   void showSnackBarOnError(BuildContext context) =>
       whenOrNull(error: (error, _) {
@@ -159,9 +151,9 @@ extension AsyncValueUi on AsyncValue<AnimeResponseIntern> {
       });
 }
 
-extension AsyncValueUiProducer on AsyncValue<ProducerResponseIntern> {
-  bool get isLoading => this is AsyncLoading<ProducerResponseIntern>;
-  bool get isError => this is AsyncError<ProducerResponseIntern>;
+extension AsyncValueUiProducer on AsyncValue<ProducerResponse> {
+  bool get isLoading => this is AsyncLoading<ProducerResponse>;
+  bool get isError => this is AsyncError<ProducerResponse>;
 
   void showSnackBarOnError(BuildContext context) =>
       whenOrNull(error: (error, _) {

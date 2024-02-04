@@ -13,32 +13,32 @@ import '../object/anime.dart';
 import '../object/exception.dart';
 import '../object/pagination.dart';
 
-class ScheduleSearchApi implements Api<ScheduleQuery, AnimeResponse> {
+class ScheduleSearchApi implements Api<JikanScheduleQuery, JikanAnimeResponse> {
   Http client;
-  Builder<ScheduleQuery, String> builder = ScheduleQueryBuilder();
-  Parser<List<Anime>> animeSearchParser = AnimeSearchParser();
-  Parser<Pagination> paginationParser = PaginationParser();
+  Builder<JikanScheduleQuery, String> builder = ScheduleQueryBuilder();
+  Parser<List<JikanAnime>> animeSearchParser = AnimeSearchParser();
+  Parser<JikanPagination> paginationParser = PaginationParser();
   Parser<JikanApiException> errorParser = ErrorParser();
 
   ScheduleSearchApi(this.client);
 
-  String buildQuery(ScheduleQuery arg) {
+  String buildQuery(JikanScheduleQuery arg) {
     String query = builder.build(arg);
     query = query.isEmpty ? "" : "?$query";
     return "schedules$query";
   }
 
   @override
-  Future<AnimeResponse> call(ScheduleQuery arg) async {
+  Future<JikanAnimeResponse> call(JikanScheduleQuery arg) async {
     String query = buildQuery(arg);
     HttpResult res = await client.get(query);
     if (res.error != null) {
       JikanApiException error = errorParser.parse(res.error!);
       return Future.error(error);
     }
-    Pagination pagination = paginationParser.parse(res.data ?? {});
-    List<Anime> animes = animeSearchParser.parse(res.data ?? {});
-    return AnimeResponse()
+    JikanPagination pagination = paginationParser.parse(res.data ?? {});
+    List<JikanAnime> animes = animeSearchParser.parse(res.data ?? {});
+    return JikanAnimeResponse()
       ..query = query
       ..pagination = pagination
       ..data = animes;

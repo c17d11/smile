@@ -1,15 +1,14 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:app/controller/src/object/tag.dart';
 import 'package:app/controller/state.dart';
-import 'package:app/database/src/isar/collection/isar_anime.dart';
+import 'package:app/object/anime_notes.dart';
+import 'package:app/object/tag.dart';
 import 'package:app/ui/selection_widget/src/multiple_select.dart';
 import 'package:app/ui/src/like_select.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/slider_select.dart';
 import 'package:app/ui/src/sliver_app_bar_delegate.dart';
-import 'package:app/ui/src/test_page/test_pod.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -85,7 +84,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _tabIndex = 0;
-  AnimeIntern? anime;
+  Anime? anime;
 
   bool? isFavorite;
   double? personalScore;
@@ -457,10 +456,10 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
         ModalRoute.of(context)?.settings.arguments as AnimeDetailsArgs;
 
     anime = animeArgs.anime;
-    isFavorite ??= anime?.isFavorite;
-    personalScore ??= anime?.personalScore;
-    tags ??= anime?.tags;
-    personalNotes ??= anime?.personalNotes;
+    isFavorite ??= anime?.notes?.favorite;
+    personalScore ??= anime?.notes?.score;
+    tags ??= anime?.notes?.tags;
+    personalNotes ??= anime?.notes?.notes;
 
     List<Tuple2<String, Widget>> tabs = [
       Tuple2("info", buildApiContent()),
@@ -472,12 +471,13 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
           ? FloatingActionButton.extended(
               onPressed: () async {
                 ref
-                    .read(testAnimeUpdatePod.notifier)
-                    .update(anime!
-                      ..isFavorite = isFavorite
-                      ..personalScore = personalScore
-                      ..tags = tags
-                      ..personalNotes = personalNotes)
+                    .read(databaseUpdatePod)
+                    .updateAnimeNotes(AnimeNotes()
+                      ..malId = anime!.malId
+                      ..favorite = isFavorite
+                      ..score = personalScore
+                      ..notes = personalNotes
+                      ..tags = tags)
                     .then((value) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: const Text("Saved"),
@@ -639,7 +639,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
 }
 
 class AnimeDetailsArgs {
-  final AnimeIntern anime;
+  final Anime anime;
   final String heroTag;
   const AnimeDetailsArgs(this.anime, this.heroTag);
 }

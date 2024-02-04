@@ -1,18 +1,18 @@
 import 'package:app/ui/src/schedule/state.dart';
-import 'package:app/controller/src/object/schedule_query_intern.dart';
+import 'package:app/object/schedule_query.dart';
 import 'package:app/controller/state.dart';
-import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/text_divider.dart';
 import 'package:app/ui/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jikan_api/jikan_api.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class ScheduleResponse extends ConsumerWidget {
   final int heroId;
-  final ScheduleQueryIntern query;
+  final ScheduleQuery query;
   final void Function(int?) updateLastPage;
   const ScheduleResponse(
       {required this.heroId,
@@ -22,9 +22,9 @@ class ScheduleResponse extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<IsarAnimeResponse> ret = ref.watch(animeSchedule(query));
+    AsyncValue<AnimeResponse> ret = ref.watch(animeSchedule(query));
 
-    ref.listen<AsyncValue<AnimeResponseIntern>>(
+    ref.listen<AsyncValue<AnimeResponse>>(
         animeSchedule(query), (_, state) => state.showSnackBarOnError(context));
 
     if (ret.hasValue) {
@@ -50,19 +50,20 @@ class ScheduleResponse extends ConsumerWidget {
                     "${query.day?.text ?? '-'} page $currentPage of $lastPage"),
               ),
             ),
-            res.data?.isEmpty ?? true
+            res.animes?.isEmpty ?? true
                 ? Center(
                     child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Text("No data", style: AppTextStyle.small)))
                 : SliverGrid(
                     delegate: SliverChildBuilderDelegate(
-                      childCount: res.data!.length,
+                      childCount: res.animes!.length,
                       (context, index) => AnimePortrait(
-                        res.data!.elementAt(index),
+                        res.animes!.elementAt(index),
                         heroId: "$heroId-$index",
-                        onAnimeUpdate: () =>
-                            ref.read(animeSchedule(query).notifier).refresh(),
+                        onAnimeUpdate: (animeId) => ref
+                            .read(animeSchedule(query).notifier)
+                            .refresh(animeId),
                       ),
                     ),
                     gridDelegate:

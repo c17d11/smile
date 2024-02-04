@@ -3,9 +3,8 @@
 /// More dartdocs go here.
 library;
 
-export 'src/object/anime_intern.dart';
-export 'src/object/anime_response_intern.dart';
-export 'src/object/producer_intern.dart';
-export 'src/controller/anime_controller.dart';
+export '../object/anime.dart';
+export '../object/anime_response.dart';
+export '../object/producer.dart';
 
 // TODO: Export any libraries intended for clients of this package.

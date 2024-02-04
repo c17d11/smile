@@ -24,14 +24,14 @@ class ListParser implements Parser<List> {
   }
 }
 
-abstract class AnimeParser implements Parser<Anime> {
-  Anime parseAnime(Map<String, dynamic> data);
+abstract class AnimeParser implements Parser<JikanAnime> {
+  JikanAnime parseAnime(Map<String, dynamic> data);
 }
 
-abstract class ProducerParser implements Parser<Producer> {
-  Producer parseProducer(Map<String, dynamic> data);
+abstract class ProducerParser implements Parser<JikanProducer> {
+  JikanProducer parseProducer(Map<String, dynamic> data);
 }
 
-abstract class GenreParser implements Parser<Genre> {
-  Genre parseGenre(Map<String, dynamic> data);
+abstract class GenreParser implements Parser<JikanGenre> {
+  JikanGenre parseGenre(Map<String, dynamic> data);
 }

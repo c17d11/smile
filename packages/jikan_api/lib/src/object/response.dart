@@ -2,17 +2,17 @@ import 'pagination.dart';
 import 'anime.dart';
 import 'producer.dart';
 
-abstract class Response<T> {
+abstract class JikanResponse<T> {
   String? query;
   DateTime? date;
   DateTime? expires;
-  Pagination? pagination;
+  JikanPagination? pagination;
   T? data;
 
   @override
   String toString() => "Response(pagination: $pagination, data: $data)";
 }
 
-class AnimeResponse extends Response<List<Anime>> {}
+class JikanAnimeResponse extends JikanResponse<List<JikanAnime>> {}
 
-class ProducerResponse extends Response<List<Producer>> {}
+class JikanProducerResponse extends JikanResponse<List<JikanProducer>> {}

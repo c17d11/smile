@@ -1,0 +1,102 @@
+response
+ |- animecontainer
+    |- anime
+       |- genre
+       |- producer
+    |- note
+       |- tag
+
+IsarAnimeResponseModel
+	AnimeResponse get(String query)
+		// BEGIN TXN
+		IsarAnimeResponse ret = await isar.animeResponses.get(query)
+		AnimeResponse r = _animeResponseConverter.fromImpl(ret)
+		for var animeId in ret.animeIds:
+			Anime a = await _animeContainerModel.get(animeId))
+			r.animes.add(a)
+		// END TXN
+		return r
+
+	int insert(AnimeResponse in)
+		// BEGIN TXN
+		IsarAnimeResponse r = _animeResponseConverter.toImpl(in)
+		for var animeContainer in in.animes:
+			animeId = await _animeContainerModel.insert(animeContainer)
+			r.animeIds.add(animeId)
+		id = await isar.animeResponses.put(r)
+		return id
+		// END TXN
+
+
+AnimeContainerModel
+	AnimeContainer get(int id)
+		Anime a = await _animeModel.get(id)
+		AnimeNote n = await _animeNoteModel.get(id)
+		return AnimeContainer(anime: a, notes: n)
+
+
+	int insert(AnimeContainer in)
+		late id
+		if in.anime != null:
+			id = await _animeModel.insert(in.anime)
+		if in.notes != null:
+			id = await _animeModel.insert(in.notes)
+		return id
+
+
+AnimeModel
+	Anime get(int id)
+		IsarAnime ret = await isar.animes.get(id)
+		Anime a = _animeConverter.fromImpl(ret)
+		for var producerId in ret.producerIds:
+			Producer p = await _producerModel.get(producerId)
+			a.producers.add(p)
+		for var genreid in ret.genreIds:
+			Genre g = await _genreModel.get(genreId)
+			a.genres.add(g)
+		return a
+
+	int insert(Anime in)
+		IsarAnime a = _animeConverter.toImpl(in)
+		for var producer in in.producers:
+			id = await _producerModel.insert(producer)
+			a.producerIds.add(d)
+		for var genre in in.genres:
+			id = await _genreModel.insert(genre)
+			a.genreIds.add(id)
+		id = await isar.anime.put(a)
+		return id
+
+
+ProducerModel
+	Producer get(int id)
+		IsarProducer ret = await isar.producers.get(id)
+		Producer p = _producerConverter.fromImpl(ret)
+		return p
+
+GenreModel
+	Genre get(int id)
+		IsarGenre ret = await isar.genres.get(id)
+		Genre g = _genreConverter.fromImpl(ret)
+		return g
+
+AnimeNoteModel
+	AnimeNote get(int id)
+		IsarAnimeNote ret = await isar.animeNotes.get(id)
+		AnimeNote n = _animeNoteConverter.fromImpl(ret)
+		for var tagId in ret.tagIds:
+			Tag t = await _tagModel.get(tagId)
+			n.tags.add(t)
+		return n
+
+TagModel
+	Tag get(int id)
+
+--------------------------------------------------------------------
+		IsarTag ret = await isar.tags.get(id)
+		Tag t = _tagConverter.fromImpl(ret)
+		return t
+
+		
+		
+			

@@ -13,23 +13,24 @@ import '../object/exception.dart';
 import '../object/pagination.dart';
 import '../object/producer.dart';
 
-class ProducerSearchApi implements Api<ProducerQuery, ProducerResponse> {
+class ProducerSearchApi
+    implements Api<JikanProducerQuery, JikanProducerResponse> {
   Http client;
-  Builder<ProducerQuery, String> builder = ProducerQueryBuilder();
-  Parser<List<Producer>> producerSearchParser = ProducerSearchParser();
-  Parser<Pagination> paginationParser = PaginationParser();
+  Builder<JikanProducerQuery, String> builder = ProducerQueryBuilder();
+  Parser<List<JikanProducer>> producerSearchParser = ProducerSearchParser();
+  Parser<JikanPagination> paginationParser = PaginationParser();
   Parser<JikanApiException> errorParser = ErrorParser();
 
   ProducerSearchApi(this.client);
 
-  String buildQuery(ProducerQuery arg) {
+  String buildQuery(JikanProducerQuery arg) {
     String query = builder.build(arg);
     query = query.isEmpty ? "" : "?$query";
     return "producers$query";
   }
 
   @override
-  Future<ProducerResponse> call(ProducerQuery arg) async {
+  Future<JikanProducerResponse> call(JikanProducerQuery arg) async {
     String query = buildQuery(arg);
     HttpResult res = await client.get(query);
     if (res.error != null) {
@@ -37,9 +38,9 @@ class ProducerSearchApi implements Api<ProducerQuery, ProducerResponse> {
       return Future.error(error);
     }
 
-    Pagination pagination = paginationParser.parse(res.data ?? {});
-    List<Producer> producers = producerSearchParser.parse(res.data ?? {});
-    return ProducerResponse()
+    JikanPagination pagination = paginationParser.parse(res.data ?? {});
+    List<JikanProducer> producers = producerSearchParser.parse(res.data ?? {});
+    return JikanProducerResponse()
       ..query = query
       ..pagination = pagination
       ..data = producers;

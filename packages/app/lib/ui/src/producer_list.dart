@@ -1,8 +1,8 @@
-import 'package:app/controller/src/object/anime_query_intern.dart';
-import 'package:app/controller/src/object/producer_response_intern.dart';
+import 'package:app/object/anime_query.dart';
+import 'package:app/object/producer_query.dart';
+import 'package:app/object/producer_response.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
-import 'package:app/ui/src/browse/nav_item.dart';
 import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/nav_items.dart';
 import 'package:app/ui/src/pod.dart';
@@ -26,13 +26,13 @@ class ProducerListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ProducerQueryIntern query = ref.watch(producerQueryPod(ProducersNavItem()));
+    ProducerQuery query = ref.watch(producerQueryPod(ProducersNavItem()));
 
     return Scaffold(
       body: ProducerList(
         page: page,
         initQuery: query,
-        onNextPageQuery: (query) => ProducerQueryIntern.nextPage(query),
+        onNextPageQuery: (query) => ProducerQuery.nextPage(query),
         onLastQuery: (query) => null,
         key: UniqueKey(),
       ),
@@ -81,7 +81,7 @@ class ProducerListPage extends ConsumerWidget {
               ).then((value) async {
                 await ref
                     .read(producerQueryPod(ProducersNavItem()).notifier)
-                    .set(ProducerQueryIntern()..searchTerm = value);
+                    .set(ProducerQuery()..searchTerm = value);
                 ref.invalidate(producerQueryPod(ProducersNavItem()));
                 ref.invalidate(producerSearchPod(query));
               }),
@@ -92,9 +92,9 @@ class ProducerListPage extends ConsumerWidget {
 
 class ProducerList extends StatefulWidget {
   final IconItem page;
-  final ProducerQueryIntern initQuery;
-  final Function(ProducerQueryIntern) onNextPageQuery;
-  final Function(ProducerQueryIntern) onLastQuery;
+  final ProducerQuery initQuery;
+  final Function(ProducerQuery) onNextPageQuery;
+  final Function(ProducerQuery) onLastQuery;
 
   const ProducerList({
     required this.page,
@@ -122,8 +122,8 @@ class _ProducerListState extends State<ProducerList> {
   }
 
   void loadNext() {
-    ProducerQueryIntern lastQuery = ProducerQueryIntern.from(pages.last.query);
-    ProducerQueryIntern newQuery = widget.onNextPageQuery(lastQuery);
+    ProducerQuery lastQuery = ProducerQuery.from(pages.last.query);
+    ProducerQuery newQuery = widget.onNextPageQuery(lastQuery);
 
     if (newQuery.page! <= lastPage) {
       setState(() {
@@ -133,7 +133,7 @@ class _ProducerListState extends State<ProducerList> {
         ));
       });
     } else {
-      ProducerQueryIntern? newQuery = widget.onLastQuery(lastQuery);
+      ProducerQuery? newQuery = widget.onLastQuery(lastQuery);
       if (newQuery != null) {
         setState(() {
           pages.add(
@@ -200,7 +200,7 @@ class _ProducerListState extends State<ProducerList> {
 }
 
 class ProducerResponseView extends ConsumerWidget {
-  final ProducerQueryIntern query;
+  final ProducerQuery query;
   final void Function(int?) onLastPage;
   const ProducerResponseView(
       {required this.onLastPage, required this.query, super.key});
@@ -215,7 +215,7 @@ class ProducerResponseView extends ConsumerWidget {
         child: Center(child: TextHeadline("No data")));
   }
 
-  Widget buildHeader(ProducerResponseIntern? res, BuildContext context) {
+  Widget buildHeader(ProducerResponse? res, BuildContext context) {
     String currentPage = res?.pagination?.currentPage.toString() ?? "";
     String lastPage = res?.pagination?.lastVisiblePage.toString() ?? "";
 
@@ -229,8 +229,8 @@ class ProducerResponseView extends ConsumerWidget {
     );
   }
 
-  Widget buildProducerList(int? page, List<ProducerIntern> producers,
-      void Function(ProducerIntern) onChanged) {
+  Widget buildProducerList(
+      int? page, List<Producer> producers, void Function(Producer) onChanged) {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         childCount: producers.length,
@@ -249,14 +249,13 @@ class ProducerResponseView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<ProducerResponseIntern> res =
-        ref.watch(producerSearchPod(query));
+    AsyncValue<ProducerResponse> res = ref.watch(producerSearchPod(query));
 
-    ref.listen<AsyncValue<ProducerResponseIntern>>(producerSearchPod(query),
+    ref.listen<AsyncValue<ProducerResponse>>(producerSearchPod(query),
         (_, state) => state.showSnackBarOnError(context));
 
-    ProducerResponseIntern? resIntern = res.value;
-    List<ProducerIntern>? producers = resIntern?.data;
+    ProducerResponse? resIntern = res.value;
+    List<Producer>? producers = resIntern?.producers;
 
     if (res.isLoading) {
       return buildLoading();
@@ -277,16 +276,16 @@ class ProducerResponseView extends ConsumerWidget {
     );
   }
 
-  Widget buildData(ProducerResponseIntern? resIntern, BuildContext context) {
-    List<ProducerIntern>? animes = resIntern?.data;
-    if (animes == null) {
+  Widget buildData(ProducerResponse? resIntern, BuildContext context) {
+    List<Producer>? producers = resIntern?.producers;
+    if (producers == null) {
       return buildNoData();
     }
     return MultiSliver(children: [
       buildHeader(resIntern, context),
       buildProducerList(
         resIntern?.pagination?.currentPage,
-        animes,
+        producers,
         (_) {},
       ),
     ]);
@@ -294,9 +293,9 @@ class ProducerResponseView extends ConsumerWidget {
 }
 
 class ProducerPortrait extends ConsumerWidget {
-  final ProducerIntern? producer;
+  final Producer? producer;
   final String responseId;
-  final ProducerQueryIntern refQuery;
+  final ProducerQuery refQuery;
   const ProducerPortrait(
     this.producer, {
     required this.responseId,
@@ -382,10 +381,8 @@ class ProducerPortrait extends ConsumerWidget {
                               GestureDetector(
                                 onTap: () async {
                                   await ref.read(animeQueryPod.notifier).set(
-                                      AnimeQueryIntern()
-                                        ..producers = [
-                                          ProducerIntern.to(producer!)
-                                        ]);
+                                      AnimeQuery()
+                                        ..producers = [producer!.toJikan()]);
                                   ref.read(pageGroupPod.notifier).state =
                                       AnimeGroup();
                                   ref.read(pageIndexPod.notifier).state = 0;
@@ -407,8 +404,7 @@ class ProducerPortrait extends ConsumerWidget {
   }
 }
 
-Future showProducerDetailsPopUp(
-    BuildContext context, ProducerIntern producer) async {
+Future showProducerDetailsPopUp(BuildContext context, Producer producer) async {
   String s = "";
   if (producer.established != null) {
     String ss =

@@ -1,5 +1,5 @@
-enum AnimeStatus { airing, complete, upcoming }
+enum JikanAnimeStatus { airing, complete, upcoming }
 
-extension AnimeStatusText on AnimeStatus {
+extension AnimeStatusText on JikanAnimeStatus {
   String get lowerCase => name.toLowerCase();
 }

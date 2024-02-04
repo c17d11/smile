@@ -1,5 +1,5 @@
-enum AnimeType { tv, movie, ova, special, ona, music }
+enum JikanAnimeType { tv, movie, ova, special, ona, music }
 
-extension AnimeTypeText on AnimeType {
+extension AnimeTypeText on JikanAnimeType {
   String get lowerCase => name.toLowerCase();
 }

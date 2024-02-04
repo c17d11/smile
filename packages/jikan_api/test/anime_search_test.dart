@@ -32,10 +32,12 @@ void main() {
         }),
     );
 
-    Api<AnimeQuery, AnimeResponse> animeSearchApi = AnimeSearchApi(client);
+    Api<JikanAnimeQuery, JikanAnimeResponse> animeSearchApi =
+        AnimeSearchApi(client);
 
     test('Correct anime response', () async {
-      AnimeResponse res = await animeSearchApi.call(AnimeQuery()..page = 1);
+      JikanAnimeResponse res =
+          await animeSearchApi.call(JikanAnimeQuery()..page = 1);
       expect(res.data, isNotNull);
       expect(res.data!.length, equals(2));
       expect(res.pagination, isNotNull);
@@ -69,13 +71,15 @@ void main() {
         }),
     );
     test('Data key missing', () async {
-      Api<AnimeQuery, AnimeResponse> animeSearchApi = AnimeSearchApi(client);
-      expect(() async => await animeSearchApi.call(AnimeQuery()..page = 1),
+      Api<JikanAnimeQuery, JikanAnimeResponse> animeSearchApi =
+          AnimeSearchApi(client);
+      expect(() async => await animeSearchApi.call(JikanAnimeQuery()..page = 1),
           throwsA(isA<JikanParseException>()));
     });
     test('Pagination key missing', () async {
-      Api<AnimeQuery, AnimeResponse> animeSearchApi = AnimeSearchApi(client);
-      expect(() async => await animeSearchApi.call(AnimeQuery()..page = 2),
+      Api<JikanAnimeQuery, JikanAnimeResponse> animeSearchApi =
+          AnimeSearchApi(client);
+      expect(() async => await animeSearchApi.call(JikanAnimeQuery()..page = 2),
           throwsA(isA<JikanParseException>()));
     });
   });

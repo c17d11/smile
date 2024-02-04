@@ -1,8 +1,8 @@
 import 'schedule_day.dart';
 
-class ScheduleQuery {
+class JikanScheduleQuery {
   int? page;
-  ScheduleDay? day;
+  JikanScheduleDay? day;
   bool? isForKids;
   bool? sfw;
   bool? isApproved;

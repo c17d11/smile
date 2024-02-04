@@ -3,22 +3,23 @@ import 'genre_parser.dart';
 import 'jikan_parser.dart';
 import '../object/genre.dart';
 
-class GenreSearchParser implements Parser<List<Genre>> {
+class GenreSearchParser implements Parser<List<JikanGenre>> {
   Parser<List> listParser = ListParser();
   GenreParser genreParser = GenreParserImp();
 
-  List<Genre> parseGenreSearch(List data) {
+  List<JikanGenre> parseGenreSearch(List data) {
     if (data.isEmpty) {
       return [];
     }
-    List<Genre> genres = data.map((e) => genreParser.parseGenre(e)).toList();
+    List<JikanGenre> genres =
+        data.map((e) => genreParser.parseGenre(e)).toList();
     return genres;
   }
 
   @override
-  List<Genre> parse(Map<String, dynamic> value) {
+  List<JikanGenre> parse(Map<String, dynamic> value) {
     List data = listParser.parse(value);
-    List<Genre> genres = parseGenreSearch(data);
+    List<JikanGenre> genres = parseGenreSearch(data);
     return genres;
   }
 }

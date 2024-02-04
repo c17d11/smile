@@ -1,7 +1,7 @@
 import 'builder.dart';
 import '../object/producer_query.dart';
 
-class ProducerQueryBuilder extends Builder<ProducerQuery, String> {
+class ProducerQueryBuilder extends Builder<JikanProducerQuery, String> {
   String buildSearchTermQuery(String? searchTerm) {
     if (searchTerm == null || searchTerm.isEmpty) {
       return "";
@@ -14,7 +14,7 @@ class ProducerQueryBuilder extends Builder<ProducerQuery, String> {
   }
 
   @override
-  String build(ProducerQuery arg) {
+  String build(JikanProducerQuery arg) {
     List<String> queries = [
       buildSearchTermQuery(arg.searchTerm),
       buildPageQuery(arg.page),

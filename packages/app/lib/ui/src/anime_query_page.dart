@@ -1,11 +1,11 @@
-import 'package:app/controller/src/object/anime_order.dart';
-import 'package:app/controller/src/object/anime_query_intern.dart';
-import 'package:app/controller/src/object/anime_rating.dart';
-import 'package:app/controller/src/object/anime_sort.dart';
-import 'package:app/controller/src/object/anime_status.dart';
-import 'package:app/controller/src/object/anime_type.dart';
-import 'package:app/controller/src/object/genre_intern.dart';
-import 'package:app/controller/src/object/sfw_item.dart';
+import 'package:app/object/anime_order.dart';
+import 'package:app/object/anime_query.dart';
+import 'package:app/object/anime_rating.dart';
+import 'package:app/object/anime_sort.dart';
+import 'package:app/object/anime_status.dart';
+import 'package:app/object/anime_type.dart';
+import 'package:app/object/genre.dart';
+import 'package:app/object/sfw_item.dart';
 import 'package:app/ui/selection_widget/src/multiple_select.dart';
 import 'package:app/ui/selection_widget/src/query_widget.dart';
 import 'package:app/controller/state.dart';
@@ -26,10 +26,10 @@ class AnimeQueryPage extends ConsumerStatefulWidget {
 }
 
 class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
-  Widget buildOrderWidget(AnimeQueryIntern localQuery) {
+  Widget buildOrderWidget(AnimeQuery localQuery) {
     return SingleSelect(
       'Order by',
-      AnimeOrder.values.map((e) => AnimeOrderItem(e)).toList(),
+      JikanAnimeOrder.values.map((e) => AnimeOrderItem(e)).toList(),
       onChanged: (item) {
         localQuery.orderBy =
             (item != null) ? (item as AnimeOrderItem).order : null;
@@ -40,10 +40,10 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Widget buildSortWidget(AnimeQueryIntern localQuery) {
+  Widget buildSortWidget(AnimeQuery localQuery) {
     return SingleSelect(
       'Sort',
-      AnimeSort.values.map((e) => AnimeSortItem(e)).toList(),
+      JikanAnimeSort.values.map((e) => AnimeSortItem(e)).toList(),
       onChanged: (item) {
         localQuery.sort = (item != null) ? (item as AnimeSortItem).sort : null;
       },
@@ -52,7 +52,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Widget buildSearchTermWidget(AnimeQueryIntern localQuery) {
+  Widget buildSearchTermWidget(AnimeQuery localQuery) {
     return QueryWidget(
       onChanged: (String s) {
         localQuery.searchTerm = s;
@@ -61,50 +61,50 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Future<List<ProducerIntern>> loadProducers() async {
+  Future<List<Producer>> loadProducers() async {
     await ref.read(producerPod.notifier).get(0);
     return ref.read(producerPod).value ?? [];
   }
 
-  Future<List<GenreIntern>> loadGenres() async {
+  Future<List<Genre>> loadGenres() async {
     await ref.read(genrePod.notifier).get();
     return ref.read(genrePod).value ?? [];
   }
 
-  Widget buildProducerWidget(AnimeQueryIntern localQuery) {
-    return MultiSelect<ProducerIntern>(
+  Widget buildProducerWidget(AnimeQuery localQuery) {
+    return MultiSelect<Producer>(
       title: "Producers",
       loadOptions: loadProducers,
       initialSelected:
-          localQuery.producers?.map((e) => ProducerIntern.from(e)).toList(),
+          localQuery.producers?.map((e) => Producer.from(e)).toList(),
       onChangedInclude: (items) {
-        localQuery.producers = items.map((e) => e as ProducerIntern).toList();
+        localQuery.producers = items.map((e) => e as Producer).toList();
       },
     );
   }
 
-  Widget buildGenreWidget(AnimeQueryIntern localQuery) {
-    return MultiSelect<GenreIntern>(
+  Widget buildGenreWidget(AnimeQuery localQuery) {
+    return MultiSelect<Genre>(
       title: "Genres",
       tristate: true,
       loadOptions: loadGenres,
       initialSelected:
-          localQuery.genresInclude?.map((e) => GenreIntern.from(e)).toList(),
+          localQuery.genresInclude?.map((e) => Genre.from(e)).toList(),
       initialUnselected:
-          localQuery.genresExclude?.map((e) => GenreIntern.from(e)).toList(),
+          localQuery.genresExclude?.map((e) => Genre.from(e)).toList(),
       onChangedInclude: (items) {
-        localQuery.genresInclude = items.map((e) => e as GenreIntern).toList();
+        localQuery.genresInclude = items.map((e) => e as Genre).toList();
       },
       onChangedExclude: (items) {
-        localQuery.genresExclude = items.map((e) => e as GenreIntern).toList();
+        localQuery.genresExclude = items.map((e) => e as Genre).toList();
       },
     );
   }
 
-  Widget buildAnimeStatusWidget(AnimeQueryIntern localQuery) {
+  Widget buildAnimeStatusWidget(AnimeQuery localQuery) {
     return SingleSelect(
       'Status',
-      AnimeStatus.values.map((e) => AnimeStatusItem(e)).toList(),
+      JikanAnimeStatus.values.map((e) => AnimeStatusItem(e)).toList(),
       onChanged: (item) {
         localQuery.status =
             (item != null) ? (item as AnimeStatusItem).status : null;
@@ -115,10 +115,10 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Widget buildAnimeRatingWidget(AnimeQueryIntern localQuery) {
+  Widget buildAnimeRatingWidget(AnimeQuery localQuery) {
     return SingleSelect(
       'Rating',
-      AnimeRating.values.map((e) => AnimeRatingItem(e)).toList(),
+      JikanAnimeRating.values.map((e) => AnimeRatingItem(e)).toList(),
       onChanged: (item) {
         localQuery.rating =
             (item != null) ? (item as AnimeRatingItem).rating : null;
@@ -129,10 +129,10 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Widget buildAnimeTypeWidget(AnimeQueryIntern localQuery) {
+  Widget buildAnimeTypeWidget(AnimeQuery localQuery) {
     return SingleSelect(
       'Type',
-      AnimeType.values.map((e) => AnimeTypeItem(e)).toList(),
+      JikanAnimeType.values.map((e) => AnimeTypeItem(e)).toList(),
       onChanged: (item) {
         localQuery.type = (item != null) ? (item as AnimeTypeItem).type : null;
       },
@@ -141,7 +141,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Widget buildScoreWidget(AnimeQueryIntern localQuery) {
+  Widget buildScoreWidget(AnimeQuery localQuery) {
     return RangeSelect(
       "Score",
       0,
@@ -161,7 +161,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Widget buildYearWidget(AnimeQueryIntern localQuery) {
+  Widget buildYearWidget(AnimeQuery localQuery) {
     return YearSelect(
       title: "Year",
       initMinValue: localQuery.minYear,
@@ -171,7 +171,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     );
   }
 
-  Widget buildSfwWidget(AnimeQueryIntern localQuery) {
+  Widget buildSfwWidget(AnimeQuery localQuery) {
     return SingleSelect(
       'Sfw',
       [SfwItem(true), SfwItem(false)],
@@ -185,7 +185,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
   @override
   Widget build(BuildContext context) {
     final query = ref.read(animeQueryPod);
-    AnimeQueryIntern localQuery = AnimeQueryIntern.from(query);
+    AnimeQuery localQuery = AnimeQuery.from(query);
 
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(

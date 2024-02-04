@@ -34,12 +34,12 @@ void main() {
         }),
     );
 
-    Api<ProducerQuery, ProducerResponse> producerSearchApi =
+    Api<JikanProducerQuery, JikanProducerResponse> producerSearchApi =
         ProducerSearchApi(client);
 
     test('Correct producer count', () async {
-      ProducerResponse res =
-          await producerSearchApi.call(ProducerQuery()..page = 1);
+      JikanProducerResponse res =
+          await producerSearchApi.call(JikanProducerQuery()..page = 1);
       expect(res.data!.length, equals(2));
     });
   });
@@ -55,9 +55,9 @@ void main() {
         }),
     );
     test('Data key missing', () async {
-      Api<ProducerQuery, ProducerResponse> producerSearchApi =
+      Api<JikanProducerQuery, JikanProducerResponse> producerSearchApi =
           ProducerSearchApi(client);
-      expect(() async => await producerSearchApi.call(ProducerQuery()),
+      expect(() async => await producerSearchApi.call(JikanProducerQuery()),
           throwsA(isA<JikanParseException>()));
     });
   });

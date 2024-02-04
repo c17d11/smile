@@ -1,5 +1,5 @@
-import 'package:app/controller/src/object/settings_intern.dart';
-import 'package:app/database/src/database_base.dart';
+import 'package:app/object/settings.dart';
+import 'package:app/database/src/interface/database.dart';
 import 'package:app/ui/selection_widget/src/confirm_button.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/slider_select.dart';

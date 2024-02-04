@@ -2,7 +2,7 @@ import 'package:jikan_api/jikan_api.dart';
 
 Future<void> exampleAnime() async {
   JikanApi api = JikanApiImpl();
-  Anime anime = await api.getAnime(1);
+  JikanAnime anime = await api.getAnime(1);
   print(anime);
 }
 
@@ -18,8 +18,8 @@ Future<void> exampleFetchAllProducers() async {
 
 Future<void> exampleScheduleSearch() async {
   JikanApi api = JikanApiImpl();
-  AnimeResponse res =
-      await api.searchSchedule(ScheduleQuery()..day = ScheduleFriday());
+  JikanAnimeResponse res =
+      await api.searchSchedule(JikanScheduleQuery()..day = ScheduleFriday());
   print(res);
 }
 

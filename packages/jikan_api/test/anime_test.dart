@@ -48,7 +48,7 @@ void main() {
 
     test('Correct anime', () async {
       AnimeApi animeApi = AnimeApi(client);
-      Anime anime = await animeApi.call(1);
+      JikanAnime anime = await animeApi.call(1);
       expect(anime.malId, equals(123));
       expect(anime.title, equals("title"));
       expect(anime.score, equals(1.23));
@@ -99,7 +99,7 @@ void main() {
     });
     test('All null values', () async {
       AnimeApi animeApi = AnimeApi(client);
-      Anime anime = await animeApi.call(2);
+      JikanAnime anime = await animeApi.call(2);
       expect(anime.malId, isNull);
       expect(anime.title, isNull);
       expect(anime.score, isNull);
