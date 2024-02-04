@@ -67,7 +67,7 @@ class _AppState extends ConsumerState<App> {
       error: (err, stack) => Text('Error: $err'),
       loading: () => Container(
         color: const Color.fromARGB(255, 161, 202, 200),
-        child: Image.asset('assets/coffee.webp', fit: BoxFit.none),
+        child: Image.asset('assets/icon/smile.png', fit: BoxFit.none),
       ),
     );
   }

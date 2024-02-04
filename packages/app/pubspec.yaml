@@ -43,7 +43,7 @@ flutter:
 
   assets:
     - assets/coffee.webp
-    - assets/luffy-no-background.png
+    - assets/icon/smile.png
 
 icons_launcher:
   image_path: "assets/icon/smile.png"
