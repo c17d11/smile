@@ -1,6 +1,5 @@
-import 'package:app/controller/src/object/tag.dart';
-import 'package:app/database/src/database_base.dart';
-import 'package:app/database/src/isar/collection/isar_tag.dart';
+import 'package:app/object/tag.dart';
+import 'package:app/database/src/interface/database.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
@@ -9,17 +8,17 @@ class TagController extends StateNotifier<AsyncValue<List<Tag>>> {
 
   TagController(this._database) : super(const AsyncLoading());
 
-  Future<List<IsarTag>> _getDatabaseTags() async {
-    List<IsarTag> tags = await _database.getAllTags();
+  Future<List<Tag>> _getDatabaseTags() async {
+    List<Tag> tags = await _database.getAllTags();
     return tags;
   }
 
   Future<void> get() async {
     try {
       state = const AsyncLoading();
-      List<IsarTag> tags = await _getDatabaseTags();
+      List<Tag> tags = await _getDatabaseTags();
 
-      state = AsyncValue.data(tags.map((e) => e.toTag()).toList());
+      state = AsyncValue.data(tags);
     } on JikanApiException catch (e, stacktrace) {
       state = AsyncError(e, stacktrace);
 
@@ -31,8 +30,8 @@ class TagController extends StateNotifier<AsyncValue<List<Tag>>> {
     try {
       state = const AsyncLoading();
       await _database.insertTags(tags);
-      List<IsarTag> isarTags = await _getDatabaseTags();
-      state = AsyncValue.data(isarTags.map((e) => e.toTag()).toList());
+      List<Tag> updatedTags = await _getDatabaseTags();
+      state = AsyncValue.data(updatedTags);
     } on JikanApiException catch (e, stacktrace) {
       state = AsyncError(e, stacktrace);
 

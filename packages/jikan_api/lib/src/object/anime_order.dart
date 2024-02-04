@@ -1,4 +1,4 @@
-enum AnimeOrder {
+enum JikanAnimeOrder {
   malId,
   title,
   startDate,
@@ -12,30 +12,30 @@ enum AnimeOrder {
   favorites,
 }
 
-extension AnimeOrderText on AnimeOrder {
+extension AnimeOrderText on JikanAnimeOrder {
   String get queryName {
     switch (this) {
-      case AnimeOrder.malId:
+      case JikanAnimeOrder.malId:
         return "mal_id";
-      case AnimeOrder.title:
+      case JikanAnimeOrder.title:
         return "title";
-      case AnimeOrder.startDate:
+      case JikanAnimeOrder.startDate:
         return "start_date";
-      case AnimeOrder.endDate:
+      case JikanAnimeOrder.endDate:
         return "end_date";
-      case AnimeOrder.episodes:
+      case JikanAnimeOrder.episodes:
         return "episodes";
-      case AnimeOrder.score:
+      case JikanAnimeOrder.score:
         return "score";
-      case AnimeOrder.scoredBy:
+      case JikanAnimeOrder.scoredBy:
         return "scored_by";
-      case AnimeOrder.rank:
+      case JikanAnimeOrder.rank:
         return "rank";
-      case AnimeOrder.popularity:
+      case JikanAnimeOrder.popularity:
         return "popularity";
-      case AnimeOrder.members:
+      case JikanAnimeOrder.members:
         return "members";
-      case AnimeOrder.favorites:
+      case JikanAnimeOrder.favorites:
         return "favorites";
     }
   }

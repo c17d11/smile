@@ -11,26 +11,26 @@ import 'package:jikan_api/src/object/producer.dart';
 
 void main() {
   group('Anime Query Builder Positive', () {
-    Builder<AnimeQuery, String> builder = AnimeQueryBuilder();
+    Builder<JikanAnimeQuery, String> builder = AnimeQueryBuilder();
 
     String s = builder.build(
-      AnimeQuery()
+      JikanAnimeQuery()
         ..searchTerm = 'searchTerm'
-        ..type = AnimeType.tv
-        ..rating = AnimeRating.g
-        ..status = AnimeStatus.airing
+        ..type = JikanAnimeType.tv
+        ..rating = JikanAnimeRating.g
+        ..status = JikanAnimeStatus.airing
         ..minScore = 1.0
         ..maxScore = 9.99
         ..minYear = 1
         ..maxYear = 2
         ..sfw = true
         ..producers = [
-          Producer()..malId = 1,
-          Producer()..malId = 2,
+          JikanProducer()..malId = 1,
+          JikanProducer()..malId = 2,
         ]
         ..page = 1
-        ..orderBy = AnimeOrder.malId
-        ..sort = AnimeSort.asc,
+        ..orderBy = JikanAnimeOrder.malId
+        ..sort = JikanAnimeSort.asc,
     );
     List<String> subQueries = s.split("&");
 
@@ -74,14 +74,14 @@ void main() {
   });
 
   group('Anime Query Builder Negative', () {
-    Builder<AnimeQuery, String> builder = AnimeQueryBuilder();
+    Builder<JikanAnimeQuery, String> builder = AnimeQueryBuilder();
 
     String s = builder.build(
-      AnimeQuery()
+      JikanAnimeQuery()
         ..searchTerm = ''
         ..producers = [
-          Producer(),
-          Producer(),
+          JikanProducer(),
+          JikanProducer(),
         ],
     );
     List<String> subQueries = s.split("&");
@@ -99,9 +99,9 @@ void main() {
     });
 
     String s2 = builder.build(
-      AnimeQuery()
+      JikanAnimeQuery()
         ..producers = [
-          Producer()..malId = 1,
+          JikanProducer()..malId = 1,
         ],
     );
     List<String> subQueries2 = s2.split("&");

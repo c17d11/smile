@@ -1,4 +1,4 @@
-import 'package:app/controller/src/object/tag.dart';
+import 'package:app/object/tag.dart';
 import 'package:app/ui/selection_widget/src/selection_wrapper.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +43,9 @@ class FutureTagDialog {
   Widget buildTextSearch(StateSetter setState) {
     return ActionTextField(onPressed: (s) {
       setState(() {
-        Tag tag = Tag(s, 0);
+        Tag tag = Tag()
+          ..name = s
+          ..animeCount = 0;
         options.add(SelectionWrapper<Tag>(tag));
       });
     });

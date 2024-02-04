@@ -2,12 +2,12 @@ import 'builder.dart';
 import '../object/schedule_day.dart';
 import '../object/schedule_query.dart';
 
-class ScheduleQueryBuilder extends Builder<ScheduleQuery, String> {
+class ScheduleQueryBuilder extends Builder<JikanScheduleQuery, String> {
   String buildPageQuery(int? page) {
     return page != null ? "page=$page" : "";
   }
 
-  String buildDayQuery(ScheduleDay? day) {
+  String buildDayQuery(JikanScheduleDay? day) {
     if (day == null) {
       return "";
     }
@@ -31,7 +31,7 @@ class ScheduleQueryBuilder extends Builder<ScheduleQuery, String> {
   }
 
   @override
-  String build(ScheduleQuery arg) {
+  String build(JikanScheduleQuery arg) {
     List<String> queries = [
       buildDayQuery(arg.day),
       buildKidsQuery(arg.isForKids),

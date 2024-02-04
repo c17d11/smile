@@ -9,7 +9,7 @@ import '../object/anime_status.dart';
 import '../object/anime_type.dart';
 import '../object/producer.dart';
 
-class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
+class AnimeQueryBuilder extends Builder<JikanAnimeQuery, String> {
   String buildSearchTermQuery(String? searchTerm) {
     if (searchTerm == null || searchTerm.isEmpty) {
       return "";
@@ -17,15 +17,15 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
     return "q=$searchTerm";
   }
 
-  String buildTypeQuery(AnimeType? type) {
+  String buildTypeQuery(JikanAnimeType? type) {
     return type != null ? "type=${type.lowerCase}" : "";
   }
 
-  String buildStatusQuery(AnimeStatus? status) {
+  String buildStatusQuery(JikanAnimeStatus? status) {
     return status != null ? "status=${status.lowerCase}" : "";
   }
 
-  String buildRatingQuery(AnimeRating? rating) {
+  String buildRatingQuery(JikanAnimeRating? rating) {
     return rating != null ? "rating=${rating.lowerCase}" : "";
   }
 
@@ -59,7 +59,7 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
     return page != null ? "page=$page" : "";
   }
 
-  String buildProducersQuery(List<Producer>? producers) {
+  String buildProducersQuery(List<JikanProducer>? producers) {
     if (producers == null) {
       return "";
     }
@@ -71,7 +71,7 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
     return "producers=$producerMalIds";
   }
 
-  String getGenreMalIds(List<Genre>? genres) {
+  String getGenreMalIds(List<JikanGenre>? genres) {
     if (genres == null) {
       return "";
     }
@@ -80,7 +80,7 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
     return genreMalIds;
   }
 
-  String buildGenresIncludeQuery(List<Genre>? genres) {
+  String buildGenresIncludeQuery(List<JikanGenre>? genres) {
     String genreMalIds = getGenreMalIds(genres);
     if (genreMalIds.isEmpty) {
       return "";
@@ -88,7 +88,7 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
     return "genres=$genreMalIds";
   }
 
-  String buildGenresExcludeQuery(List<Genre>? genres) {
+  String buildGenresExcludeQuery(List<JikanGenre>? genres) {
     String genreMalIds = getGenreMalIds(genres);
     if (genreMalIds.isEmpty) {
       return "";
@@ -96,16 +96,16 @@ class AnimeQueryBuilder extends Builder<AnimeQuery, String> {
     return "genres_exclude=$genreMalIds";
   }
 
-  String buildOrderBy(AnimeOrder? orderBy) {
+  String buildOrderBy(JikanAnimeOrder? orderBy) {
     return orderBy != null ? "order_by=${orderBy.queryName}" : "";
   }
 
-  String buildSort(AnimeSort? sort) {
+  String buildSort(JikanAnimeSort? sort) {
     return sort != null ? "sort=${sort.queryName}" : "";
   }
 
   @override
-  String build(AnimeQuery arg) {
+  String build(JikanAnimeQuery arg) {
     List<String> queries = [
       buildSearchTermQuery(arg.searchTerm),
       buildTypeQuery(arg.type),

@@ -7,21 +7,21 @@ import '../parser/parser.dart';
 import '../http/http.dart';
 import '../http/http_result.dart';
 
-class AnimeApi implements Api<int, Anime> {
+class AnimeApi implements Api<int, JikanAnime> {
   Http client;
-  Parser<Anime> animeParser = AnimeApiParser();
+  Parser<JikanAnime> animeParser = AnimeApiParser();
   ErrorParser errorParser = ErrorParser();
 
   AnimeApi(this.client);
 
   @override
-  Future<Anime> call(int arg) async {
+  Future<JikanAnime> call(int arg) async {
     HttpResult res = await client.get("anime/$arg");
     if (res.error != null) {
       JikanApiException e = errorParser.parse(res.error!);
       return Future.error(e);
     }
-    Anime anime = animeParser.parse(res.data ?? {});
+    JikanAnime anime = animeParser.parse(res.data ?? {});
     return anime;
   }
 }

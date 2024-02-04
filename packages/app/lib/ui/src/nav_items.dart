@@ -1,4 +1,4 @@
-import 'package:app/controller/src/object/tag.dart';
+import 'package:app/object/tag.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/favorite/page.dart';
 import 'package:app/ui/src/genre_list.dart';

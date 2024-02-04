@@ -2,9 +2,9 @@ import 'parser.dart';
 import '../object/exception.dart';
 import '../object/pagination.dart';
 
-class PaginationParser implements Parser<Pagination> {
-  Pagination parsePagination(Map<String, dynamic> value) {
-    return Pagination()
+class PaginationParser implements Parser<JikanPagination> {
+  JikanPagination parsePagination(Map<String, dynamic> value) {
+    return JikanPagination()
       ..lastVisiblePage = value['last_visible_page']
       ..hasNextPage = value['has_next_page']
       ..currentPage = value['current_page']
@@ -14,7 +14,7 @@ class PaginationParser implements Parser<Pagination> {
   }
 
   @override
-  Pagination parse(Map<String, dynamic> value) {
+  JikanPagination parse(Map<String, dynamic> value) {
     if (!value.containsKey("pagination")) {
       throw JikanParseException();
     }

@@ -1,4 +1,4 @@
-class Producer {
+class JikanProducer {
   int? malId;
   String? title;
   String? established;

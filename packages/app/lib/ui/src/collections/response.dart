@@ -1,8 +1,7 @@
-import 'package:app/controller/src/object/collection_query_intern.dart';
 import 'package:app/controller/state.dart';
+import 'package:app/object/collection_query.dart';
 import 'package:app/ui/selection_widget/src/confirm_button.dart';
 import 'package:app/ui/src/collections/state.dart';
-import 'package:app/database/src/isar/collection/isar_anime_response.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/text_divider.dart';
@@ -13,7 +12,7 @@ import 'package:sliver_tools/sliver_tools.dart';
 
 class CollectionResponse extends ConsumerWidget {
   final int heroId;
-  final CollectionQueryIntern query;
+  final CollectionQuery query;
   final void Function(int?) updateLastPage;
   final void Function() onDone;
   const CollectionResponse(
@@ -25,9 +24,9 @@ class CollectionResponse extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<IsarAnimeResponse> ret = ref.watch(animeCollection(query));
+    AsyncValue<AnimeResponse> ret = ref.watch(animeCollection(query));
 
-    ref.listen<AsyncValue<AnimeResponseIntern>>(animeCollection(query),
+    ref.listen<AsyncValue<AnimeResponse>>(animeCollection(query),
         (_, state) => state.showSnackBarOnError(context));
 
     if (ret.hasValue) {
@@ -63,19 +62,20 @@ class CollectionResponse extends ConsumerWidget {
                 ),
               ),
             ),
-            res.data?.isEmpty ?? true
+            res.animes?.isEmpty ?? true
                 ? Center(
                     child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Text("No data", style: AppTextStyle.small)))
                 : SliverGrid(
                     delegate: SliverChildBuilderDelegate(
-                      childCount: res.data!.length,
+                      childCount: res.animes!.length,
                       (context, index) => AnimePortrait(
-                        res.data!.elementAt(index),
+                        res.animes!.elementAt(index),
                         heroId: "$heroId-$index",
-                        onAnimeUpdate: () =>
-                            ref.read(animeCollection(query).notifier).refresh(),
+                        onAnimeUpdate: (animeId) => ref
+                            .read(animeCollection(query).notifier)
+                            .refresh(animeId),
                       ),
                     ),
                     gridDelegate:

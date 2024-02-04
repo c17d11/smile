@@ -1,5 +1,5 @@
-import 'package:app/controller/src/object/schedule_query_intern.dart';
-import 'package:app/controller/src/object/sfw_item.dart';
+import 'package:app/object/schedule_query.dart';
+import 'package:app/object/sfw_item.dart';
 import 'package:app/ui/selection_widget/src/single_select.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/style/style.dart';
@@ -15,7 +15,7 @@ class ScheduleQueryPage extends ConsumerStatefulWidget {
 }
 
 class _ScheduleQueryPageState extends ConsumerState<ScheduleQueryPage> {
-  Widget buildSfwWidget(ScheduleQueryIntern localQuery) {
+  Widget buildSfwWidget(ScheduleQuery localQuery) {
     return SingleSelect(
       'Sfw',
       [SfwItem(true), SfwItem(false)],
@@ -26,7 +26,7 @@ class _ScheduleQueryPageState extends ConsumerState<ScheduleQueryPage> {
     );
   }
 
-  Widget buildIsForKidsWidget(ScheduleQueryIntern localQuery) {
+  Widget buildIsForKidsWidget(ScheduleQuery localQuery) {
     return SingleSelect(
       'Is For Kids',
       [SfwItem(true), SfwItem(false)],
@@ -39,7 +39,7 @@ class _ScheduleQueryPageState extends ConsumerState<ScheduleQueryPage> {
     );
   }
 
-  Widget buildIsApprovedWidget(ScheduleQueryIntern localQuery) {
+  Widget buildIsApprovedWidget(ScheduleQuery localQuery) {
     return SingleSelect(
       'Is Approved',
       [SfwItem(true), SfwItem(false)],
@@ -55,7 +55,7 @@ class _ScheduleQueryPageState extends ConsumerState<ScheduleQueryPage> {
   @override
   Widget build(BuildContext context) {
     final query = ref.read(scheduleQueryPod);
-    ScheduleQueryIntern localQuery = ScheduleQueryIntern.from(query);
+    ScheduleQuery localQuery = ScheduleQuery.from(query);
 
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(

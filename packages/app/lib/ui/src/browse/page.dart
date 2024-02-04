@@ -1,4 +1,4 @@
-import 'package:app/controller/src/object/anime_query_intern.dart';
+import 'package:app/object/anime_query.dart';
 import 'package:app/ui/src/browse/response.dart';
 import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/pod.dart';
@@ -10,13 +10,13 @@ class BrowsePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AnimeQueryIntern query = ref.watch(animeQueryPod);
+    AnimeQuery query = ref.watch(animeQueryPod);
     ref.watch(pageIndexPod);
 
     return Scaffold(
       body: BrowseList(
         initQuery: query,
-        onNextPageQuery: (query) => AnimeQueryIntern.nextPage(query),
+        onNextPageQuery: (query) => AnimeQuery.nextPage(query),
         onLastQuery: (query) => null,
         key: UniqueKey(),
       ),
@@ -25,9 +25,9 @@ class BrowsePage extends ConsumerWidget {
 }
 
 class BrowseList extends StatefulWidget {
-  final AnimeQueryIntern initQuery;
-  final Function(AnimeQueryIntern) onNextPageQuery;
-  final Function(AnimeQueryIntern) onLastQuery;
+  final AnimeQuery initQuery;
+  final Function(AnimeQuery) onNextPageQuery;
+  final Function(AnimeQuery) onLastQuery;
 
   const BrowseList({
     required this.initQuery,
@@ -58,10 +58,10 @@ class _BrowseListState extends State<BrowseList> {
   }
 
   void loadNextPage() {
-    AnimeQueryIntern newQuery = pages.isEmpty
+    AnimeQuery newQuery = pages.isEmpty
         ? widget.initQuery
         : widget.onNextPageQuery(pages.last.query);
-    AnimeQueryIntern? nextQuery =
+    AnimeQuery? nextQuery =
         pages.isEmpty ? widget.initQuery : widget.onLastQuery(pages.last.query);
 
     BrowseResponse? res;

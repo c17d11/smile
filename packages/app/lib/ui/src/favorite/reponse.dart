@@ -1,6 +1,6 @@
+import 'package:app/controller/state.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/favorite/state.dart';
-import 'package:app/controller/state.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/text_divider.dart';
 import 'package:app/ui/src/utils/reponse_utils.dart';
@@ -25,10 +25,10 @@ class FavoriteResponse extends ConsumerWidget with AnimeResponseViewUtils {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ret = ref.watch(animeFavorite(page));
+    final ret = ref.watch(animeFavorite);
 
-    ref.listen<AsyncValue<AnimeResponseIntern>>(
-        animeFavorite(page), (_, state) => state.showSnackBarOnError(context));
+    ref.listen<AsyncValue<AnimeResponse>>(
+        animeFavorite, (_, state) => state.showSnackBarOnError(context));
 
     if (ret.hasValue) {
       updateLastPage(ret.value!.pagination?.lastVisiblePage ?? 1);
@@ -52,19 +52,19 @@ class FavoriteResponse extends ConsumerWidget with AnimeResponseViewUtils {
                 child: TextDivider("Page $currentPage of $lastPage"),
               ),
             ),
-            res.data?.isEmpty ?? true
+            res.animes?.isEmpty ?? true
                 ? Center(
                     child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Text("No data", style: AppTextStyle.small)))
                 : SliverGrid(
                     delegate: SliverChildBuilderDelegate(
-                      childCount: res.data!.length,
+                      childCount: res.animes!.length,
                       (context, index) => AnimePortrait(
-                        res.data!.elementAt(index),
+                        res.animes!.elementAt(index),
                         heroId: "$heroId-$index",
-                        onAnimeUpdate: () =>
-                            ref.read(animeFavorite(page).notifier).refresh(),
+                        onAnimeUpdate: (animeId) =>
+                            ref.read(animeFavorite.notifier).refresh(animeId),
                       ),
                     ),
                     gridDelegate:

@@ -1,4 +1,4 @@
-import '../database_base.dart';
+import '../interface/database.dart';
 
 class DatabaseStub implements Database {
   @override

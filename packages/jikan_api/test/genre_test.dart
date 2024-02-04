@@ -30,8 +30,8 @@ void main() {
     );
 
     test('Correct genre', () async {
-      Api<void, List<Genre>> genreSearchApi = GenreSearchApi(client);
-      List<Genre> genres = await genreSearchApi.call(null);
+      Api<void, List<JikanGenre>> genreSearchApi = GenreSearchApi(client);
+      List<JikanGenre> genres = await genreSearchApi.call(null);
       expect(genres.length, equals(1));
       expect(genres[0].malId, equals(123));
       expect(genres[0].name, equals("Yo"));
@@ -50,7 +50,7 @@ void main() {
             "wrong": {},
           }),
       );
-      Api<void, List<Genre>> genreApi = GenreSearchApi(client);
+      Api<void, List<JikanGenre>> genreApi = GenreSearchApi(client);
       expect(() async => await genreApi.call(null),
           throwsA(isA<JikanParseException>()));
     });
@@ -64,8 +64,8 @@ void main() {
             "data": [],
           }),
       );
-      Api<void, List<Genre>> genreSearchApi = GenreSearchApi(client);
-      List<Genre> genres = await genreSearchApi.call(null);
+      Api<void, List<JikanGenre>> genreSearchApi = GenreSearchApi(client);
+      List<JikanGenre> genres = await genreSearchApi.call(null);
       expect(genres.length, equals(0));
     });
     test('Empty genre', () async {
@@ -80,8 +80,8 @@ void main() {
             ],
           }),
       );
-      Api<void, List<Genre>> genreSearchApi = GenreSearchApi(client);
-      List<Genre> genres = await genreSearchApi.call(null);
+      Api<void, List<JikanGenre>> genreSearchApi = GenreSearchApi(client);
+      List<JikanGenre> genres = await genreSearchApi.call(null);
       expect(genres.length, equals(1));
       expect(genres[0].malId, isNull);
       expect(genres[0].name, isNull);

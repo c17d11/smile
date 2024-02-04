@@ -5,10 +5,10 @@ import '../object/schedule_query.dart';
 import 'task.dart';
 import '../object/anime.dart';
 
-class ScheduleFetchAllTask implements Task<List<Anime>> {
+class ScheduleFetchAllTask implements Task<List<JikanAnime>> {
   ScheduleSearchApi scheduleApi;
 
-  List<Anime> animes = [];
+  List<JikanAnime> animes = [];
   int totalPages = 1;
   int cachedPages = 0;
   double get progress => cachedPages / totalPages;
@@ -17,7 +17,8 @@ class ScheduleFetchAllTask implements Task<List<Anime>> {
 
   Future<void> cacheResult({required int page}) async {
     // TODO catch exceptions
-    AnimeResponse res = await scheduleApi.call(ScheduleQuery()..page = page);
+    JikanAnimeResponse res =
+        await scheduleApi.call(JikanScheduleQuery()..page = page);
     animes.addAll(res.data ?? []);
     totalPages = res.pagination?.lastVisiblePage ?? totalPages;
   }
@@ -32,5 +33,5 @@ class ScheduleFetchAllTask implements Task<List<Anime>> {
   }
 
   @override
-  List<Anime> getResult() => animes;
+  List<JikanAnime> getResult() => animes;
 }

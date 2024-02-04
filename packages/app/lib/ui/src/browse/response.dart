@@ -1,7 +1,6 @@
-import 'package:app/ui/src/browse/state.dart';
-import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/state.dart';
-import 'package:app/database/src/isar/collection/isar_anime_response.dart';
+import 'package:app/ui/src/browse/state.dart';
+import 'package:app/object/anime_query.dart';
 import 'package:app/ui/src/anime_portrait.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/text_divider.dart';
@@ -12,7 +11,7 @@ import 'package:sliver_tools/sliver_tools.dart';
 
 class BrowseResponse extends ConsumerWidget {
   final int heroId;
-  final AnimeQueryIntern query;
+  final AnimeQuery query;
   final void Function(int?) updateLastPage;
   const BrowseResponse(
       {required this.heroId,
@@ -22,9 +21,9 @@ class BrowseResponse extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<IsarAnimeResponse> ret = ref.watch(animeBrowse(query));
+    AsyncValue<AnimeResponse> ret = ref.watch(animeBrowse(query));
 
-    ref.listen<AsyncValue<AnimeResponseIntern>>(
+    ref.listen<AsyncValue<AnimeResponse>>(
         animeBrowse(query), (_, state) => state.showSnackBarOnError(context));
 
     if (ret.hasValue) {
@@ -48,19 +47,20 @@ class BrowseResponse extends ConsumerWidget {
                   color: Theme.of(context).colorScheme.background,
                   child: TextDivider("Page $currentPage of $lastPage")),
             ),
-            res.data?.isEmpty ?? true
+            res.animes?.isEmpty ?? true
                 ? Center(
                     child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Text("No data", style: AppTextStyle.small)))
                 : SliverGrid(
                     delegate: SliverChildBuilderDelegate(
-                      childCount: res.data!.length,
+                      childCount: res.animes!.length,
                       (context, index) => AnimePortrait(
-                        res.data!.elementAt(index),
+                        res.animes!.elementAt(index),
                         heroId: "$heroId-$index",
-                        onAnimeUpdate: () =>
-                            ref.read(animeBrowse(query).notifier).refresh(),
+                        onAnimeUpdate: (animeId) => ref
+                            .read(animeBrowse(query).notifier)
+                            .refresh(animeId),
                       ),
                     ),
                     gridDelegate:

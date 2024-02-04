@@ -24,8 +24,8 @@ class DetailedProducerParser implements ProducerParser {
   }
 
   @override
-  Producer parseProducer(Map<String, dynamic> data) {
-    return Producer()
+  JikanProducer parseProducer(Map<String, dynamic> data) {
+    return JikanProducer()
       ..malId = data['mal_id']
       ..title = parseTitleFromUrl(data['url'])
       ..established = data['established']
@@ -35,9 +35,9 @@ class DetailedProducerParser implements ProducerParser {
   }
 
   @override
-  Producer parse(Map<String, dynamic> value) {
+  JikanProducer parse(Map<String, dynamic> value) {
     Map<String, dynamic> data = dataParser.parse(value);
-    Producer producer = parseProducer(data);
+    JikanProducer producer = parseProducer(data);
     return producer;
   }
 }

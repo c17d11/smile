@@ -1,12 +1,11 @@
-import 'package:app/controller/src/object/anime_query_intern.dart';
 import 'package:app/controller/state.dart';
-import 'package:app/database/src/database_base.dart';
-import 'package:app/database/src/isar/collection/isar_anime_response.dart';
+import 'package:app/object/anime_query.dart';
+import 'package:app/database/src/interface/database.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
-class BrowseStateNotifier extends StateNotifier<AsyncValue<IsarAnimeResponse>> {
+class BrowseStateNotifier extends StateNotifier<AsyncValue<AnimeResponse>> {
   late final Database _database;
   late final JikanApi _api;
   final StateNotifierProviderRef ref;
@@ -16,26 +15,26 @@ class BrowseStateNotifier extends StateNotifier<AsyncValue<IsarAnimeResponse>> {
     _api = ref.watch(apiPod);
   }
 
-  Future<AnimeResponseIntern> _getApiResponse(AnimeQuery query) async {
-    AnimeResponse res = await _api.searchAnimes(query);
-    AnimeResponseIntern resIntern = _database.createAnimeResponseIntern(res);
-    return resIntern;
+  Future<AnimeResponse> _getApiResponse(AnimeQuery query) async {
+    JikanAnimeResponse res = await _api.searchAnimes(query);
+    return AnimeResponse.from(res);
   }
 
-  Future<IsarAnimeResponse> _getSearchResponse(AnimeQueryIntern query) async {
+  Future<AnimeResponse> _getSearchResponse(AnimeQuery query) async {
     String queryString = _api.buildAnimeSearchQuery(query);
-    IsarAnimeResponse? res = await _database.getAnimeResponse(queryString);
+    AnimeResponse? res = await _database.getAnimeResponse(queryString);
     if (res == null) {
-      final resIntern = await _getApiResponse(query);
-      res = await _database.insertAnimeResponse(resIntern);
+      res = await _getApiResponse(query);
+      await _database.insertAnimeResponse(res);
+      res = await _database.getAnimeResponse(queryString);
     }
-    return res;
+    return res!;
   }
 
-  Future<void> get(AnimeQueryIntern query) async {
+  Future<void> get(AnimeQuery query) async {
     try {
       state = const AsyncLoading();
-      IsarAnimeResponse res = await _getSearchResponse(query);
+      AnimeResponse res = await _getSearchResponse(query);
       if (!mounted) return;
 
       state = AsyncValue.data(res);
@@ -45,15 +44,19 @@ class BrowseStateNotifier extends StateNotifier<AsyncValue<IsarAnimeResponse>> {
     }
   }
 
-  Future<void> refresh() async {
-    state = AsyncValue.data(state.value!);
+  Future<void> refresh(int animeId) async {
+    Anime? anime = await _database.getAnime(animeId);
+    AnimeResponse res = state.value!;
+    res.animes =
+        res.animes?.map((e) => e.malId == animeId ? anime! : e).toList();
+
+    state = AsyncValue.data(res);
   }
 }
 
-final animeBrowse = StateNotifierProvider.family.autoDispose<
-    BrowseStateNotifier,
-    AsyncValue<IsarAnimeResponse>,
-    AnimeQueryIntern>((ref, arg) {
+final animeBrowse = StateNotifierProvider.family
+    .autoDispose<BrowseStateNotifier, AsyncValue<AnimeResponse>, AnimeQuery>(
+        (ref, arg) {
   BrowseStateNotifier controller = BrowseStateNotifier(ref);
   controller.get(arg);
   return controller;

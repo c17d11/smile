@@ -1,8 +1,6 @@
 import 'package:app/controller/state.dart';
-import 'package:app/database/src/database_base.dart';
-import 'package:app/database/src/isar/collection/isar_anime.dart';
-import 'package:app/database/src/isar/collection/isar_anime_response.dart';
-import 'package:app/database/src/isar/collection/isar_producer.dart';
+import 'package:app/database/src/interface/database.dart';
+import 'package:app/database/src/isar/anime/collection.dart';
 import 'package:app/database/src/isar/database.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -35,17 +33,17 @@ void main() {
 
   group('Anime Model', () {
     test('Insert Replaces Existing', () async {
-      AnimeIntern anime = IsarAnime.from(Anime()..malId = 10);
+      Anime anime = IsarAnime.from(JikanAnime()..malId = 10);
 
       await db.insertAnime(anime..title = "1");
       await db.insertAnime(anime..title = "2");
       await db.insertAnime(anime..title = "3");
 
-      List<AnimeIntern> animes = await db.getAllAnimes();
+      List<Anime> animes = await db.getAllAnimes();
       expect(animes, isNotNull);
       expect(animes.length, equals(1));
 
-      AnimeIntern? a = await db.getAnime(10);
+      Anime? a = await db.getAnime(10);
       expect(a, isNotNull);
       expect(a!.malId, 10);
       expect(a.title, "3");
@@ -57,10 +55,10 @@ void main() {
     });
 
     test('Delete Removes Item', () async {
-      AnimeIntern anime = IsarAnime.from(Anime()..malId = 1);
+      Anime anime = IsarAnime.from(JikanAnime()..malId = 1);
       await db.insertAnime(anime..title = "1");
 
-      List<AnimeIntern> animes = await db.getAllAnimes();
+      List<Anime> animes = await db.getAllAnimes();
       expect(animes, isNotNull);
       expect(animes.length, equals(1));
 
@@ -74,19 +72,19 @@ void main() {
 
   group('Anime Response Model', () {
     test('Insert Replaces Existing', () async {
-      IsarAnime anime = IsarAnime.from(Anime()..malId = 1);
+      IsarAnime anime = IsarAnime.from(JikanAnime()..malId = 1);
       List<IsarAnime> animes = [anime];
       String query = "123";
 
       IsarAnimeResponse isarAnimeResponse =
-          IsarAnimeResponse.from(AnimeResponse()
+          IsarAnimeResponse.from(JikanAnimeResponse()
             ..query = query
             ..data = animes);
 
       await db.insertAnimeResponse(isarAnimeResponse);
 
       IsarAnimeResponse isarAnimeResponse2 =
-          IsarAnimeResponse.from(AnimeResponse()
+          IsarAnimeResponse.from(JikanAnimeResponse()
             ..query = query
             ..data = []);
 
@@ -105,7 +103,7 @@ void main() {
 
     test('Delete Removes Item', () async {
       AnimeResponseIntern res =
-          IsarAnimeResponse.from(AnimeResponse()..query = "");
+          IsarAnimeResponse.from(JikanAnimeResponse()..query = "");
       await db.insertAnimeResponse(res);
 
       AnimeResponseIntern? ret = await db.getAnimeResponse("");
@@ -121,16 +119,16 @@ void main() {
 
   group('Producer Model', () {
     test('Insert Replaces Existing', () async {
-      ProducerIntern producer = IsarProducer.from(Producer()..malId = 1);
+      Producer producer = IsarProducer.from(JikanProducer()..malId = 1);
 
       await db.insertProducer(producer..title = "1");
       await db.insertProducer(producer..title = "2");
 
-      List<ProducerIntern> producers = await db.getAllProducers();
+      List<Producer> producers = await db.getAllProducers();
       expect(producers, isNotNull);
       expect(producers.length, equals(1));
 
-      ProducerIntern? a = await db.getProducer(1);
+      Producer? a = await db.getProducer(1);
       expect(a, isNotNull);
       expect(a!.title, "2");
     });
@@ -141,10 +139,10 @@ void main() {
     });
 
     test('Delete Removes Item', () async {
-      ProducerIntern producer = IsarProducer.from(Producer()..malId = 1);
+      Producer producer = IsarProducer.from(JikanProducer()..malId = 1);
       await db.insertProducer(producer..title = "1");
 
-      List<ProducerIntern> producers = await db.getAllProducers();
+      List<Producer> producers = await db.getAllProducers();
       expect(producers, isNotNull);
       expect(producers.length, equals(1));
 
@@ -158,18 +156,18 @@ void main() {
 
   group('Expiration', () {
     setUp(() async {
-      AnimeIntern anime = IsarAnime.from(Anime()..malId = 10);
+      Anime anime = IsarAnime.from(JikanAnime()..malId = 10);
       await db.insertAnime(anime..title = "1");
     });
 
     test('Get Anime When Not Expired', () async {
-      AnimeIntern? a = await db.getAnime(10);
+      Anime? a = await db.getAnime(10);
       expect(a, isNotNull);
     });
 
     test('Get Null When Expired', () async {
       db.setExpirationHours(0);
-      AnimeIntern? a = await db.getAnime(10);
+      Anime? a = await db.getAnime(10);
       expect(a, isNull);
     });
   });

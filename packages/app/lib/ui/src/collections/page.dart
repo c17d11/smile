@@ -1,4 +1,4 @@
-import 'package:app/controller/src/object/collection_query_intern.dart';
+import 'package:app/object/collection_query.dart';
 import 'package:app/ui/src/collections/response.dart';
 import 'package:app/ui/src/collections/state.dart';
 import 'package:app/ui/src/home.dart';
@@ -25,7 +25,7 @@ class CollectionPage extends ConsumerWidget {
           }
 
           return CollectionList(
-            initQuery: CollectionQueryIntern()..collectionName = tags[0],
+            initQuery: CollectionQuery()..collectionName = tags[0],
             onNextPageQuery: (query) =>
                 query.copyWith(page: (query.page ?? 1) + 1),
             onLastQuery: (query) {
@@ -44,9 +44,9 @@ class CollectionPage extends ConsumerWidget {
 }
 
 class CollectionList extends StatefulWidget {
-  final CollectionQueryIntern initQuery;
-  final Function(CollectionQueryIntern) onNextPageQuery;
-  final Function(CollectionQueryIntern) onLastQuery;
+  final CollectionQuery initQuery;
+  final Function(CollectionQuery) onNextPageQuery;
+  final Function(CollectionQuery) onLastQuery;
 
   const CollectionList({
     required this.initQuery,
@@ -80,10 +80,10 @@ class _CollectionListState extends State<CollectionList> {
     if (!readyForNextPage) return;
     readyForNextPage = false;
 
-    CollectionQueryIntern newQuery = pages.isEmpty
+    CollectionQuery newQuery = pages.isEmpty
         ? widget.initQuery.copyWith()
         : widget.onNextPageQuery(pages.last.query);
-    CollectionQueryIntern? nextQuery = pages.isEmpty
+    CollectionQuery? nextQuery = pages.isEmpty
         ? widget.initQuery.copyWith()
         : widget.onLastQuery(pages.last.query);
 

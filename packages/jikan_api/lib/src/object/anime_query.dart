@@ -7,20 +7,20 @@ import 'anime_status.dart';
 import 'anime_type.dart';
 import 'producer.dart';
 
-class AnimeQuery {
+class JikanAnimeQuery {
   String? searchTerm;
-  AnimeType? type;
-  AnimeRating? rating;
-  AnimeStatus? status;
+  JikanAnimeType? type;
+  JikanAnimeRating? rating;
+  JikanAnimeStatus? status;
   double? minScore;
   double? maxScore;
   int? minYear;
   int? maxYear;
   bool? sfw;
-  List<Producer>? producers;
-  List<Genre>? genresInclude;
-  List<Genre>? genresExclude;
+  List<JikanProducer>? producers;
+  List<JikanGenre>? genresInclude;
+  List<JikanGenre>? genresExclude;
   int? page;
-  AnimeOrder? orderBy;
-  AnimeSort? sort;
+  JikanAnimeOrder? orderBy;
+  JikanAnimeSort? sort;
 }

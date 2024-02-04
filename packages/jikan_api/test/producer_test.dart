@@ -36,8 +36,8 @@ void main() {
     );
 
     test('Correct producer', () async {
-      Api<int, Producer> producerApi = ProducerApi(client);
-      Producer producer = await producerApi.call(1);
+      Api<int, JikanProducer> producerApi = ProducerApi(client);
+      JikanProducer producer = await producerApi.call(1);
       expect(producer.malId, equals(123));
       expect(producer.imageUrl, equals("imageUrl"));
       expect(producer.title, equals("title1"));
@@ -66,13 +66,13 @@ void main() {
         }),
     );
     test('Data key missing', () async {
-      Api<int, Producer> producerApi = ProducerApi(client);
+      Api<int, JikanProducer> producerApi = ProducerApi(client);
       expect(() async => await producerApi.call(1),
           throwsA(isA<JikanParseException>()));
     });
     test('All null values', () async {
-      Api<int, Producer> producerApi = ProducerApi(client);
-      Producer producer = await producerApi.call(2);
+      Api<int, JikanProducer> producerApi = ProducerApi(client);
+      JikanProducer producer = await producerApi.call(2);
       expect(producer.malId, isNull);
       expect(producer.imageUrl, isNull);
       expect(producer.title, isNull);

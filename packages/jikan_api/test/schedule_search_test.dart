@@ -34,12 +34,12 @@ void main() {
         }),
     );
 
-    Api<ScheduleQuery, AnimeResponse> scheduleSearchApi =
+    Api<JikanScheduleQuery, JikanAnimeResponse> scheduleSearchApi =
         ScheduleSearchApi(client);
 
     test('Correct anime count', () async {
-      AnimeResponse res =
-          await scheduleSearchApi.call(ScheduleQuery()..page = 1);
+      JikanAnimeResponse res =
+          await scheduleSearchApi.call(JikanScheduleQuery()..page = 1);
       expect(res.data!.length, equals(2));
     });
   });
@@ -54,10 +54,10 @@ void main() {
           "wrong": {},
         }),
     );
-    Api<ScheduleQuery, AnimeResponse> scheduleSearchApi =
+    Api<JikanScheduleQuery, JikanAnimeResponse> scheduleSearchApi =
         ScheduleSearchApi(client);
     test('Data key missing', () async {
-      expect(() async => await scheduleSearchApi.call(ScheduleQuery()),
+      expect(() async => await scheduleSearchApi.call(JikanScheduleQuery()),
           throwsA(isA<JikanParseException>()));
     });
   });

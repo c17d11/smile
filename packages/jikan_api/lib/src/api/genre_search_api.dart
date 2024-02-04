@@ -7,21 +7,21 @@ import '../object/genre.dart';
 import '../http/http.dart';
 import '../http/http_result.dart';
 
-class GenreSearchApi implements Api<void, List<Genre>> {
+class GenreSearchApi implements Api<void, List<JikanGenre>> {
   Http client;
-  Parser<List<Genre>> genreSearchParser = GenreSearchParser();
+  Parser<List<JikanGenre>> genreSearchParser = GenreSearchParser();
   Parser<JikanApiException> errorParser = ErrorParser();
 
   GenreSearchApi(this.client);
 
   @override
-  Future<List<Genre>> call(void arg) async {
+  Future<List<JikanGenre>> call(void arg) async {
     HttpResult res = await client.get("genres/anime");
     if (res.error != null) {
       JikanApiException error = errorParser.parse(res.error!);
       return Future.error(error);
     }
-    List<Genre> genres = genreSearchParser.parse(res.data ?? {});
+    List<JikanGenre> genres = genreSearchParser.parse(res.data ?? {});
     return genres;
   }
 }

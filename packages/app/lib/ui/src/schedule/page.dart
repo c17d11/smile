@@ -1,4 +1,4 @@
-import 'package:app/controller/src/object/schedule_query_intern.dart';
+import 'package:app/object/schedule_query.dart';
 import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/src/schedule/response.dart';
@@ -11,22 +11,22 @@ class SchedulePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ScheduleQueryIntern query = ref.watch(scheduleQueryPod);
+    ScheduleQuery query = ref.watch(scheduleQueryPod);
     ref.watch(pageIndexPod);
 
     return ScheduleList(
-      initQuery: query..day = ScheduleMonday(),
-      onNextPageQuery: (query) => ScheduleQueryIntern.nextPage(query),
-      onLastQuery: (query) => ScheduleQueryIntern.nextDay(query),
+      initQuery: query..day = JikanScheduleDay.monday,
+      onNextPageQuery: (query) => ScheduleQuery.nextPage(query),
+      onLastQuery: (query) => ScheduleQuery.nextDay(query),
       key: UniqueKey(),
     );
   }
 }
 
 class ScheduleList extends StatefulWidget {
-  final ScheduleQueryIntern initQuery;
-  final Function(ScheduleQueryIntern) onNextPageQuery;
-  final Function(ScheduleQueryIntern) onLastQuery;
+  final ScheduleQuery initQuery;
+  final Function(ScheduleQuery) onNextPageQuery;
+  final Function(ScheduleQuery) onLastQuery;
 
   const ScheduleList({
     required this.initQuery,
@@ -56,10 +56,10 @@ class _ScheduleListState extends State<ScheduleList> {
   }
 
   void loadNextPage() {
-    ScheduleQueryIntern newQuery = pages.isEmpty
+    ScheduleQuery newQuery = pages.isEmpty
         ? widget.initQuery
         : widget.onNextPageQuery(pages.last.query);
-    ScheduleQueryIntern? nextQuery =
+    ScheduleQuery? nextQuery =
         pages.isEmpty ? widget.initQuery : widget.onLastQuery(pages.last.query);
 
     ScheduleResponse? res;

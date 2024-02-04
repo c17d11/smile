@@ -5,10 +5,10 @@ import '../object/producer_query.dart';
 import 'task.dart';
 import '../object/producer.dart';
 
-class ProducerFetchAllTask implements Task<List<Producer>> {
+class ProducerFetchAllTask implements Task<List<JikanProducer>> {
   ProducerSearchApi producerApi;
 
-  List<Producer> producers = [];
+  List<JikanProducer> producers = [];
   int totalPages = 1;
   int cachedPages = 0;
   double get progress => cachedPages / totalPages;
@@ -17,7 +17,8 @@ class ProducerFetchAllTask implements Task<List<Producer>> {
 
   Future<void> cacheResult({required int page}) async {
     // TODO catch exceptions
-    ProducerResponse res = await producerApi.call(ProducerQuery()..page = page);
+    JikanProducerResponse res =
+        await producerApi.call(JikanProducerQuery()..page = page);
     producers.addAll(res.data ?? []);
     totalPages = res.pagination?.lastVisiblePage ?? totalPages;
   }
@@ -32,5 +33,5 @@ class ProducerFetchAllTask implements Task<List<Producer>> {
   }
 
   @override
-  List<Producer> getResult() => producers;
+  List<JikanProducer> getResult() => producers;
 }

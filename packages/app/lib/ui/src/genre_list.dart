@@ -1,5 +1,5 @@
-import 'package:app/controller/src/object/anime_query_intern.dart';
-import 'package:app/controller/src/object/genre_intern.dart';
+import 'package:app/object/anime_query.dart';
+import 'package:app/object/genre.dart';
 import 'package:app/ui/src/browse/nav_item.dart';
 import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/pod.dart';
@@ -17,7 +17,7 @@ class GenreListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<List<GenreIntern>> futureGenres = ref.watch(genrePod);
+    AsyncValue<List<Genre>> futureGenres = ref.watch(genrePod);
 
     return Scaffold(
         body: CustomScrollView(
@@ -33,8 +33,9 @@ class GenreListPage extends ConsumerWidget {
                 leading: IconButton(
                   icon: const Icon(Icons.search),
                   onPressed: () async {
-                    await ref.read(animeQueryPod.notifier).set(
-                        AnimeQueryIntern()..genresInclude = [genres[index]]);
+                    await ref
+                        .read(animeQueryPod.notifier)
+                        .set(AnimeQuery()..genresInclude = [genres[index]]);
                     ref.read(pageGroupPod.notifier).state = AnimeGroup();
                     ref.read(pageIndexPod.notifier).state = 0;
                   },

@@ -2,7 +2,7 @@ import 'package:jikan_api/src/object/genre.dart';
 
 import 'producer.dart';
 
-class Anime {
+class JikanAnime {
   int? malId;
   String? title;
   List<String>? titles;
@@ -21,8 +21,8 @@ class Anime {
   String? season;
   int? year;
   DateTime? broadcast;
-  List<Producer>? producers;
-  List<Genre>? genres;
+  List<JikanProducer>? producers;
+  List<JikanGenre>? genres;
   int? episodes;
   String? imageUrl;
 

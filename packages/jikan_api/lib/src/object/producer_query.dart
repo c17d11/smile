@@ -1,4 +1,4 @@
-class ProducerQuery {
+class JikanProducerQuery {
   String? searchTerm;
   int? page;
 }
