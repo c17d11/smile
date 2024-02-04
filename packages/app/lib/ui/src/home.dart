@@ -113,6 +113,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               constraints: BoxConstraints(
                 minHeight: MediaQuery.of(context).size.height,
               ),
+<<<<<<< HEAD
               child: Column(
                 children: [
                   DrawerHeader(
@@ -130,19 +131,40 @@ class _HomePageState extends ConsumerState<HomePage> {
                     TextDivider(AnimeGroup().title),
                     ...AnimeGroup().pages.asMap().entries.map(
                         (e) => buildListTile(e.value, ref, AnimeGroup(), e.key))
+=======
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    // DrawerHeader(
+                    //     decoration: BoxDecoration(
+                    //         color: Theme.of(context).colorScheme.primary,
+                    //         image: const DecorationImage(
+                    //           colorFilter: ColorFilter.mode(
+                    //               Colors.blueGrey, BlendMode.modulate),
+                    //           image: AssetImage('assets/icon/smile.png'),
+                    //           fit: BoxFit.fill,
+                    //           alignment: Alignment.bottomLeft,
+                    //         )),
+                    //     child: null),
+                    ...[
+                      TextDivider(AnimeGroup().title),
+                      ...AnimeGroup().pages.asMap().entries.map((e) =>
+                          buildListTile(e.value, ref, AnimeGroup(), e.key))
+                    ],
+                    ...[
+                      TextDivider(OtherGroup().title),
+                      ...OtherGroup().pages.asMap().entries.map((e) =>
+                          buildListTile(e.value, ref, OtherGroup(), e.key))
+                    ],
+                    const Spacer(),
+                    ...[
+                      TextDivider(SettingsGroup().title),
+                      ...SettingsGroup().pages.asMap().entries.map((e) =>
+                          buildListTile(e.value, ref, SettingsGroup(), e.key))
+                    ],
+>>>>>>> bc4e9d7... fix: change icon
                   ],
-                  ...[
-                    TextDivider(OtherGroup().title),
-                    ...OtherGroup().pages.asMap().entries.map(
-                        (e) => buildListTile(e.value, ref, OtherGroup(), e.key))
-                  ],
-                  const Spacer(),
-                  ...[
-                    TextDivider(SettingsGroup().title),
-                    ...SettingsGroup().pages.asMap().entries.map((e) =>
-                        buildListTile(e.value, ref, SettingsGroup(), e.key))
-                  ],
-                ],
+                ),
               ),
             ),
           ),
