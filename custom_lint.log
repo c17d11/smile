@@ -35862,5 +35862,96 @@ The Dart VM service is listening on http://127.0.0.1:37643/cgoruL5nGvQ=/
 The Dart DevTools debugger and profiler is available at: http://127.0.0.1:37643/cgoruL5nGvQ=/devtools?uri=ws://127.0.0.1:37643/cgoruL5nGvQ=/ws
 The Dart VM service is listening on http://127.0.0.1:44805/xVT5RrMEbKc=/
 The Dart DevTools debugger and profiler is available at: http://127.0.0.1:44805/xVT5RrMEbKc=/devtools?uri=ws://127.0.0.1:44805/xVT5RrMEbKc=/ws
+<<<<<<< HEAD
 The Dart VM service is listening on http://127.0.0.1:39071/4TTYiryblUc=/
 The Dart DevTools debugger and profiler is available at: http://127.0.0.1:39071/4TTYiryblUc=/devtools?uri=ws://127.0.0.1:39071/4TTYiryblUc=/ws
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+The Dart VM service is listening on http://127.0.0.1:38027/Gccd7rTIhTc=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:38027/Gccd7rTIhTc=/devtools?uri=ws://127.0.0.1:38027/Gccd7rTIhTc=/ws
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+The Dart VM service is listening on http://127.0.0.1:44105/UFIU80_qrY0=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:44105/UFIU80_qrY0=/devtools?uri=ws://127.0.0.1:44105/UFIU80_qrY0=/ws
+The Dart VM service is listening on http://127.0.0.1:43553/5m2Tn0FjNuM=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:43553/5m2Tn0FjNuM=/devtools?uri=ws://127.0.0.1:43553/5m2Tn0FjNuM=/ws
+=======
+The Dart VM service is listening on http://127.0.0.1:38027/YupNLLp_lvs=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:38027/YupNLLp_lvs=/devtools?uri=ws://127.0.0.1:38027/YupNLLp_lvs=/ws
+>>>>>>> 9f46e34... wip
+=======
+The Dart VM service is listening on http://127.0.0.1:38027/YupNLLp_lvs=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:38027/YupNLLp_lvs=/devtools?uri=ws://127.0.0.1:38027/YupNLLp_lvs=/ws
+=======
+The Dart VM service is listening on http://127.0.0.1:36641/HTtI3ShTmC8=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:36641/HTtI3ShTmC8=/devtools?uri=ws://127.0.0.1:36641/HTtI3ShTmC8=/ws
+The Dart VM service is listening on http://127.0.0.1:42875/qCKulPvF990=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:42875/qCKulPvF990=/devtools?uri=ws://127.0.0.1:42875/qCKulPvF990=/ws
+The Dart VM service is listening on http://127.0.0.1:36653/eJb8B1cyFl0=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:36653/eJb8B1cyFl0=/devtools?uri=ws://127.0.0.1:36653/eJb8B1cyFl0=/ws
+The Dart VM service is listening on http://127.0.0.1:43389/ZLC9nb2A8ag=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:43389/ZLC9nb2A8ag=/devtools?uri=ws://127.0.0.1:43389/ZLC9nb2A8ag=/ws
+The Dart VM service is listening on http://127.0.0.1:39739/C5_n-W-_Reg=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:39739/C5_n-W-_Reg=/devtools?uri=ws://127.0.0.1:39739/C5_n-W-_Reg=/ws
+The Dart VM service is listening on http://127.0.0.1:35557/tr3dBK003lI=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:35557/tr3dBK003lI=/devtools?uri=ws://127.0.0.1:35557/tr3dBK003lI=/ws
+The Dart VM service is listening on http://127.0.0.1:34823/CTEojEg6bmw=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:34823/CTEojEg6bmw=/devtools?uri=ws://127.0.0.1:34823/CTEojEg6bmw=/ws
+The Dart VM service is listening on http://127.0.0.1:37209/yFwuSVZmwjI=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:37209/yFwuSVZmwjI=/devtools?uri=ws://127.0.0.1:37209/yFwuSVZmwjI=/ws
+The Dart VM service is listening on http://127.0.0.1:44259/vA34u2KTv7k=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:44259/vA34u2KTv7k=/devtools?uri=ws://127.0.0.1:44259/vA34u2KTv7k=/ws
+The Dart VM service is listening on http://127.0.0.1:33713/7CG9rcNKARw=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:33713/7CG9rcNKARw=/devtools?uri=ws://127.0.0.1:33713/7CG9rcNKARw=/ws
+The Dart VM service is listening on http://127.0.0.1:46415/HainW9m8sww=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:46415/HainW9m8sww=/devtools?uri=ws://127.0.0.1:46415/HainW9m8sww=/ws
+The Dart VM service is listening on http://127.0.0.1:41829/aQi_re7xXGY=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:41829/aQi_re7xXGY=/devtools?uri=ws://127.0.0.1:41829/aQi_re7xXGY=/ws
+The Dart VM service is listening on http://127.0.0.1:36701/7pv7OQstsQU=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:36701/7pv7OQstsQU=/devtools?uri=ws://127.0.0.1:36701/7pv7OQstsQU=/ws
+The Dart VM service is listening on http://127.0.0.1:43309/1aGzU30hjoM=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:43309/1aGzU30hjoM=/devtools?uri=ws://127.0.0.1:43309/1aGzU30hjoM=/ws
+The Dart VM service is listening on http://127.0.0.1:35941/Mrb9Tn1FI7Q=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:35941/Mrb9Tn1FI7Q=/devtools?uri=ws://127.0.0.1:35941/Mrb9Tn1FI7Q=/ws
+The Dart VM service is listening on http://127.0.0.1:33865/B4hiQqAHP1o=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:33865/B4hiQqAHP1o=/devtools?uri=ws://127.0.0.1:33865/B4hiQqAHP1o=/ws
+The Dart VM service is listening on http://127.0.0.1:35369/PtyQ75Hmp_k=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:35369/PtyQ75Hmp_k=/devtools?uri=ws://127.0.0.1:35369/PtyQ75Hmp_k=/ws
+The Dart VM service is listening on http://127.0.0.1:36461/PaBQw2b-WHw=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:36461/PaBQw2b-WHw=/devtools?uri=ws://127.0.0.1:36461/PaBQw2b-WHw=/ws
+The Dart VM service is listening on http://127.0.0.1:41577/57CZL7_Yy1E=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:41577/57CZL7_Yy1E=/devtools?uri=ws://127.0.0.1:41577/57CZL7_Yy1E=/ws
+The Dart VM service is listening on http://127.0.0.1:39425/TuhuRM93PC8=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:39425/TuhuRM93PC8=/devtools?uri=ws://127.0.0.1:39425/TuhuRM93PC8=/ws
+The Dart VM service is listening on http://127.0.0.1:40569/o8ZxIRlJm24=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:40569/o8ZxIRlJm24=/devtools?uri=ws://127.0.0.1:40569/o8ZxIRlJm24=/ws
+The Dart VM service is listening on http://127.0.0.1:33251/4EjjkanfGQM=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:33251/4EjjkanfGQM=/devtools?uri=ws://127.0.0.1:33251/4EjjkanfGQM=/ws
+The Dart VM service is listening on http://127.0.0.1:42827/rhiKFAh_mqo=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:42827/rhiKFAh_mqo=/devtools?uri=ws://127.0.0.1:42827/rhiKFAh_mqo=/ws
+The Dart VM service is listening on http://127.0.0.1:38911/tl5_me8GujQ=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:38911/tl5_me8GujQ=/devtools?uri=ws://127.0.0.1:38911/tl5_me8GujQ=/ws
+The Dart VM service is listening on http://127.0.0.1:42691/wFjQZAvOwnQ=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:42691/wFjQZAvOwnQ=/devtools?uri=ws://127.0.0.1:42691/wFjQZAvOwnQ=/ws
+The Dart VM service is listening on http://127.0.0.1:33603/QWkcFi_4Z7I=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:33603/QWkcFi_4Z7I=/devtools?uri=ws://127.0.0.1:33603/QWkcFi_4Z7I=/ws
+The Dart VM service is listening on http://127.0.0.1:39983/CgiBo18sUsM=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:39983/CgiBo18sUsM=/devtools?uri=ws://127.0.0.1:39983/CgiBo18sUsM=/ws
+The Dart VM service is listening on http://127.0.0.1:40513/DyREXjkTLAA=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:40513/DyREXjkTLAA=/devtools?uri=ws://127.0.0.1:40513/DyREXjkTLAA=/ws
+The Dart VM service is listening on http://127.0.0.1:46019/gORxIZMpISk=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:46019/gORxIZMpISk=/devtools?uri=ws://127.0.0.1:46019/gORxIZMpISk=/ws
+The Dart VM service is listening on http://127.0.0.1:41061/laLgQuFVcww=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:41061/laLgQuFVcww=/devtools?uri=ws://127.0.0.1:41061/laLgQuFVcww=/ws
+The Dart VM service is listening on http://127.0.0.1:39383/DFu1PLicsAA=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:39383/DFu1PLicsAA=/devtools?uri=ws://127.0.0.1:39383/DFu1PLicsAA=/ws
+The Dart VM service is listening on http://127.0.0.1:46161/qQ4nXW3bdaM=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:46161/qQ4nXW3bdaM=/devtools?uri=ws://127.0.0.1:46161/qQ4nXW3bdaM=/ws
+>>>>>>> e09f0be... wip
+>>>>>>> f787f5e... wip
+>>>>>>> 1e6ef92... wip
+>>>>>>> 891b6f8... fix: icon, jikan api exception
+>>>>>>> 3192c5a... fix: icon, jikan api exception
