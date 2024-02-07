@@ -164,11 +164,5 @@ void main() {
       Anime? a = await db.getAnime(10);
       expect(a, isNotNull);
     });
-
-    test('Get Null When Expired', () async {
-      db.setExpirationHours(0);
-      Anime? a = await db.getAnime(10);
-      expect(a, isNull);
-    });
   });
 }

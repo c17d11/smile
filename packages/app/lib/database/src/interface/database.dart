@@ -18,8 +18,5 @@ abstract interface class Database implements ModelProxy {
   /// Returns the database size as readable string.
   Future<String> getDatabaseSize();
 
-  /// Sets the number of hours stored data to be valid
-  void setExpirationHours(int hours);
-
   factory Database() => database;
 }

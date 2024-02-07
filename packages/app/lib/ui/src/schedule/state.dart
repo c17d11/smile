@@ -11,7 +11,7 @@ class ScheduleStateNotifier extends StateNotifier<AsyncValue<AnimeResponse>> {
   final StateNotifierProviderRef ref;
 
   ScheduleStateNotifier(this.ref) : super(const AsyncLoading()) {
-    _database = ref.watch(databaseUpdatePod);
+    _database = ref.watch(databasePod);
     _api = ref.watch(apiPod);
   }
 
@@ -23,7 +23,7 @@ class ScheduleStateNotifier extends StateNotifier<AsyncValue<AnimeResponse>> {
   Future<AnimeResponse> _getScheduleResponse(ScheduleQuery query) async {
     String queryString = _api.buildScheduleSearchQuery(query);
     AnimeResponse? res = await _database.getAnimeResponse(queryString);
-    if (res == null) {
+    if (res == null || await _database.isExpired(res)) {
       res = await _getApiScheduleResponse(query);
       await _database.insertAnimeResponse(res);
       res = await _database.getAnimeResponse(queryString);

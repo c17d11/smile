@@ -6,20 +6,17 @@ import 'package:app/database/src/isar/anime_response/collection.dart';
 import 'package:app/database/src/isar/model.dart';
 import 'package:isar/isar.dart';
 
-class IsarAnimeResponseModel extends IsarExpirationModel
-    implements AnimeResponseModel {
+class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
   final IsarAnimeResponseConverter _animeResponseConverter =
       IsarAnimeResponseConverter();
   final IsarAnimeModel _animeModel;
-  IsarAnimeResponseModel(super.db, {required super.expirationHours})
-      : _animeModel = IsarAnimeModel(db);
+  IsarAnimeResponseModel(super.db) : _animeModel = IsarAnimeModel(db);
 
   Future<AnimeResponse?> get(String id) async {
     IsarAnimeResponse? ret =
         await db.isarAnimeResponses.where().qEqualTo(id).findFirst();
 
     if (ret == null) return null;
-    if (isExpired(ret)) return null;
 
     AnimeResponse r = _animeResponseConverter.fromImpl(ret);
     for (int animeId in ret.animeIds ?? []) {

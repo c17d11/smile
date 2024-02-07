@@ -1,0 +1,3 @@
+class Expiration {
+  DateTime? timestamp;
+}

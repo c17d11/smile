@@ -69,8 +69,6 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
 
     AnimeResponse res = AnimeResponse()
       ..query = "favorite"
-      ..date = DateTime.now()
-      ..expires = null
       ..pagination = (Pagination()
         ..lastVisiblePage = 1
         ..hasNextPage = false
@@ -99,8 +97,6 @@ class IsarAnimeModel extends IsarModel implements AnimeModel {
 
     AnimeResponse res = AnimeResponse()
       ..query = "tag-$tagName"
-      ..date = DateTime.now()
-      ..expires = null
       ..pagination = (Pagination()
         ..lastVisiblePage = 1
         ..hasNextPage = false

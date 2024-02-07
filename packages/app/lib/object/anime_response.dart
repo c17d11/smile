@@ -1,11 +1,10 @@
+import 'package:app/object/expiration.dart';
 import 'package:app/object/pagination.dart';
 import 'package:jikan_api/jikan_api.dart';
 import 'anime.dart';
 
-class AnimeResponse {
+class AnimeResponse extends Expiration {
   String? query;
-  DateTime? date;
-  DateTime? expires;
   Pagination? pagination;
   List<Anime>? animes;
 
@@ -13,8 +12,6 @@ class AnimeResponse {
 
   AnimeResponse.from(JikanAnimeResponse res) {
     query = res.query;
-    date = res.date;
-    expires = res.expires;
     pagination = Pagination.from(res.pagination!);
     animes = res.data?.map((e) => Anime.from(e)).toList();
   }

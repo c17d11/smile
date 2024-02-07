@@ -471,7 +471,7 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
           ? FloatingActionButton.extended(
               onPressed: () async {
                 ref
-                    .read(databaseUpdatePod)
+                    .read(databasePod)
                     .updateAnimeNotes(AnimeNotes()
                       ..malId = anime!.malId
                       ..favorite = isFavorite

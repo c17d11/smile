@@ -1,6 +1,7 @@
 import 'package:app/controller/state.dart';
 import 'package:app/object/anime_notes.dart';
 import 'package:app/object/anime_query.dart';
+import 'package:app/object/expiration.dart';
 import 'package:app/object/genre.dart';
 import 'package:app/object/producer_query.dart';
 import 'package:app/object/producer_response.dart';
@@ -9,15 +10,9 @@ import 'package:app/object/settings.dart';
 import 'package:app/object/tag.dart';
 
 abstract interface class AnimeModel {
-  // Future<Anim> insertAnime(AnimeIntern anime);
   Future<Anime?> getAnime(int malId);
-  // Future<List<IsarAnime>> getAllAnimes();
   Future<AnimeResponse> getFavoriteAnimes();
   Future<AnimeResponse> getTagAnimes(String tagName);
-  // Future<int> countFavoriteAnimes();
-  // int countFavoriteAnimePages(int favoriteAnimeCount);
-  // Future<bool> deleteAnime(int malId);
-  // AnimeIntern createAnimeIntern(Anime anime);
 }
 
 abstract interface class AnimeNotesModel {
@@ -27,23 +22,16 @@ abstract interface class AnimeNotesModel {
 abstract interface class AnimeResponseModel {
   Future<void> insertAnimeResponse(AnimeResponse res);
   Future<AnimeResponse?> getAnimeResponse(String query);
-  // Future<bool> deleteAnimeResponse(String query);
-  // AnimeResponseIntern createAnimeResponseIntern(AnimeResponse res);
 }
 
 abstract interface class ProducerResponseModel {
   Future<void> insertProducerResponse(ProducerResponse res);
   Future<ProducerResponse?> getProducerResponse(String query);
-  // Future<bool> deleteProducerResponse(ProducerQuery query);
-  // ProducerResponseIntern createProducerResponseIntern(ProducerResponse res);
 }
 
 abstract interface class GenreModel {
-  // Future<void> insertGenre(GenreIntern genre);
   Future<void> insertGenres(List<Genre> genres);
-  // Future<GenreIntern?> getGenre(int malId);
   Future<List<Genre>> getAllGenres();
-  // Future<bool> deleteGenre(int malId);
 }
 
 abstract interface class ProducerModel {
@@ -68,6 +56,7 @@ abstract interface class ScheduleQueryModel {
 abstract interface class SettingsModel {
   Future<Settings?> getSettings();
   Future<void> updateSettings(Settings s);
+  Future<bool> isExpired(Expiration expiration);
 }
 
 abstract interface class TagModel {

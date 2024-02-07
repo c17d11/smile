@@ -1,3 +1,4 @@
+import 'package:app/object/expiration.dart';
 import 'package:app/object/settings.dart';
 import 'package:app/database/src/interface/model.dart';
 import 'package:app/database/src/isar/settings/collection.dart';
@@ -16,6 +17,16 @@ class IsarSettingsModel extends IsarModel implements SettingsModel {
   Future<int> insert(Settings settings) async {
     IsarSettings isarSettings = IsarSettingsConverter().toImpl(settings);
     return await db.isarSettings.put(isarSettings);
+  }
+
+  @override
+  Future<bool> isExpired(Expiration expiration) async {
+    Settings? settings = await get();
+
+    if (expiration.timestamp == null) return false;
+    if (settings?.dbSettings.cacheTimeoutHours == null) return false;
+    return DateTime.now().difference(expiration.timestamp!).inHours >=
+        settings!.dbSettings.cacheTimeoutHours!;
   }
 
   @override
