@@ -5,11 +5,10 @@ import 'package:app/database/src/isar/model.dart';
 import 'package:app/object/producer_query.dart';
 import 'package:isar/isar.dart';
 
-class IsarProducerQueryModel extends IsarExpirationModel
-    implements ProducerQueryModel {
+class IsarProducerQueryModel extends IsarModel implements ProducerQueryModel {
   final IsarProducerQueryConverter _producerQueryConverter =
       IsarProducerQueryConverter();
-  IsarProducerQueryModel(super.db, {required super.expirationHours});
+  IsarProducerQueryModel(super.db);
 
   Future<ProducerQuery?> get() async {
     IsarProducerQuery? ret = await db.isarProducerQuerys.where().findFirst();
