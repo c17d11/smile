@@ -1,6 +1,6 @@
-import 'package:app/controller/state.dart';
 import 'package:app/database/src/interface/converter.dart';
 import 'package:app/database/src/isar/anime_response/collection.dart';
+import 'package:app/object/anime_response.dart';
 import 'package:app/object/pagination.dart';
 
 class IsarAnimeResponseConverter

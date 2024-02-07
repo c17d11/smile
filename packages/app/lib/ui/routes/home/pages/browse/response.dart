@@ -1,4 +1,4 @@
-import 'package:app/controller/state.dart';
+import 'package:app/object/anime_response.dart';
 import 'package:app/ui/common/text_divider.dart';
 import 'package:app/ui/routes/home/pages/browse/state.dart';
 import 'package:app/object/anime_query.dart';

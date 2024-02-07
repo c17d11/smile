@@ -1,5 +1,6 @@
 import 'package:app/object/tag.dart';
 import 'package:app/database/src/interface/database.dart';
+import 'package:app/ui/routes/home/pages/pod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
@@ -51,3 +52,11 @@ class TagController extends StateNotifier<AsyncValue<List<Tag>>> {
     }
   }
 }
+
+final tagPod =
+    StateNotifierProvider<TagController, AsyncValue<List<Tag>>>((ref) {
+  Database db = ref.watch(databasePod);
+  TagController controller = TagController(db);
+  controller.get();
+  return controller;
+});

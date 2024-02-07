@@ -1,11 +1,8 @@
-import 'package:app/controller/src/controller/producer_controller.dart';
-import 'package:app/controller/src/controller/tag_controller.dart';
 import 'package:app/object/anime_query.dart';
+import 'package:app/object/anime_response.dart';
 import 'package:app/object/producer_response.dart';
 import 'package:app/object/schedule_query.dart';
 import 'package:app/object/settings.dart';
-import 'package:app/object/tag.dart';
-import 'package:app/controller/state.dart';
 import 'package:app/database/src/interface/database.dart';
 import 'package:app/ui/routes/home/pages/injector.dart';
 import 'package:flutter/material.dart';
@@ -31,21 +28,6 @@ final databasePod = Provider((ref) {
 final initPod = FutureProvider<bool>((ref) async {
   await ref.watch(databasePod).init();
   return true;
-});
-
-final producerPod =
-    StateNotifierProvider<ProducerController, AsyncValue<List<Producer>>>(
-        (ref) {
-  Database db = ref.watch(databasePod);
-  return ProducerController(db);
-});
-
-final tagPod =
-    StateNotifierProvider<TagController, AsyncValue<List<Tag>>>((ref) {
-  Database db = ref.watch(databasePod);
-  TagController controller = TagController(db);
-  controller.get();
-  return controller;
 });
 
 final animeQueryPod =

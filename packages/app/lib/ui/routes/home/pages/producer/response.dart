@@ -1,4 +1,4 @@
-import 'package:app/controller/state.dart';
+import 'package:app/object/producer.dart';
 import 'package:app/object/producer_query.dart';
 import 'package:app/object/producer_response.dart';
 import 'package:app/ui/common/text_divider.dart';
