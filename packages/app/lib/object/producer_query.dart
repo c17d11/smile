@@ -30,19 +30,3 @@ class ProducerQuery extends JikanProducerQuery {
   @override
   int get hashCode => page.hashCode ^ searchTerm.hashCode;
 }
-
-class ProducerQueryNotifier extends StateNotifier<ProducerQuery> {
-  final Database db;
-  final String page;
-  ProducerQueryNotifier(this.page, this.db) : super(ProducerQuery());
-
-  Future<void> load() async {
-    ProducerQuery? query = await db.getProducerQuery(page);
-    state = query ?? ProducerQuery();
-  }
-
-  Future<void> set(ProducerQuery newQuery) async {
-    await db.updateProducerQuery(newQuery);
-    state = newQuery;
-  }
-}
