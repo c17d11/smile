@@ -1,9 +1,9 @@
-import 'package:app/ui/pages/anime_details.dart';
-import 'package:app/ui/pages/home.dart';
-import 'package:app/ui/pages/anime_query_page.dart';
-import 'package:app/ui/pages/collections/page.dart';
-import 'package:app/ui/pages/pod.dart';
-import 'package:app/ui/pages/schedule_query_page.dart';
+import 'package:app/ui/routes/anime_details/page.dart';
+import 'package:app/ui/routes/home/pages/home.dart';
+import 'package:app/ui/routes/anime_query/page.dart';
+import 'package:app/ui/routes/home/pages/collections/page.dart';
+import 'package:app/ui/routes/home/pages/pod.dart';
+import 'package:app/ui/routes/schedule_query/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -61,7 +61,6 @@ class _AppState extends ConsumerState<App> {
           'anime-details': (context) => const AnimeDetails(),
           'anime-query': (context) => const AnimeQueryPage(),
           'schedule-query': (context) => const ScheduleQueryPage(),
-          'collection': (context) => const CollectionPage(),
         },
       ),
       error: (err, stack) => Text('Error: $err'),
