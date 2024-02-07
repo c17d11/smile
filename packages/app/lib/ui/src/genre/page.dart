@@ -1,6 +1,6 @@
 import 'package:app/object/anime_query.dart';
 import 'package:app/object/genre.dart';
-import 'package:app/ui/src/browse/nav_item.dart';
+import 'package:app/ui/src/genre/state.dart';
 import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/pod.dart';
 import 'package:app/ui/style/style.dart';

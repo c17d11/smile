@@ -1,8 +1,6 @@
-import 'package:app/controller/src/controller/genre_controller.dart';
 import 'package:app/controller/src/controller/producer_controller.dart';
 import 'package:app/controller/src/controller/tag_controller.dart';
 import 'package:app/object/anime_query.dart';
-import 'package:app/object/genre.dart';
 import 'package:app/object/producer_response.dart';
 import 'package:app/object/schedule_query.dart';
 import 'package:app/object/settings.dart';
@@ -40,15 +38,6 @@ final producerPod =
         (ref) {
   Database db = ref.watch(databasePod);
   return ProducerController(db);
-});
-
-final genrePod =
-    StateNotifierProvider<GenreController, AsyncValue<List<Genre>>>((ref) {
-  Database db = ref.watch(databasePod);
-  JikanApi api = ref.watch(apiPod);
-  GenreController genres = GenreController(db, api);
-  genres.get();
-  return genres;
 });
 
 final tagPod =

@@ -1,7 +1,7 @@
 import 'package:app/object/tag.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/favorite/page.dart';
-import 'package:app/ui/src/genre_list.dart';
+import 'package:app/ui/src/genre/page.dart';
 import 'package:app/ui/src/home.dart';
 import 'package:app/ui/src/browse/page.dart';
 import 'package:app/ui/src/schedule/page.dart';
@@ -36,31 +36,5 @@ class SettingsNavItem extends IconItem {
   @override
   Widget buildAppBarTitle() {
     return TextFields("Settings");
-  }
-}
-
-class GenresNavItem extends IconItem {
-  @override
-  String get label => "Genres";
-
-  @override
-  Icon get icon => const Icon(Icons.label_outline);
-
-  @override
-  Icon get selectedIcon => const Icon(Icons.label);
-
-  @override
-  Widget buildContent(WidgetRef ref) {
-    return GenreListPage();
-  }
-
-  @override
-  List<Widget> buildAppBarWidgets(BuildContext context, WidgetRef ref) {
-    return [];
-  }
-
-  @override
-  Widget buildAppBarTitle() {
-    return const TextFields("Genres");
   }
 }
