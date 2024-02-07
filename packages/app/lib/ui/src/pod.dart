@@ -1,17 +1,14 @@
 import 'package:app/controller/src/controller/genre_controller.dart';
 import 'package:app/controller/src/controller/producer_controller.dart';
-import 'package:app/controller/src/controller/producer_search_controller.dart';
 import 'package:app/controller/src/controller/tag_controller.dart';
 import 'package:app/object/anime_query.dart';
 import 'package:app/object/genre.dart';
-import 'package:app/object/producer_query.dart';
 import 'package:app/object/producer_response.dart';
 import 'package:app/object/schedule_query.dart';
 import 'package:app/object/settings.dart';
 import 'package:app/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/interface/database.dart';
-import 'package:app/ui/navigation_container/navigation_container.dart';
 import 'package:app/ui/src/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,61 +30,16 @@ final databasePod = Provider((ref) {
   return ref.watch(depencyInjectorPod).container.resolve<Database>();
 });
 
-// final databaseUpdatePod = Provider((ref) {
-//   final db = ref.watch(databasePod);
-//   final dbSettings = ref.watch(databaseSettingsPod);
-//   db.setExpirationHours(dbSettings.cacheTimeoutHours!);
-//   return db;
-// });
-
 final initPod = FutureProvider<bool>((ref) async {
   await ref.watch(databasePod).init();
-
-  // await ref
-  //     .watch(depencyInjectorPod)
-  //     .container
-  //     .resolve<PopulateDatabase>()
-  //     .populate();
-
-  // successful init
   return true;
 });
-
-// final animeUpdate =
-//     StateNotifierProvider<AnimeUpdateController, AsyncValue<AnimeIntern>>(
-//         (ref) {
-//   AnimeUpdateController controller = AnimeUpdateController(ref);
-//   return controller;
-// });
-
-// final animeResponseUpdate = StateNotifierProvider<AnimeResponseUpdateController,
-//     AsyncValue<AnimeResponseIntern>>((ref) {
-//   AnimeResponseUpdateController controller = AnimeResponseUpdateController(ref);
-//   return controller;
-// });
 
 final producerPod =
     StateNotifierProvider<ProducerController, AsyncValue<List<Producer>>>(
         (ref) {
   Database db = ref.watch(databasePod);
   return ProducerController(db);
-});
-
-final producerSearchPod = StateNotifierProvider.family<ProducerSearchController,
-    AsyncValue<ProducerResponse>, ProducerQuery>((ref, arg) {
-  Database db = ref.watch(databasePod);
-  JikanApi api = ref.watch(apiPod);
-  ProducerSearchController controller = ProducerSearchController(db, api);
-  controller.get(arg);
-  return controller;
-});
-
-final producerQueryPod = StateNotifierProvider.family<ProducerQueryNotifier,
-    ProducerQuery, IconItem>((ref, arg) {
-  Database db = ref.watch(databasePod);
-  final notifier = ProducerQueryNotifier(arg.label, db);
-  notifier.load();
-  return notifier;
 });
 
 final genrePod =
@@ -129,16 +81,6 @@ final settingsPod = StateNotifierProvider<SettingsNotifier, Settings>((ref) {
   notifier.load();
   return notifier;
 });
-
-// final apiSettingsPod = Provider<JikanApiSettings>((ref) {
-//   final settings = ref.watch(settingsPod);
-//   return settings.apiSettings;
-// });
-
-// final databaseSettingsPod = Provider<DatabaseSettings>((ref) {
-//   final settings = ref.watch(settingsPod);
-//   return settings.dbSettings;
-// });
 
 extension AsyncValueUiAnime on AsyncValue<AnimeResponse> {
   bool get isLoading => this is AsyncLoading<AnimeResponse>;

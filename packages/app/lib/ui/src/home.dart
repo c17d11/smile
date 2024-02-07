@@ -4,7 +4,7 @@ import 'package:app/ui/src/browse/nav_item.dart';
 import 'package:app/ui/src/collections/nav_item.dart';
 import 'package:app/ui/src/favorite/nav_item.dart';
 import 'package:app/ui/src/nav_items.dart';
-import 'package:app/ui/src/pod.dart';
+import 'package:app/ui/src/producer/nav_item.dart';
 import 'package:app/ui/src/schedule/nav_item.dart';
 import 'package:app/ui/src/text_divider.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,6 @@ class AnimeGroup extends PageGroup {
         ScheduleNavItem(),
         FavoriteNavItem(),
         CollectionsNavItem(),
-        // TestNavItem(),
       ];
 
   @override
