@@ -2,7 +2,7 @@ import 'package:app/object/producer.dart';
 import 'package:app/object/producer_query.dart';
 import 'package:app/object/producer_response.dart';
 import 'package:app/ui/common/text_divider.dart';
-import 'package:app/ui/routes/home/pages/pod.dart';
+import 'package:app/ui/routes/home/common/snackbar.dart';
 import 'package:app/ui/routes/home/pages/producer/item.dart';
 import 'package:app/ui/routes/home/pages/producer/state.dart';
 import 'package:app/ui/style/style.dart';

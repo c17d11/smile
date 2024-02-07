@@ -1,7 +1,8 @@
 import 'package:app/object/anime.dart';
 import 'package:app/object/anime_notes.dart';
 import 'package:app/ui/routes/anime_details/page.dart';
-import 'package:app/ui/routes/home/pages/pod.dart';
+import 'package:app/ui/state/main.dart';
+import 'package:app/ui/state/hide_titles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

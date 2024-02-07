@@ -81,18 +81,3 @@ class ScheduleQuery extends JikanScheduleQuery {
       sfw.hashCode ^
       isApproved.hashCode;
 }
-
-class ScheduleQueryNotifier extends StateNotifier<ScheduleQuery> {
-  final Database db;
-  ScheduleQueryNotifier(this.db) : super(ScheduleQuery());
-
-  Future<void> load() async {
-    ScheduleQuery? query = await db.getScheduleQuery();
-    state = query ?? ScheduleQuery();
-  }
-
-  Future<void> set(ScheduleQuery newQuery) async {
-    await db.updateScheduleQuery(newQuery);
-    state = newQuery;
-  }
-}
