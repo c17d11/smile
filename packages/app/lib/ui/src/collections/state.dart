@@ -12,7 +12,7 @@ class CollectionStateNotifier extends StateNotifier<AsyncValue<AnimeResponse>> {
   final StateNotifierProviderRef ref;
 
   CollectionStateNotifier(this.ref) : super(const AsyncLoading()) {
-    _database = ref.watch(databaseUpdatePod);
+    _database = ref.watch(databasePod);
   }
 
   Future<AnimeResponse> _getCollection(CollectionQuery query) async {
@@ -59,7 +59,7 @@ class CollectionNameStateNotifier
   final StateNotifierProviderRef ref;
 
   CollectionNameStateNotifier(this.ref) : super(const AsyncLoading()) {
-    _database = ref.watch(databaseUpdatePod);
+    _database = ref.watch(databasePod);
   }
 
   Future<List<Tag>> _getCollectionNames() async {
@@ -92,7 +92,7 @@ final collectionNames = StateNotifierProvider<CollectionNameStateNotifier,
 
 Future<void> deleteCollection(WidgetRef ref, String tagName) async {
   try {
-    Database db = ref.read(databaseUpdatePod);
+    Database db = ref.read(databasePod);
     await db.deleteTag(Tag()
       ..name = tagName
       ..animeCount = 0);

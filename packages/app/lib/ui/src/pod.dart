@@ -20,11 +20,11 @@ import 'package:jikan_api/jikan_api.dart';
 final depencyInjectorPod = Provider((ref) => Injector()..setup());
 
 final apiPod = Provider<JikanApi>((ref) {
-  final apiSettings = ref.watch(apiSettingsPod);
+  final settings = ref.watch(settingsPod);
   final api = ref.watch(depencyInjectorPod).container.resolve<JikanApi>();
   api.setRequestRate(
-    requestsPerSecond: apiSettings.requestsPerSecond,
-    requestsPerMinute: apiSettings.requestsPerMinute,
+    requestsPerSecond: settings.apiSettings.requestsPerSecond,
+    requestsPerMinute: settings.apiSettings.requestsPerMinute,
   );
   return api;
 });
@@ -33,12 +33,12 @@ final databasePod = Provider((ref) {
   return ref.watch(depencyInjectorPod).container.resolve<Database>();
 });
 
-final databaseUpdatePod = Provider((ref) {
-  final db = ref.watch(databasePod);
-  final dbSettings = ref.watch(databaseSettingsPod);
-  db.setExpirationHours(dbSettings.cacheTimeoutHours!);
-  return db;
-});
+// final databaseUpdatePod = Provider((ref) {
+//   final db = ref.watch(databasePod);
+//   final dbSettings = ref.watch(databaseSettingsPod);
+//   db.setExpirationHours(dbSettings.cacheTimeoutHours!);
+//   return db;
+// });
 
 final initPod = FutureProvider<bool>((ref) async {
   await ref.watch(databasePod).init();
@@ -69,13 +69,13 @@ final initPod = FutureProvider<bool>((ref) async {
 final producerPod =
     StateNotifierProvider<ProducerController, AsyncValue<List<Producer>>>(
         (ref) {
-  Database db = ref.watch(databaseUpdatePod);
+  Database db = ref.watch(databasePod);
   return ProducerController(db);
 });
 
 final producerSearchPod = StateNotifierProvider.family<ProducerSearchController,
     AsyncValue<ProducerResponse>, ProducerQuery>((ref, arg) {
-  Database db = ref.watch(databaseUpdatePod);
+  Database db = ref.watch(databasePod);
   JikanApi api = ref.watch(apiPod);
   ProducerSearchController controller = ProducerSearchController(db, api);
   controller.get(arg);
@@ -92,7 +92,7 @@ final producerQueryPod = StateNotifierProvider.family<ProducerQueryNotifier,
 
 final genrePod =
     StateNotifierProvider<GenreController, AsyncValue<List<Genre>>>((ref) {
-  Database db = ref.watch(databaseUpdatePod);
+  Database db = ref.watch(databasePod);
   JikanApi api = ref.watch(apiPod);
   GenreController genres = GenreController(db, api);
   genres.get();
@@ -101,7 +101,7 @@ final genrePod =
 
 final tagPod =
     StateNotifierProvider<TagController, AsyncValue<List<Tag>>>((ref) {
-  Database db = ref.watch(databaseUpdatePod);
+  Database db = ref.watch(databasePod);
   TagController controller = TagController(db);
   controller.get();
   return controller;
@@ -130,15 +130,15 @@ final settingsPod = StateNotifierProvider<SettingsNotifier, Settings>((ref) {
   return notifier;
 });
 
-final apiSettingsPod = Provider<JikanApiSettings>((ref) {
-  final settings = ref.watch(settingsPod);
-  return settings.apiSettings;
-});
+// final apiSettingsPod = Provider<JikanApiSettings>((ref) {
+//   final settings = ref.watch(settingsPod);
+//   return settings.apiSettings;
+// });
 
-final databaseSettingsPod = Provider<DatabaseSettings>((ref) {
-  final settings = ref.watch(settingsPod);
-  return settings.dbSettings;
-});
+// final databaseSettingsPod = Provider<DatabaseSettings>((ref) {
+//   final settings = ref.watch(settingsPod);
+//   return settings.dbSettings;
+// });
 
 extension AsyncValueUiAnime on AsyncValue<AnimeResponse> {
   bool get isLoading => this is AsyncLoading<AnimeResponse>;

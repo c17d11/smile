@@ -4,8 +4,8 @@ import 'package:jikan_api/jikan_api.dart';
 
 class ProducerResponse {
   String? query;
-  DateTime? date;
-  DateTime? expires;
+  DateTime? timestamp;
+  // DateTime? expires;
   Pagination? pagination;
   List<Producer>? producers;
 
@@ -13,8 +13,8 @@ class ProducerResponse {
 
   ProducerResponse.from(JikanProducerResponse res) {
     query = res.query;
-    date = res.date;
-    expires = res.expires;
+    // date = res.date;
+    // expires = res.expires;
     pagination = Pagination.from(res.pagination!);
     producers = res.data?.map((e) => Producer.from(e)).toList();
   }

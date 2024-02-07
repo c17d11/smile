@@ -4,6 +4,7 @@ import 'package:app/controller/state.dart';
 import 'package:app/database/src/isar/anime_note/model.dart';
 import 'package:app/object/anime_notes.dart';
 import 'package:app/object/anime_query.dart';
+import 'package:app/object/expiration.dart';
 import 'package:app/object/genre.dart';
 import 'package:app/object/producer_query.dart';
 import 'package:app/object/producer_response.dart';
@@ -39,21 +40,21 @@ import '../interface/database.dart';
 class IsarDatabase implements Database {
   late final Isar instance;
 
+  late IsarSettingsModel settingsModel = IsarSettingsModel(instance);
   late IsarAnimeModel animeModel = IsarAnimeModel(instance);
   late IsarAnimeNoteModel animeNoteModel = IsarAnimeNoteModel(instance);
-  late IsarAnimeResponseModel animeResponseModel =
-      IsarAnimeResponseModel(instance, expirationHours: 24);
   late IsarProducerModel producerModel = IsarProducerModel(instance);
-  late IsarProducerResponseModel producerResponseModel =
-      IsarProducerResponseModel(instance, expirationHours: 24);
   late IsarGenreModel genreModel = IsarGenreModel(instance);
   late IsarAnimeQueryModel animeQueryModel = IsarAnimeQueryModel(instance);
   late IsarProducerQueryModel producerQueryModel =
       IsarProducerQueryModel(instance);
   late IsarScheduleQueryModel scheduleQueryModel =
       IsarScheduleQueryModel(instance);
-  late IsarSettingsModel settingsModel = IsarSettingsModel(instance);
   late IsarTagModel tagModel = IsarTagModel(instance);
+  late IsarAnimeResponseModel animeResponseModel =
+      IsarAnimeResponseModel(instance);
+  late IsarProducerResponseModel producerResponseModel =
+      IsarProducerResponseModel(instance);
 
   @override
   Future<void> init() async {
@@ -130,15 +131,6 @@ class IsarDatabase implements Database {
       // ignore: empty_catches
     } catch (e) {}
     return "Empty";
-  }
-
-  @override
-  void setExpirationHours(int hours) {
-    animeResponseModel.expirationHours = hours;
-    producerResponseModel.expirationHours = hours;
-    animeQueryModel.expirationHours = hours;
-    scheduleQueryModel.expirationHours = hours;
-    settingsModel.expirationHours = hours;
   }
 
   @override
@@ -319,6 +311,15 @@ class IsarDatabase implements Database {
       anime = await animeModel.getAnime(malId);
     });
     return anime;
+  }
+
+  @override
+  Future<bool> isExpired(Expiration expiration) async {
+    late bool expired = false;
+    await instance.txn(() async {
+      expired = await settingsModel.isExpired(expiration);
+    });
+    return expired;
   }
 }
 

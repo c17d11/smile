@@ -9,7 +9,7 @@ class FavoriteStateNotifier extends StateNotifier<AsyncValue<AnimeResponse>> {
   final StateNotifierProviderRef ref;
 
   FavoriteStateNotifier(this.ref) : super(const AsyncLoading()) {
-    _database = ref.watch(databaseUpdatePod);
+    _database = ref.watch(databasePod);
   }
 
   Future<AnimeResponse> _getFavorites() async {

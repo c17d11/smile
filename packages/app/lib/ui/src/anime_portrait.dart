@@ -84,7 +84,7 @@ class AnimePortrait extends ConsumerWidget {
                               GestureDetector(
                                 onTap: () async {
                                   await ref
-                                      .read(databaseUpdatePod)
+                                      .read(databasePod)
                                       .updateAnimeNotes(AnimeNotes()
                                         ..malId = anime!.malId
                                         ..favorite =

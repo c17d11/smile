@@ -4,8 +4,8 @@ import 'producer.dart';
 
 abstract class JikanResponse<T> {
   String? query;
-  DateTime? date;
-  DateTime? expires;
+  // DateTime? date;
+  // DateTime? expires;
   JikanPagination? pagination;
   T? data;
 

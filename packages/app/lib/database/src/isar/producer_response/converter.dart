@@ -9,8 +9,7 @@ class IsarProducerResponseConverter
   ProducerResponse fromImpl(IsarProducerResponse t) {
     return ProducerResponse()
       ..query = t.q
-      ..date = t.date
-      ..expires = t.expires
+      ..timestamp = t.timestamp
       ..pagination = (Pagination()
         ..lastVisiblePage = t.lastVisiblePage
         ..hasNextPage = t.hasNextPage
@@ -24,8 +23,6 @@ class IsarProducerResponseConverter
   @override
   IsarProducerResponse toImpl(ProducerResponse t) {
     return IsarProducerResponse(q: t.query!)
-      ..date = t.date
-      ..expires = t.expires
       ..producerIds = []
       ..lastVisiblePage = t.pagination?.lastVisiblePage
       ..hasNextPage = t.pagination?.hasNextPage

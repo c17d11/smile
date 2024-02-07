@@ -9,8 +9,7 @@ class IsarAnimeResponseConverter
   AnimeResponse fromImpl(IsarAnimeResponse t) {
     return AnimeResponse()
       ..query = t.q
-      ..date = t.date
-      ..expires = t.expires
+      ..timestamp = t.timestamp
       ..pagination = (Pagination()
         ..lastVisiblePage = t.lastVisiblePage
         ..hasNextPage = t.hasNextPage
@@ -24,8 +23,6 @@ class IsarAnimeResponseConverter
   @override
   IsarAnimeResponse toImpl(AnimeResponse t) {
     return IsarAnimeResponse(q: t.query!)
-      ..date = t.date
-      ..expires = t.expires
       ..animeIds = []
       ..lastVisiblePage = t.pagination?.lastVisiblePage
       ..hasNextPage = t.pagination?.hasNextPage

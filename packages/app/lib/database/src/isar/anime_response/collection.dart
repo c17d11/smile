@@ -1,17 +1,15 @@
-import 'package:app/database/src/isar/common/expiration.dart';
 import 'package:isar/isar.dart';
 
 part 'collection.g.dart';
 
 @Collection()
-class IsarAnimeResponse with IsarExpiration {
+class IsarAnimeResponse {
   Id? id;
 
   @Index(unique: true, replace: true)
   String q;
 
-  DateTime? date;
-  DateTime? expires;
+  late DateTime timestamp;
 
   int? lastVisiblePage;
   bool? hasNextPage;
@@ -23,6 +21,6 @@ class IsarAnimeResponse with IsarExpiration {
   List<int>? animeIds;
 
   IsarAnimeResponse({required this.q}) {
-    storedAt = DateTime.now();
+    timestamp = DateTime.now();
   }
 }

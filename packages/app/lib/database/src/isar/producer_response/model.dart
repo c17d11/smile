@@ -7,20 +7,18 @@ import 'package:app/database/src/isar/model.dart';
 import 'package:app/object/producer_response.dart';
 import 'package:isar/isar.dart';
 
-class IsarProducerResponseModel extends IsarExpirationModel
+class IsarProducerResponseModel extends IsarModel
     implements ProducerResponseModel {
   final IsarProducerResponseConverter _producerResponseConverter =
       IsarProducerResponseConverter();
   final IsarProducerModel _producerModel;
-  IsarProducerResponseModel(super.db, {required super.expirationHours})
-      : _producerModel = IsarProducerModel(db);
+  IsarProducerResponseModel(super.db) : _producerModel = IsarProducerModel(db);
 
   Future<ProducerResponse?> get(String id) async {
     IsarProducerResponse? ret =
         await db.isarProducerResponses.where().qEqualTo(id).findFirst();
 
     if (ret == null) return null;
-    if (isExpired(ret)) return null;
 
     ProducerResponse r = _producerResponseConverter.fromImpl(ret);
     for (int producerId in ret.producerIds ?? []) {
