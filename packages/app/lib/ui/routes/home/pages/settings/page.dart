@@ -1,6 +1,6 @@
 import 'package:app/object/settings.dart';
 import 'package:app/database/src/interface/database.dart';
-import 'package:app/ui/selection_widget/src/confirm_button.dart';
+import 'package:app/ui/widgets/selection_widget/src/confirm_button.dart';
 import 'package:app/ui/routes/home/pages/pod.dart';
 import 'package:app/ui/routes/home/pages/slider_select.dart';
 import 'package:app/ui/routes/home/pages/text_divider.dart';
