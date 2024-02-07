@@ -1,9 +1,9 @@
 import 'package:app/object/producer_query.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
-import 'package:app/ui/src/pod.dart';
-import 'package:app/ui/src/producer/nav_item.dart';
-import 'package:app/ui/src/producer/response.dart';
-import 'package:app/ui/src/producer/state.dart';
+import 'package:app/ui/pages/pod.dart';
+import 'package:app/ui/pages/producer/nav_item.dart';
+import 'package:app/ui/pages/producer/response.dart';
+import 'package:app/ui/pages/producer/state.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

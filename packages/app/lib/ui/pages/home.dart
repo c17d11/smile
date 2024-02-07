@@ -1,13 +1,13 @@
 import 'package:app/ui/navigation_container/navigation_container.dart';
-import 'package:app/ui/src/about/nav_item.dart';
-import 'package:app/ui/src/browse/nav_item.dart';
-import 'package:app/ui/src/collections/nav_item.dart';
-import 'package:app/ui/src/favorite/nav_item.dart';
-import 'package:app/ui/src/genre/nav_item.dart';
-import 'package:app/ui/src/nav_items.dart';
-import 'package:app/ui/src/producer/nav_item.dart';
-import 'package:app/ui/src/schedule/nav_item.dart';
-import 'package:app/ui/src/text_divider.dart';
+import 'package:app/ui/pages/about/nav_item.dart';
+import 'package:app/ui/pages/browse/nav_item.dart';
+import 'package:app/ui/pages/collections/nav_item.dart';
+import 'package:app/ui/pages/favorite/nav_item.dart';
+import 'package:app/ui/pages/genre/nav_item.dart';
+import 'package:app/ui/pages/nav_items.dart';
+import 'package:app/ui/pages/producer/nav_item.dart';
+import 'package:app/ui/pages/schedule/nav_item.dart';
+import 'package:app/ui/pages/text_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

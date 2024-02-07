@@ -1,5 +1,5 @@
-import 'package:app/ui/src/favorite/reponse.dart';
-import 'package:app/ui/src/home.dart';
+import 'package:app/ui/pages/favorite/reponse.dart';
+import 'package:app/ui/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -7,7 +7,7 @@ import 'package:app/object/settings.dart';
 import 'package:app/object/tag.dart';
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/interface/database.dart';
-import 'package:app/ui/src/injector.dart';
+import 'package:app/ui/pages/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';

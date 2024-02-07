@@ -1,5 +1,5 @@
 import 'package:app/ui/navigation_container/src/nav_item.dart';
-import 'package:app/ui/src/text_divider.dart';
+import 'package:app/ui/pages/text_divider.dart';
 import 'package:flutter/material.dart';
 
 class DividerItem extends NavItem {

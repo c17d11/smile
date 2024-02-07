@@ -1,9 +1,9 @@
 import 'package:app/object/settings.dart';
 import 'package:app/database/src/interface/database.dart';
 import 'package:app/ui/selection_widget/src/confirm_button.dart';
-import 'package:app/ui/src/pod.dart';
-import 'package:app/ui/src/slider_select.dart';
-import 'package:app/ui/src/text_divider.dart';
+import 'package:app/ui/pages/pod.dart';
+import 'package:app/ui/pages/slider_select.dart';
+import 'package:app/ui/pages/text_divider.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

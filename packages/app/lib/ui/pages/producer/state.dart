@@ -2,7 +2,7 @@ import 'package:app/database/src/interface/database.dart';
 import 'package:app/object/producer_query.dart';
 import 'package:app/object/producer_response.dart';
 import 'package:app/ui/navigation_container/navigation_container.dart';
-import 'package:app/ui/src/pod.dart';
+import 'package:app/ui/pages/pod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
