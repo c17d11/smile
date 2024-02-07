@@ -182,7 +182,7 @@ class IsarDatabase implements Database {
   Future<AnimeResponse> getFavoriteAnimes() async {
     late AnimeResponse res;
     await instance.txn(() async {
-      res = await animeModel.getFavoriteAnimes();
+      res = await animeResponseModel.getFavoriteAnimes();
     });
     return res;
   }
@@ -276,7 +276,7 @@ class IsarDatabase implements Database {
   Future<AnimeResponse> getTagAnimes(String tagName) async {
     late AnimeResponse res;
     await instance.txn(() async {
-      res = await animeModel.getTagAnimes(tagName);
+      res = await animeResponseModel.getTagAnimes(tagName);
     });
     return res;
   }
@@ -320,6 +320,16 @@ class IsarDatabase implements Database {
       expired = await settingsModel.isExpired(expiration);
     });
     return expired;
+  }
+
+  @override
+  Future<List<int>> getFavoriteAnimeIds() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<int>> getTagAnimeIds(String tagName) {
+    throw UnimplementedError();
   }
 }
 
