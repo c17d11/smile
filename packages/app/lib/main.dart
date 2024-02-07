@@ -1,7 +1,6 @@
 import 'package:app/ui/routes/anime_details/page.dart';
 import 'package:app/ui/routes/home/pages/home.dart';
 import 'package:app/ui/routes/anime_query/page.dart';
-import 'package:app/ui/routes/home/pages/collections/page.dart';
 import 'package:app/ui/routes/home/pages/pod.dart';
 import 'package:app/ui/routes/schedule_query/page.dart';
 import 'package:flutter/material.dart';

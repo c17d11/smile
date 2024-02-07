@@ -1,4 +1,4 @@
-import 'package:app/ui/navigation_container/src/nav_item.dart';
+import 'package:app/ui/common/navigation_container/src/nav_item.dart';
 import 'package:flutter/material.dart';
 
 const Color _background = Colors.black;

@@ -1,4 +1,4 @@
-import 'package:app/ui/selection_widget/src/select_item.dart';
+import 'package:app/ui/common/selection_widget/src/select_item.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 

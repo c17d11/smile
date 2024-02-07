@@ -1,9 +1,9 @@
 import 'package:app/controller/state.dart';
+import 'package:app/ui/common/text_divider.dart';
 import 'package:app/ui/routes/home/pages/browse/state.dart';
 import 'package:app/object/anime_query.dart';
-import 'package:app/ui/routes/home/pages/anime_portrait.dart';
+import 'package:app/ui/routes/home/common/anime_portrait.dart';
 import 'package:app/ui/routes/home/pages/pod.dart';
-import 'package:app/ui/routes/home/pages/text_divider.dart';
 import 'package:app/ui/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

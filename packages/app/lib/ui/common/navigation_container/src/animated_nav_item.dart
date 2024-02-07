@@ -1,4 +1,4 @@
-import 'package:app/ui/navigation_container/src/animated_icon_button.dart';
+import 'package:app/ui/common/navigation_container/src/animated_icon_button.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
