@@ -56,7 +56,7 @@ class ProducerSearchController
     String queryString = _api.buildProducerSearchQuery(query);
 
     ProducerResponse? res = await _getDatabaseProducers(queryString);
-    if (res == null) {
+    if (res == null || await _database.isExpired(res)) {
       res = await _getApiResponse(query);
       await _storeResponse(res);
     }
