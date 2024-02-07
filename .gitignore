@@ -22,3 +22,5 @@ pubspec.lock
 
 **/*.isar
 **/*.isar.lock
+
+custom_lint.log
