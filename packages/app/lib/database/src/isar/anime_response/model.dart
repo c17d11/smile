@@ -1,16 +1,21 @@
 import 'package:app/controller/state.dart';
 import 'package:app/database/src/interface/model.dart';
 import 'package:app/database/src/isar/anime/model.dart';
+import 'package:app/database/src/isar/anime_note/model.dart';
 import 'package:app/database/src/isar/anime_response/converter.dart';
 import 'package:app/database/src/isar/anime_response/collection.dart';
 import 'package:app/database/src/isar/model.dart';
+import 'package:app/object/pagination.dart';
 import 'package:isar/isar.dart';
 
 class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
   final IsarAnimeResponseConverter _animeResponseConverter =
       IsarAnimeResponseConverter();
   final IsarAnimeModel _animeModel;
-  IsarAnimeResponseModel(super.db) : _animeModel = IsarAnimeModel(db);
+  final IsarAnimeNoteModel _animeNoteModel;
+  IsarAnimeResponseModel(super.db)
+      : _animeModel = IsarAnimeModel(db),
+        _animeNoteModel = IsarAnimeNoteModel(db);
 
   Future<AnimeResponse?> get(String id) async {
     IsarAnimeResponse? ret =
@@ -44,5 +49,50 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
   @override
   Future<void> insertAnimeResponse(AnimeResponse res) async {
     await insert(res);
+  }
+
+  @override
+  Future<AnimeResponse> getFavoriteAnimes() async {
+    List<int> animeIds = await _animeNoteModel.getFavoriteAnimeIds();
+    List<Anime> animes = [];
+    for (var animeId in animeIds) {
+      Anime? a = await _animeModel.getAnime(animeId);
+      if (a != null) animes.add(a);
+    }
+
+    AnimeResponse res = AnimeResponse()
+      ..query = "favorite"
+      ..pagination = (Pagination()
+        ..lastVisiblePage = 1
+        ..hasNextPage = false
+        ..currentPage = 1
+        ..itemCount = animes.length
+        ..itemTotal = animes.length
+        ..itemPerPage = animes.length)
+      ..animes = animes;
+    return res;
+  }
+
+  @override
+  Future<AnimeResponse> getTagAnimes(String tagName) async {
+    List<int> animeIds = await _animeNoteModel.getTagAnimeIds(tagName);
+
+    List<Anime> animes = [];
+    for (var animeId in animeIds) {
+      Anime? a = await _animeModel.getAnime(animeId);
+      if (a != null) animes.add(a);
+    }
+
+    AnimeResponse res = AnimeResponse()
+      ..query = "tag-$tagName"
+      ..pagination = (Pagination()
+        ..lastVisiblePage = 1
+        ..hasNextPage = false
+        ..currentPage = 1
+        ..itemCount = animes.length
+        ..itemTotal = animes.length
+        ..itemPerPage = animes.length)
+      ..animes = animes;
+    return res;
   }
 }

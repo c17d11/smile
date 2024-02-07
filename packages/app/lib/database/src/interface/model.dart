@@ -11,17 +11,19 @@ import 'package:app/object/tag.dart';
 
 abstract interface class AnimeModel {
   Future<Anime?> getAnime(int malId);
-  Future<AnimeResponse> getFavoriteAnimes();
-  Future<AnimeResponse> getTagAnimes(String tagName);
 }
 
 abstract interface class AnimeNotesModel {
   Future<void> updateAnimeNotes(AnimeNotes notes);
+  Future<List<int>> getFavoriteAnimeIds();
+  Future<List<int>> getTagAnimeIds(String tagName);
 }
 
 abstract interface class AnimeResponseModel {
   Future<void> insertAnimeResponse(AnimeResponse res);
   Future<AnimeResponse?> getAnimeResponse(String query);
+  Future<AnimeResponse> getFavoriteAnimes();
+  Future<AnimeResponse> getTagAnimes(String tagName);
 }
 
 abstract interface class ProducerResponseModel {
