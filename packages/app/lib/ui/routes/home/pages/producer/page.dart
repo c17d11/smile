@@ -1,6 +1,5 @@
 import 'package:app/object/producer_query.dart';
-import 'package:app/ui/navigation_container/navigation_container.dart';
-import 'package:app/ui/routes/home/pages/pod.dart';
+import 'package:app/ui/common/navigation_container/navigation_container.dart';
 import 'package:app/ui/routes/home/pages/producer/nav_item.dart';
 import 'package:app/ui/routes/home/pages/producer/response.dart';
 import 'package:app/ui/routes/home/pages/producer/state.dart';

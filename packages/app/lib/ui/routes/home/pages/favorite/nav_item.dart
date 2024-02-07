@@ -1,4 +1,4 @@
-import 'package:app/ui/navigation_container/navigation_container.dart';
+import 'package:app/ui/common/navigation_container/navigation_container.dart';
 import 'package:app/ui/routes/home/pages/favorite/page.dart';
 import 'package:app/ui/routes/home/pages/pod.dart';
 import 'package:app/ui/style/style.dart';

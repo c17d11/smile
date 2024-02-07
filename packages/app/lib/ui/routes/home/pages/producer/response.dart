@@ -1,10 +1,10 @@
 import 'package:app/controller/state.dart';
 import 'package:app/object/producer_query.dart';
 import 'package:app/object/producer_response.dart';
+import 'package:app/ui/common/text_divider.dart';
 import 'package:app/ui/routes/home/pages/pod.dart';
 import 'package:app/ui/routes/home/pages/producer/item.dart';
 import 'package:app/ui/routes/home/pages/producer/state.dart';
-import 'package:app/ui/routes/home/pages/text_divider.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

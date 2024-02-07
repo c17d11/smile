@@ -1,7 +1,6 @@
-import 'package:app/ui/selection_widget/src/scroll_select.dart';
+import 'package:app/ui/common/selection_widget/src/scroll_select.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class YearSelect extends StatefulWidget {
   final String title;
