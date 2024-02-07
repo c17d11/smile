@@ -5,8 +5,8 @@ import 'package:app/database/src/isar/model.dart';
 import 'package:app/database/src/isar/settings/converter.dart';
 import 'package:isar/isar.dart';
 
-class IsarSettingsModel extends IsarExpirationModel implements SettingsModel {
-  IsarSettingsModel(super.db, {required super.expirationHours});
+class IsarSettingsModel extends IsarModel implements SettingsModel {
+  IsarSettingsModel(super.db);
 
   Future<Settings?> get() async {
     IsarSettings? settings = await db.isarSettings.where().findFirst();

@@ -5,11 +5,10 @@ import 'package:app/database/src/isar/model.dart';
 import 'package:app/object/schedule_query.dart';
 import 'package:isar/isar.dart';
 
-class IsarScheduleQueryModel extends IsarExpirationModel
-    implements ScheduleQueryModel {
+class IsarScheduleQueryModel extends IsarModel implements ScheduleQueryModel {
   final IsarScheduleQueryConverter _scheduleQueryConverter =
       IsarScheduleQueryConverter();
-  IsarScheduleQueryModel(super.db, {required super.expirationHours});
+  IsarScheduleQueryModel(super.db);
 
   Future<ScheduleQuery?> get() async {
     IsarScheduleQuery? ret = await db.isarScheduleQuerys.where().findFirst();

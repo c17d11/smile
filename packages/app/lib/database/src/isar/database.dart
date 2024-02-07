@@ -47,14 +47,12 @@ class IsarDatabase implements Database {
   late IsarProducerResponseModel producerResponseModel =
       IsarProducerResponseModel(instance, expirationHours: 24);
   late IsarGenreModel genreModel = IsarGenreModel(instance);
-  late IsarAnimeQueryModel animeQueryModel =
-      IsarAnimeQueryModel(instance, expirationHours: 24);
+  late IsarAnimeQueryModel animeQueryModel = IsarAnimeQueryModel(instance);
   late IsarProducerQueryModel producerQueryModel =
-      IsarProducerQueryModel(instance, expirationHours: 24);
+      IsarProducerQueryModel(instance);
   late IsarScheduleQueryModel scheduleQueryModel =
-      IsarScheduleQueryModel(instance, expirationHours: 24);
-  late IsarSettingsModel settingsModel =
-      IsarSettingsModel(instance, expirationHours: 24);
+      IsarScheduleQueryModel(instance);
+  late IsarSettingsModel settingsModel = IsarSettingsModel(instance);
   late IsarTagModel tagModel = IsarTagModel(instance);
 
   @override

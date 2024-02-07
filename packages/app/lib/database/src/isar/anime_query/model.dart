@@ -8,13 +8,12 @@ import 'package:app/object/anime_query.dart';
 import 'package:isar/isar.dart';
 import 'package:jikan_api/jikan_api.dart';
 
-class IsarAnimeQueryModel extends IsarExpirationModel
-    implements AnimeQueryModel {
+class IsarAnimeQueryModel extends IsarModel implements AnimeQueryModel {
   final IsarAnimeQueryConverter _animeQueryConverter =
       IsarAnimeQueryConverter();
   final IsarProducerModel _producerModel;
   final IsarGenreModel _genreModel;
-  IsarAnimeQueryModel(super.db, {required super.expirationHours})
+  IsarAnimeQueryModel(super.db)
       : _producerModel = IsarProducerModel(db),
         _genreModel = IsarGenreModel(db);
 
