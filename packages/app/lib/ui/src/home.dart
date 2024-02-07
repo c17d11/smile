@@ -3,6 +3,7 @@ import 'package:app/ui/src/about/nav_item.dart';
 import 'package:app/ui/src/browse/nav_item.dart';
 import 'package:app/ui/src/collections/nav_item.dart';
 import 'package:app/ui/src/favorite/nav_item.dart';
+import 'package:app/ui/src/genre/nav_item.dart';
 import 'package:app/ui/src/nav_items.dart';
 import 'package:app/ui/src/producer/nav_item.dart';
 import 'package:app/ui/src/schedule/nav_item.dart';
