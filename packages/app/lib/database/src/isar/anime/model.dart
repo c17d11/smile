@@ -1,4 +1,3 @@
-import 'package:app/controller/state.dart';
 import 'package:app/database/src/interface/model.dart';
 import 'package:app/database/src/isar/anime/collection.dart';
 import 'package:app/database/src/isar/anime/converter.dart';
@@ -6,7 +5,9 @@ import 'package:app/database/src/isar/anime_note/model.dart';
 import 'package:app/database/src/isar/model.dart';
 import 'package:app/database/src/isar/genre/model.dart';
 import 'package:app/database/src/isar/producer/model.dart';
+import 'package:app/object/anime.dart';
 import 'package:app/object/genre.dart';
+import 'package:app/object/producer.dart';
 
 class IsarAnimeModel extends IsarModel implements AnimeModel {
   final IsarAnimeConverter _animeConverter = IsarAnimeConverter();

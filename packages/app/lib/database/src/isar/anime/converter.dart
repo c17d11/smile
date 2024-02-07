@@ -1,6 +1,6 @@
-import 'package:app/controller/state.dart';
 import 'package:app/database/src/interface/converter.dart';
 import 'package:app/database/src/isar/anime/collection.dart';
+import 'package:app/object/anime.dart';
 
 class IsarAnimeConverter extends Converter<Anime, IsarAnime> {
   @override

@@ -1,8 +1,8 @@
-import 'package:app/controller/state.dart';
 import 'package:app/database/src/interface/model.dart';
 import 'package:app/database/src/isar/model.dart';
 import 'package:app/database/src/isar/producer/collection.dart';
 import 'package:app/database/src/isar/producer/converter.dart';
+import 'package:app/object/producer.dart';
 import 'package:isar/isar.dart';
 
 class IsarProducerModel extends IsarModel implements ProducerModel {

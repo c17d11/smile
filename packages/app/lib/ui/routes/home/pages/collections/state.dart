@@ -1,4 +1,5 @@
-import 'package:app/controller/state.dart';
+import 'package:app/object/anime.dart';
+import 'package:app/object/anime_response.dart';
 import 'package:app/object/collection_query.dart';
 import 'package:app/object/tag.dart';
 import 'package:app/database/src/interface/database.dart';

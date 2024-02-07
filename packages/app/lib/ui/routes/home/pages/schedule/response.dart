@@ -1,7 +1,7 @@
+import 'package:app/object/anime_response.dart';
 import 'package:app/ui/common/text_divider.dart';
 import 'package:app/ui/routes/home/pages/schedule/state.dart';
 import 'package:app/object/schedule_query.dart';
-import 'package:app/controller/state.dart';
 import 'package:app/ui/routes/home/common/anime_portrait.dart';
 import 'package:app/ui/routes/home/pages/pod.dart';
 import 'package:app/ui/style/colors.dart';

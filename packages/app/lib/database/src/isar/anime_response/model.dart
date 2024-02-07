@@ -1,10 +1,11 @@
-import 'package:app/controller/state.dart';
 import 'package:app/database/src/interface/model.dart';
 import 'package:app/database/src/isar/anime/model.dart';
 import 'package:app/database/src/isar/anime_note/model.dart';
 import 'package:app/database/src/isar/anime_response/converter.dart';
 import 'package:app/database/src/isar/anime_response/collection.dart';
 import 'package:app/database/src/isar/model.dart';
+import 'package:app/object/anime.dart';
+import 'package:app/object/anime_response.dart';
 import 'package:app/object/pagination.dart';
 import 'package:isar/isar.dart';
 

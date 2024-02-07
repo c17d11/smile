@@ -1,6 +1,6 @@
-import 'package:app/controller/state.dart';
 import 'package:app/database/src/interface/converter.dart';
 import 'package:app/database/src/isar/producer/collection.dart';
+import 'package:app/object/producer.dart';
 
 class IsarProducerConverter extends Converter<Producer, IsarProducer> {
   @override

@@ -1,4 +1,4 @@
-import 'package:app/controller/state.dart';
+import 'package:app/object/anime.dart';
 import 'package:app/object/anime_notes.dart';
 import 'package:app/ui/routes/anime_details/page.dart';
 import 'package:app/ui/routes/home/pages/pod.dart';

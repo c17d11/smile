@@ -1,5 +1,5 @@
-import 'package:app/controller/state.dart';
 import 'package:app/object/pagination.dart';
+import 'package:app/object/producer.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class ProducerResponse {
