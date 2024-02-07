@@ -1,4 +1,4 @@
-import 'package:app/ui/src/about/state.dart';
+import 'package:app/ui/pages/about/state.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

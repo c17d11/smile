@@ -1,7 +1,7 @@
 import 'package:app/controller/state.dart';
 import 'package:app/object/anime_notes.dart';
-import 'package:app/ui/src/anime_details.dart';
-import 'package:app/ui/src/pod.dart';
+import 'package:app/ui/pages/anime_details.dart';
+import 'package:app/ui/pages/pod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

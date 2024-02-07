@@ -1,7 +1,7 @@
 import 'package:app/object/schedule_query.dart';
-import 'package:app/ui/src/home.dart';
-import 'package:app/ui/src/pod.dart';
-import 'package:app/ui/src/schedule/response.dart';
+import 'package:app/ui/pages/home.dart';
+import 'package:app/ui/pages/pod.dart';
+import 'package:app/ui/pages/schedule/response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';

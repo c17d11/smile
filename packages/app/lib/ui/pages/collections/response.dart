@@ -1,10 +1,10 @@
 import 'package:app/controller/state.dart';
 import 'package:app/object/collection_query.dart';
 import 'package:app/ui/selection_widget/src/confirm_button.dart';
-import 'package:app/ui/src/collections/state.dart';
-import 'package:app/ui/src/anime_portrait.dart';
-import 'package:app/ui/src/pod.dart';
-import 'package:app/ui/src/text_divider.dart';
+import 'package:app/ui/pages/collections/state.dart';
+import 'package:app/ui/pages/anime_portrait.dart';
+import 'package:app/ui/pages/pod.dart';
+import 'package:app/ui/pages/text_divider.dart';
 import 'package:app/ui/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

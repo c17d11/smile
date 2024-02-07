@@ -1,9 +1,9 @@
-import 'package:app/ui/src/anime_details.dart';
-import 'package:app/ui/src/home.dart';
-import 'package:app/ui/src/anime_query_page.dart';
-import 'package:app/ui/src/collections/page.dart';
-import 'package:app/ui/src/pod.dart';
-import 'package:app/ui/src/schedule_query_page.dart';
+import 'package:app/ui/pages/anime_details.dart';
+import 'package:app/ui/pages/home.dart';
+import 'package:app/ui/pages/anime_query_page.dart';
+import 'package:app/ui/pages/collections/page.dart';
+import 'package:app/ui/pages/pod.dart';
+import 'package:app/ui/pages/schedule_query_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,8 +1,8 @@
 import 'package:app/object/anime_query.dart';
 import 'package:app/object/genre.dart';
-import 'package:app/ui/src/genre/state.dart';
-import 'package:app/ui/src/home.dart';
-import 'package:app/ui/src/pod.dart';
+import 'package:app/ui/pages/genre/state.dart';
+import 'package:app/ui/pages/home.dart';
+import 'package:app/ui/pages/pod.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

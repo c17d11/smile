@@ -1,15 +1,14 @@
 import 'package:app/controller/state.dart';
-import 'package:app/ui/src/anime_portrait.dart';
-import 'package:app/ui/src/favorite/state.dart';
-import 'package:app/ui/src/pod.dart';
-import 'package:app/ui/src/text_divider.dart';
-import 'package:app/ui/src/utils/reponse_utils.dart';
+import 'package:app/ui/pages/anime_portrait.dart';
+import 'package:app/ui/pages/favorite/state.dart';
+import 'package:app/ui/pages/pod.dart';
+import 'package:app/ui/pages/text_divider.dart';
 import 'package:app/ui/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-class FavoriteResponse extends ConsumerWidget with AnimeResponseViewUtils {
+class FavoriteResponse extends ConsumerWidget {
   final int heroId;
   final int page;
   final void Function(int) updateLastPage;
