@@ -90,18 +90,3 @@ class AnimeQuery extends JikanAnimeQuery {
     return query;
   }
 }
-
-class AnimeQueryNotifier extends StateNotifier<AnimeQuery> {
-  final Database db;
-  AnimeQueryNotifier(this.db) : super(AnimeQuery());
-
-  Future<void> load() async {
-    AnimeQuery? query = await db.getAnimeQuery();
-    state = query ?? AnimeQuery();
-  }
-
-  Future<void> set(AnimeQuery newQuery) async {
-    await db.updateAnimeQuery(newQuery);
-    state = newQuery;
-  }
-}

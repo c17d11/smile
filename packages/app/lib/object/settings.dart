@@ -21,18 +21,3 @@ class Settings {
     return settings;
   }
 }
-
-class SettingsNotifier extends StateNotifier<Settings> {
-  final Database db;
-  SettingsNotifier(this.db) : super(Settings());
-
-  Future<void> load() async {
-    Settings? settings = await db.getSettings();
-    state = settings ?? Settings();
-  }
-
-  Future<void> set(Settings newSettings) async {
-    await db.updateSettings(newSettings);
-    state = newSettings;
-  }
-}

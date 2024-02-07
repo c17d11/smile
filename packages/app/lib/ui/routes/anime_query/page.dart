@@ -13,7 +13,7 @@ import 'package:app/ui/common/selection_widget/src/query_widget.dart';
 import 'package:app/ui/common/selection_widget/src/single_select.dart';
 import 'package:app/ui/common/selection_widget/src/year_select.dart';
 import 'package:app/ui/routes/home/pages/genre/state.dart';
-import 'package:app/ui/routes/home/pages/pod.dart';
+import 'package:app/ui/state/anime_query.dart';
 import 'package:app/ui/state/producer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

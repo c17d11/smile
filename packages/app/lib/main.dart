@@ -1,7 +1,7 @@
 import 'package:app/ui/routes/anime_details/page.dart';
 import 'package:app/ui/routes/home/pages/home.dart';
 import 'package:app/ui/routes/anime_query/page.dart';
-import 'package:app/ui/routes/home/pages/pod.dart';
+import 'package:app/ui/state/main.dart';
 import 'package:app/ui/routes/schedule_query/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
