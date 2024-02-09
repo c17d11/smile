@@ -1,5 +1,6 @@
 import 'package:app/ui/common/navigation_container/navigation_container.dart';
 import 'package:app/ui/routes/home/pages/settings/page.dart';
+import 'package:app/ui/state/hide_titles.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,12 +17,19 @@ class SettingsNavItem extends IconItem {
 
   @override
   Widget buildContent(WidgetRef ref) {
-    return const SettingsPage();
+    return SettingsPage();
   }
 
   @override
   List<Widget> buildAppBarWidgets(BuildContext context, WidgetRef ref) {
-    return [];
+    return [
+      IconButton(
+          onPressed: () {
+            ref.read(hideTitles.notifier).state =
+                !ref.read(hideTitles.notifier).state;
+          },
+          icon: const Icon(Icons.text_fields)),
+    ];
   }
 
   @override

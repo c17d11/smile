@@ -26,7 +26,7 @@ class AppStyle {
       );
 
   static TextStyle get subtitle => TextStyle(
-        fontSize: 9.0,
+        fontSize: 12.0,
         fontWeight: FontWeight.w500,
         color: Colors.grey[400],
       );
@@ -133,11 +133,11 @@ class ResetIcon extends ActionIcon {
 }
 
 class InfoIcon extends ActionIcon {
-  InfoIcon({super.onPressed, super.key})
+  const InfoIcon({super.onPressed, super.key})
       : super(
-          icon: const Icon(Icons.question_mark),
-          color: Colors.grey[600],
-          disabledColor: Colors.grey[600],
+          icon: const Icon(Icons.info_outline),
+          color: Colors.blueGrey,
+          disabledColor: Colors.blueGrey,
         );
 }
 

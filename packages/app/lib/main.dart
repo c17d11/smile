@@ -30,7 +30,7 @@ class _AppState extends ConsumerState<App> {
           // colorSchemeSeed: const Color(0xff6750a4),
           // brightness: Brightness.dark,
           colorScheme: ColorScheme.fromSeed(
-            seedColor: Color.fromARGB(255, 161, 202, 200),
+            seedColor: const Color.fromARGB(255, 161, 202, 200),
             primary: const Color.fromARGB(255, 161, 202, 200),
             onSurface: Colors.grey[300],
             onSurfaceVariant: Colors.grey[500],

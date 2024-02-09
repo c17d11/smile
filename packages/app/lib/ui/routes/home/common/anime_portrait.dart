@@ -3,6 +3,7 @@ import 'package:app/object/anime_notes.dart';
 import 'package:app/ui/routes/anime_details/page.dart';
 import 'package:app/ui/state/main.dart';
 import 'package:app/ui/state/hide_titles.dart';
+import 'package:app/ui/state/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,10 +17,12 @@ class AnimePortrait extends ConsumerWidget {
   final Anime? anime;
   final String heroId;
   final Function(int animeId) onAnimeUpdate;
+  final bool stopNavigation;
   const AnimePortrait(
     this.anime, {
     required this.heroId,
     required this.onAnimeUpdate,
+    this.stopNavigation = false,
     super.key,
   });
 
@@ -45,19 +48,19 @@ class AnimePortrait extends ConsumerWidget {
     return anime == null
         ? buildNull()
         : GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(
-                context,
-                'anime-details',
-                arguments: AnimeDetailsArgs(anime!, heroId),
-              ).then((value) => onAnimeUpdate(anime!.malId!));
-            },
+            onTap: stopNavigation
+                ? null
+                : () => Navigator.pushNamed(
+                      context,
+                      'anime-details',
+                      arguments: AnimeDetailsArgs(anime!, heroId),
+                    ).then((value) => onAnimeUpdate(anime!.malId!)),
             child: Card(
               elevation: 0,
               clipBehavior: Clip.antiAlias,
               shape: RoundedRectangleBorder(
-                  side: hasAnimePersonalInfo(anime!)
-                      ? const BorderSide(color: Colors.blueGrey)
+                  side: hasAnimePersonalInfo(anime!) && !hide
+                      ? const BorderSide(color: Colors.blueGrey, width: 3)
                       : BorderSide.none,
                   borderRadius: BorderRadius.circular(5)),
               child: GridTile(

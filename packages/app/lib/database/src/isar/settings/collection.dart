@@ -9,4 +9,6 @@ class IsarSettings {
   int? requestsPerSecond;
   int? requestsPerMinute;
   int? cacheTimeoutHours;
+  int? animePerDeviceWidth;
+  double? animeRatio;
 }

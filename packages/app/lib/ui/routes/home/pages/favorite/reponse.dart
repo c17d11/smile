@@ -3,6 +3,7 @@ import 'package:app/ui/common/text_divider.dart';
 import 'package:app/ui/routes/home/common/anime_portrait.dart';
 import 'package:app/ui/routes/home/common/snackbar.dart';
 import 'package:app/ui/routes/home/pages/favorite/state.dart';
+import 'package:app/ui/state/settings.dart';
 import 'package:app/ui/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,6 +25,7 @@ class FavoriteResponse extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(settingsPod);
     final ret = ref.watch(animeFavorite);
 
     ref.listen<AsyncValue<AnimeResponse>>(
@@ -66,10 +68,10 @@ class FavoriteResponse extends ConsumerWidget {
                             ref.read(animeFavorite.notifier).refresh(animeId),
                       ),
                     ),
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 150,
-                      childAspectRatio: 7 / 10,
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: MediaQuery.of(context).size.width /
+                          settings.viewSettings.animePerDeviceWidth,
+                      childAspectRatio: settings.viewSettings.animeRatio,
                     ),
                   ),
           ],
