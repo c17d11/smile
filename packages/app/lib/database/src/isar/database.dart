@@ -333,6 +333,15 @@ class IsarDatabase implements Database {
   Future<List<int>> getTagAnimeIds(String tagName) {
     throw UnimplementedError();
   }
+
+  @override
+  Future<AnimeResponse?> getLastResponse() async {
+    late AnimeResponse? res;
+    await instance.txn(() async {
+      res = await animeResponseModel.getLastResponse();
+    });
+    return res;
+  }
 }
 
 Database get database => IsarDatabase();

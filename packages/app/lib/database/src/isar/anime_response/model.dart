@@ -96,4 +96,21 @@ class IsarAnimeResponseModel extends IsarModel implements AnimeResponseModel {
       ..animes = animes;
     return res;
   }
+
+  @override
+  Future<AnimeResponse?> getLastResponse() async {
+    IsarAnimeResponse? ret = await db.isarAnimeResponses
+        .filter()
+        .animeIdsLengthBetween(20, 40)
+        .sortByTimestampDesc()
+        .findFirst();
+    if (ret == null) return null;
+
+    AnimeResponse r = _animeResponseConverter.fromImpl(ret);
+    for (int animeId in ret.animeIds ?? []) {
+      Anime? a = await _animeModel.get(animeId);
+      if (a != null) r.animes!.add(a);
+    }
+    return r;
+  }
 }

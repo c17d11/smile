@@ -107,6 +107,9 @@ class _HomePageState extends ConsumerState<HomePage> {
         title: page?.buildAppBarTitle(),
       ),
       drawer: Drawer(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        surfaceTintColor: Colors.blueGrey,
+        shadowColor: Colors.blueGrey,
         child: SingleChildScrollView(
           child: IntrinsicHeight(
             child: ConstrainedBox(
@@ -143,8 +146,8 @@ class _HomePageState extends ConsumerState<HomePage> {
       bottomNavigationBar: (group?.pages.length ?? 0) > 1
           ? NavigationBar(
               backgroundColor: Theme.of(context).colorScheme.background,
-              indicatorColor: Theme.of(context).colorScheme.primary,
-              shadowColor: Theme.of(context).colorScheme.secondary,
+              indicatorColor: Colors.blueGrey,
+              shadowColor: Colors.blueGrey,
               onDestinationSelected: (value) {
                 ref.read(pageIndexPod.notifier).state = value;
               },

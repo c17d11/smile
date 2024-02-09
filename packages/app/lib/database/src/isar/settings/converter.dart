@@ -6,11 +6,17 @@ class IsarSettingsConverter extends Converter<Settings, IsarSettings> {
   @override
   Settings fromImpl(IsarSettings t) {
     return Settings()
-      ..apiSettings = (JikanApiSettings()
-        ..requestsPerSecond = t.requestsPerSecond
-        ..requestsPerMinute = t.requestsPerMinute)
-      ..dbSettings =
-          (DatabaseSettings()..cacheTimeoutHours = t.cacheTimeoutHours);
+      ..apiSettings = JikanApiSettings(
+        perSecond: t.requestsPerSecond,
+        perMinute: t.requestsPerMinute,
+      )
+      ..dbSettings = DatabaseSettings(
+        hours: t.cacheTimeoutHours,
+      )
+      ..viewSettings = ViewSettings(
+        perWidth: t.animePerDeviceWidth,
+        ratio: t.animeRatio,
+      );
   }
 
   @override
@@ -18,6 +24,8 @@ class IsarSettingsConverter extends Converter<Settings, IsarSettings> {
     return IsarSettings()
       ..requestsPerSecond = t.apiSettings.requestsPerSecond
       ..requestsPerMinute = t.apiSettings.requestsPerMinute
-      ..cacheTimeoutHours = t.dbSettings.cacheTimeoutHours;
+      ..cacheTimeoutHours = t.dbSettings.cacheTimeoutHours
+      ..animePerDeviceWidth = t.viewSettings.animePerDeviceWidth
+      ..animeRatio = t.viewSettings.animeRatio;
   }
 }

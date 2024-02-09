@@ -24,7 +24,7 @@ class RangeFormatter extends TextInputFormatter {
   }
 }
 
-class SliderSelect extends ConsumerStatefulWidget {
+class BlankSliderSelect extends ConsumerStatefulWidget {
   final String title;
   final String? description;
   final double value;
@@ -33,9 +33,8 @@ class SliderSelect extends ConsumerStatefulWidget {
   final double? stepSize;
   final bool showInts;
   final ValueChanged<double?>? onChanged;
-  final bool hideReset;
 
-  const SliderSelect(
+  const BlankSliderSelect(
     this.title,
     this.description,
     this.value, {
@@ -45,14 +44,13 @@ class SliderSelect extends ConsumerStatefulWidget {
     this.stepSize,
     this.onChanged,
     this.showInts = false,
-    this.hideReset = false,
   });
 
   @override
-  ConsumerState<SliderSelect> createState() => _SliderSelectState();
+  ConsumerState<BlankSliderSelect> createState() => _BlankSliderSelectState();
 }
 
-class _SliderSelectState extends ConsumerState<SliderSelect> {
+class _BlankSliderSelectState extends ConsumerState<BlankSliderSelect> {
   late double v;
   bool showDescription = false;
 
@@ -111,7 +109,7 @@ class _SliderSelectState extends ConsumerState<SliderSelect> {
 
   Widget buildDescription() {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(10),
       child: Center(
         child: TextSubtitle(widget.description ?? ""),
       ),
@@ -126,8 +124,6 @@ class _SliderSelectState extends ConsumerState<SliderSelect> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Flexible(child: buildSlider()),
-          if (!widget.hideReset)
-            ResetIcon(onPressed: isDefault() ? null : _resetValues),
         ],
       ),
     );
@@ -145,11 +141,11 @@ class _SliderSelectState extends ConsumerState<SliderSelect> {
             ? CustomSliderThumpShape<int>(v.toInt(), 32, context)
             : CustomSliderThumpShape<double>(v, 32, context),
         showValueIndicator: ShowValueIndicator.never,
-        overlayColor: Theme.of(context).colorScheme.primary.withAlpha(64),
-        overlayShape: const RoundSliderOverlayShape(overlayRadius: 24.0),
-        tickMarkShape: const RoundSliderTickMarkShape(),
-        activeTickMarkColor: Theme.of(context).colorScheme.primary,
-        inactiveTickMarkColor: Theme.of(context).colorScheme.onBackground,
+        // overlayColor: Theme.of(context).colorScheme.primary.withAlpha(64),
+        // overlayShape: const RoundSliderOverlayShape(overlayRadius: 24.0),
+        // tickMarkShape: const RoundSliderTickMarkShape(),
+        // activeTickMarkColor: Theme.of(context).colorScheme.primary,
+        // inactiveTickMarkColor: Theme.of(context).colorScheme.onBackground,
       ),
       child: Slider(
         value: v,
@@ -209,24 +205,24 @@ class CustomSliderThumpShape<T extends num> extends SliderComponentShape {
         Paint()..color = Theme.of(parentContext).colorScheme.background);
     canvas.drawCircle(center, 7.5, strokePaint);
 
-    final offset = Offset(center.dx, center.dy - height / 2);
+    // final offset = Offset(center.dx, center.dy - height / 2);
 
-    TextSpan span = TextSpan(
-        style: TextStyle(
-            fontSize: height * .3,
-            fontWeight: FontWeight.w500,
-            color: sliderTheme.thumbColor,
-            height: 1),
-        text: '$displayValue');
-    TextPainter tp = TextPainter(
-        text: span,
-        textAlign: TextAlign.left,
-        textDirection: TextDirection.ltr);
-    tp.layout();
-    Offset textCenter =
-        Offset(offset.dx - (tp.width / 2), offset.dy - (tp.height / 2));
+    // TextSpan span = TextSpan(
+    //     style: TextStyle(
+    //         fontSize: height * .3,
+    //         fontWeight: FontWeight.w500,
+    //         color: sliderTheme.thumbColor,
+    //         height: 1),
+    //     text: '$displayValue');
+    // TextPainter tp = TextPainter(
+    //     text: span,
+    //     textAlign: TextAlign.left,
+    //     textDirection: TextDirection.ltr);
+    // tp.layout();
+    // Offset textCenter =
+    //     Offset(offset.dx - (tp.width / 2), offset.dy - (tp.height / 2));
 
-    tp.paint(canvas, textCenter);
+    // tp.paint(canvas, textCenter);
   }
 }
 

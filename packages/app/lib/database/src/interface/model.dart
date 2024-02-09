@@ -26,6 +26,7 @@ abstract interface class AnimeResponseModel {
   Future<AnimeResponse?> getAnimeResponse(String query);
   Future<AnimeResponse> getFavoriteAnimes();
   Future<AnimeResponse> getTagAnimes(String tagName);
+  Future<AnimeResponse?> getLastResponse();
 }
 
 abstract interface class ProducerResponseModel {

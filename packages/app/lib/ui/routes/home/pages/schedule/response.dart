@@ -4,6 +4,7 @@ import 'package:app/ui/routes/home/common/snackbar.dart';
 import 'package:app/ui/routes/home/pages/schedule/state.dart';
 import 'package:app/object/schedule_query.dart';
 import 'package:app/ui/routes/home/common/anime_portrait.dart';
+import 'package:app/ui/state/settings.dart';
 import 'package:app/ui/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,6 +23,7 @@ class ScheduleResponse extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(settingsPod);
     AsyncValue<AnimeResponse> ret = ref.watch(animeSchedule(query));
 
     ref.listen<AsyncValue<AnimeResponse>>(
@@ -66,10 +68,10 @@ class ScheduleResponse extends ConsumerWidget {
                             .refresh(animeId),
                       ),
                     ),
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 150,
-                      childAspectRatio: 7 / 10,
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: MediaQuery.of(context).size.width /
+                          settings.viewSettings.animePerDeviceWidth,
+                      childAspectRatio: settings.viewSettings.animeRatio,
                     ),
                   ),
           ],
