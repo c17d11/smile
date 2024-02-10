@@ -68,10 +68,11 @@ class AboutPage extends ConsumerWidget {
               children: [
                 CircleAvatar(
                   radius: 75,
-                  backgroundColor: Colors.transparent,
+                  backgroundColor: Color.fromARGB(255, 161, 202, 200),
                   child: ClipOval(
                     child: Image(
-                        image: AssetImage("assets/icon/smile.png"),
+                        image:
+                            AssetImage("assets/icon/smile-no-background.png"),
                         fit: BoxFit.fill),
                   ),
                 ),
