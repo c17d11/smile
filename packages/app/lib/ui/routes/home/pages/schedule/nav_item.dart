@@ -42,4 +42,7 @@ class ScheduleNavItem extends IconItem {
   Widget buildAppBarTitle() {
     return const TextFields("Schedule");
   }
+
+  @override
+  Widget? buildFab(_, __) => null;
 }

@@ -42,4 +42,7 @@ class BrowseNavItem extends IconItem {
   Widget buildAppBarTitle() {
     return const TextFields("Browse");
   }
+
+  @override
+  Widget? buildFab(_, __) => null;
 }

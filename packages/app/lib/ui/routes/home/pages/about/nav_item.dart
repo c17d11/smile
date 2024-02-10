@@ -28,4 +28,7 @@ class AboutNavItem extends IconItem {
   Widget buildAppBarTitle() {
     return const TextFields("About");
   }
+
+  @override
+  Widget? buildFab(_, __) => null;
 }

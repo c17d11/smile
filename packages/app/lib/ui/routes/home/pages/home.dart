@@ -106,6 +106,8 @@ class _HomePageState extends ConsumerState<HomePage> {
         actions: page?.buildAppBarWidgets(context, ref) ?? [],
         title: page?.buildAppBarTitle(),
       ),
+      floatingActionButton: page?.buildFab(context, ref),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       drawer: Drawer(
         backgroundColor: Theme.of(context).colorScheme.background,
         surfaceTintColor: Colors.blueGrey,

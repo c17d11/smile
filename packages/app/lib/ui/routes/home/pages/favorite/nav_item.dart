@@ -36,4 +36,7 @@ class FavoriteNavItem extends IconItem {
   Widget buildAppBarTitle() {
     return const TextFields("Favorite");
   }
+
+  @override
+  Widget? buildFab(_, __) => null;
 }
