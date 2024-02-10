@@ -1,12 +1,6 @@
-import 'package:app/ui/common/selection_widget/src/select_item.dart';
+import 'package:app/ui/common/select_item.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
-
-const Color _background = Colors.black;
-final Color _backgroundSecondary = Colors.grey[900]!;
-final Color _foreground = Colors.grey[300]!;
-final Color _foregroundSecondary = Colors.grey[400]!;
-final Color _foregroundThird = Colors.grey[600]!;
 
 void confirm(
   String title,

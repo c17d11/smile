@@ -5,7 +5,7 @@ import 'package:app/object/anime.dart';
 import 'package:app/object/anime_notes.dart';
 import 'package:app/object/tag.dart';
 import 'package:app/ui/common/like_select.dart';
-import 'package:app/ui/common/selection_widget/src/multiple_select.dart';
+import 'package:app/ui/common/multiple_select.dart';
 import 'package:app/ui/common/slider_select.dart';
 import 'package:app/ui/state/main.dart';
 import 'package:app/ui/routes/anime_details/sliver_app_bar_delegate.dart';

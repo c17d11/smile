@@ -1,4 +1,4 @@
-import 'package:app/ui/common/navigation_container/navigation_container.dart';
+import 'package:app/ui/common/icon_item.dart';
 import 'package:app/ui/routes/home/pages/schedule/page.dart';
 import 'package:app/ui/state/hide_titles.dart';
 import 'package:app/ui/style/style.dart';

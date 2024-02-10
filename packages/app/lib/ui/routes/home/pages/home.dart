@@ -1,4 +1,4 @@
-import 'package:app/ui/common/navigation_container/navigation_container.dart';
+import 'package:app/ui/common/icon_item.dart';
 import 'package:app/ui/common/text_divider.dart';
 import 'package:app/ui/routes/home/pages/about/nav_item.dart';
 import 'package:app/ui/routes/home/pages/browse/nav_item.dart';

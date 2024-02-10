@@ -1,5 +1,5 @@
-import 'package:app/ui/common/navigation_container/src/animated_nav_item.dart';
-import 'package:app/ui/common/navigation_container/src/nav_item.dart';
+import 'package:app/ui/common/animated_nav_item.dart';
+import 'package:app/ui/common/nav_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

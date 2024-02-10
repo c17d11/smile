@@ -1,4 +1,4 @@
-import 'package:app/ui/common/navigation_container/navigation_container.dart';
+import 'package:app/ui/common/icon_item.dart';
 import 'package:app/ui/routes/home/pages/browse/page.dart';
 import 'package:app/ui/state/hide_titles.dart';
 import 'package:app/ui/style/style.dart';
@@ -40,6 +40,6 @@ class BrowseNavItem extends IconItem {
 
   @override
   Widget buildAppBarTitle() {
-    return TextFields("Browse");
+    return const TextFields("Browse");
   }
 }

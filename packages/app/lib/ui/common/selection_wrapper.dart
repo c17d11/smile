@@ -1,4 +1,4 @@
-import 'package:app/ui/common/selection_widget/src/selection_item.dart';
+import 'package:app/ui/common/selection_item.dart';
 
 typedef WrapperList = List<SelectionWrapper<SelectionItem>>;
 typedef SelectionList = List<SelectionItem>;
