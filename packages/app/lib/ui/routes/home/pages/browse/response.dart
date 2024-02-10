@@ -1,3 +1,4 @@
+import 'package:app/object/anime.dart';
 import 'package:app/object/anime_response.dart';
 import 'package:app/ui/common/text_divider.dart';
 import 'package:app/ui/common/snackbar.dart';
@@ -40,7 +41,16 @@ class BrowseResponse extends ConsumerWidget {
       data: (res) {
         String currentPage = res.pagination?.currentPage.toString() ?? "";
         String lastPage = res.pagination?.lastVisiblePage.toString() ?? "";
-
+        List<Anime> animes = res.animes!.where((e) {
+          return !query.appFilter.showOnlyFavorites ||
+              (e.notes?.favorite ?? false) == query.appFilter.showOnlyFavorites;
+        }).where((e) {
+          return query.appFilter.showOnlyTags.isEmpty ||
+              query.appFilter.showOnlyTags
+                  .toSet()
+                  .intersection(e.notes?.tags?.toSet() ?? {})
+                  .isNotEmpty;
+        }).toList();
         return MultiSliver(
           pushPinnedChildren: true,
           children: <Widget>[
@@ -49,16 +59,16 @@ class BrowseResponse extends ConsumerWidget {
                   color: Theme.of(context).colorScheme.background,
                   child: TextDivider("Page $currentPage of $lastPage")),
             ),
-            res.animes?.isEmpty ?? true
+            animes.isEmpty
                 ? Center(
                     child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Text("No data", style: AppTextStyle.small)))
                 : SliverGrid(
                     delegate: SliverChildBuilderDelegate(
-                      childCount: res.animes!.length,
+                      childCount: animes.length,
                       (context, index) => AnimePortrait(
-                        res.animes!.elementAt(index),
+                        animes.elementAt(index),
                         heroId: "$heroId-$index",
                         onAnimeUpdate: (animeId) => ref
                             .read(animeBrowse(query).notifier)

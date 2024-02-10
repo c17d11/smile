@@ -7,14 +7,17 @@ import 'package:app/object/anime_type.dart';
 import 'package:app/object/genre.dart';
 import 'package:app/object/producer.dart';
 import 'package:app/object/bool_item.dart';
+import 'package:app/object/tag.dart';
 import 'package:app/ui/common/multiple_select.dart';
 import 'package:app/ui/common/query_widget.dart';
 import 'package:app/ui/common/range_select.dart';
 import 'package:app/ui/common/single_select.dart';
+import 'package:app/ui/common/text_divider.dart';
 import 'package:app/ui/common/year_select.dart';
 import 'package:app/ui/routes/home/pages/genre/state.dart';
 import 'package:app/ui/state/anime_query.dart';
 import 'package:app/ui/state/producer.dart';
+import 'package:app/ui/state/tag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
@@ -60,6 +63,34 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
       },
       initialValue: localQuery.searchTerm ?? "",
     );
+  }
+
+  Widget buildFavoriteWidget(AnimeQuery localQuery) {
+    var itemTrue = BoolItem(true);
+
+    return SingleSelect(
+      'only favorites',
+      [itemTrue],
+      onChanged: (item) {
+        localQuery.appFilter.showOnlyFavorites =
+            (item != null) ? (item as BoolItem).value : false;
+      },
+      initialValue: localQuery.appFilter.showOnlyFavorites ? itemTrue : null,
+    );
+  }
+
+  Widget buildTagWidget(AnimeQuery localQuery) {
+    return MultiSelect<Tag>(
+        title: 'only these tags',
+        loadOptions: loadTags,
+        initialSelected: localQuery.appFilter.showOnlyTags,
+        onChangedInclude: (items) => localQuery.appFilter.showOnlyTags =
+            items.map((e) => e as Tag).toList());
+  }
+
+  Future<List<Tag>> loadTags() async {
+    await ref.read(tagPod.notifier).get();
+    return ref.read(tagPod).value ?? [];
   }
 
   Future<List<Producer>> loadProducers() async {
@@ -191,8 +222,10 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          ref.read(animeQueryPod.notifier).set(localQuery);
-          Navigator.pop(context);
+          ref
+              .read(animeQueryPod.notifier)
+              .set(localQuery)
+              .then((value) => Navigator.pop(context));
         },
         label: const Text('Search'),
         icon: const Icon(Icons.search),
@@ -211,6 +244,7 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
                 padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
+                    const TextDivider("API QUERY"),
                     buildSearchTermWidget(localQuery),
                     const SizedBox(height: 10),
                     buildProducerWidget(localQuery),
@@ -232,6 +266,9 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
                     buildOrderWidget(localQuery),
                     const SizedBox(height: 10),
                     buildSortWidget(localQuery),
+                    const TextDivider("APP FILTER"),
+                    buildFavoriteWidget(localQuery),
+                    buildTagWidget(localQuery),
                     const SizedBox(height: 100),
                   ],
                 ),

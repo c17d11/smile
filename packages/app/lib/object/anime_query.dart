@@ -1,9 +1,8 @@
-import 'package:app/object/tag.dart';
+import 'package:app/object/anime_app_filter.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class AnimeQuery extends JikanAnimeQuery {
-  bool? isFavorite;
-  Tag? tag;
+  AnimeAppFilter appFilter = AnimeAppFilter();
 
   void update(JikanAnimeQuery q) {
     searchTerm = q.searchTerm;
@@ -40,8 +39,7 @@ class AnimeQuery extends JikanAnimeQuery {
       ..page = q.page
       ..orderBy = q.orderBy
       ..sort = q.sort
-      ..isFavorite = q.isFavorite
-      ..tag = q.tag;
+      ..appFilter = q.appFilter.copy();
     return animeQueryIntern;
   }
 

@@ -34,4 +34,7 @@ class IsarAnimeQuery {
 
   @Enumerated(EnumType.name)
   JikanAnimeSort? sort;
+
+  bool? showOnlyFavorites;
+  List<String>? showOnlyTagIds;
 }
