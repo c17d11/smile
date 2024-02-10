@@ -333,8 +333,8 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                     Text(
                       anime!.synopsis ?? '-',
                       style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w800,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
@@ -360,8 +360,8 @@ class _AnimeDetailsState extends ConsumerState<AnimeDetails>
                     Text(
                       anime!.background ?? '-',
                       style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w800,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
