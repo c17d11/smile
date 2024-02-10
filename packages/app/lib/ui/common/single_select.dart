@@ -122,14 +122,12 @@ class _SingleSelectState extends State<SingleSelect> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          buildMenuRow(),
-          buildContentRow(),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        buildMenuRow(),
+        buildContentRow(),
+      ],
     );
   }
 }

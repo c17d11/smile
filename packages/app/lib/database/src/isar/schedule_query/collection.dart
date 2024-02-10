@@ -16,4 +16,7 @@ class IsarScheduleQuery {
   bool? isForKids;
   bool? sfw;
   bool? isApproved;
+
+  bool? showOnlyFavorites;
+  List<String>? showOnlyTagIds;
 }

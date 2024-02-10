@@ -1,9 +1,10 @@
+import 'package:app/object/anime.dart';
 import 'package:app/object/anime_response.dart';
 import 'package:app/ui/common/text_divider.dart';
-import 'package:app/ui/routes/home/common/snackbar.dart';
+import 'package:app/ui/common/snackbar.dart';
 import 'package:app/ui/routes/home/pages/schedule/state.dart';
 import 'package:app/object/schedule_query.dart';
-import 'package:app/ui/routes/home/common/anime_portrait.dart';
+import 'package:app/ui/common/anime_portrait.dart';
 import 'package:app/ui/state/settings.dart';
 import 'package:app/ui/style/colors.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,16 @@ class ScheduleResponse extends ConsumerWidget {
       data: (res) {
         String currentPage = res.pagination?.currentPage.toString() ?? "";
         String lastPage = res.pagination?.lastVisiblePage.toString() ?? "";
+        List<Anime> animes = res.animes!.where((e) {
+          return !query.appFilter.showOnlyFavorites ||
+              (e.notes?.favorite ?? false) == query.appFilter.showOnlyFavorites;
+        }).where((e) {
+          return query.appFilter.showOnlyTags.isEmpty ||
+              query.appFilter.showOnlyTags
+                  .toSet()
+                  .intersection(e.notes?.tags?.toSet() ?? {})
+                  .isNotEmpty;
+        }).toList();
 
         return MultiSliver(
           pushPinnedChildren: true,
@@ -52,16 +63,16 @@ class ScheduleResponse extends ConsumerWidget {
                     "${query.day?.text ?? '-'} page $currentPage of $lastPage"),
               ),
             ),
-            res.animes?.isEmpty ?? true
+            animes.isEmpty
                 ? Center(
                     child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Text("No data", style: AppTextStyle.small)))
                 : SliverGrid(
                     delegate: SliverChildBuilderDelegate(
-                      childCount: res.animes!.length,
+                      childCount: animes.length,
                       (context, index) => AnimePortrait(
-                        res.animes!.elementAt(index),
+                        animes.elementAt(index),
                         heroId: "$heroId-$index",
                         onAnimeUpdate: (animeId) => ref
                             .read(animeSchedule(query).notifier)
