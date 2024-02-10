@@ -28,4 +28,7 @@ class GenresNavItem extends IconItem {
   Widget buildAppBarTitle() {
     return const TextFields("Genres");
   }
+
+  @override
+  Widget? buildFab(_, __) => null;
 }

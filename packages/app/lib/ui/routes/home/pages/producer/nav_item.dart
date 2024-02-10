@@ -28,4 +28,7 @@ class ProducersNavItem extends IconItem {
   Widget buildAppBarTitle() {
     return const TextFields("Producers");
   }
+
+  @override
+  Widget? buildFab(_, __) => null;
 }

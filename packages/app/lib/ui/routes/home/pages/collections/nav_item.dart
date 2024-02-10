@@ -93,4 +93,7 @@ class CollectionsNavItem extends IconItem {
   Widget buildAppBarTitle() {
     return const TextFields("Collections");
   }
+
+  @override
+  Widget? buildFab(_, __) => null;
 }

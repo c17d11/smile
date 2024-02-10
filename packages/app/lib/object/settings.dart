@@ -35,6 +35,15 @@ class ViewSettings {
 
   ViewSettings copy() =>
       ViewSettings(perWidth: animePerDeviceWidth, ratio: animeRatio);
+
+  @override
+  bool operator ==(Object other) =>
+      other is ViewSettings &&
+      other.animePerDeviceWidth == animePerDeviceWidth &&
+      other.animeRatio == animeRatio;
+
+  @override
+  int get hashCode => animePerDeviceWidth.hashCode ^ animeRatio.hashCode;
 }
 
 class Settings {
@@ -46,4 +55,16 @@ class Settings {
     ..apiSettings = apiSettings.copy()
     ..dbSettings = dbSettings.copy()
     ..viewSettings = viewSettings.copy();
+
+  @override
+  bool operator ==(Object other) =>
+      other is Settings &&
+      // other.apiSettings == apiSettings &&
+      // other.dbSettings == dbSettings &&
+      other.viewSettings == viewSettings;
+
+  @override
+  int get hashCode =>
+      // apiSettings.hashCode ^ viewSettings.hashCode ^
+      viewSettings.hashCode;
 }
