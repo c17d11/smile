@@ -1,4 +1,3 @@
-import 'package:app/object/bool_text_item.dart';
 import 'package:app/object/schedule_query.dart';
 import 'package:app/object/bool_item.dart';
 import 'package:app/object/tag.dart';
@@ -64,7 +63,6 @@ class _ScheduleQueryPageState extends ConsumerState<ScheduleQueryPage> {
 
   Widget buildFavoriteWidget(ScheduleQuery localQuery) {
     var itemTrue = BoolItem(true);
-    // var itemFalse = BoolItem(false);
 
     return SingleSelect(
       'only favorites',

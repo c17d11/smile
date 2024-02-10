@@ -1,5 +1,6 @@
 import 'package:app/database/src/interface/converter.dart';
 import 'package:app/database/src/isar/anime_query/collection.dart';
+import 'package:app/object/anime_app_filter.dart';
 import 'package:app/object/anime_query.dart';
 
 class IsarAnimeQueryConverter extends Converter<AnimeQuery, IsarAnimeQuery> {
@@ -20,7 +21,10 @@ class IsarAnimeQueryConverter extends Converter<AnimeQuery, IsarAnimeQuery> {
       ..genresExclude = []
       ..page = t.page
       ..orderBy = t.orderBy
-      ..sort = t.sort;
+      ..sort = t.sort
+      ..appFilter = AnimeAppFilter(
+        onlyFavorites: t.showOnlyFavorites,
+      );
   }
 
   @override
@@ -40,6 +44,7 @@ class IsarAnimeQueryConverter extends Converter<AnimeQuery, IsarAnimeQuery> {
       ..genresExcludeIds = t.genresExclude?.map((e) => e.malId!).toList()
       ..page = t.page
       ..orderBy = t.orderBy
-      ..sort = t.sort;
+      ..sort = t.sort
+      ..showOnlyFavorites = t.appFilter.showOnlyFavorites;
   }
 }
