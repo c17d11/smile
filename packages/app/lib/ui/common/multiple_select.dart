@@ -5,6 +5,8 @@ import 'package:app/ui/common/selection_wrapper.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
+final Color _foregroundThird = Colors.grey[600]!;
+
 class MultiSelect<T extends SelectionItem> extends StatefulWidget {
   final String title;
   final bool tristate;
@@ -125,6 +127,15 @@ class _MultiSelectState extends State<MultiSelect> {
                 if (_selectedItems.isNotEmpty ||
                     _unselectedItems.isNotEmpty) ...[
                   const SizedBox(height: 5),
+                ],
+                if (_selectedItems.isEmpty && _unselectedItems.isEmpty) ...[
+                  Text("None selected",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: _foregroundThird,
+                        fontWeight: FontWeight.w800,
+                        fontStyle: FontStyle.italic,
+                      ))
                 ]
               ],
             ),

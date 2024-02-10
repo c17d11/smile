@@ -1,9 +1,9 @@
 import 'package:app/object/anime_response.dart';
 import 'package:app/ui/common/text_divider.dart';
-import 'package:app/ui/routes/home/common/snackbar.dart';
+import 'package:app/ui/common/snackbar.dart';
 import 'package:app/ui/routes/home/pages/browse/state.dart';
 import 'package:app/object/anime_query.dart';
-import 'package:app/ui/routes/home/common/anime_portrait.dart';
+import 'package:app/ui/common/anime_portrait.dart';
 import 'package:app/ui/state/settings.dart';
 import 'package:app/ui/style/colors.dart';
 import 'package:flutter/material.dart';

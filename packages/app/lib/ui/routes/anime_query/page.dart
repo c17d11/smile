@@ -6,7 +6,7 @@ import 'package:app/object/anime_status.dart';
 import 'package:app/object/anime_type.dart';
 import 'package:app/object/genre.dart';
 import 'package:app/object/producer.dart';
-import 'package:app/object/sfw_item.dart';
+import 'package:app/object/bool_item.dart';
 import 'package:app/ui/common/multiple_select.dart';
 import 'package:app/ui/common/query_widget.dart';
 import 'package:app/ui/common/range_select.dart';
@@ -175,11 +175,11 @@ class _AnimeQueryPageState extends ConsumerState<AnimeQueryPage> {
   Widget buildSfwWidget(AnimeQuery localQuery) {
     return SingleSelect(
       'Sfw',
-      [SfwItem(true), SfwItem(false)],
+      [BoolItem(true), BoolItem(false)],
       onChanged: (item) {
-        localQuery.sfw = (item != null) ? (item as SfwItem).sfw : null;
+        localQuery.sfw = (item != null) ? (item as BoolItem).value : null;
       },
-      initialValue: (localQuery.sfw != null) ? SfwItem(localQuery.sfw!) : null,
+      initialValue: (localQuery.sfw != null) ? BoolItem(localQuery.sfw!) : null,
     );
   }
 

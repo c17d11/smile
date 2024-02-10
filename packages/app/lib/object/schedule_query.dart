@@ -1,28 +1,30 @@
-import 'package:app/database/src/interface/database.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:app/object/anime_app_filter.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class ScheduleQuery extends JikanScheduleQuery {
-  static ScheduleQuery from(JikanScheduleQuery q) {
+  AnimeAppFilter appFilter = AnimeAppFilter();
+
+  static ScheduleQuery from(ScheduleQuery q) {
     ScheduleQuery queryIntern = ScheduleQuery()
       ..page = q.page
       ..day = q.day
       ..isForKids = q.isForKids
       ..sfw = q.sfw
-      ..isApproved = q.isApproved;
+      ..isApproved = q.isApproved
+      ..appFilter = q.appFilter.copy();
     return queryIntern;
   }
 
   @override
   String toString() => "$page-${day?.code}-$isForKids-$sfw-$isApproved";
 
-  static ScheduleQuery nextPage(JikanScheduleQuery q) {
+  static ScheduleQuery nextPage(ScheduleQuery q) {
     ScheduleQuery query = ScheduleQuery.from(q);
     query.page = (query.page ?? 1) + 1;
     return query;
   }
 
-  static ScheduleQuery? nextDay(JikanScheduleQuery q) {
+  static ScheduleQuery? nextDay(ScheduleQuery q) {
     ScheduleQuery query = ScheduleQuery.from(q);
     switch (query.day) {
       case JikanScheduleDay.monday:

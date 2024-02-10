@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class JikanApiSettings {
   // Default values
   int requestsPerSecond = 3;

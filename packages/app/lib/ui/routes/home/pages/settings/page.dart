@@ -7,7 +7,7 @@ import 'package:app/ui/common/blank_slider_select.dart';
 import 'package:app/ui/common/confirm_button.dart';
 import 'package:app/ui/common/slider_select.dart';
 import 'package:app/ui/common/text_divider.dart';
-import 'package:app/ui/routes/home/common/anime_portrait.dart';
+import 'package:app/ui/common/anime_portrait.dart';
 import 'package:app/ui/state/main.dart';
 import 'package:app/ui/state/settings.dart';
 import 'package:app/ui/style/colors.dart';

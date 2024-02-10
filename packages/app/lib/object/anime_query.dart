@@ -1,6 +1,4 @@
 import 'package:app/object/tag.dart';
-import 'package:app/database/src/interface/database.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jikan_api/jikan_api.dart';
 
 class AnimeQuery extends JikanAnimeQuery {
