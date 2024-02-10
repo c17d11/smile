@@ -1,0 +1,274 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## 2024-02-10
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`app` - `v1.0.0`](#app---v100)
+
+Packages with other changes:
+
+ - [`jikan_api` - `v1.0.0`](#jikan_api---v100)
+ - [`rate_manager` - `v1.0.0`](#rate_manager---v100)
+
+---
+
+#### `app` - `v1.0.0`
+
+ - **REFACTOR**: create widget directory.
+ - **REFACTOR**(controller): make state a library instead of package.
+ - **REFACTOR**(navigation_controller): make navigation controller a librariy in ui instead of package.
+ - **REFACTOR**(ui): make ui a librariy instead of package.
+ - **REFACTOR**: collection common widget to one directory.
+ - **REFACTOR**: remove unused code.
+ - **REFACTOR**: move files.
+ - **REFACTOR**: move files.
+ - **REFACTOR**: move files around.
+ - **REFACTOR**: rename to common.
+ - **REFACTOR**: add common directory for home route.
+ - **REFACTOR**: remove unused code.
+ - **REFACTOR**: create settings page directory.
+ - **REFACTOR**(database): make database a library instead of package.
+ - **REFACTOR**: change directory structure like pages in app.
+ - **REFACTOR**: rename directory.
+ - **REFACTOR**: rename directory.
+ - **REFACTOR**: move genre page to feature first structure.
+ - **REFACTOR**: move producer page to feature first structure.
+ - **REFACTOR**: move construction of anime response to its model.
+ - **REFACTOR**: move cache timout to state.
+ - **REFACTOR**: database models.
+ - **REFACTOR**(ui): break down alertdialog to smaller components.
+ - **REFACTOR**(jikan_api): make anime status enum.
+ - **REFACTOR**: remove unused file.
+ - **REFACTOR**(jikan_api): change anime rating to enum.
+ - **REFACTOR**(jikan_api): change anime type to enum.
+ - **REFACTOR**: use gridtile for displaying anime, like producers.
+ - **REFACTOR**(ui): separate widget in single select to separate files.
+ - **REFACTOR**(ui): create help function for building anime query page.
+ - **REFACTOR**(ui): create selection_widget library.
+ - **REFACTOR**(ui): hide selection wrapper inside selection widget library.
+ - **REFACTOR**: move favorite button to gridtile header.
+ - **REFACTOR**(ui): remove unnecessary riverpod dependency.
+ - **REFACTOR**: browse page.
+ - **REFACTOR**: remove unnecessary filename prefix.
+ - **REFACTOR**: schedule page.
+ - **REFACTOR**(ui): create common styles.
+ - **REFACTOR**(ui): separate multiple select build function to smaller functions.
+ - **REFACTOR**(ui): split main build function in future dialog to smaller functions.
+ - **REFACTOR**: extract popup functionality to own function.
+ - **REFACTOR**: update anime details style.
+ - **FIX**: anime portrait subtitle overflowing.
+ - **FIX**(ui): update single select layout for match multi select.
+ - **FIX**: remove correct collection when clicking on button.
+ - **FIX**(database): make app working again.
+ - **FIX**: producer response expiration.
+ - **FIX**: highlight animes on personal info logic.
+ - **FIX**: sort reponses like reponse from api.
+ - **FIX**(ui): currect widget placements.
+ - **FIX**(ui): remove padding from individual widgets.
+ - **FIX**: set current year as max in year select.
+ - **FIX**(ui): make textfield borders similar.
+ - **FIX**: faster fade out in anime details.
+ - **FIX**: opacity out of range on android.
+ - **FIX**: display jikan api error message.
+ - **FIX**: serach by letter in producer api since query by title does not work.
+ - **FIX**: remove expiration from some models.
+ - **FIX**: unresolved conflict.
+ - **FIX**: make apply button below content.
+ - **FIX**: popup overflowing when keyboard is up.
+ - **FIX**: default to not clearing the database on startup.
+ - **FIX**: use internet on android.
+ - **FIX**: change icon.
+ - **FIX**: make it clearer thatn clicking on genres will navigate.
+ - **FIX**: genres says null animes.
+ - **FIX**: make anime details title less likely to overlap with image.
+ - **FIX**: reload collection page when new collection created.
+ - **FIX**: ignore build files.
+ - **FIX**: dont publish packages.
+ - **FIX**: make tabbar opaque.
+ - **FIX**: larger producer details text.
+ - **FIX**: clear notes in anime detail with 'x' at end of textfield.
+ - **FIX**: tag missing in favorites.
+ - **FIX**: invalidate pages when navigating to new page.
+ - **FIX**: dont overwrite internal info on new fetch.
+ - **FIX**: errors from rebase.
+ - **FIX**: remove unused code.
+ - **FIX**(controller): make app working again.
+ - **FIX**(ui): make multiselect tristate.
+ - **FIX**: snackbar in settings page moves fab up like other pages.
+ - **FIX**: tags, producers, genres not loaded from database.
+ - **FIX**(ui): multiselect padding.
+ - **FIX**(ui): singleselect padding.
+ - **FIX**: incorrect use if parentdatawidget.
+ - **FIX**: tags removed when anime fetch from api.
+ - **FIX**: change detail page chips.
+ - **FIX**(ui): adjust reset buttons.
+ - **FIX**: restrict select chip width to prevent some overflows.
+ - **FIX**: smaller new collection popup.
+ - **FIX**: overflow in producer popup.
+ - **FIX**: trash solution for trash problem.
+ - **FIX**: smaller dialog.
+ - **FIX**: smaller collection select popup.
+ - **FIX**: unique hero id for schedule page.
+ - **FIX**: store producers and genres links to anime.
+ - **FIX**(ui): add space to single select.
+ - **FIX**(ui): add space to single select.
+ - **FIX**: make slider select description optional.
+ - **FIX**: add operator== and hashCode to AnimeQueryIntern.
+ - **FIX**(ui): update single select style.
+ - **FIX**: sync colors.
+ - **FIX**: rely on default colorscheme.
+ - **FIX**: restore injector to as intended.
+ - **FIX**: add operator== and hashCode to item used as argument in riverpod family.
+ - **FIX**(ui): update red color.
+ - **FIX**: init state notifiers to loading.
+ - **FIX**(ui): add initial value to year select.
+ - **FIX**: change color.
+ - **FIX**: add missing classes for prod mode.
+ - **FIX**: update anime list page when query is changed.
+ - **FIX**(navigation_container): align content top.
+ - **FIX**(ui): keep loading pages until window is filled.
+ - **FIX**(ui): stop loading pages when last page reached.
+ - **FIX**: update settings colors.
+ - **FIX**: schedule query page style update.
+ - **FIX**: anime query page style update.
+ - **FIX**: change slider color to primary color.
+ - **FIX**: store pagination in database.
+ - **FIX**: remove browse query button from favorite page.
+ - **FIX**(database): update isar anime reponse collection with pagination.
+ - **FIX**(ui): remove unused includes.
+ - **FIX**(ui): expanded spacer error.
+ - **FIX**(database): update anime response query field.
+ - **FIX**: remove elevation of card since it changes the background color.
+ - **FIX**(ui): remove unused import.
+ - **FIX**: remove option for using app parameters in browse search.
+ - **FIX**: nicer dividers between pages.
+ - **FIX**: keep pods alive.
+ - **FIX**: update ui style after run on device.
+ - **FIX**(ui): update range select style.
+ - **FIX**: common way of incrementing page count.
+ - **FEAT**: let iconitem build navbar item.
+ - **FEAT**: dark mode.
+ - **FEAT**: hero animation for anime.
+ - **FEAT**: check if data has expirated in database.
+ - **FEAT**: add info icon.
+ - **FEAT**: settings page.
+ - **FEAT**: add big headline for each day in schedule.
+ - **FEAT**: start custom colorscheme.
+ - **FEAT**: add missing schedule days.
+ - **FEAT**: add schedule.
+ - **FEAT**: update gui.
+ - **FEAT**: launcher icon, splash screen, rename app.
+ - **FEAT**: create tag object.
+ - **FEAT**: store filter per page in database.
+ - **FEAT**: add tag to anime.
+ - **FEAT**: add sorting to query.
+ - **FEAT**: add tag controller.
+ - **FEAT**(ui): favorite page.
+ - **FEAT**(ui): Change type om anime query pod.
+ - **FEAT**: collection page.
+ - **FEAT**: dark mode.
+ - **FEAT**: get favorites.
+ - **FEAT**(ui): add functionaliy to favorite button.
+ - **FEAT**: coffee loading page.
+ - **FEAT**: draw single line if text is empty in TextDivider.
+ - **FEAT**: dark mode.
+ - **FEAT**(ui): make single select items toggle.
+ - **FEAT**: add divider item.
+ - **FEAT**(ui): add mvp anime details page.
+ - **FEAT**(ui): add options for specifying fontsize.
+ - **FEAT**: new home layout.
+ - **FEAT**(ui): new custom button.
+ - **FEAT**(ui): make anime list groups of slivers.
+ - **FEAT**: genre page.
+ - **FEAT**: change anime search controller state.
+ - **FEAT**(ui): set filter page apply button style.
+ - **FEAT**(ui): add sfw selection.
+ - **FEAT**: producer page.
+ - **FEAT**(ui): add clear action for select chip.
+ - **FEAT**(ui): create year picker as alert dialog with scroll.
+ - **FEAT**: update producer pipe.
+ - **FEAT**: refactor state management.
+ - **FEAT**: add query page for schedule query.
+ - **FEAT**: implement personal anime notes.
+ - **FEAT**: implement personal anime score.
+ - **FEAT**: show empty text on no data.
+ - **FEAT**: better looking anime details page.
+ - **FEAT**: collection page, page template etc.
+ - **FEAT**: use isar object everywhere, not ideal but all logic will be simpler.
+ - **FEAT**: add poc page where ref won't get disposed when navigating between pages.
+ - **FEAT**: update favorite page to use new save save technique.
+ - **FEAT**: separate custom and api data to separate tabs.
+ - **FEAT**: collection page (surely it works fine now).
+ - **FEAT**: make it clear when animes are saved.
+ - **FEAT**: nicer apply buttons.
+ - **FEAT**: button for removing collections.
+ - **FEAT**: hardcode some improved styling of anime query page.
+ - **FEAT**(ui): minimal working query page.
+ - **FEAT**: show which anime that have some personal info.
+ - **FEAT**: finish style app in dark mode.
+ - **FEAT**: add initial about page.
+ - **FEAT**(ui): add custom range selector.
+ - **FEAT**: image to draw header.
+ - **FEAT**: toggle anime titles.
+ - **FEAT**: launcher icon.
+ - **FEAT**: android launcher icon.
+ - **FEAT**: sort animes like api.
+ - **FEAT**: add genre related classes.
+ - **FEAT**: cleaner ui when no text is chosen.
+ - **FEAT**(app): add producer data flow.
+ - **FEAT**: only show/hide titles-button for anime pages.
+ - **FEAT**(app): create main package.
+ - **FEAT**: settings for anime portrait size.
+ - **FEAT**: filter schedule by app parameters.
+ - **FEAT**: filter browse by app parameters.
+ - **FEAT**: update about page.
+ - **FEAT**(ui): add basic common components.
+ - **BREAKING** **FEAT**(database): remove creating of query from database.
+
+#### `jikan_api` - `v1.0.0`
+
+ - **REFACTOR**: move cache timout to state.
+ - **REFACTOR**: database models.
+ - **REFACTOR**(jikan_api): change anime type to enum.
+ - **REFACTOR**(jikan_api): change anime rating to enum.
+ - **REFACTOR**(jikan_api): make anime status enum.
+ - **REFACTOR**(jikan_api): name mock files with underscope instead of slash.
+ - **REFACTOR**(jikan_api): change to flutter package.
+ - **REFACTOR**(jikan_api): make http an interface.
+ - **FIX**: icon, jikan api exception.
+ - **FIX**(jikan_api): correct date querys in anime search api.
+ - **FIX**: serach by letter in producer api since query by title does not work.
+ - **FIX**: build schedule query such that it bad be used when quering the database.
+ - **FIX**(jikan_api): add page 1 mock.
+ - **FIX**: update anime list page when query is changed.
+ - **FIX**: errors from rebase.
+ - **FEAT**: producer page.
+ - **FEAT**: collection page.
+ - **FEAT**: update ratemanager through facade.
+ - **FEAT**: settings page.
+ - **FEAT**: add missing schedule days.
+ - **FEAT**: add schedule.
+ - **FEAT**(jikan_api): add used query to anime response.
+ - **FEAT**: add sorting to query.
+ - **FEAT**(jikan_api): override operator ==.
+ - **FEAT**(ui): minimal working query page.
+ - **FEAT**(jikan_api): add genres to anime query.
+ - **FEAT**(jikan_api): add genres to anime.
+ - **FEAT**(jikan_api): parse producer title from url.
+ - **FEAT**(jikan_api): move base url to common place.
+ - **FEAT**(jikan_api): create mock of jikan api.
+ - **FEAT**(jikan_api): add jikan api to packages.
+
+#### `rate_manager` - `v1.0.0`
+
+ - **FIX**: dont publish packages.
+ - **FEAT**(rate_manager): add rate manager to packages.
+
