@@ -11,6 +11,28 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 Packages with breaking changes:
 
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`app` - `v1.1.0`](#app---v110)
+
+---
+
+#### `app` - `v1.1.0`
+
+ - **FIX**: remove weird android 12 image branding.
+ - **FEAT**: larger text for synopsis and background in anime details.
+
+
+## 2024-02-10
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
  - [`app` - `v1.0.0`](#app---v100)
 
 Packages with other changes:

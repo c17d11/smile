@@ -1,3 +1,8 @@
+## 1.1.0
+
+ - **FIX**: remove weird android 12 image branding.
+ - **FEAT**: larger text for synopsis and background in anime details.
+
 ## 1.0.0
 
 > Note: This release has breaking changes.
