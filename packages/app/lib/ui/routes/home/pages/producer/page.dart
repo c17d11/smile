@@ -1,5 +1,5 @@
 import 'package:app/object/producer_query.dart';
-import 'package:app/ui/common/navigation_container/navigation_container.dart';
+import 'package:app/ui/common/icon_item.dart';
 import 'package:app/ui/routes/home/pages/producer/nav_item.dart';
 import 'package:app/ui/routes/home/pages/producer/response.dart';
 import 'package:app/ui/routes/home/pages/producer/state.dart';
@@ -7,11 +7,7 @@ import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-const Color _background = Colors.black;
-final Color _backgroundSecondary = Colors.grey[900]!;
-final Color _foreground = Colors.grey[300]!;
 final Color _foregroundSecondary = Colors.grey[400]!;
-final Color _foregroundThird = Colors.grey[600]!;
 
 class ProducerListPage extends ConsumerWidget {
   final IconItem page;

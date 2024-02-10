@@ -1,6 +1,6 @@
 import 'package:app/object/schedule_query.dart';
 import 'package:app/object/sfw_item.dart';
-import 'package:app/ui/common/selection_widget/src/single_select.dart';
+import 'package:app/ui/common/single_select.dart';
 import 'package:app/ui/state/schedule_query.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

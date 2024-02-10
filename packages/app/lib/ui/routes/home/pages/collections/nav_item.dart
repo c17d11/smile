@@ -1,5 +1,5 @@
 import 'package:app/object/tag.dart';
-import 'package:app/ui/common/navigation_container/navigation_container.dart';
+import 'package:app/ui/common/icon_item.dart';
 import 'package:app/ui/routes/home/pages/collections/page.dart';
 import 'package:app/ui/routes/home/pages/collections/state.dart';
 import 'package:app/ui/state/hide_titles.dart';

@@ -1,6 +1,6 @@
-import 'package:app/ui/common/selection_widget/src/select_item.dart';
-import 'package:app/ui/common/selection_widget/src/selection_item.dart';
-import 'package:app/ui/common/selection_widget/src/selection_wrapper.dart';
+import 'package:app/ui/common/select_item.dart';
+import 'package:app/ui/common/selection_item.dart';
+import 'package:app/ui/common/selection_wrapper.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
