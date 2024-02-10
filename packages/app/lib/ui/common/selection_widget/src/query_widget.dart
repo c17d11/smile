@@ -9,31 +9,29 @@ class QueryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 24),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                  child: TextHeadline('Search'.toUpperCase()),
-                ),
-              ],
-            ),
+    return Column(
+      children: [
+        ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 24),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
+                child: TextHeadline('Search'.toUpperCase()),
+              ),
+            ],
           ),
-          Padding(
-              padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-              child: CustomTextField(
-                hint: "Search anime title...",
-                initialValue: initialValue,
-                onChanged: onChanged,
-              )),
-        ],
-      ),
+        ),
+        Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+            child: CustomTextField(
+              hint: "Search anime title...",
+              initialValue: initialValue,
+              onChanged: onChanged,
+            )),
+      ],
     );
   }
 }
