@@ -8,35 +8,37 @@ final Color _foregroundSecondary = Colors.grey[400]!;
 final Color _foregroundThird = Colors.grey[600]!;
 
 const String _ABOUT = """
-The purpose of the app is to provide a simple way to browse animes and store some personal notes about the animes.
+The purpose of this app is to provide a simple way to browse animes and store some personal notes about the animes.
 """;
 
 const String _ABOUT_JIKAN_API = """
-Jikan API (https://docs.api.jikan.moe/) is an unofficial MyAnimeList API that scrapes the MyAnimeList website and exposes an API.
-
-Since the webscraping isn't done per request there might be a information on MyAnimeList that not yet have to be scraped to be available in the API.
-
-Therefore, new animes added to MyAnimeList will not be available immediately in this app.
+All data comes from the Jikan API (https://docs.api.jikan.moe/), which is an unofficial MyAnimeList API that scrapes the MyAnimeList website.
 
 This app uses only a subset of the Jikan API. This might be expanded in the future.
 """;
 
-const String _LIMITATIONS = """
+const String _RATE_LIMITS = """
 The Jikan API rate limits how often the requests to the API can be made. These are 60 requests per minute and 3 requests per second.
 
 This means that sometimes the requests might take a little longer.
+
+Despite using the specified rate limits, it is still possible to be rate limited by MyAnimeList.net. If this happen just reload the page after a while.
+
+This app provides settings to lower the request rates.
 """;
 
 const String _DATABASE = """
-To facilitate the API, this app contains a local database that store the responses and reuses them if needed. This way the same request is not sent to the API.
+To reduce the requests sent to the API, this app contains a local database that store the responses and reuses them if needed. This way the same request is not sent to the API.
 
-But sometimes you might want to re-fetch the same request to see if the data has changes. This app uses a 24 hour cache of the requests by default. After those 24 hours a new request will be made to the API. This can be changed in the settings-page. 
+This app uses a 24 hour cache of the requests by default. After those 24 hours a new request will be made to the API and the local database is updated.
+
+This can be changed in the settings-page. 
 """;
 
 const String _PRODUCERS_GENRES = """
-To search for animes by producers or genres requires to know the MalIDs of those producers and genres. This means that the informations about thos producers of genres need the be fetch from the API first.
+To search animes by producers or genres requires the MalIDs of those producers and genres. This means that the informations about those producers of genres need the be fetch from the API first.
 
-Since the Jikan API do not like that the apps mass fetch data and store locally there is likely that when using this app you won't have all the producers or genres. To solve this issue the app contains separate pages for produers and genres, where the producers and genres can be fetch, and then later used in searching for animes.
+Since the Jikan API do not like that the apps mass fetch data and store locally there is likely that when using this app you won't have all the producers or genres. To solve this issue the app contains separate pages for produers and genres, where the producers and genres can be fetch.
 
 Due to limitations of the API the producers can only be search by letter and not words.
 """;
@@ -60,6 +62,22 @@ class AboutPage extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
+            const SizedBox(height: 20),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 75,
+                  backgroundColor: Colors.transparent,
+                  child: ClipOval(
+                    child: Image(
+                        image: AssetImage("assets/icon/smile.png"),
+                        fit: BoxFit.fill),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
             const Divider(),
             Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +98,7 @@ class AboutPage extends ConsumerWidget {
               _ABOUT,
               style: TextStyle(
                 fontSize: 14.0,
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w400,
                 color: _foregroundThird,
               ),
             ),
@@ -98,13 +116,13 @@ class AboutPage extends ConsumerWidget {
               _ABOUT_JIKAN_API,
               style: TextStyle(
                 fontSize: 14.0,
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w400,
                 color: _foregroundThird,
               ),
             ),
             const SizedBox(height: 10),
             Text(
-              "LIMITATIONS",
+              "RATE LIMITS",
               style: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.w800,
@@ -113,10 +131,10 @@ class AboutPage extends ConsumerWidget {
             ),
             const Divider(),
             Text(
-              _LIMITATIONS,
+              _RATE_LIMITS,
               style: TextStyle(
                 fontSize: 14.0,
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w400,
                 color: _foregroundThird,
               ),
             ),
@@ -134,7 +152,7 @@ class AboutPage extends ConsumerWidget {
               _DATABASE,
               style: TextStyle(
                 fontSize: 14.0,
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w400,
                 color: _foregroundThird,
               ),
             ),
@@ -152,7 +170,7 @@ class AboutPage extends ConsumerWidget {
               _PRODUCERS_GENRES,
               style: TextStyle(
                 fontSize: 14.0,
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w400,
                 color: _foregroundThird,
               ),
             ),
@@ -170,7 +188,7 @@ class AboutPage extends ConsumerWidget {
               _SCHEDULE,
               style: TextStyle(
                 fontSize: 14.0,
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w400,
                 color: _foregroundThird,
               ),
             ),
