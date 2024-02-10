@@ -2,8 +2,6 @@ import 'package:app/ui/common/selection_widget/src/select_item.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
-final Color _backgroundSecondary = Colors.grey[900]!;
-
 void _pickValue(
   String title,
   BuildContext context,

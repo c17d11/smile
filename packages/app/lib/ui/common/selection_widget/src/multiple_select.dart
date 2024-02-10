@@ -5,13 +5,6 @@ import 'package:app/ui/common/selection_widget/src/selection_wrapper.dart';
 import 'package:app/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
-// const Color _background = Colors.black;
-// final Color _backgroundSecondary = Colors.grey[900]!;
-// final Color _foreground = Colors.grey[300]!;
-// final Color _foregroundSecondary = Colors.grey[400]!;
-// final Color _primary = Colors.teal.shade200;
-// final Color _primarySecondary = Colors.teal.shade400;
-
 class MultiSelect<T extends SelectionItem> extends StatefulWidget {
   final String title;
   final bool tristate;
