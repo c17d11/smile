@@ -2,6 +2,7 @@ import 'package:app/object/anime_response.dart';
 import 'package:app/object/producer_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jikan_api/jikan_api.dart';
 
 extension AsyncValueUiAnime on AsyncValue<AnimeResponse> {
   bool get isLoading => this is AsyncLoading<AnimeResponse>;
@@ -9,8 +10,13 @@ extension AsyncValueUiAnime on AsyncValue<AnimeResponse> {
 
   void showSnackBarOnError(BuildContext context) =>
       whenOrNull(error: (error, _) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(error.toString())));
+        if (error is JikanApiException) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(error.message!)));
+        } else {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(error.toString())));
+        }
       });
 }
 
