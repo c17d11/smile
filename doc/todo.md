@@ -4,7 +4,8 @@ UI for the Jikan api.
 ## TODO
 Tasks to be done at some point.
 
-### Before 1.0.0
+## Bugs
+- [ ] Instance in JikanApiException schedule page, filter favorite. When all reponses expired and fetching everything again.
 
 ### Future
 - [ ] Change database. Isar is not ready yet. IsarLinks will be removed in 4.0.0, use a more stable database.
