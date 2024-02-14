@@ -177,7 +177,7 @@ class AboutPage extends ConsumerWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              "SCHDEDULE",
+              "SCHEDULE",
               style: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.w800,
