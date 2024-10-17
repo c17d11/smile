@@ -6,7 +6,7 @@ The project contains multiple packages, but the entry point is *packages/app*.
 
 The animes is fetched from the [JikanApi](https://jikan.moe/)
 
-![](doc/images/browse-screen2.png) ![](doc/images/filter-screen2.png) ![](doc/images/details-screen2.png)
+![](doc/images/browse-screen.png) ![](doc/images/filter-screen.png) ![](doc/images/details-screen.png)
 
 ![](doc/videos/demo.mp4)
 
