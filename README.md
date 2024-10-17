@@ -8,7 +8,7 @@ The animes is fetched from the [JikanApi](https://jikan.moe/)
 
 ![](doc/images/browse-screen.png) ![](doc/images/filter-screen.png) ![](doc/images/details-screen.png)
 
-![](doc/videos/demo.mp4)
+See *doc/videos/demo.mp4* for interactive example.
 
 # Install dependencies
 Run the script *tools/setup-flutter.sh*.
